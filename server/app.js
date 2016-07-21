@@ -11,6 +11,6 @@ app.get( '/', function( req, res ){
   res.sendFile( path.resolve( 'views/index.html' ) );
 }); // end base url
 
-app.listen( 0420, 'localhost', function(req, res){
-  console.log('420');
+app.listen( 4200, 'localhost', function(req, res){
+  console.log('4200');
 });
