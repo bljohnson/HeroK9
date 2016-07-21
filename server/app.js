@@ -8,9 +8,12 @@ app.use( express.static( 'public' ) );
 
 app.get( '/', function( req, res ){
   console.log( 'at base url' );
-  res.sendFile( path.resolve( 'views/index.html' ) );
+  res.sendFile( path.resolve( 'public/views/index.html' ) );
 }); // end base url
 
-app.listen( 4200, 'localhost', function(req, res){
-  console.log('4200');
+// set up server
+app.set('port', process.env.PORT || 4200);
+
+app.listen(app.get('port'), function() {
+  console.log('human, wake up:', app.get('port'));
 });
