@@ -8,7 +8,7 @@ app.use( express.static( 'public' ) );
 
 app.get( '/', function( req, res ){
   console.log( 'at base url' );
-  res.sendFile( path.resolve( 'public/views/inquiry.html' ) );
+  res.sendFile( path.resolve( 'public/views/index.html' ) );
 }); // end base url
 
 // set up server
