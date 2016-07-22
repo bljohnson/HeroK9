@@ -3,12 +3,31 @@
   <head>
     <meta charset="utf-8">
     <title>Hero K9</title>
+    <script src="./vendors/angular.js"></script>
+    <script type="text/javascript" src ="./scripts/script.js"></script>
   </head>
   <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
   <body>
     <h1>Hero K9</h1>
-    
 
-    <script src="/scripts/script.js" charset="utf-8"></script>
+    <div class="login">
+
+      <form action="/" method="post">
+        <div>
+          <label for="username">email:</label>
+          <input type="text" name="username" id="username">
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password">
+        </div>
+        <div>
+          <input type="submit" value="Log In">
+          <a href="/register">Register</a>
+        </div>
+
+      </form>
+    </div>
+
   </body>
 </html>
