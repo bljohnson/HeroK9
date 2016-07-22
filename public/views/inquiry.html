@@ -12,14 +12,14 @@
 </div>
 </form>
 
-<h1>Full form</h1>
-<div class="full">
+<div class="full" ng-show="authorized == 'yes'">
+  <h1>Full form</h1>
   <form>
     <label for="rank">Rank/Title</label>
-    <input ng-model="rank" id="rank" type="text" name="name" value="">
+    <input ng-model="rank" id="rank" type="text" name="name" value="" required>
   <div>
     <label for="role">Role</label>
-    <select ng-model="role" id="role" class="" name="">
+    <select ng-model="role" id="role" class="" name="" required>
       <option value="K9 Handler">K9 Handler</option>
       <option value="K9 Unit Supervisor">K9 Unit Supervisor</option>
       <option value="Department Admin">Department Admin</option>
@@ -29,27 +29,27 @@
   </div>
   <div>
     <label for="firstName">First Name</label>
-    <input ng-model="firstName" id="firstName" type="text" name="name" value="">
+    <input ng-model="firstName" id="firstName" type="text" name="name" value="" required>
   </div>
   <div>
     <label for="lastName">Last Name</label>
-    <input ng-model="lastName" id="lastName" type="text" name="name" value="">
+    <input ng-model="lastName" id="lastName" type="text" name="name" value="" required>
   </div>
   <div>
-    <label for="cell">Cell Phone Number</label>
-    <input ng-model="cellNumber" id="cell" type="text" name="name" value="">
+    <label for="primaryPhone">Primary Phone Number</label>
+    <input ng-model="primaryPhone" id="primaryPhone" type="text" name="name" value="" required>
   </div>
   <div>
     <label for="altCell">Alt Phone Number</label>
-    <input ng-model="altPhone" id="altCell" type="text" name="name" value="">
+    <input ng-model="altPhone" id="altCell" type="text" name="name" value="">*Optional
   </div>
   <div>
     <label for="email">Email Address</label>
-    <input ng-model="email" id="email" type="text" name="name" value="">
+    <input ng-model="email" id="email" type="text" name="name" value="" required>
   </div>
   <div>
     <label for="contactTime">Best time of day to contact</label>
-    <select ng-model="contactTime" id="contactTime" class="" name="">
+    <select ng-model="contactTime" id="contactTime" class="" name="" required>
       <option value="Morning">Morning</option>
       <option value="Afternoon">Afternoon</option>
       <option value="Evening">Evening</option>
@@ -57,7 +57,7 @@
   </div>
   <div>
     <label for="address1">Department Address - Street 1</label>
-    <input ng-model="address1" id="address1" type="text" name="name" value="">
+    <input ng-model="address1" id="address1" type="text" name="name" value="" required>
   </div>
   <div>
     <label for="address2">Department Address - Street 2</label>
@@ -65,45 +65,49 @@
   </div>
   <div>
     <label for="city">Department Address - City</label>
-    <input ng-model="city" id="city" type="text" name="name" value="">
+    <input ng-model="city" id="city" type="text" name="name" value="" required>
   </div>
   <div>
     <label for="state">Department Address - State</label>
-    <input ng-model="state" id="state" type="text" name="name" value="">
+    <input ng-model="state" id="state" type="text" name="name" value="" required>
   </div>
   <div>
     <label for="zip">Department Address - Zip Code</label>
-    <input ng-model="zip" id="zip" type="text" name="name" value="">
+    <input ng-model="zip" id="zip" type="text" name="name" value="" required>
   </div>
   <div>
-    <label for="k9Qty">Number of K9s in Unit</label>
-    <input ng-model="numberOfDogs" id="k9Qty" type="text" name="name" value="">
+    <label for="numberOfDogs">Number of K9s in Unit</label>
+    <input ng-model="numberOfDogs" id="numberOfDogs" type="text" name="name" value="" required>
   </div>
-
+  <button type="submit" name="button" ng-click="sendInquiry()">Submit</button>
   </form>
 </div>
 
-<h1>Basic Form</h1>
-<div class="basic">
+<div class="basic" ng-show="authorized == 'no'">
+  <h1>Basic Form</h1>
   <div>
     <label for="firstName">First Name</label>
-    <input ng-model="firstName" id="firstName" type="text" name="name" value="">
+    <input ng-model="firstName" id="firstName" type="text" name="name" value="" required>
   </div>
   <div>
     <label for="lastName">Last Name</label>
-    <input ng-model="lastName" id="lastName" type="text" name="name" value="">
+    <input ng-model="lastName" id="lastName" type="text" name="name" value="" required>
   </div>
   <div>
-    <label for="phone">Phone Number</label>
-    <input ng-model="phone" id="phone" type="text" name="name" value="">
+    <label for="primaryPhone">Primary Phone Number</label>
+    <input ng-model="primaryPhone" id="primaryPhone" type="text" name="name" value="" required>
   </div>
   <div>
     <label for="email">Email Address</label>
-    <input ng-model="email" id="email" type="text" name="name" value="">
+    <input ng-model="email" id="email" type="text" name="name" value="" required>
   </div>
   <div>
     <label for="contactTime">Best time of day to contact</label>
-    <input ng-model="contactTime" id="contactTime" type="text" name="name" value="">
+    <select ng-model="contactTime" id="contactTime" class="" name="" required>
+      <option value="Morning">Morning</option>
+      <option value="Afternoon">Afternoon</option>
+      <option value="Evening">Evening</option>
+    </select>
   </div>
   <h4>If the information for the authorized signer is known:</h4>
   <div>
@@ -120,10 +124,11 @@
   </div>
   <div>
     <label for="authorizedPhone">Authorized Signer Phone Number</label>
-    <input ng-model="authorizedPhone" id="authorizedPhone" type="text" name="name" value="">*Optional
+    <input ng-model="authorizedPhone" id="authorizedPhone" type="text" name="name" value="">
   </div>
   <div>
     <label for="authorizedEmail">Authorized Signer Email Address</label>
-    <input ng-model="authorizedEmail" id="authorizedEmail" type="text" name="name" value="">*Optional
+    <input ng-model="authorizedEmail" id="authorizedEmail" type="text" name="name" value="">
   </div>
+  <button type="submit" name="button" ng-click="sendInquiry()">Submit</button>
 </div>

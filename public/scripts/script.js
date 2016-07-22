@@ -8,9 +8,38 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/home.html',
     }).
     when('/inquiry', {
-      templateUrl: '/views/inquiry.html'
+      templateUrl: '/views/inquiry.html',
+      controller: 'MainController'
     }).
     otherwise({
     redirectTo: 'home'
   });
+}]);
+
+myApp.controller('MainController', ['$scope', '$http', function($scope){
+  $scope.sendInquiry = function(){
+    var testObject = {
+      authorized: $scope.authorized,
+      rank: $scope.rank,
+      role: $scope.role,
+      firstName: $scope.firstName,
+      lastName: $scope.lastName,
+      primaryPhone: $scope.primaryPhone,
+      altPhone: $scope.altPhone,
+      email: $scope.email,
+      contactTime: $scope.contactTime,
+      address1: $scope.address1,
+      address2: $scope.address2,
+      city: $scope.city,
+      state: $scope.state,
+      zip: $scope.zip,
+      numberOfDogs: $scope.numberOfDogs,
+      authorizedTitle: $scope.authorizedTitle,
+      authorizedFirstName: $scope.authorizedFirstName,
+      authorizedLastName: $scope.authorizedLastName,
+      authorizedPhone: $scope.authorizedPhone,
+      authorizedEmail: $scope.authorizedEmail
+    };
+    console.log(testObject);
+  };
 }]);
