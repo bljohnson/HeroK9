@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Hero K9</title>
   </head>
   <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
-  <body>
+  <body ng-app="myApp">
     <h1>Hero K9</h1>
-    
+    <header ng-include="'/views/partials/header.html'"></header>
+    <main ng-view></main>
+    <header ng-include="'/views/partials/footer.html'"></header>
 
+
+    <script src="/vendors/angular.min.js" charset="utf-8"></script>
+    <script src="/vendors/angular-route.min.js" charset="utf-8"></script>
     <script src="/scripts/script.js" charset="utf-8"></script>
   </body>
 </html>
