@@ -3,30 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>Hero K9</title>
-    <script src="./vendors/angular.js"></script>
-    <script type="text/javascript" src ="./scripts/script.js"></script>
+    <script src="/vendors/angular.js"></script>
+    <script type="text/javascript" src ="/scripts/script.js"></script>
   </head>
   <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
-  <body>
+  <body ng-app="myApp">
     <h1>Hero K9</h1>
 
-    <div class="login">
-
-      <form action="/" method="post">
+    <div class="login" ng-controller="loginController">
         <div>
           <label for="username">email:</label>
-          <input type="text" name="username" id="username">
+          <input type="text" name="username" ng-model="email" id="username">
         </div>
         <div>
           <label for="password">Password:</label>
-          <input type="password" name="password" id="password">
+          <input type="password" name="password" ng-model="password" id="password">
         </div>
         <div>
           <input type="submit" value="Log In">
           <a href="/register">Register</a>
         </div>
-
-      </form>
     </div>
 
   </body>
