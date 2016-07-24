@@ -61,57 +61,10 @@ myApp.controller('snippitController', ['$scope', function($scope){
   // });
 
 
-  //Dummy data
-  var tableData = [
-    {
-      id: '12345',
-      fName: 'Jack',
-      lName: 'Mehoff',
-      phone: '1234567890',
-      email: 'fakeEmail@fake.com'
-    },
-    {
-      id: '54321',
-      fName: 'Al',
-      lName: 'Coholic',
-      phone: '1010101010',
-      email: 'sloppy@fake.com'
-    },
-    {
-      id: '66666',
-      fName: 'Seymour',
-      lName: 'Butz',
-      phone: '3333333333',
-      email: 'booty@fake.com'
-    },
-    {
-      id: '101001',
-      fName: 'Amanda',
-      lName: 'Hugginkiss',
-      phone: '4443332222',
-      email: 'smooches@fake.com'
-    }
-  ];//End Dummy Data
-
-
   $scope.showInquiries = function(){
 
     //Set the ng-include
     $scope.viewControl(1);
-
-    // //Make a call to populate inquiryTable
-    // $http({
-    //
-    // }).
-    // then(function(tableData){
-    //   //Bind the returned data
-      $scope.inquiryData = tableData;
-      console.log($scope.inquiryData);
-      console.log($scope.inquiryData[0].fName);
-      $scope.$apply();
-    // });
-
-
 
   };//End showInquiries
 
@@ -121,17 +74,82 @@ myApp.controller('snippitController', ['$scope', function($scope){
     //Set the ng-include
     $scope.viewControl(2);
 
-    // //Make a call to populate applicationTable
-    // $http({
-    //
-    // }).
-    // then(function(tableData){
-    //   //Bind the returned data
-      $scope.applicationData = tableData;
-    // });
-
   }//End showApplications
 
 
 
 }]);//End snippitController
+
+
+//Dummy data
+var tableData = [
+  {
+    id: '12345',
+    fName: 'Jack',
+    lName: 'Mehoff',
+    phone: '1234567890',
+    email: 'fakeEmail@fake.com'
+  },
+  {
+    id: '54321',
+    fName: 'Al',
+    lName: 'Coholic',
+    phone: '1010101010',
+    email: 'sloppy@fake.com'
+  },
+  {
+    id: '66666',
+    fName: 'Seymour',
+    lName: 'Butz',
+    phone: '3333333333',
+    email: 'booty@fake.com'
+  },
+  {
+    id: '101001',
+    fName: 'Amanda',
+    lName: 'Hugginkiss',
+    phone: '4443332222',
+    email: 'smooches@fake.com'
+  }
+];//End Dummy Data
+
+
+myApp.controller('inquiryTableController', ['$scope', function($scope){
+
+  // //Make a call to populate inquiryTable
+  // $http({
+  //
+  // }).
+  // then(function(tableData){
+  //   //Bind the returned data
+    $scope.inquiryData = tableData;
+    console.log($scope.inquiryData);
+    console.log($scope.inquiryData[0].fName);
+    console.log($scope.inquiryData.length);
+  // });
+
+
+  $scope.expandView = function(index){
+    console.log(index, 'was clicked.');
+  };
+
+}]);//End inquiryTableController
+
+
+myApp.controller('applicationTableController', ['$scope', function($scope){
+
+  // //Make a call to populate applicationTable
+  // $http({
+  //
+  // }).
+  // then(function(tableData){
+  //   //Bind the returned data
+    $scope.applicationData = tableData;
+  // });
+
+
+  $scope.expandView = function(index){
+    console.log(index, 'was clicked.');
+  };
+
+}]);//End applicationTableController

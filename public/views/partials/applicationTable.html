@@ -1,7 +1,6 @@
-<div>
+<div ng-controller="applicationTableController">
   <h3>Active Applications</h3>
 
-  <button type="button" ng-click="expandedView('application')">Expand View</button>
   <label>Search: </label>
   <input type="text" ng-model='applicationSearchIn' placeholder="Not coded yet">
 
@@ -23,7 +22,7 @@
         E-mail
       </th>
     </tr>
-    <tr ng-repeat="data in dataSet">
+    <tr ng-repeat="data in applicationData" ng-click="expandView($index)">
       <td>
         {{data.id}}
       </td>

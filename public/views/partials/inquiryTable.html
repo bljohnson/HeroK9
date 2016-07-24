@@ -1,7 +1,6 @@
-<div>
+<div ng-controller="inquiryTableController">
   <h3>Active Inquiries</h3>
 
-  <button type="button" ng-click="expandedView('inquiry')">Expand View</button>
   <label>Search: </label>
   <input type="text" ng-model='inquirySearchIn' placeholder="Not coded yet">
 
@@ -23,7 +22,7 @@
         E-mail
       </th>
     </tr>
-    <tr ng-repeat="data in inquiryData">
+    <tr ng-repeat="data in inquiryData" ng-click="expandView($index)">
       <td>
         {{data.id}}
       </td>
