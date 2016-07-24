@@ -1,0 +1,137 @@
+console.log("Admin.js");
+
+var myApp = angular.module('myApp', []);
+
+myApp.controller('adminView', ['$scope', function($scope){
+  console.log("In adminView");
+
+  //Dummy Data
+  $scope.username = "Dummy Username";
+
+  //View selection
+  $scope.tabs = [
+    {url: './views/partials/snippit.html'},
+    {url: './views/partials/inquiryTable.html'},
+    {url: './views/partials/applicationTable.html'},
+  ];
+
+  //Initialize with this partial
+  $scope.activeTab = $scope.tabs[0];
+
+  $scope.viewControl = function(tab){
+    console.log('In tab change');
+
+    $scope.activeTab = $scope.tabs[tab];
+
+  };
+
+}]);//End adminView controller
+
+
+myApp.controller('snippitController', ['$scope', function($scope){
+
+  //Dummy data
+  var snippitData = {
+    inquiry: {
+      new: 4,
+      pending: 10,
+      approved: 35
+    },
+    application: {
+      new: 2,
+      pending: 5,
+      approved: 14
+    }
+  };//End Dummy Data
+
+  // //Initialize by making a call to populate the snippits
+  // $http({
+  //   method: 'GET',
+  //   url: '/snippitInfo'
+  // }).
+  // then(function(snippitData){
+  //   //Bind the returned data
+   $scope.newInquiry = snippitData.inquiry.new;
+   $scope.pendingInquiry = snippitData.inquiry.pending;
+   $scope.approvedInquiry = snippitData.inquiry.approved;
+
+   $scope.newApplication = snippitData.application.new;
+   $scope.pendingApplication = snippitData.application.pending;
+   $scope.approvedApplication = snippitData.application.approved;
+  // });
+
+
+  //Dummy data
+  var tableData = [
+    {
+      id: '12345',
+      fName: 'Jack',
+      lName: 'Mehoff',
+      phone: '1234567890',
+      email: 'fakeEmail@fake.com'
+    },
+    {
+      id: '54321',
+      fName: 'Al',
+      lName: 'Coholic',
+      phone: '1010101010',
+      email: 'sloppy@fake.com'
+    },
+    {
+      id: '66666',
+      fName: 'Seymour',
+      lName: 'Butz',
+      phone: '3333333333',
+      email: 'booty@fake.com'
+    },
+    {
+      id: '101001',
+      fName: 'Amanda',
+      lName: 'Hugginkiss',
+      phone: '4443332222',
+      email: 'smooches@fake.com'
+    }
+  ];//End Dummy Data
+
+
+  $scope.showInquiries = function(){
+
+    //Set the ng-include
+    $scope.viewControl(1);
+
+    // //Make a call to populate inquiryTable
+    // $http({
+    //
+    // }).
+    // then(function(tableData){
+    //   //Bind the returned data
+      $scope.inquiryData = tableData;
+      console.log($scope.inquiryData);
+      console.log($scope.inquiryData[0].fName);
+      $scope.$apply();
+    // });
+
+
+
+  };//End showInquiries
+
+
+  $scope.showApplications = function(){
+
+    //Set the ng-include
+    $scope.viewControl(2);
+
+    // //Make a call to populate applicationTable
+    // $http({
+    //
+    // }).
+    // then(function(tableData){
+    //   //Bind the returned data
+      $scope.applicationData = tableData;
+    // });
+
+  }//End showApplications
+
+
+
+}]);//End snippitController

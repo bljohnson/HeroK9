@@ -7,8 +7,13 @@ var urlencodedParser=bodyParser.urlencoded( { extended: false } );
 app.use( express.static( 'public' ) );
 
 app.get( '/', function( req, res ){
-  console.log( 'at base url' );
+  console.log( 'Home, sweet home' );
   res.sendFile( path.resolve( 'public/views/index.html' ) );
+}); // end base url
+
+app.get( '/adminView', function( req, res ){
+  console.log( 'at adminView' );
+  res.sendFile( path.resolve( 'public/views/admin.html' ) );
 }); // end base url
 
 // set up server
