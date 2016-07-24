@@ -6,6 +6,10 @@ var urlencodedParser=bodyParser.urlencoded( { extended: false } );
 
 app.use( express.static( 'public' ) );
 
+app.post('/sendInquiry', function(req, res){
+  console.log(req.body.authorized);
+});
+
 app.get( '/', function( req, res ){
   console.log( 'at base url' );
   res.sendFile( path.resolve( 'public/views/index.html' ) );

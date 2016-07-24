@@ -16,7 +16,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
   });
 }]);
 
-myApp.controller('MainController', ['$scope', '$http', function($scope){
+myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
   $scope.sendInquiry = function(){
     var testObject = {
       authorized: $scope.authorized,
@@ -39,7 +39,12 @@ myApp.controller('MainController', ['$scope', '$http', function($scope){
       authorizedLastName: $scope.authorizedLastName,
       authorizedPhone: $scope.authorizedPhone,
       authorizedEmail: $scope.authorizedEmail
-    };
+    };//end object
+    $http({
+      method: "POST",
+      url: "/sendInquiry",
+      data: testObject
+    });//end $http
     console.log(testObject);
-  };
-}]);
+  };//end sendInquiry
+}]);//end controller
