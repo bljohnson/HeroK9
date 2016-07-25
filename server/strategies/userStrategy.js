@@ -10,7 +10,7 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
 //  SQL query
-  console.log('called deserializeUser');
+  console.trace('called deserializeUser');
   pg.connect(connection, function (err, client) {
 
     var user = {};
@@ -52,10 +52,10 @@ passport.use('local', new localStrategy({
           // Hash and compare
           if(encryptLib.comparePassword(password, user.password)) {
             // all good!
-            console.log('matched');
+            console.log('pass matched');
             done(null, user);
           } else {
-            console.log('nope');
+            console.log('pass dont match');
             done(null, false, {message: 'Incorrect credentials.'});
           }
 
