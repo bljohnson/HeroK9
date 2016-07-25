@@ -3,8 +3,15 @@ var app=express();
 var path=require('path');
 var bodyParser=require('body-parser');
 var urlencodedParser=bodyParser.urlencoded( { extended: false } );
+app.use( bodyParser.json() );
+
+
 
 app.use( express.static( 'public' ) );
+
+app.post('/sendInquiry', function(req, res){
+  console.log(req.body);
+});
 
 app.get( '/', function( req, res ){
   console.log( 'at base url' );
