@@ -4,8 +4,10 @@ var path = require('path');
 var router = express.Router();
 
 router.post('/',
-  passport.authenticate('local', {
-    successRedirect: 'views/success.html',
+  passport.authenticate('local',
+
+  {
+    successRedirect: '/user',
     failureRedirect: 'views/failure.html'
   }
 ));

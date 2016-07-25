@@ -1,7 +1,7 @@
 var myApp = angular.module('myApp', []);
 
 
-myApp.controller('loginController', ['$scope', '$http', function( $scope , $http){
+myApp.controller('loginController', ['$scope', '$http', '$location', function( $scope , $http, $location){
 
   $scope.register = function(){
     var regObject = {
@@ -25,6 +25,8 @@ myApp.controller('loginController', ['$scope', '$http', function( $scope , $http
     method: "POST",
     url: '/index',
     data: loginObject
-  });
+  }).success(function(data){
+        $location.path('/success');
+      });
 };
 }]);

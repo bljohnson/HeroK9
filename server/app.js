@@ -39,9 +39,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Include Routes
+var user = require ('../server/routes/userRoute');
 var index = require('../server/routes/indexRoute');
 var register = require('../server/routes/registerRoute');
 
 // Routes
+app.use('/user', user);
 app.use('/register', register);
 app.use('/index', index);
