@@ -5,12 +5,13 @@ var router = express.Router();
 
 router.post('/',
   passport.authenticate('local', {
-    successRedirect: '/views/success.html',
-    failureRedirect: '/views/failure_whoops.html'
-  })
-);
+    successRedirect: 'views/success.html',
+    failureRedirect: 'views/failure.html'
+  }
+));
 
 router.get('/', function(req, res) {
+  console.log("hitting index get");
   res.sendFile(path.resolve('public/views/index.html'));
 });
 
