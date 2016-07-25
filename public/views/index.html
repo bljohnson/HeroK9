@@ -3,19 +3,38 @@
   <head>
     <meta charset="utf-8">
     <title>Hero K9</title>
+    <script src="/vendors/angular.js"></script>
+    <script type="text/javascript" src ="/scripts/script.js"></script>
   </head>
   <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
   <body ng-app="myApp">
     <h1>Hero K9</h1>
-    <header ng-include="'/views/partials/header.html'"></header>
-    <p>this is my test branch</p>
-    <p>this is my test branch2</p>
-    <main ng-view></main>
-    <footer ng-include="'/views/partials/footer.html'"></footer>
+<header ng-include="'/views/partials/header.html'"></header>
+<p>this is my test branch</p>
+<p>this is my test branch2</p>
+<main ng-view></main>
+<footer ng-include="'/views/partials/footer.html'"></footer>
 
+
+
+    <div class="login" ng-controller="loginController">
+        <div>
+          <label for="username">email:</label>
+          <input type="text" name="username" ng-model="email" id="username">
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" name="password" ng-model="password" id="password">
+        </div>
+        <div>
+          <input type="submit" value="Log In" ng-click="login()">
+          <a href="/register">Register</a>
+        </div>
+    </div>
 
     <script src="/vendors/angular.min.js" charset="utf-8"></script>
     <script src="/vendors/angular-route.min.js" charset="utf-8"></script>
     <script src="/scripts/script.js" charset="utf-8"></script>
+
   </body>
 </html>
