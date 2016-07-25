@@ -20,10 +20,6 @@ app.use( express.static( 'public' ) );
 //body paser
 app.use(bodyParser.json());
 
-app.get( '/', function( req, res ){
-  console.log( 'Home, sweet home' );
-  res.sendFile( path.resolve( 'public/views/index.html' ) );
-}); // end base url
 
 // Passport Session Configuration //
 app.use(session({
@@ -38,7 +34,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+app.get( '/', function( req, res ){
+  console.log( 'Home, sweet home' );
+  res.sendFile( path.resolve( 'public/views/index.html' ) );
+}); // end base url
 
 app.post('/sendInquiry', function(req, res){
   console.log(req.body);
