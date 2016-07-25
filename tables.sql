@@ -3,17 +3,17 @@
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY NOT NULL,
 	email VARCHAR(255) UNIQUE,
-  	password VARCHAR(255) UNIQUE,
+  password VARCHAR(255) UNIQUE,
 	active BOOLEAN,
 	admin BOOLEAN,
-  	application_id INTEGER, -- will be null if user is admin
+  application_id INTEGER, -- will be null if user is admin
 	created TIMESTAMP DEFAULT current_timestamp
 );
 
 CREATE TABLE applications (
 	id SERIAL PRIMARY KEY NOT NULL,
-  	inquiry_id INTEGER, -- not unique bc use to join with inquiry table id if person is auth signer
-  	user_id INTEGER, -- not unique bc use to join with users table
+  inquiry_id INTEGER, -- not unique bc use to join with inquiry table id if person is auth signer
+  user_id INTEGER -- not unique bc use to join with users table
 );
 
 CREATE TABLE inquiries (
