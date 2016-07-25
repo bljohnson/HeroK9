@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', [
-  'ngRoute', 'ngMaterial'
+  'ngRoute', 'ngMaterial', 'ui.bootstrap'
 ]);
 
 myApp.config(['$routeProvider', function($routeProvider) {
@@ -51,13 +51,33 @@ myApp.controller('loginController', ['$scope', '$http', '$window', function( $sc
 }]);
 
 myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
-  $scope.validateForm = function(){
-    var x = document.forms['inquiry'].value;
-    if (x === null || x === ""){
-      alert("Please fill out all fields");
-      return false;
-    }
-  };
+  $scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
+     $scope.role;
+     $scope.getRole = function() {
+       if ($scope.role !== undefined) {
+         return $scope.role;
+       } else {
+         return "Please select a role";
+       }
+     };
+  //  $scope.options = ["Morning", "Afternoon", "Evening"];
+  //       $scope.selectedItem3;
+  //       $scope.getSelectedText3 = function() {
+  //         if ($scope.selectedItem3 !== undefined) {
+  //           return $scope.selectedItem3;
+  //         } else {
+  //           return "Please select a time";
+  //         }
+  //       };
+  $scope.times = ["Morning", "Afternoon", "Evening"];
+     $scope.contactTime;
+     $scope.getContactTime = function() {
+       if ($scope.contactTime !== undefined) {
+         return $scope.contactTime;
+       } else {
+         return "Please select a time";
+       }
+     };
   $scope.sendInquiry = function(){
     var testObject = {
       authorized: $scope.authorized,

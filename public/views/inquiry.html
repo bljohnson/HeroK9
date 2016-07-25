@@ -1,3 +1,4 @@
+<md-content flex layout-padding>
 <h1>Inquiry</h1>
 <p>Thank you for caring about the safety and well-being of our K9s in uniform. To complete your inquiry about obtaining equipment for a K9 or public agency department, please answer the following question.</p>
 <p>Are you authorized to make this request and sign a binding, legal agreement on behalf of a public agency department?</p>
@@ -14,99 +15,112 @@
 
 <div class="full" ng-show="authorized == 'yes'">
   <h1>Full form</h1>
-  <form name="inquiry" action="demo_form.asp" onsubmit="validateForm()" method="post">
-    <label for="rank">Rank/Title</label>
-    <input ng-model="rank" id="rank" type="text" name="name" value="" required>
-  <div>
-    <label for="role">Role</label>
-    <select ng-model="role" id="role" class="" name="" required>
-      <option value="K9 Handler">K9 Handler</option>
-      <option value="K9 Unit Supervisor">K9 Unit Supervisor</option>
-      <option value="Department Admin">Department Admin</option>
-      <option value="Other Admin Staff">Other Admin Staff</option>
-      <option value="Other Command Staff">Other Command Staff</option>
-    </select>
-  </div>
-  <div>
-    <label for="firstName">First Name</label>
-    <input ng-model="firstName" id="firstName" type="text" name="name" value="" required>
-  </div>
-  <div>
-    <label for="lastName">Last Name</label>
-    <input ng-model="lastName" id="lastName" type="text" name="name" value="" required>
-  </div>
-  <div>
-    <label for="primaryPhone">Primary Phone Number</label>
-    <input ng-model="primaryPhone" id="primaryPhone" type="text" name="name" value="" required>
-  </div>
-  <div>
-    <label for="altCell">Alt Phone Number</label>
-    <input ng-model="altPhone" id="altCell" type="text" name="name" value="">*Optional
-  </div>
-  <div>
-    <label for="email">Email Address</label>
-    <input ng-model="email" id="email" type="text" name="name" value="" required>
-  </div>
-  <div>
-    <label for="contactTime">Best time of day to contact</label>
-    <select ng-model="contactTime" id="contactTime" class="" name="" required>
-      <option value="Morning">Morning</option>
-      <option value="Afternoon">Afternoon</option>
-      <option value="Evening">Evening</option>
-    </select>
-  </div>
-  <div>
-    <label for="address1">Department Address - Street 1</label>
-    <input ng-model="address1" id="address1" type="text" name="name" value="" required>
-  </div>
-  <div>
-    <label for="address2">Department Address - Street 2</label>
-    <input ng-model="address2" id="address2" type="text" name="name" value="">*Optional
-  </div>
-  <div>
-    <label for="city">Department Address - City</label>
-    <input ng-model="city" id="city" type="text" name="name" value="" required>
-  </div>
-  <div>
-    <label for="state">Department Address - State</label>
-    <input ng-model="state" id="state" type="text" name="name" value="" required>
-  </div>
-  <div>
-    <label for="zip">Department Address - Zip Code</label>
-    <input ng-model="zip" id="zip" type="text" name="name" value="" required>
-  </div>
-  <div>
-    <label for="numberOfDogs">Number of K9s in Unit</label>
-    <input ng-model="numberOfDogs" id="numberOfDogs" type="text" name="name" value="" required>
-  </div>
-  <button type="submit" name="button" ng-click="sendInquiry()">Submit</button>
+  <form role="form" name="inquiry" method="post" novalidate>
+    <md-input-container class="md-block">
+      <label for="rank">Rank/Title</label>
+      <input ng-model="rank" id="rank" type="text" name="name" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <div>
+      <h1 class="md-title">Role</h1>
+      <div layout="row">
+        <md-input-container>
+          <md-select ng-model="role" md-selected-text="getRole()" placeholder="Select a role">
+              <md-option ng-value="role" ng-repeat="role in roles">{{role}}</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+    </div>
+    <md-input-container class="md-block">
+      <label for="firstName">First Name</label>
+      <input ng-model="firstName" id="firstName" type="text" name="name" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="lastName">Last Name</label>
+      <input ng-model="lastName" id="lastName" type="text" name="name" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="primaryPhone">Primary Phone Number</label>
+      <input ng-model="primaryPhone" id="primaryPhone" type="text" name="name" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="altCell">Alt Phone Number</label>
+      <input ng-model="altPhone" id="altCell" type="text" name="name" value="">
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="email">Email Address</label>
+      <input ng-model="email" id="email" type="text" name="name" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <div>
+      <h1 class="md-title">Best time of day to contact</h1>
+      <div layout="row">
+        <md-input-container>
+          <md-select ng-model="contactTime" md-selected-text="getContactTime()" placeholder="Select a time">
+              <md-option ng-value="time" ng-repeat="time in times">{{time}}</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+    </div>
+    <md-input-container class="md-block">
+      <label for="address1">Department Address - Street 1</label>
+      <input ng-model="address1" id="address1" type="text" name="name" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="address2">Department Address - Street 2</label>
+      <input ng-model="address2" id="address2" type="text" name="name" value="">
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="city">Department Address - City</label>
+      <input ng-model="city" id="city" type="text" name="name" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="state">Department Address - State</label>
+      <input ng-model="state" id="state" type="text" name="name" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="zip">Department Address - Zip Code</label>
+      <input ng-model="zip" id="zip" type="text" name="name" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="numberOfDogs">Number of K9s in Unit</label>
+      <input ng-model="numberOfDogs" id="numberOfDogs" type="text" name="name" value="" required>
+    </md-input-container>
+    <button type="submit" name="button" ng-click="sendInquiry()" ng-disabled="inquiry.$invalid">Submit</button>
   </form>
 </div>
 
 <div class="basic" ng-show="authorized == 'no'">
   <h1>Basic Form</h1>
-
-  <md-input-container class="md-block">
-        <label>Description</label>
-        <input md-maxlength="30" required="" md-no-asterisk="" name="description" ng-model="project.description">
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-          <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
-        </div>
-      </md-input-container>
-
-      <md-input-container class="md-block">
-        <label>Client Name</label>
-        <input required="" name="clientName" ng-model="project.clientName">
-        <div ng-messages="projectForm.clientName.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-
-  <form name="inquiry" method="post">
-    <md-input-container class="md-block">
+  <form role="form" name="inquiry" method="post" novalidate>
+    <md-input-container class="md-block form-group">
       <label for="firstName">First Name</label>
-      <input  ng-model="firstName" id="firstName" type="text" name="name" value="" required>
+      <input ng-model="firstName" class="form-control" id="firstName" type="text" name="name" value="" ng-required="!firstName">
       <div ng-messages="projectForm.description.$error">
         <div ng-message="required">This is required.</div>
         <!-- <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div> -->
@@ -114,39 +128,39 @@
     </md-input-container>
     <md-input-container class="md-block">
       <label for="lastName">Last Name</label>
-      <input md-maxlength="30" ng-model="lastName" id="lastName" type="text" name="name" value="">
+      <input ng-model="lastName" id="lastName" type="text" name="name" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
     </md-input-container>
     <md-input-container class="md-block">
       <label for="primaryPhone">Primary Phone Number</label>
-      <input md-maxlength="13" ng-model="primaryPhone" id="primaryPhone" type="text" name="name" value="">
+      <input md-maxlength="13" ng-model="primaryPhone" id="primaryPhone" type="text" name="name" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
     </md-input-container>
     <md-input-container class="md-block">
       <label for="email">Email Address</label>
       <input ng-model="email" id="email" type="text" name="name" value="" required>
       <div ng-messages="projectForm.description.$error">
         <div ng-message="required">This is required.</div>
+      </div>
     </md-input-container>
-    <!-- <div>
-      <label for="contactTime">Best time of day to contact</label>
-      <select ng-model="contactTime" id="contactTime" class="" name="" required>
-        <option value="Morning">Morning</option>
-        <option value="Afternoon">Afternoon</option>
-        <option value="Evening">Evening</option>
-      </select>
-    </div> -->
     <div>
-    <h1 class="md-title">Best time of day to contact</h1>
-    <div layout="row">
-      <md-input-container>
-        <label>Items</label>
-        <md-select ng-model="selectedItem" md-selected-text="getSelectedText()">
-          <md-optgroup label="items">
-            <md-option ng-value="item" ng-repeat="item in items">Item {{item}}</md-option>
-          </md-optgroup>
-        </md-select>
-      </md-input-container>
+      <h1 class="md-title">Best time of day to contact</h1>
+      <div layout="row">
+        <md-input-container>
+          <!-- <label>options</label> -->
+          <md-select ng-model="contactTime" md-selected-text="getContactTime()" placeholder="Select a time">
+            <!-- <md-optgroup label="options"> -->
+              <md-option ng-value="time" ng-repeat="time in times">{{time}}</md-option>
+            <!-- </md-optgroup> -->
+          </md-select>
+        </md-input-container>
+      </div>
     </div>
-  </div>
+
     <h4>If the information for the authorized signer is known:</h4>
     <md-input-container class="md-block">
       <label for="authorizedTitle">Authorized Signer Title</label>
@@ -168,6 +182,7 @@
       <label for="authorizedEmail">Authorized Signer Email Address</label>
       <input ng-model="authorizedEmail" id="authorizedEmail" type="text" name="name" value="">
     </md-input-container>
-    <button type="submit" name="button" ng-click="sendInquiry()">Submit</button>
+    <button type="submit" name="button" ng-click="sendInquiry()" ng-disabled="inquiry.$invalid">Submit</button>
   </form>
 </div>
+</md-content>
