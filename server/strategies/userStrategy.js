@@ -4,34 +4,35 @@ var encryptLib = require('../modules/encryption');
 var connection = require('../modules/connection');
 var pg = require('pg');
 
+//serialize user
 passport.serializeUser(function(user, done) {
     done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
-//  SQL query
-  console.trace('called deserializeUser');
-  pg.connect(connection, function (err, client) {
+passport.deserializeUser(function(id, passDone) {
+  console.log('called deserializeUser');
 
-    var user = {};
-    console.log('called deserializeUser - pg');
-      var query = client.query("SELECT * FROM users WHERE id = $1", [id]);
+  pg.connect(connection, function(err, client, pgDone) {
+    //connection error
+    if(err){
+      console.log(err);
+      res.sendStatus(500);
+    }
 
-      query.on('row', function (row) {
-        console.log('User row', row);
-        user = row;
-        done(null, user);
-      });
+    client.query("SELECT * FROM users WHERE id = $1", [id], function(err, results) {
+      pgDone();
 
-      // After all data is returned, close connection and return results
-      query.on('end', function () {
-          client.end();
-      });
-
-      // Handle Errors
-      if (err) {
-          console.log(err);
+      if(results.rows.length >= 1){
+        console.log(results.rows[0]);
+        return passDone(null, results.rows[0]);
       }
+
+      // handle errors
+      if(err){
+        console.log(err);
+      }
+
+    });
   });
 });
 
