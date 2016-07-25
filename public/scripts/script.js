@@ -23,7 +23,7 @@ myApp.controller('loginController', ['$scope', '$http', function( $scope , $http
   };
   $http({
     method: "POST",
-    url: '/',
+    url: '/index',
     data: loginObject
   });
 };

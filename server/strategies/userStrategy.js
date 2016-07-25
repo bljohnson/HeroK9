@@ -1,91 +1,77 @@
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var pg = require('pg');
-
-//require modules
+var localStrategy = require('passport-local').Strategy;
 var encryptLib = require('../modules/encryption');
 var connection = require('../modules/connection');
+var pg = require('pg');
 
-//serialize user
 passport.serializeUser(function(user, done) {
     done(null, user.id);
 });
 
-passport.deserializeUser(function(id, passDone) {
+passport.deserializeUser(function(id, done) {
+//  SQL query
   console.log('called deserializeUser');
+  pg.connect(connection, function (err, client) {
 
-  pg.connect(connection, function(err, client, pgDone) {
-    //connection error
-    if(err){
-      console.log(err);
-      res.sendStatus(500);
-    }
+    var user = {};
+    console.log('called deserializeUser - pg');
+      var query = client.query("SELECT * FROM users WHERE id = $1", [id]);
 
-    client.query("SELECT * FROM users WHERE id = $1", [id], function(err, results) {
-      pgDone();
+      query.on('row', function (row) {
+        console.log('User row', row);
+        user = row;
+        done(null, user);
+      });
 
-      if(results.rows.length >= 1){
-        console.log(results.rows[0]);
-        return passDone(null, results.rows[0]);
+      // After all data is returned, close connection and return results
+      query.on('end', function () {
+          client.end();
+      });
+
+      // Handle Errors
+      if (err) {
+          console.log(err);
       }
-
-      // handle errors
-      if(err){
-        console.log(err);
-      }
-
-    });
   });
 });
 
-//local strategy
-passport.use('local', new LocalStrategy(
-  {
+// Does actual work of logging in
+passport.use('local', new localStrategy({
     passReqToCallback: true,
     usernameField: 'username'
-  },
-  function(req, username, password, passDone) {
-    console.log('hit local strategy');
+    }, function(req, username, password, done){
+	    pg.connect(connection, function (err, client) {
+	    	console.log('called local - pg');
+	    	var user = {};
+        var query = client.query("SELECT * FROM users WHERE username = $1", [username]);
 
-    pg.connect(connection, function(err, client, pgDone) {
+        query.on('row', function (row) {
+        	console.log('User obj', row);
+        	user = row;
 
-      //connection error
-      if(err){
-        console.log(err);
-        res.sendStatus(500);
-      }
-
-      // find all users
-      client.query('SELECT * from users WHERE username = $1', [username],
-        function(err, result) {
-          pgDone();
-
-          //catch query error
-          if(err){
-            console.log(err);
-            return passDone(null, false);
-
-          }else{
-            //check the length of the result set
-            if(result.rows.length >= 1){
-
-              var passwordDb = result.rows[0].password;
-              //if given password matches dbs password
-
-              // compare encrypted password with stored password
-              if(encryptLib.comparePassword(password, passwordDb)){
-                console.log('correct pass');
-                return passDone(null, result.rows[0]);
-              }
-            }
-
+          // Hash and compare
+          if(encryptLib.comparePassword(password, user.password)) {
+            // all good!
+            console.log('matched');
+            done(null, user);
+          } else {
             console.log('nope');
-            // if fewer than 1 row or incorrect password - fail
-            return passDone(null, false, {message: 'Incorrect credentials.'});
+            done(null, false, {message: 'Incorrect credentials.'});
           }
-      });
-    });
-  }
+
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function () {
+            client.end();
+        });
+
+        // Handle Errors
+        if (err) {
+            console.log(err);
+        }
+	    });
+    }
 ));
 
 module.exports = passport;

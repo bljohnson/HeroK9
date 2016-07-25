@@ -15,7 +15,7 @@ app.get( '/', function( req, res ){
 }); // end base url
 
 // set up server
-app.set('port', process.env.PORT || 4200);
+app.set('port', process.env.PORT || 4300);
 
 app.listen(app.get('port'), function() {
   console.log('human, wake up:', app.get('port'));
@@ -44,4 +44,4 @@ var register = require('../server/routes/registerRoute');
 
 // Routes
 app.use('/register', register);
-app.use('/*', index);
+app.use('/index', index);
