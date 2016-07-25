@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
         // res.sendFile(path.resolve('public/views/success.html'));
     } else {
         // failure best handled on the server. do redirect here.
-        res.send(false);
+        res.sendStatus(403);
     }
 });
 

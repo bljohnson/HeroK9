@@ -1,7 +1,7 @@
 var myApp = angular.module('myApp', []);
 
 
-myApp.controller('loginController', ['$scope', '$http', '$location', function( $scope , $http, $location){
+myApp.controller('loginController', ['$scope', '$http', '$window', function( $scope , $http, $window){
 
   $scope.register = function(){
     var regObject = {
@@ -26,7 +26,10 @@ myApp.controller('loginController', ['$scope', '$http', '$location', function( $
     url: '/index',
     data: loginObject
   }).success(function(data){
-        $location.path('/success');
-      });
-};
+        $window.location.href = 'views/success.html';
+    }).error(function(err){
+      console.log(err);
+        $window.location.href = 'views/failure.html';
+    });
+  };
 }]);

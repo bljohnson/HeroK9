@@ -8,7 +8,7 @@ router.post('/',
 
   {
     successRedirect: '/user',
-    failureRedirect: 'views/failure.html'
+    failureRedirect: '/user'
   }
 ));
 
