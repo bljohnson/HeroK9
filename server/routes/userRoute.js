@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var pg = require('pg');
-var connectionString = 'postgres://localhost:5432/users';
+var connectionString = require('../modules/connection');
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
@@ -22,7 +22,7 @@ router.get('/logout', function(req, res) {
   // Use passport's built-in method to log out the user
   console.log('Logged out');
   req.logOut();
-  res.sendStatus(200);
+  res.redirect('/');
 });
 
 module.exports = router;

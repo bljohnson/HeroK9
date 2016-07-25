@@ -11,26 +11,11 @@
 
   <body ng-app="myApp">
     <h1>Hero K9</h1>
-
+    <a href="/login">Login</a>
     <header ng-include="'/views/partials/header.html'"></header>
     <main ng-view></main>
     <footer ng-include="'/views/partials/footer.html'"></footer>
 
-
-    <div class="login" ng-controller="loginController">
-        <div>
-          <label for="username">email:</label>
-          <input type="text" name="username" ng-model="email" id="username">
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input type="password" name="password" ng-model="password" id="password">
-        </div>
-        <div>
-          <input type="submit" value="Log In" ng-click="login()">
-          <a href="/register">Register</a>
-        </div>
-    </div>
 
     <script src="/vendors/angular.min.js" charset="utf-8"></script>
     <script src="/vendors/angular-route.min.js" charset="utf-8"></script>
