@@ -1,4 +1,16 @@
+.snippit {
+  border: 2px solid black;
+  border-radius: 15px;
+  box-shadow: 10px 10px 5px -5px;
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+}
 
+.adminTable, .adminTable td {
+  border: 1px solid;
+  padding: 3px;
+}
 
 .footer {
   height: 100px;

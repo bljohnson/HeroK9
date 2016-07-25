@@ -1,0 +1,23 @@
+<div ng-controller='snippitController'>
+
+  <div class='snippit' id='inquirySnippit'>
+    <h3>Inquiry Snapshot</h3>
+    <ul>
+      <li>New Inquiries: {{newInquiry}}</li>
+      <li>Pending Inquiries: {{pendingInquiry}}</li>
+      <li>Approved Inquiries: {{approvedInquiry}}</li>
+    </ul>
+    <button type="button" ng-click="showInquiries()">View Table</button>
+  </div>
+
+  <div class='snippit' id='applicationSnippit'>
+    <h3>Inquiry Snapshot</h3>
+    <ul>
+      <li>New Applications: {{newApplication}}</li>
+      <li>Pending Applications: {{pendingApplication}}</li>
+      <li>Approved Applications: {{approvedApplication}}</li>
+    </ul>
+    <button type="button" ng-click="showApplications()">View Table</button>
+  </div>
+
+</div>
