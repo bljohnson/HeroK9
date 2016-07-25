@@ -1,23 +1,41 @@
 <div ng-controller='snippitController'>
 
-  <div class='snippit' id='inquirySnippit'>
-    <h3>Inquiry Snapshot</h3>
+  <md-card id='inquirySnippit' md-theme="{{ showDarkTheme ? 'blue-grey' : 'default' }}" md-theme-watch="">
+
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Inquiry Snapshot</span>
+      </md-card-title-text>
+    </md-card-title>
+
     <ul>
       <li>New Inquiries: {{newInquiry}}</li>
       <li>Pending Inquiries: {{pendingInquiry}}</li>
       <li>Approved Inquiries: {{approvedInquiry}}</li>
     </ul>
-    <button type="button" ng-click="showInquiries()">View Table</button>
-  </div>
 
-  <div class='snippit' id='applicationSnippit'>
-    <h3>Inquiry Snapshot</h3>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-raised md-primary" type="button" ng-click="showInquiries()">View Table</md-button>
+    </md-card-actions>
+  </md-card>
+
+  <md-card id='applicationSnippit' md-theme="{{ showDarkTheme ? 'blue-grey' : 'default' }}" md-theme-watch="">
+
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Application Snapshot</span>
+      </md-card-title-text>
+    </md-card-title>
+
     <ul>
       <li>New Applications: {{newApplication}}</li>
       <li>Pending Applications: {{pendingApplication}}</li>
       <li>Approved Applications: {{approvedApplication}}</li>
     </ul>
-    <button type="button" ng-click="showApplications()">View Table</button>
-  </div>
+
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-raised md-primary" type="button" ng-click="showApplications()">View Table</md-button>
+    </md-card-actions>
+  </md-card>
 
 </div>

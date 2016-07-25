@@ -1,6 +1,6 @@
 console.log("Admin.js");
 
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ngMaterial']);
 
 myApp.controller('adminView', ['$scope', function($scope){
   console.log("In adminView");
