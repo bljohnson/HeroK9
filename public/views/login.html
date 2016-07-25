@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hero K9 login</title>
+    <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+    <script src="/vendors/angular.js" charset="utf-8"></script>
+    <script src="/vendors/angular-route.min.js" charset="utf-8"></script>
+    <script src="/vendors/angular-material.js" charset="utf-8"></script>
+    <script src="/vendors/angular-aria.js" charset="utf-8"></script>
+    <script src="/vendors/angular-animate.js" charset="utf-8"></script>
+    <script src="/scripts/script.js" charset="utf-8"></script>
+  </head>
+
+<body ng-app="myApp">
+    <div class="login" ng-controller="loginController">
+        <div>
+          <label for="username">email:</label>
+          <input type="text" name="username" ng-model="email" id="username">
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" name="password" ng-model="password" id="password">
+        </div>
+        <div>
+          <input type="submit" value="Log In" ng-click="login()">
+          <a href="/register">Register</a>
+        </div>
+    </div>
+
+
+  </body>
+</html>
