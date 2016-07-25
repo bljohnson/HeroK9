@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', [
-  'ngRoute'
+  'ngRoute', 'ngMaterial'
 ]);
 
 myApp.config(['$routeProvider', function($routeProvider) {
@@ -17,6 +17,13 @@ myApp.config(['$routeProvider', function($routeProvider) {
 }]);
 
 myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
+  $scope.validateForm = function(){
+    var x = document.forms['inquiry'].value;
+    if (x === null || x === ""){
+      alert("Please fill out all fields");
+      return false;
+    }
+  };
   $scope.sendInquiry = function(){
     var testObject = {
       authorized: $scope.authorized,
@@ -41,8 +48,8 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
       authorizedEmail: $scope.authorizedEmail
     };//end object
     $http({
-      method: "POST",
-      url: "/sendInquiry",
+      method: 'POST',
+      url: '/sendInquiry',
       data: testObject
     });//end $http
     console.log(testObject);
