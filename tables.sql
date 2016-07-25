@@ -4,8 +4,7 @@ CREATE TABLE users (
 	id SERIAL PRIMARY KEY NOT NULL,
 	email VARCHAR(255) UNIQUE,
   password VARCHAR(255) UNIQUE,
-	active BOOLEAN,
-	admin BOOLEAN,
+	status INTEGER,
   application_id INTEGER, -- will be null if user is admin
 	created TIMESTAMP DEFAULT current_timestamp
 );
@@ -18,7 +17,6 @@ CREATE TABLE applications (
 
 CREATE TABLE inquiries (
 	id SERIAL PRIMARY KEY NOT NULL,
-	authorized BOOLEAN, -- if true, join id with applications table inquiry id (if check Yes or No for auth signer Q on inquiry form)
 	rank VARCHAR(255),
 	role VARCHAR(255),
 	first_name VARCHAR(255),

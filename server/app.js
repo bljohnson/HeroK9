@@ -29,7 +29,7 @@ app.get( '/login', function( req, res ){
 app.get( '/adminView', function( req, res ){
   console.log( 'at adminView' );
   res.sendFile( path.resolve( 'public/views/admin.html' ) );
-}); // end base url
+});
 
 // set up server
 app.set('port', process.env.PORT || 4300);
@@ -59,8 +59,10 @@ app.use(passport.session());
 var user = require ('../server/routes/userRoute');
 var index = require('../server/routes/indexRoute');
 var register = require('../server/routes/registerRoute');
+var snippitInfo = require('../server/routes/snippitRoute');
 
 // Routes
 app.use('/user', user);
 app.use('/register', register);
 app.use('/index', index);
+app.use('/snippitInfo', snippitInfo);

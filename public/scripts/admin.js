@@ -28,7 +28,7 @@ myApp.controller('adminView', ['$scope', function($scope){
 }]);//End adminView controller
 
 
-myApp.controller('snippitController', ['$scope', function($scope){
+myApp.controller('snippitController', ['$scope', '$http', function($scope, $http){
 
   //Dummy data
   var snippitData = {
@@ -44,13 +44,15 @@ myApp.controller('snippitController', ['$scope', function($scope){
     }
   };//End Dummy Data
 
-  // //Initialize by making a call to populate the snippits
-  // $http({
-  //   method: 'GET',
-  //   url: '/snippitInfo'
-  // }).
-  // then(function(snippitData){
-  //   //Bind the returned data
+  //Initialize by making a call to populate the snippits
+  $http({
+    method: 'GET',
+    url: '/snippitInfo'
+  }).
+  then(function(snippitData2){
+    // Bind the returned data
+
+    console.log(snippitData2.data);
    $scope.newInquiry = snippitData.inquiry.new;
    $scope.pendingInquiry = snippitData.inquiry.pending;
    $scope.approvedInquiry = snippitData.inquiry.approved;
@@ -58,7 +60,7 @@ myApp.controller('snippitController', ['$scope', function($scope){
    $scope.newApplication = snippitData.application.new;
    $scope.pendingApplication = snippitData.application.pending;
    $scope.approvedApplication = snippitData.application.approved;
-  // });
+  });
 
 
   $scope.showInquiries = function(){
