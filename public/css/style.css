@@ -1,4 +1,36 @@
+@font-face {
+    font-family: 'robotolight';
+    src: url('fonts/Roboto-Light-webfont.eot');
+    src: url('fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Roboto-Light-webfont.woff') format('woff'),
+         url('fonts/Roboto-Light-webfont.ttf') format('truetype'),
+         url('fonts/Roboto-Light-webfont.svg#robotolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
+body {
+  font-family: 'robotolight', Helvetica, Arial, sans-serif;
+}
+
+.snippit {
+  border: 2px solid black;
+  border-radius: 15px;
+  box-shadow: 10px 10px 5px -5px;
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+
+}
+
+.adminTable, .adminTable td {
+  border: 1px solid;
+  padding: 3px;
+}
+
+h1 {
+  color: #0b357b;
+}
 
 .footer {
   height: 100px;
@@ -6,9 +38,4 @@
   color: #fff;
   text-align: center;
   padding: 40px 0;
-}
-
-
-h1 {
-  color: #0b357b;
 }
