@@ -123,9 +123,6 @@ myApp.controller('inquiryTableController', ['$scope', function($scope){
   // then(function(tableData){
   //   //Bind the returned data
     $scope.inquiryData = tableData;
-    console.log($scope.inquiryData);
-    console.log($scope.inquiryData[0].fName);
-    console.log($scope.inquiryData.length);
   // });
 
 
