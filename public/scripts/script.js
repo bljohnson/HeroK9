@@ -13,7 +13,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
     }).
     when('/application', {
       templateUrl: '/views/application.html',
-      controller: 'MainController'
+      controller: 'AppController'
     }).
     otherwise({
     redirectTo: 'home'
@@ -113,3 +113,47 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
     console.log(testObject);
   };//end sendInquiry
 }]);//end controller
+
+myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
+  $scope.breeds = ["German Shepherd", "Belgian Malinois", "Bloodhound", "Other"];
+  // $scope.breed;
+  $scope.getBreed = function() {
+    if ($scope.breed !== undefined) {
+      return $scope.breed;
+    } else {
+      return "Please select a breed";
+    }
+  };//end getBreed
+  //this function appends an input field when the "other" option is selected
+  $scope.yesnoCheck = function() {
+   if (this.breed == "Other") {
+     document.getElementById("ifYes").style.display = "block";
+   } else {
+     document.getElementById("ifYes").style.display = "none";
+   }
+ };
+ $scope.sendApplication = function(){
+   var objectToSend = {
+     name: $scope.name,
+     breed: $scope.breed,
+     age: $scope.age,
+     certified: $scope.certified,
+     activeDuty: $scope.activeDuty,
+     retirement: $scope.retirement,
+     title: $scope.title,
+     firstName: $scope.first,
+     lastName: $scope.last,
+     cellPhone: $scope.cell,
+     secondaryCell: $scope.secondaryCell,
+     email: $scope.emailAddress,
+     equipment: {
+       kennel: $scope.kennel,
+       bulletVest: $scope.bulletProof,
+       stabVest: $scope.stabProof,
+       doorPop: $scope.doorPop
+     },
+     additionalHandler: $scope.additionalHandler
+   };
+   console.log(objectToSend);
+ };
+}]);
