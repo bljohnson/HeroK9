@@ -3,17 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>Hero K9</title>
+    <link rel="icon" type="image/ico" href="/images/favicon.ico"/>
     <link rel="stylesheet" href="/vendors/angular-material.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
   </head>
 
   <body ng-app="myApp">
-    <h1>Hero K9</h1>
-    <a href="/login">Login</a>
     <header ng-include="'/views/partials/header.html'"></header>
-    <main ng-view></main>
-    <footer ng-include="'/views/partials/footer.html'"></footer>
+
+      <main ng-view></main>
+    
+
+    <footer class="footer" ng-include="'/views/partials/footer.html'"></footer>
 
 
     <script src="/vendors/angular.min.js" charset="utf-8"></script>
