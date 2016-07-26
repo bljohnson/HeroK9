@@ -2,17 +2,11 @@
 
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY NOT NULL,
-	email VARCHAR(255) UNIQUE,
+	username VARCHAR(255) UNIQUE,
   password VARCHAR(255) UNIQUE,
-	status INTEGER,
-  application_id INTEGER, -- will be null if user is admin
-	created TIMESTAMP DEFAULT current_timestamp
-);
-
-CREATE TABLE applications (
-	id SERIAL PRIMARY KEY NOT NULL,
-  inquiry_id INTEGER, -- not unique bc use to join with inquiry table id if person is auth signer
-  user_id INTEGER -- not unique bc use to join with users table
+	status INTEGER DEFAULT 0,
+	created TIMESTAMP DEFAULT current_timestamp,
+	form_id SERIAL UNIQUE
 );
 
 CREATE TABLE inquiries (
@@ -30,14 +24,7 @@ CREATE TABLE inquiries (
 	add_city VARCHAR(255),
 	add_state VARCHAR(30),
 	add_zip INTEGER,
-	k9s INTEGER,
-
-	-- the following columns will only be saved to db to populate inquiry table on admin dashboard. won't be used to prepopulate any form fields for application, since if unauth person fills out inquiry form, auth signer will have to go back and fill out full form (via link from admin)
-	auth_title VARCHAR(255),
-	auth_first_name VARCHAR(255),
-	auth_last_name VARCHAR(255),
-	auth_phone VARCHAR(30),
-	auth_email VARCHAR(255) UNIQUE
+	k9s INTEGER
 );
 
 

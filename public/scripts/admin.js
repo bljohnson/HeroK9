@@ -30,29 +30,18 @@ myApp.controller('adminView', ['$scope', function($scope){
 
 myApp.controller('snippitController', ['$scope', '$http', function($scope, $http){
 
-  //Dummy data
-  var snippitData = {
-    inquiry: {
-      new: 4,
-      pending: 10,
-      approved: 35
-    },
-    application: {
-      new: 2,
-      pending: 5,
-      approved: 14
-    }
-  };//End Dummy Data
 
   //Initialize by making a call to populate the snippits
   $http({
     method: 'GET',
     url: '/snippitInfo'
   }).
-  then(function(snippitData2){
+  then(function(snippitData){
     // Bind the returned data
 
-    console.log(snippitData2.data);
+    snippitData = snippitData.data;
+    console.log(snippitData);
+
    $scope.newInquiry = snippitData.inquiry.new;
    $scope.pendingInquiry = snippitData.inquiry.pending;
    $scope.approvedInquiry = snippitData.inquiry.approved;

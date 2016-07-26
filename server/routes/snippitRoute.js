@@ -14,7 +14,7 @@ router.get('/', function(req, res){
 
     var results = [];
 
-    var query = client.query("SELECT * FROM inquiries");
+    var query = client.query("SELECT * FROM users");
 
     query.on('row', function(row){
       results.push(row);
@@ -25,14 +25,29 @@ router.get('/', function(req, res){
       var inquiriesNew = 0;
       var inquiriesPending = 0;
       var inquiriesApproved = 0;
+      var applicationsNew = 0;
+      var applicationsPending = 0;
+      var applicationsApproved = 0;
 
       for (var i=0; i<results.length; i++){
-        if(results[i].authorized === true){
-          inquiriesApproved++;
-        } else if (results[i].viewed === false){
+        if(results[i].status === 0){
+          //New Inquiry
           inquiriesNew++;
-        } else {
+        } else if (results[i].status === 1){
+          //Pending Inquiry
           inquiriesPending++;
+        } else if (results[i].status === 2){
+          //Approved Inquiry
+          inquiriesApproved++;
+        } else if (results[i].status === 3){
+          //New Application
+          applicationsNew++;
+        } else if (results[i].status === 4){
+          //Pending Application
+          applicationsPending++;
+        } else if (results[i].status === 5){
+          //Approved Application
+          applicationsApproved++;
         }
       }
 
@@ -40,10 +55,17 @@ router.get('/', function(req, res){
         inquiry: undefined,
         application: undefined
       };
+
       data.inquiry = {
         new: inquiriesNew,
         pending: inquiriesPending,
         approved: inquiriesApproved
+      };
+
+      data.application = {
+        new: applicationsNew,
+        pending: applicationsPending,
+        approved: applicationsApproved
       };
 
       res.send(data);
