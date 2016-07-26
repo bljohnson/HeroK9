@@ -1,3 +1,8 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 @font-face {
     font-family: 'robotolight';
     src: url('fonts/Roboto-Light-webfont.eot');
@@ -11,16 +16,18 @@
 
 body {
   font-family: 'robotolight', Helvetica, Arial, sans-serif;
+  margin-bottom: 60px;
 }
 
-.snippit {
-  border: 2px solid black;
-  border-radius: 15px;
-  box-shadow: 10px 10px 5px -5px;
+md-card {
   display: inline-block;
-  padding: 10px;
-  margin: 10px;
+  width: 33%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
 
+md-card:last-child {
+  margin-left: 0px;
 }
 
 .adminTable, .adminTable td {
@@ -33,9 +40,51 @@ h1 {
 }
 
 .footer {
-  height: 100px;
+  height: 60px;
   background-color: #0b357b;
   color: #fff;
   text-align: center;
-  padding: 40px 0;
+  padding: 10px 0;
+  margin-top: 20px;
+}
+
+.login-nav {
+  background-color: #000;
+  border-radius: 0px;
+}
+
+.logo {
+  width: 20%;
+}
+
+.login-right {
+  float: right;
+}
+
+.mission-statement p {
+  text-transform: uppercase;
+  float: right;
+}
+
+.main-nav {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  height: 30%;
+  margin: 20px 0;
+  text-transform: uppercase;
+}
+
+.main-nav a {
+  color: #000;
+}
+
+.hometron {
+  position: relative;
+  background: #fff url("/images/k9Placeholder.jpg") center center;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  overflow: hidden;
+  padding: 20% 0;
+  margin-bottom: 0;
 }

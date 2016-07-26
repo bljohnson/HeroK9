@@ -89,5 +89,3 @@ CREATE TABLE K9_equipment (
 	K9_id INTEGER NOT NULL REFERENCES K9s(id),
 	equipment_id INTEGER NOT NULL REFERENCES equipment(id)
 );
-
--- testing dummy data --

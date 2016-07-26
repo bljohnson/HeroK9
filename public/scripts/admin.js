@@ -1,6 +1,6 @@
 console.log("Admin.js");
 
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ngMaterial']);
 
 myApp.controller('adminView', ['$scope', function($scope){
   console.log("In adminView");
@@ -28,29 +28,20 @@ myApp.controller('adminView', ['$scope', function($scope){
 }]);//End adminView controller
 
 
-myApp.controller('snippitController', ['$scope', function($scope){
+myApp.controller('snippitController', ['$scope', '$http', function($scope, $http){
 
-  //Dummy data
-  var snippitData = {
-    inquiry: {
-      new: 4,
-      pending: 10,
-      approved: 35
-    },
-    application: {
-      new: 2,
-      pending: 5,
-      approved: 14
-    }
-  };//End Dummy Data
 
-  // //Initialize by making a call to populate the snippits
-  // $http({
-  //   method: 'GET',
-  //   url: '/snippitInfo'
-  // }).
-  // then(function(snippitData){
-  //   //Bind the returned data
+  //Initialize by making a call to populate the snippits
+  $http({
+    method: 'GET',
+    url: '/snippitInfo'
+  }).
+  then(function(snippitData){
+    // Bind the returned data
+
+    snippitData = snippitData.data;
+    console.log(snippitData);
+
    $scope.newInquiry = snippitData.inquiry.new;
    $scope.pendingInquiry = snippitData.inquiry.pending;
    $scope.approvedInquiry = snippitData.inquiry.approved;
@@ -58,7 +49,7 @@ myApp.controller('snippitController', ['$scope', function($scope){
    $scope.newApplication = snippitData.application.new;
    $scope.pendingApplication = snippitData.application.pending;
    $scope.approvedApplication = snippitData.application.approved;
-  // });
+  });
 
 
   $scope.showInquiries = function(){
