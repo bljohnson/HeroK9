@@ -43,10 +43,6 @@ app.post('/sendInquiry', function(req, res){
   console.log(req.body);
 });
 
-app.get('/favicon.ico', function(req, res) {
-    res.sendStatus(200);
-});
-
 app.get( '/login', function( req, res ){
   console.log( 'at login' );
   res.sendFile( path.resolve( 'public/views/login.html' ) );
