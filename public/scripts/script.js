@@ -11,6 +11,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/inquiry.html',
       controller: 'MainController'
     }).
+    when('/user', {
+      templateUrl: '/views/user.html',
+      controller: 'UserController'
+    }).
     otherwise({
     redirectTo: 'home'
   });
