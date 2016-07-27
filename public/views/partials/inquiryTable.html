@@ -28,26 +28,46 @@
             Status
           </th>
         </tr>
-        <tr ng-repeat="data in inquiryData" ng-click="expandView($index)">
-          <td>
-            {{data.id}}
-          </td>
-          <td>
-            {{data.first_name}}
-          </td>
-          <td>
-            {{data.last_name}}
-          </td>
-          <td>
-            {{data.primary_phone}}
-          </td>
-          <td>
-            {{data.email}}
-          </td>
-          <td>
-            {{data.status}}
-          </td>
-        </tr>
+        <tbody ng-repeat="data in inquiryData">
+          <tr ng-click="expandView($index)">
+            <td>
+              {{data.id}}
+            </td>
+            <td>
+              {{data.first_name}}
+            </td>
+            <td>
+              {{data.last_name}}
+            </td>
+            <td>
+              {{data.primary_phone}}
+            </td>
+            <td>
+              {{data.email}}
+            </td>
+            <td>
+              {{data.status}}
+            </td>
+          </tr>
+
+          <tr style="display: none" id="{{ 'expand' + $index }}">
+            <td colspan='6'>
+
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">{{data.first_name}}'s Information</h3>
+                </div>
+                <div class="panel-body">
+
+                  <div ng-include="'./views/partials/adminTable.html'"></div>
+
+                </div>
+              </div>
+
+            </td>
+          </tr>
+        </tbody>
+
       </table>
     </div>
   </div>
