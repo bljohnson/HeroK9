@@ -116,28 +116,154 @@
         <fieldset class="standard">
           <div layout="column" layout-wrap layout-gt-sm="row">
             <div flex-xs flex="50">
-              <md-checkbox id="check1" class="equipment md-primary" ng-model="kennel" aria-label="Checkbox 1" ng-true-value="'kennel'">
+              <md-checkbox id="check1" class="equipment md-primary" ng-model="kennel" aria-label="Checkbox 1" ng-true-value="'Kennel'">
                 In-squad kennel
               </md-checkbox><br>
-              <md-checkbox id="check2" class="equipment md-primary" ng-model="bulletProof" aria-label="Checkbox 2" ng-true-value="'kennel'">
-                Bullet proof vest
+              <md-checkbox id="check2" class="equipment md-primary" ng-model="bulletResistant" aria-label="Checkbox 2" ng-true-value="'Bullet resistant vest'">
+                Bullet resistant vest
               </md-checkbox><br>
-              <md-checkbox id="check3" class="equipment md-primary" ng-model="stabProof" aria-label="Checkbox 3" ng-true-value="'kennel'">
-                Stab proof vest
+              <md-checkbox id="check3" class="equipment md-primary" ng-model="stabResistant" aria-label="Checkbox 3" ng-true-value="'Bullet and stab resistant vest'">
+                Bullet and stab resistant vest
               </md-checkbox><br>
-              <md-checkbox id="check4" class="equipment md-primary" ng-model="doorPop" aria-label="Checkbox 4" ng-true-value="'kennel'">
+              <md-checkbox id="check4" class="equipment md-primary" ng-model="doorPop" aria-label="Checkbox 4" ng-true-value="'Door pop/Heat alarm'">
                 Door pop/Heat alarm
               </md-checkbox>
             </div>
           </div>
         </fieldset>
       </div><br>
-      <md-radio-group ng-model="additionalHandler">
-        <label for="additionalHandler">Would you like to add an addition K9/handler</label>
-        <md-radio-button value="yes" class="md-primary">Yes</md-radio-button>
-        <md-radio-button value="no" class="md-primary">No</md-radio-button>
-      </md-radio-group>
+        <md-radio-group ng-model="additional">
+          <md-radio-button ng-model="additional" class="md-primary" id="yes" name="additional" value="yes">Yes</md-radio-button>
+          <md-radio-button ng-model="additional" class="md-primary" id="no" name="additional" value="no">No</md-radio-button>
+        </md-radio-group>
     </form>
+    <div class="" ng-show="additional == 'yes'">
+      <h1>Add additional handler</h1>
+      <form class="">
+        <h2>Enter K9 information</h2>
+        <md-input-container class="md-block">
+          <label for="name">Name</label>
+          <input ng-model="name" id="name" type="text" name="name" value="" required>
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <div>
+          <h1 class="md-title">Breed</h1>
+          <div layout="row">
+            <md-input-container>
+              <md-select ng-model="breed" md-selected-text="getBreed()" placeholder="Select a breed" ng-change="yesnoCheck()">
+                  <md-option ng-value="breed" ng-repeat="breed in breeds">{{breed}}</md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container id="ifYes" style="display: none;" class="md-block">
+              <label for="otherBreed">Other breed: </label>
+              <input ng-model="otherBreed" id="otherBreed" type="text" name="otherBreed" value="">
+            </md-input-container>
+          </div>
+        </div>
+        <md-input-container class="md-block">
+          <label for="age">Age (in months)</label>
+          <input ng-model="age" id="age" type="text" name="age" value="" required>
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-radio-group ng-model="certified">
+          <label for="certified">Is this K9 currently certified or in the process of obtaining certification in any of the following areas: Explosives, Narcotics, Patrol, Trailing, etc.</label>
+          <md-radio-button value="yes" class="md-primary">Yes</md-radio-button>
+          <md-radio-button value="no" class="md-primary">No</md-radio-button>
+        </md-radio-group>
+        <md-radio-group ng-model="activeDuty">
+          <label for="activeDuty">Is this K9 currently on active duty with the department?</label>
+          <md-radio-button value="yes" class="md-primary">Yes</md-radio-button>
+          <md-radio-button value="no" class="md-primary">No</md-radio-button>
+        </md-radio-group>
+        <md-radio-group ng-model="retirement">
+          <label for="retirement">Is this K9 scheduled for retirement within the next year?</label>
+          <md-radio-button value="yes" class="md-primary">Yes</md-radio-button>
+          <md-radio-button value="no" class="md-primary">No</md-radio-button>
+        </md-radio-group>
+        <h2>Add handler information</h2>
+        <md-input-container class="md-block">
+          <label for="title">Title/Rank</label>
+          <input ng-model="title" id="title" type="text" name="title" value="" required>
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label for="first">First Name</label>
+          <input ng-model="first" id="first" type="text" name="first" value="" required>
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label for="last">Last Name</label>
+          <input ng-model="last" id="last" type="text" name="last" value="" required>
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label for="badge">Badge #</label>
+          <input ng-model="badge" id="badge" type="text" name="badge" value="" required>
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label for="cell">Cell Phone # (xxx-xxx-xxxx)</label>
+          <input ng-model="cell" id="cell" type="text" name="cell" value="" required>
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label for="secondaryCell">Secondary Cell Phone # (xxx-xxx-xxxx)</label>
+          <input ng-model="secondaryCell" id="secondaryCell" type="text" name="secondaryCell" value="">
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label for="emailAddress">Email Address</label>
+          <input ng-model="emailAddress" id="emailAddress" type="text" name="emailAddress" value="" required>
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <h4>Equipment being requested</h4>
+        <div>
+          <fieldset class="standard">
+            <div layout="column" layout-wrap layout-gt-sm="row">
+              <div flex-xs flex="50">
+                <md-checkbox id="check1" class="equipment md-primary" ng-model="kennel" aria-label="Checkbox 1" ng-true-value="'Kennel'">
+                  In-squad kennel
+                </md-checkbox><br>
+                <md-checkbox id="check2" class="equipment md-primary" ng-model="bulletResistant" aria-label="Checkbox 2" ng-true-value="'Bullet resistant vest'">
+                  Bullet resistant vest
+                </md-checkbox><br>
+                <md-checkbox id="check3" class="equipment md-primary" ng-model="stabResistant" aria-label="Checkbox 3" ng-true-value="'Bullet and stab resistant vest'">
+                  Bullet and stab resistant vest
+                </md-checkbox><br>
+                <md-checkbox id="check4" class="equipment md-primary" ng-model="doorPop" aria-label="Checkbox 4" ng-true-value="'Door pop/Heat alarm'">
+                  Door pop/Heat alarm
+                </md-checkbox>
+              </div>
+            </div>
+          </fieldset>
+        </div><br>
+        <md-radio-group ng-model="additional">
+          <md-radio-button ng-model="additional" class="md-primary" id="yes" name="additional" value="yes">Yes</md-radio-button>
+          <md-radio-button ng-model="additional" class="md-primary" id="no" name="additional" value="no">No</md-radio-button>
+        </md-radio-group>
+      </form>
+    </div>
+    <div class="" ng-show="additional == 'no'">
+      <p>wut</p>
+    </div>
     <input type="submit" ng-click="sendApplication()" name="name" value="Submit">
   </div>
 </div>

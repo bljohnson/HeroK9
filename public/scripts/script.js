@@ -133,9 +133,10 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    }
  };
  $scope.sendApplication = function(){
-  //  var x = document.getElementById("check1").value;
-  //  console.log(x);
   console.log($scope.kennel);
+  console.log($scope.bulletResistant);
+  console.log($scope.stabResistant);
+  console.log($scope.doorPop);
    console.log($scope.otherBreed);
    var breedToSend;
    if ($scope.otherBreed !== undefined){
@@ -157,14 +158,19 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
      cellPhone: $scope.cell,
      secondaryCell: $scope.secondaryCell,
      email: $scope.emailAddress,
-     equipment: {
-       kennel: $scope.kennel,
-       bulletVest: $scope.bulletProof,
-       stabVest: $scope.stabProof,
-       doorPop: $scope.doorPop
-     },
+     equipment: [],
      additionalHandler: $scope.additionalHandler
    };
+
+   if($scope.kennel !== undefined){
+     objectToSend.equipment.push($scope.kennel);
+   } if($scope.bulletResistant !== undefined){
+     objectToSend.equipment.push($scope.bulletResistant);
+   } if($scope.stabResistant !== undefined){
+     objectToSend.equipment.push($scope.stabResistant);
+   } if($scope.doorPop !== undefined){
+     objectToSend.equipment.push($scope.doorPop);
+   }
    console.log(objectToSend);
  };
 }]);
