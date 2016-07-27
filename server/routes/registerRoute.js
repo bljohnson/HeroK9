@@ -21,13 +21,13 @@ router.post('/', function(req, res) {
   pg.connect(connection, function (err, client, done) {
 
     var userToSave = {
-      username: req.body.email,
+      email: req.body.email,
       password: encryptLib.encryptPassword(req.body.password)
     };
 
     //client.query takes the query, params, and optional callback
-    client.query("INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id",
-      [userToSave.username, userToSave.password],
+    client.query("INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id",
+      [userToSave.email, userToSave.password],
         function(err, result) {
 
           done();
