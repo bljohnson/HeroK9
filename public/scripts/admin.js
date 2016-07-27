@@ -70,7 +70,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
 }]);//End snippitController
 
 
-myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, $http){
+myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog', function($scope, $http, $mdDialog){
 
   //Make a call to populate inquiryTable
   $http({
@@ -86,8 +86,17 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
 
 
   $scope.expandView = function(index){
-    console.log(index, 'was clicked.');
+
+    if (document.getElementById('expand' + index).style.display == "none"){
+      this.backgroundColor = "#AAAAAA";
+      document.getElementById('expand' + index).style.display = "table-row";
+    } else if (document.getElementById('expand' + index).style.display == "table-row"){
+      this.backgroundColor = "#FFFFFF";
+      document.getElementById('expand' + index).style.display = "none";
+    }
+
   };
+
 
 }]);//End inquiryTableController
 
@@ -109,7 +118,7 @@ myApp.controller('applicationTableController', ['$scope', '$http', function($sco
 
   $scope.expandView = function(index){
     console.log(index, 'was clicked.');
-    
+
   };
 
 }]);//End applicationTableController

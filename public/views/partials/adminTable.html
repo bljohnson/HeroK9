@@ -1,0 +1,33 @@
+
+<main>
+
+  <div class="page-header">
+    <h2>{{data.first_name}} {{data.last_name}}, <small>{{data.rank}}</small></h2>
+    {{data.status}}
+  </div>
+
+
+  <div>
+    <h4><strong>Contact Information</strong></h4>
+
+    <content>
+      <span class="infoItem"><label>Primary Phone: </label> {{data.primary_phone}}</span></br>
+      <span class="infoItem"><label>Secondary Phone: </label> {{data.alt_phone}}</span></br>
+      <span class="infoItem"><label>Email: </label> {{data.email}}</span></br>
+      <span class="infoItem"><label>Secondary Email: </label> {{data.contact_email}}</span></br>
+      <span class="infoItem"><label>Best Contact Time: </label> {{data.contact_time}}</span></br>
+    </content>
+
+
+    <h4><strong>Address</strong></h4>
+
+    <content>
+      <span class="infoItem"><label>Street: </label> {{data.add_street1}}</span></br>
+      <span class="infoItem"><label>City: </label> {{data.city}}</span></br>
+      <span class="infoItem"><label>State: </label> {{data.add_state}}</span></br>
+      <span class="infoItem"><label>Zip Code: </label> {{data.add_zip}}</span></br>
+    </content>
+
+  </div>
+
+</main>

@@ -83,3 +83,7 @@ h1 {
   padding: 20% 0;
   margin-bottom: 0;
 }
+
+.infoItem:hover {
+  background-color: #AAA;
+}
