@@ -116,16 +116,16 @@
         <fieldset class="standard">
           <div layout="column" layout-wrap layout-gt-sm="row">
             <div flex-xs flex="50">
-              <md-checkbox class="equipment md-primary" ng-model="kennel" aria-label="Checkbox 1">
+              <md-checkbox id="check1" class="equipment md-primary" ng-model="kennel" aria-label="Checkbox 1" ng-true-value="'kennel'">
                 In-squad kennel
               </md-checkbox><br>
-              <md-checkbox class="equipment md-primary" ng-model="bulletProof" aria-label="Checkbox 2">
+              <md-checkbox id="check2" class="equipment md-primary" ng-model="bulletProof" aria-label="Checkbox 2" ng-true-value="'kennel'">
                 Bullet proof vest
               </md-checkbox><br>
-              <md-checkbox class="equipment md-primary" ng-model="stabProof" aria-label="Checkbox 3">
+              <md-checkbox id="check3" class="equipment md-primary" ng-model="stabProof" aria-label="Checkbox 3" ng-true-value="'kennel'">
                 Stab proof vest
               </md-checkbox><br>
-              <md-checkbox id="test" class="equipment md-primary" ng-model="doorPop" aria-label="Checkbox 4">
+              <md-checkbox id="check4" class="equipment md-primary" ng-model="doorPop" aria-label="Checkbox 4" ng-true-value="'kennel'">
                 Door pop/Heat alarm
               </md-checkbox>
             </div>
@@ -138,7 +138,7 @@
         <md-radio-button value="no" class="md-primary">No</md-radio-button>
       </md-radio-group>
     </form>
-    <input type="submit" ng-click="sendApplication(); register()" name="name" value="Submit">
+    <input type="submit" ng-click="sendApplication()" name="name" value="Submit">
   </div>
 </div>
 

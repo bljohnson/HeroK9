@@ -133,10 +133,20 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    }
  };
  $scope.sendApplication = function(){
+  //  var x = document.getElementById("check1").value;
+  //  console.log(x);
+  console.log($scope.kennel);
+   console.log($scope.otherBreed);
+   var breedToSend;
+   if ($scope.otherBreed !== undefined){
+     breedToSend = $scope.otherBreed;
+   } else {
+     breedToSend = $scope.breed;
+   }
+
    var objectToSend = {
      name: $scope.name,
-     breed: $scope.breed,
-     otherBreed: $scope.otherBreed,
+     breed: breedToSend,
      age: $scope.age,
      certified: $scope.certified,
      activeDuty: $scope.activeDuty,
