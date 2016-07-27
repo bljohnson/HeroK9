@@ -82,9 +82,14 @@ var user = require ('../server/routes/userRoute');
 var index = require('../server/routes/indexRoute');
 var register = require('../server/routes/registerRoute');
 var snippitInfo = require('../server/routes/snippitRoute');
+var inquiryTable = require('../server/routes/inquiryTableRoute');
+var applicationTable = require('../server/routes/applicationTableRoute');
+
 
 // Routes
 app.use('/user', user);
 app.use('/register', register);
 app.use('/index', index);
 app.use('/snippitInfo', snippitInfo);
+app.use('/inquiryTable', inquiryTable);
+app.use('/applicationTable', applicationTable);

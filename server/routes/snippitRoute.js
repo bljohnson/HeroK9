@@ -30,22 +30,22 @@ router.get('/', function(req, res){
       var applicationsApproved = 0;
 
       for (var i=0; i<results.length; i++){
-        if(results[i].status === 0){
+        if(results[i].status === 'New Inquiry'){
           //New Inquiry
           inquiriesNew++;
-        } else if (results[i].status === 1){
+        } else if (results[i].status === 'Pending Inquiry'){
           //Pending Inquiry
           inquiriesPending++;
-        } else if (results[i].status === 2){
+        } else if (results[i].status === 'Approved Inquiry'){
           //Approved Inquiry
           inquiriesApproved++;
-        } else if (results[i].status === 3){
+        } else if (results[i].status === 'New Application'){
           //New Application
           applicationsNew++;
-        } else if (results[i].status === 4){
+        } else if (results[i].status === 'Pending Application'){
           //Pending Application
           applicationsPending++;
-        } else if (results[i].status === 5){
+        } else if (results[i].status === 'Approved Application'){
           //Approved Application
           applicationsApproved++;
         }

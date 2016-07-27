@@ -30,11 +30,6 @@ md-card:last-child {
   margin-left: 0px;
 }
 
-.adminTable, .adminTable td {
-  border: 1px solid;
-  padding: 3px;
-}
-
 h1 {
   color: #0b357b;
 }
