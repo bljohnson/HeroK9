@@ -132,6 +132,15 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
      document.getElementById("ifYes").style.display = "none";
    }
  };
+ var ok = document.getElementById('checkk');
+ $scope.check = function() {
+        if (ok.value != document.getElementById('check').value) {
+            ok.setCustomValidity('Password Must be Matching.');
+        } else {
+            // input is valid -- reset the error message
+            ok.setCustomValidity('');
+        }
+    };
  $scope.sendApplication = function(){
   console.log($scope.kennel);
   console.log($scope.bulletResistant);

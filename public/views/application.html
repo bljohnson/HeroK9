@@ -5,7 +5,7 @@
     <form>
       <div>
         <label>Email:</label>
-        <input type="text" ng-model="email">
+        <input id="check" type="text" ng-model="email">
       </div>
       <div>
         <label>Password:</label>
@@ -262,10 +262,52 @@
       </form>
     </div>
     <div class="" ng-show="additional == 'no'">
-      <p>wut</p>
+      <h1>Legal agreement*</h1>
+      <form>
+        <div>
+          <fieldset class="standard">
+            <div layout="column" layout-wrap layout-gt-sm="row">
+              <div flex-xs flex="50">
+                <md-checkbox id="agreement" class="equipment md-primary" ng-model="agreement" aria-label="agreement">
+                  I am authorized to apply for a grant on behalf of the department.
+                </md-checkbox>
+                <md-checkbox id="terms" class="equipment md-primary" ng-model="terms" aria-label="terms">
+                  Terms & Conditions: I accept the terms and conditions of this application and confirm the information entered above to be accurate and complete.
+                </md-checkbox>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <md-input-container class="md-block">
+          <label for="signature">Signature</label>
+          <input ng-model="signature" id="signature" type="text" name="signature" value="" required>
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <h2>Identify confirmation</h2>
+        <md-input-container class="md-block">
+          <label for="emailConfirm">Email address</label>
+          <input ng-model="emailConfirm" id="checkk" type="text" name="emailConfirm"  ng-change="check()" value="" required>
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container><md-input-container class="md-block">
+          <label for="cell">Cell phone #</label>
+          <input ng-model="cell" id="cell" type="text" name="cell" value="" required>
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container><md-input-container class="md-block">
+          <label for="badge">Badge #</label>
+          <input ng-model="badge" id="badge" type="text" name="badge" value="" required>
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+      </form>
     </div>
     <input type="submit" ng-click="sendApplication()" name="name" value="Submit">
   </div>
 </div>
-
 </md-content>
