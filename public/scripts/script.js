@@ -136,6 +136,7 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    var objectToSend = {
      name: $scope.name,
      breed: $scope.breed,
+     otherBreed: $scope.otherBreed,
      age: $scope.age,
      certified: $scope.certified,
      activeDuty: $scope.activeDuty,
