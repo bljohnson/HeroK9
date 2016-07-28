@@ -133,10 +133,12 @@
         </fieldset>
       </div><br>
         <md-radio-group ng-model="additional">
+          <label for="additional">Would you like to add an additional K9/handler?</label>
           <md-radio-button ng-model="additional" class="md-primary" id="yes" name="additional" value="yes">Yes</md-radio-button>
           <md-radio-button ng-model="additional" class="md-primary" id="no" name="additional" value="no">No</md-radio-button>
         </md-radio-group>
     </form>
+
     <div class="" ng-show="additional == 'yes'">
       <h1>Add additional handler</h1>
       <form class="">
@@ -261,6 +263,7 @@
         </md-radio-group>
       </form>
     </div>
+    
     <div class="" ng-show="additional == 'no'">
       <h1>Legal agreement*</h1>
       <form>
