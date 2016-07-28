@@ -68,15 +68,7 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
          return "Please select a role";
        }
      };
-  //  $scope.options = ["Morning", "Afternoon", "Evening"];
-  //       $scope.selectedItem3;
-  //       $scope.getSelectedText3 = function() {
-  //         if ($scope.selectedItem3 !== undefined) {
-  //           return $scope.selectedItem3;
-  //         } else {
-  //           return "Please select a time";
-  //         }
-  //       };
+
   $scope.times = ["Morning", "Afternoon", "Evening"];
      $scope.contactTime;
      $scope.getContactTime = function() {
@@ -88,7 +80,6 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
      };
   $scope.sendInquiry = function(){
     var testObject = {
-      authorized: $scope.authorized,
       rank: $scope.rank,
       role: $scope.role,
       firstName: $scope.firstName,
@@ -119,8 +110,17 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
 }]);//end controller
 
 myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
+  var val = document.getElementById('emailAddress').value;
+  var checkk = document.getElementById('checkk');
+  $scope.checkValid = function(){
+    if($scope.emailConfirm !== val){
+      // alert('you fucking idiot');
+      checkk.setCustomValidity('Must be matching');
+    } else {
+      alert('ok');
+    }
+  };
   $scope.breeds = ["German Shepherd", "Belgian Malinois", "Bloodhound", "Other"];
-  // $scope.breed;
   $scope.getBreed = function() {
     if ($scope.breed !== undefined) {
       return $scope.breed;
@@ -128,6 +128,7 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
       return "Please select a breed";
     }
   };//end getBreed
+
   //this function appends an input field when the "other" option is selected
   $scope.yesnoCheck = function() {
    if (this.breed == "Other") {
@@ -135,7 +136,8 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    } else {
      document.getElementById("ifYes").style.display = "none";
    }
- };
+ };//end yesnoCheck
+
  // var ok = document.getElementById('checkk');
  // $scope.check = function() {
  //        if (ok.value != document.getElementById('check').value) {
@@ -145,6 +147,7 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
  //            ok.setCustomValidity('');
  //        }
  //    };
+
  $scope.sendApplication = function(){
   console.log($scope.kennel);
   console.log($scope.bulletResistant);
@@ -157,6 +160,20 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    } else {
      breedToSend = $scope.breed;
    }
+
+  //  var val = document.getElementById('emailAddress').value;
+  //
+  //    $scope.checkValid = function(input){
+  //          if (input.value !== val) {
+  //              input.setCustomValidity("These fields don't match.");
+  //          } else {
+  //              // input is fine -- reset the error message
+  //              input.setCustomValidity('');
+  //          }
+  //      };
+  // var val = document.getElementById('checkk');
+
+
 
    var objectToSend = {
      name: $scope.name,
@@ -173,7 +190,7 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
      email: $scope.emailAddress,
      equipment: [],
      additionalHandler: $scope.additionalHandler
-   };
+   };//end objectToSend
 
    if($scope.kennel !== undefined){
      objectToSend.equipment.push($scope.kennel);
@@ -185,5 +202,5 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
      objectToSend.equipment.push($scope.doorPop);
    }
    console.log(objectToSend);
- };
+ };//end sendApplication
 }]);

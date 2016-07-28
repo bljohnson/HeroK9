@@ -263,7 +263,7 @@
         </md-radio-group>
       </form>
     </div>
-    
+
     <div class="" ng-show="additional == 'no'">
       <h1>Legal agreement*</h1>
       <form>
@@ -291,7 +291,7 @@
         <h2>Identify confirmation</h2>
         <md-input-container class="md-block">
           <label for="emailConfirm">Email address</label>
-          <input ng-model="emailConfirm" id="checkk" type="text" name="emailConfirm"  ng-change="check()" value="" required>
+          <input ng-model="emailConfirm" id="checkk" type="text" name="emailConfirm"  ng-change="checkValid()" value="" required>
           <div ng-messages="projectForm.description.$error">
             <div ng-message="required">This is required.</div>
           </div>
