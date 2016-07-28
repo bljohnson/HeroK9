@@ -67,77 +67,58 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
 
   }//End showApplications
 
-
-
 }]);//End snippitController
 
 
-//Dummy data
-var tableData = [
-  {
-    id: '12345',
-    fName: 'Jack',
-    lName: 'Mehoff',
-    phone: '1234567890',
-    email: 'fakeEmail@fake.com'
-  },
-  {
-    id: '54321',
-    fName: 'Al',
-    lName: 'Coholic',
-    phone: '1010101010',
-    email: 'sloppy@fake.com'
-  },
-  {
-    id: '66666',
-    fName: 'Seymour',
-    lName: 'Butz',
-    phone: '3333333333',
-    email: 'booty@fake.com'
-  },
-  {
-    id: '101001',
-    fName: 'Amanda',
-    lName: 'Hugginkiss',
-    phone: '4443332222',
-    email: 'smooches@fake.com'
-  }
-];//End Dummy Data
+myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog', function($scope, $http, $mdDialog){
 
-
-myApp.controller('inquiryTableController', ['$scope', function($scope){
-
-  // //Make a call to populate inquiryTable
-  // $http({
-  //
-  // }).
-  // then(function(tableData){
-  //   //Bind the returned data
+  //Make a call to populate inquiryTable
+  $http({
+    method: 'GET',
+    url: '/inquiryTable'
+  }).
+  then(function(tableData){
+    //Bind the returned data
+    tableData = tableData.data;
+    console.log(tableData);
     $scope.inquiryData = tableData;
-  // });
+  });
 
 
   $scope.expandView = function(index){
-    console.log(index, 'was clicked.');
+
+    if (document.getElementById('expand' + index).style.display == "none"){
+      this.backgroundColor = "#AAAAAA";
+      document.getElementById('expand' + index).style.display = "table-row";
+    } else if (document.getElementById('expand' + index).style.display == "table-row"){
+      this.backgroundColor = "#FFFFFF";
+      document.getElementById('expand' + index).style.display = "none";
+    }
+
   };
+
 
 }]);//End inquiryTableController
 
 
-myApp.controller('applicationTableController', ['$scope', function($scope){
+myApp.controller('applicationTableController', ['$scope', '$http', function($scope, $http){
 
-  // //Make a call to populate applicationTable
-  // $http({
-  //
-  // }).
-  // then(function(tableData){
-  //   //Bind the returned data
+  //Make a call to populate applicationTable
+  $http({
+    method: 'GET',
+    url: '/applicationTable'
+  }).
+  then(function(tableData){
+    //Bind the returned data
+    tableData = tableData.data
+    console.log(tableData);
     $scope.applicationData = tableData;
-  // });
+  });
 
 
   $scope.expandView = function(index){
     console.log(index, 'was clicked.');
+
   };
 
 }]);//End applicationTableController

@@ -4,40 +4,71 @@
   <label>Search: </label>
   <input type="text" ng-model='inquirySearchIn' placeholder="Not coded yet">
 
-  <table class="adminTable">
-    <tr>
-      <th>
-        ID
-      </th>
-      <th>
-        First Name
-      </th>
-      <th>
-        Last Name
-      </th>
-      <th>
-        Phone
-      </th>
-      <th>
-        E-mail
-      </th>
-    </tr>
-    <tr ng-repeat="data in inquiryData" ng-click="expandView($index)">
-      <td>
-        {{data.id}}
-      </td>
-      <td>
-        {{data.fName}}
-      </td>
-      <td>
-        {{data.lName}}
-      </td>
-      <td>
-        {{data.phone}}
-      </td>
-      <td>
-        {{data.email}}
-      </td>
-    </tr>
-  </table>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Inquiries</div>
+    <div class="panel-body">
+      <table class="table">
+        <tr>
+          <th>
+            ID
+          </th>
+          <th>
+            First Name
+          </th>
+          <th>
+            Last Name
+          </th>
+          <th>
+            Phone
+          </th>
+          <th>
+            E-mail
+          </th>
+          <th>
+            Status
+          </th>
+        </tr>
+        <tbody ng-repeat="data in inquiryData">
+          <tr ng-click="expandView($index)">
+            <td>
+              {{data.id}}
+            </td>
+            <td>
+              {{data.first_name}}
+            </td>
+            <td>
+              {{data.last_name}}
+            </td>
+            <td>
+              {{data.primary_phone}}
+            </td>
+            <td>
+              {{data.email}}
+            </td>
+            <td>
+              {{data.status}}
+            </td>
+          </tr>
+
+          <tr style="display: none" id="{{ 'expand' + $index }}">
+            <td colspan='6'>
+
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">{{data.first_name}}'s Information</h3>
+                </div>
+                <div class="panel-body">
+
+                  <div ng-include="'./views/partials/adminTable.html'"></div>
+
+                </div>
+              </div>
+
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
 </div>

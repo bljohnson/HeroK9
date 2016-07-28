@@ -1,6 +1,7 @@
 html {
   position: relative;
   min-height: 100%;
+  background-color: #fff;
 }
 
 @font-face {
@@ -28,11 +29,6 @@ md-card {
 
 md-card:last-child {
   margin-left: 0px;
-}
-
-.adminTable, .adminTable td {
-  border: 1px solid;
-  padding: 3px;
 }
 
 h1 {
@@ -87,4 +83,8 @@ h1 {
   overflow: hidden;
   padding: 20% 0;
   margin-bottom: 0;
+}
+
+.infoItem:hover {
+  background-color: #AAA;
 }

@@ -4,12 +4,17 @@
     <meta charset="utf-8">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="/vendors/angular-material.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body ng-app="myApp">
 
     <main ng-controller='adminView'>
-      <h1>Welcome, {{username}}!</h1>
+
+      <div class="page-header">
+        <h1>Admin Dashboard <small>Welcome, {{username}}</small></h1>
+      </div>
+
       <ng-include src="activeTab.url"></ng-include>
     </main>
 
