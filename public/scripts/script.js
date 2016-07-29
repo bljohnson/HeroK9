@@ -115,7 +115,6 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
 
 
 myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
-<<<<<<< HEAD
 	$scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
 	   $scope.role;
 	   $scope.getRole = function() {
@@ -135,7 +134,6 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
 	          return "Please select a time";
 	        }
 	      };
-=======
   // $scope.checkEmail = function(){
   //   if($scope.emailConfirm !== $scope.emailAddress){
   //     $scope.emailMatch = true;
@@ -210,7 +208,6 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
   };
 
 
->>>>>>> application
 
   $scope.breeds = ["German Shepherd", "Belgian Malinois", "Bloodhound", "Other"];
   $scope.getBreed = function() {
@@ -286,17 +283,11 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
      objectToSend.equipment.push($scope.doorPop);
    }
    console.log(objectToSend);
-<<<<<<< HEAD
 
 	$http({
 		method: 'POST',
 		url: '/applicationForm',
 		data: objectToSend
 	});
-
- };
-=======
- };//end sendApplication
-
->>>>>>> application
+ }; //end sendApplication
 }]);
