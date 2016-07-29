@@ -91,11 +91,27 @@
         </div>
       </md-input-container>
       <md-input-container class="md-block">
+        <label for="badge">Confirm badge #</label>
+        <input ng-model="badgeConfirm" id="badge" type="text" name="badge" ng-change="checkBadge(); wuttt()"value="" required>
+        <div ng-messages="projectForm.description.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+        <p ng-show="badgeMatch" class="confirm">Badge # has to match</p>
+      </md-input-container>
+      <md-input-container class="md-block">
         <label for="cell">Cell Phone # (xxx-xxx-xxxx)</label>
         <input ng-model="cell" id="cell" type="text" name="cell" value="" required>
         <div ng-messages="projectForm.description.$error">
           <div ng-message="required">This is required.</div>
         </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label for="cell">Confirm cell phone #</label>
+        <input ng-model="cellConfirm" id="cell" type="text" name="cell" ng-change="checkCell(); wuttt()"value="" required>
+        <div ng-messages="projectForm.description.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+        <p ng-show="cellMatch" class="confirm">Cell phone # has to match</p>
       </md-input-container>
       <md-input-container class="md-block">
         <label for="secondaryCell">Secondary Cell Phone # (xxx-xxx-xxxx)</label>
@@ -110,6 +126,14 @@
         <div ng-messages="projectForm.description.$error">
           <div ng-message="required">This is required.</div>
         </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label for="emailConfirm">Confirm email address</label>
+        <input ng-model="emailConfirm" id="checkk" type="text" name="emailConfirm"  ng-change="checkEmail(); wuttt()" value="{{emailAddress}}" required>
+        <div ng-messages="projectForm.description.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+          <p ng-show="emailMatch" class="confirm">Email has to match</p>
       </md-input-container>
       <h4>Equipment being requested</h4>
       <div>
@@ -290,28 +314,11 @@
         </md-input-container>
         <h2>Identify confirmation</h2>
         <p>(Fields must match)</p>
-        <md-input-container class="md-block">
-          <label for="emailConfirm">Email address</label>
-          <input ng-model="emailConfirm" id="checkk" type="text" name="emailConfirm"  ng-change="checkValid()" value="" required>
-          <div ng-messages="projectForm.description.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container><md-input-container class="md-block">
-          <label for="cell">Cell phone #</label>
-          <input ng-model="cell" id="cell" type="text" name="cell" value="" required>
-          <div ng-messages="projectForm.description.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container><md-input-container class="md-block">
-          <label for="badge">Badge #</label>
-          <input ng-model="badge" id="badge" type="text" name="badge" value="" required>
-          <div ng-messages="projectForm.description.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
+
+
       </form>
     </div>
-    <input type="submit" ng-click="sendApplication()" name="name" value="Submit">
+    <input type="submit" ng-click="sendApplication(); alertCell()" name="submit" value="Submit">
   </div>
 </div>
 </md-content>

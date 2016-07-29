@@ -110,16 +110,81 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
 }]);//end controller
 
 myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
-  var val = document.getElementById('emailAddress').value;
-  var checkk = document.getElementById('checkk');
-  $scope.checkValid = function(){
-    if($scope.emailConfirm !== val){
-      alert('you suck');
-      // checkk.setCustomValidity('Must be matching');
-    } if ($scope.emailConfirm === val){
-      alert('ok');
+  // $scope.checkEmail = function(){
+  //   if($scope.emailConfirm !== $scope.emailAddress){
+  //     $scope.emailMatch = true;
+  //     // document.getElementsByName("submit")[0].disabled = true;
+  //     return false;
+  //   }
+  //   $scope.emailMatch = false;
+    // document.getElementsByName("submit")[0].disabled = false;
+  // };
+
+  // $scope.alertEmail = function(){
+  //   if($scope.emailConfirm !== $scope.emailAddress){
+  //     alert('Your email does not match');
+  //   }
+  // };
+
+  // $scope.checkCell = function(){
+  //   if($scope.cellConfirm !== $scope.cell){
+  //     $scope.cellMatch = true;
+  //     // document.getElementsByName("submit")[0].disabled = true;
+  //     return false;
+  //   }
+  //   $scope.cellMatch=false;
+    // document.getElementsByName("submit")[0].disabled = false;
+  // };
+
+  // $scope.alertCell = function(){
+  //   if($scope.cellConfirm !== $scope.cell){
+  //     alert('your Cell phone # does not match');
+  //   }
+  // };
+
+  // $scope.checkBadge = function(){
+  //   if($scope.badgeConfirm !== $scope.badge){
+  //     $scope.badgeMatch = true;
+  //     // document.getElementsByName("submit")[0].disabled = true;
+  //     return false;
+  //   }
+  //   $scope.badgeMatch=false;
+    // document.getElementsByName("submit")[0].disabled = false;
+  // };
+
+  // $scope.alertBadge = function(){
+  //   if($scope.badgeConfirm !== $scope.badge){
+  //     alert('your badge # does not match');
+  //   }
+  // };
+
+  $scope.wuttt = function(){
+    if($scope.emailConfirm !== $scope.emailAddress){
+      $scope.emailMatch = true;
+      document.getElementsByName("submit")[0].disabled = true;
+    } if($scope.cellConfirm !== $scope.cell){
+      $scope.cellMatch = true;
+      document.getElementsByName("submit")[0].disabled = true;
+    } if($scope.badgeConfirm !== $scope.badge){
+      $scope.badgeMatch = true;
+      document.getElementsByName("submit")[0].disabled = true;
+    } else {
+      document.getElementsByName("submit")[0].disabled = false;
     }
+    // if($scope.emailConfirm !== $scope.emailAddress || $scope.cellConfirm !== $scope.cell || $scope.badgeConfirm !== $scope.badge){
+    //   document.getElementsByName("submit")[0].disabled = true;
+    //   $scope.emailMatch = true;
+    //   $scope.cellMatch = true;
+    //   $scope.badgeMatch = true;
+    // }
+    // document.getElementsByName("submit")[0].disabled = false;
+    // // $scope.emailMatch = false;
+    // // $scope.cellMatch = false;
+    // // $scope.badgeMatch = false;
   };
+
+
+
   $scope.breeds = ["German Shepherd", "Belgian Malinois", "Bloodhound", "Other"];
   $scope.getBreed = function() {
     if ($scope.breed !== undefined) {
@@ -138,16 +203,6 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    }
  };//end yesnoCheck
 
- // var ok = document.getElementById('checkk');
- // $scope.check = function() {
- //        if (ok.value != document.getElementById('check').value) {
- //            ok.setCustomValidity('Password Must be Matching.');
- //        } else {
- //            // input is valid -- reset the error message
- //            ok.setCustomValidity('');
- //        }
- //    };
-
  $scope.sendApplication = function(){
   console.log($scope.kennel);
   console.log($scope.bulletResistant);
@@ -160,20 +215,6 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    } else {
      breedToSend = $scope.breed;
    }
-
-  //  var val = document.getElementById('emailAddress').value;
-  //
-  //    $scope.checkValid = function(input){
-  //          if (input.value !== val) {
-  //              input.setCustomValidity("These fields don't match.");
-  //          } else {
-  //              // input is fine -- reset the error message
-  //              input.setCustomValidity('');
-  //          }
-  //      };
-  // var val = document.getElementById('checkk');
-
-
 
    var objectToSend = {
      name: $scope.name,
@@ -203,4 +244,5 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    }
    console.log(objectToSend);
  };//end sendApplication
+
 }]);
