@@ -49,7 +49,10 @@ myApp.controller('loginController', ['$scope', '$http', '$window', function( $sc
     url: '/index',
     data: loginObject
   }).success(function(data){
-        $window.location.href = 'views/success.html';
+      console.log(data);
+        if (data.status_id == 1) {$window.location.href = '/adminView';}
+        else if (data.status_id == 2) {$window.location.href = 'views/#/user';}
+
     }).error(function(err){
       console.log(err);
         $window.location.href = 'views/failure.html';
