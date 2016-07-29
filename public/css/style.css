@@ -2,6 +2,7 @@ html {
   position: relative;
   min-height: 100%;
   background-color: #fff;
+  overflow: hidden;
 }
 
 @font-face {
@@ -98,4 +99,14 @@ h1 {
 
 #adminMain {
   margin: 20px;
+}
+
+.login {
+  /**/mai help pls
+  float:none;
+  width: 30%;
+  border: 0.5px;
+  border-style: ridge;
+  box-shadow: 2px 2px 2px #888888;
+  margin: 10% auto auto auto;
 }
