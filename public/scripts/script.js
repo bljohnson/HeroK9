@@ -114,9 +114,9 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
   var checkk = document.getElementById('checkk');
   $scope.checkValid = function(){
     if($scope.emailConfirm !== val){
-      // alert('you fucking idiot');
-      checkk.setCustomValidity('Must be matching');
-    } else {
+      alert('you suck');
+      // checkk.setCustomValidity('Must be matching');
+    } if ($scope.emailConfirm === val){
       alert('ok');
     }
   };
