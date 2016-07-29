@@ -19,11 +19,10 @@ router.post('/', function(req, res){
 		var updateK9 = client.query( 'UPDATE K9s SET k9_bio = ($1), k9_back = ($2), k9_chest = ($3), k9_girth = ($4), k9_undercarriage = ($5), k9_vest_color = ($6), k9_vest_imprint = ($7), squad_make = ($8), squad_model = ($9), squad_year = ($10), squad_retirement = ($11) WHERE K9s.id = SOMETHINGSOMETHINGSOMETHING', [ req.body.placeholder ] );
 			// need to insert equipment selected, certifications selected, k9 photos, squad photos
 			// need junction tables for equipment and certifications
+			// HOW???? -- email/cell phone/badge confirmation fields on application form
 
 
-
-
-		// if auth signer already filled out full inquiry form, and now just registering for account/adding handlers
+		/////////////////  if auth signer already filled out full inquiry form, and now just registering for account/adding handlers
 
 		var updateQuery = client.query( 'UPDATE users  ' );
 

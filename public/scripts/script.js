@@ -60,7 +60,7 @@ myApp.controller('loginController', ['$scope', '$http', '$window', function( $sc
 
 myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
   $scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
-     $scope.role;
+     $scope.role = '';
      $scope.getRole = function() {
        if ($scope.role !== undefined) {
          return $scope.role;
@@ -78,7 +78,7 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
   //         }
   //       };
   $scope.times = ["Morning", "Afternoon", "Evening"];
-     $scope.contactTime;
+     $scope.contactTime = '';
      $scope.getContactTime = function() {
        if ($scope.contactTime !== undefined) {
          return $scope.contactTime;
@@ -118,7 +118,29 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
   };//end sendInquiry
 }]);//end controller
 
+
+
 myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
+	$scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
+	   $scope.role = '';
+	   $scope.getRole = function() {
+	     if ($scope.role !== undefined) {
+		 return $scope.role;
+	     } else {
+		 return "Please select a role";
+	     }
+	   };
+
+	   $scope.times = ["Morning", "Afternoon", "Evening"];
+	      $scope.contactTime = '';
+	      $scope.getContactTime = function() {
+	        if ($scope.contactTime !== undefined) {
+	          return $scope.contactTime;
+	        } else {
+	          return "Please select a time";
+	        }
+	      };
+
   $scope.breeds = ["German Shepherd", "Belgian Malinois", "Bloodhound", "Other"];
   // $scope.breed;
   $scope.getBreed = function() {
@@ -159,18 +181,32 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    }
 
    var objectToSend = {
-     name: $scope.name,
+	   rank: $scope.rank,
+	   role: $scope.role,
+	   firstName: $scope.firstName,
+	   lastName: $scope.lastName,
+	   primaryPhone: $scope.primaryPhone,
+	   altPhone: $scope.altPhone,
+	   email: $scope.email,
+	   contactTime: $scope.contactTime,
+	   address1: $scope.address1,
+	   address2: $scope.address2,
+	   city: $scope.city,
+	   state: $scope.state,
+	   zip: $scope.zip,
+	   numberOfDogs: $scope.numberOfDogs,
+     k9name: $scope.name,
      breed: breedToSend,
      age: $scope.age,
      certified: $scope.certified,
      activeDuty: $scope.activeDuty,
      retirement: $scope.retirement,
-     title: $scope.title,
-     firstName: $scope.first,
-     lastName: $scope.last,
-     cellPhone: $scope.cell,
-     secondaryCell: $scope.secondaryCell,
-     email: $scope.emailAddress,
+     handlerTitle: $scope.title,
+     handlerFirstName: $scope.first,
+     handlerLastName: $scope.last,
+     handlerCellPhone: $scope.cell,
+     handlerSecondaryCell: $scope.secondaryCell,
+     handlerEmail: $scope.emailAddress,
      equipment: [],
      additionalHandler: $scope.additionalHandler
    };
