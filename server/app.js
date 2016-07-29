@@ -23,7 +23,7 @@ app.get( '/adminView', function( req, res ){
 });
 
 // set up server
-app.set('port', process.env.PORT || 4400);
+app.set('port', process.env.PORT || 4200);
 
 app.listen(app.get('port'), function() {
   console.log('human, wake up:', app.get('port'));
