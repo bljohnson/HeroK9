@@ -13,6 +13,22 @@
       <li>Tracking</li>
       <li>Other</li>
     </ul>
+
+    <form name="form">
+      <div>
+        <div ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
+          <button>Select Picture</button> <span> {{file.$ngfName}} </span> <img ngf-thumbnail="file || '/images/upload.svg'">
+        </div>
+        <input type="text" ng-model="comment" placeholder="Add comment.. " class="u-full-width" />
+        <button type="submit" ng-click="submit()">Upload</button>
+      </div>
+    </form>
+
+    <div ng-repeat="picture in uploads | orderBy: 'created' : true ">
+      <img ng-src="{{picture.file.location}}" />
+      <div>{{picture.comment}}</div>
+    </div>
+
     <h2>Upload K9 Photos (2 MAX)</h2>
     <h2>K9 Bio:</h2>
   </div>
