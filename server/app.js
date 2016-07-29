@@ -11,9 +11,7 @@ app.use( bodyParser.json() );
 
 app.use( express.static( 'public' ) );
 
-app.post('/sendInquiry', function(req, res){
-  console.log(req.body);
-});
+
 
 app.get( '/', function( req, res ){
   console.log( 'Home, sweet home' );
@@ -57,24 +55,26 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get( '/', function( req, res ){
-  console.log( 'Home, sweet home' );
-  res.sendFile( path.resolve( 'public/views/index.html' ) );
-}); // end base url
 
-app.post('/sendInquiry', function(req, res){
-  console.log(req.body);
-});
-
-app.get( '/login', function( req, res ){
-  console.log( 'at login' );
-  res.sendFile( path.resolve( 'public/views/login.html' ) );
-});
-
-app.get( '/adminView', function( req, res ){
-  console.log( 'at adminView' );
-  res.sendFile( path.resolve( 'public/views/admin.html' ) );
-}); // end base url
+// -------REPEAT----
+// app.get( '/', function( req, res ){
+//   console.log( 'Home, sweet home' );
+//   res.sendFile( path.resolve( 'public/views/index.html' ) );
+// }); // end base url
+//
+// app.post('/sendInquiry', function(req, res){
+//   console.log(req.body);
+// });
+//
+// app.get( '/login', function( req, res ){
+//   console.log( 'at login' );
+//   res.sendFile( path.resolve( 'public/views/login.html' ) );
+// });
+//
+// app.get( '/adminView', function( req, res ){
+//   console.log( 'at adminView' );
+//   res.sendFile( path.resolve( 'public/views/admin.html' ) );
+// }); // end base url
 
 
 //Include Routes
@@ -85,6 +85,8 @@ var snippitInfo = require('../server/routes/snippitRoute');
 var inquiryTable = require('../server/routes/inquiryTableRoute');
 var applicationTable = require('../server/routes/applicationTableRoute');
 var saveUser = require('../server/routes/adminEditRoute');
+var inquiryForm = require('../server/routes/inquiryForm');
+
 
 
 // Routes
@@ -95,3 +97,4 @@ app.use('/snippitInfo', snippitInfo);
 app.use('/inquiryTable', inquiryTable);
 app.use('/applicationTable', applicationTable);
 app.use('/saveUser', saveUser);
+app.use('/inquiryForm', inquiryForm);

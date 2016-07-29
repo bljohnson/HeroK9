@@ -111,7 +111,7 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
     };//end object
     $http({
       method: 'POST',
-      url: '/sendInquiry',
+      url: '/inquiryForm',
       data: testObject
     });//end $http
     console.log(testObject);
