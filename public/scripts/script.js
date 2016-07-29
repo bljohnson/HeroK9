@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', [
-  'ngRoute', 'ngMaterial', 'ui.bootstrap', 'ngMessages'
+  'ngRoute', 'ngMaterial', 'ui.bootstrap', 'ngMessages', 'ngFileUpload'
 ]);
 
 myApp.config(['$routeProvider', function($routeProvider) {

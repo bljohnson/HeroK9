@@ -1,19 +1,116 @@
 <div class="container">
   <h1 class="text-center">Welcome {{ username }}!</h1>
   <div class="row">
-    <h2>Application Instructions</h2>
-    <p>You've now been approved to finish the rest of the application. The application requires you to communicate with the necessary handlers to complete. You will need to upload photos, certifications for each K9 and a bio. Please provide the necessary details related to the equipment being applied for.</p>
+    <h1>This page is a mess. </h1>
+    <p>Puppy kitty ipsum dolor sit good dog . Treats sit cat water slobber sit. Head right paw litter box Spike Snowball finch Mittens litter. Scratch hamster crate scratcher furry bedding fleas polydactyl litter box. Kisses slobbery cage scratch slobber throw furry head play dead birds head vitamins right paw cat kitty kitten house train vaccine cage.</p>
 
-    <h2>Upload certification document</h2>
-    <ul>
-      <li>Explosives</li>
-      <li>Narcotics</li>
-      <li>Patrol</li>
-      <li>Trailing</li>
-      <li>Tracking</li>
-      <li>Other</li>
-    </ul>
-    <h2>Upload K9 Photos (2 MAX)</h2>
-    <h2>K9 Bio:</h2>
+    <div class="md-padding">
+      <div layout="row" layout-wrap>
+        <div flex="100" layout="column">
+          <div>
+            <fieldset class="cert-fieldset" >
+              <legend class="cert-legend">Certification Types (Check all that apply)</legend>
+              <div layout="row" layout-wrap flex>
+                <div class="cert-select-all-checkboxes" flex="100" ng-repeat="item in items">
+                  <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                   {{ item }}
+                  </md-checkbox>
+                </div>
+              </div>
+            </fieldset>
+            <form name="form">
+              <fieldset class="cert-fieldset">
+                <legend class="cert-legend">Upload proof of certifications (PDF)</legend>
+                <div>
+                  <div ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
+                    <button>Select File</button> <span> {{file.$ngfName}} </span> <img ngf-thumbnail="file || '/images/upload.svg'">
+                  </div>
+                  <input type="text" ng-model="comment" placeholder="Add comment.. " class="u-full-width" />
+                  <button type="submit" ng-click="submit()">Upload</button>
+                </div>
+              </fieldset>
+              <fieldset class="cert-fieldset">
+                <legend class="cert-legend">Upload K9 Photos (2 Max)</legend>
+                <p>Please upload max size, file types of PNG or JPG, high quality and not blurry or shadowed, a face shot and photo can be of on or off duty.</p>
+                <div>
+                  <div ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
+                    <button>Select File</button> <span> {{file.$ngfName}} </span> <img ngf-thumbnail="file || '/images/upload.svg'">
+                  </div>
+                  <input type="text" ng-model="comment" placeholder="Add comment.. " class="u-full-width" />
+                  <button type="submit" ng-click="submit()">Upload</button>
+                </div>
+                <!-- what does this do? -->
+                <div ng-repeat="picture in uploads | orderBy: 'created' : true ">
+                  <img ng-src="{{picture.file.location}}" />
+                  <div>{{picture.comment}}</div>
+                </div>
+              </fieldset>
+            </form>
+            <form name="userForm">
+              <fieldset class="cert-fieldset">
+                <md-input-container class="md-block">
+                  <label>Biography</label>
+                  <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                </md-input-container>
+              </fieldset>
+
+              <fieldset class="cert-fieldset">
+                <legend class="cert-legend">Bulletproof or stab proof vest</legend>
+                <p>If applying for bulletproof or stab proof vest, provide K9 measurements and customization requests:</p>
+                <md-input-container class="md-block">
+                  <label>Back (inches)</label>
+                  <input md-maxlength="2" name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Chest (inches)</label>
+                  <input md-maxlength="2" name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Girth (inches)</label>
+                  <input md-maxlength="2" name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Inner front leg to inner hind leg (inches)</label>
+                  <input md-maxlength="2" name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container>
+                  <h1 class="md-title">Select a vest color</h1>
+                  <md-select ng-model="vestColor" md-selected-text="getVestColor()" placeholder="Select a vest color">
+                      <md-option ng-value="color" ng-repeat="color in colors">{{color}}</md-option>
+                  </md-select>
+                </md-input-container>
+              </fieldset>
+              <fieldset class="cert-fieldset">
+                <legend class="cert-legend">In-squad kennel and/or door pop/heat alarm unit</legend>
+                <md-input-container class="md-block">
+                  <label>Squad vehicle make</label>
+                  <input name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Squad vehicle model</label>
+                  <input name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Squad vehicle year</label>
+                  <input name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Upload squad vehicle photo (2 photos max)</label>
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Is Squad Vehicle scheduled for retirement in the next year?</label>
+
+                </md-input-container>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+    </div>
+
+
+
+
+
+
   </div>
 </div>
