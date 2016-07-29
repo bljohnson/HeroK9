@@ -33,19 +33,19 @@ router.get('/', function(req, res){
         if(results[i].status === 'New Inquiry'){
           //New Inquiry
           inquiriesNew++;
-        } else if (results[i].status === 'Pending Inquiry'){
+        } else if (results[i].status.toLowerCase() === 'pending inquiry'){
           //Pending Inquiry
           inquiriesPending++;
-        } else if (results[i].status === 'Approved Inquiry'){
+        } else if (results[i].status.toLowerCase() === 'approved inquiry'){
           //Approved Inquiry
           inquiriesApproved++;
-        } else if (results[i].status === 'New Application'){
+        } else if (results[i].status.toLowerCase() === 'new application'){
           //New Application
           applicationsNew++;
-        } else if (results[i].status === 'Pending Application'){
+        } else if (results[i].status.toLowerCase() === 'pending application'){
           //Pending Application
           applicationsPending++;
-        } else if (results[i].status === 'Approved Application'){
+        } else if (results[i].status.toLowerCase() === 'approved application'){
           //Approved Application
           applicationsApproved++;
         }

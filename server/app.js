@@ -7,12 +7,6 @@ var passport = require('../server/strategies/userStrategy.js');
 var session = require('express-session');
 var urlencodedParser=bodyParser.urlencoded( { extended: false } );
 
-app.use( bodyParser.json() );
-
-app.use( express.static( 'public' ) );
-
-
-
 app.get( '/', function( req, res ){
   console.log( 'Home, sweet home' );
   res.sendFile( path.resolve( 'public/views/index.html' ) );
@@ -56,27 +50,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// -------REPEAT----
-// app.get( '/', function( req, res ){
-//   console.log( 'Home, sweet home' );
-//   res.sendFile( path.resolve( 'public/views/index.html' ) );
-// }); // end base url
-//
-// app.post('/sendInquiry', function(req, res){
-//   console.log(req.body);
-// });
-//
-// app.get( '/login', function( req, res ){
-//   console.log( 'at login' );
-//   res.sendFile( path.resolve( 'public/views/login.html' ) );
-// });
-//
-// app.get( '/adminView', function( req, res ){
-//   console.log( 'at adminView' );
-//   res.sendFile( path.resolve( 'public/views/admin.html' ) );
-// }); // end base url
-
-
 //Include Routes
 var user = require ('../server/routes/userRoute');
 var index = require('../server/routes/indexRoute');
@@ -86,6 +59,8 @@ var inquiryTable = require('../server/routes/inquiryTableRoute');
 var applicationTable = require('../server/routes/applicationTableRoute');
 var saveUser = require('../server/routes/adminEditRoute');
 var inquiryForm = require('../server/routes/inquiryForm');
+var applicationForm = require('../server/routes/applicationForm');
+var updateStatus = require('../server/routes/updateStatusRoute');
 
 
 
@@ -98,3 +73,5 @@ app.use('/inquiryTable', inquiryTable);
 app.use('/applicationTable', applicationTable);
 app.use('/saveUser', saveUser);
 app.use('/inquiryForm', inquiryForm);
+app.use('/applicationForm', applicationForm);
+app.use('/updateStatus', updateStatus);

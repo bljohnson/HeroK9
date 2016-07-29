@@ -24,6 +24,11 @@ router.post('/', function(req, res){
 
 		/////////////////  if auth signer already filled out full inquiry form, and now just registering for account/adding handlers
 
+
+
+
+		// if auth signer already filled out full inquiry form, and now just registering for account/adding handlers
+
 		var updateQuery = client.query( 'UPDATE users  ' );
 
   });
