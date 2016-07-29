@@ -1,8 +1,13 @@
 console.log("Admin.js");
 
-var myApp = angular.module('myApp', ['ngMaterial']);
+var myApp = angular.module('myApp', ['ngMaterial', 'xeditable']);
 
-myApp.controller('adminView', ['$scope', function($scope){
+// xeditable Initialize
+myApp.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
+
+myApp.controller('adminViewController', ['$scope', function($scope){
   console.log("In adminView");
 
   //Dummy Data
@@ -122,3 +127,40 @@ myApp.controller('applicationTableController', ['$scope', '$http', function($sco
   };
 
 }]);//End applicationTableController
+
+
+myApp.controller('adminEditController', ['$scope', '$http', function($scope, $http){
+
+
+  $scope.saveUser = function(index) {
+
+    //Will need more fields
+    $scope.user = {
+      primary_phone: $scope.inquiryData[index].primary_phone,
+      alt_phone: $scope.inquiryData[index].alt_phone,
+      email: $scope.inquiryData[index].email,
+      contact_email: $scope.inquiryData[index].contact_email,
+      contact_time: $scope.inquiryData[index].contact_time,
+      add_street1: $scope.inquiryData[index].add_street1,
+      add_street2: $scope.inquiryData[index].add_street2,
+      add_city: $scope.inquiryData[index].add_city,
+      add_state: $scope.inquiryData[index].add_state,
+      add_zip: $scope.inquiryData[index].add_zip
+    }
+
+
+    // $scope.user already updated!
+    return $http.post('/saveUser', $scope.user).error(function(err) {
+      console.log($scope.user);
+      if(err.field && err.msg) {
+        // err like {field: "name", msg: "Server-side error for this username!"}
+        $scope.userForm.$setError(err.field, err.msg);
+      } else {
+        // unknown error
+        $scope.userForm.$setError('name', 'Unknown error!');
+      }
+    });
+  };
+
+
+}]);//End adminEditController

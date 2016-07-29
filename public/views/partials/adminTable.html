@@ -1,33 +1,98 @@
 
-<main>
+<main ng-controller="adminEditController">
 
   <div class="page-header">
     <h2>{{data.first_name}} {{data.last_name}}, <small>{{data.rank}}</small></h2>
     {{data.status}}
   </div>
 
+  <form editable-form name="userForm">
 
-  <div>
-    <h4><strong>Contact Information</strong></h4>
+    <div>
+      <h4><strong>Contact Information</strong></h4>
 
-    <content>
-      <span class="infoItem"><label>Primary Phone: </label> {{data.primary_phone}}</span></br>
-      <span class="infoItem"><label>Secondary Phone: </label> {{data.alt_phone}}</span></br>
-      <span class="infoItem"><label>Email: </label> {{data.email}}</span></br>
-      <span class="infoItem"><label>Secondary Email: </label> {{data.contact_email}}</span></br>
-      <span class="infoItem"><label>Best Contact Time: </label> {{data.contact_time}}</span></br>
-    </content>
+      <content>
+        <span class="infoItem">
+          <label>Primary Phone: </label>
+            <span editable-text="data.primary_phone"> {{data.primary_phone}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Secondary Phone: </label>
+            <span editable-text="data.alt_phone"> {{data.alt_phone}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Login Email: </label>
+            <span editable-text="data.email"> {{data.email}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Contact Email: </label>
+            <span editable-text="data.contact_email"> {{data.contact_email}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Best Contact Time: </label>
+            <span editable-text="data.contact_time"> {{data.contact_time}} </span>
+        </span>
+        </br>
+
+      </content>
 
 
-    <h4><strong>Address</strong></h4>
+      <h4><strong>Address</strong></h4>
 
-    <content>
-      <span class="infoItem"><label>Street: </label> {{data.add_street1}}</span></br>
-      <span class="infoItem"><label>City: </label> {{data.city}}</span></br>
-      <span class="infoItem"><label>State: </label> {{data.add_state}}</span></br>
-      <span class="infoItem"><label>Zip Code: </label> {{data.add_zip}}</span></br>
-    </content>
+      <content>
 
-  </div>
+        <span class="infoItem">
+          <label>Street: </label>
+            <span editable-text="data.add_street1"> {{data.add_street1}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>City: </label>
+            <span editable-text="data.add_city"> {{data.add_city}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>State: </label>
+            <span editable-text="data.add_state"> {{data.add_state}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Zip Code: </label>
+            <span editable-text="data.add_zip"> {{data.add_zip}} </span>
+        </span>
+        </br>
+
+      </content>
+
+    </div>
+
+    <div class="buttons">
+      <!-- button to show form -->
+      <button type="button" class="btn btn-default" ng-click="userForm.$show()" ng-show="!userForm.$visible">
+        Edit
+      </button>
+      <!-- buttons to submit / cancel form -->
+      <span ng-show="userForm.$visible">
+        <button type="submit" class="btn btn-primary" ng-click="saveUser($index)" ng-disabled="userForm.$waiting">
+          Save
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="userForm.$waiting" ng-click="userForm.$cancel()">
+          Cancel
+        </button>
+      </span>
+    </div>
+
+  </form>
 
 </main>
