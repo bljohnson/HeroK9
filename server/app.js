@@ -57,8 +57,10 @@ var register = require('../server/routes/registerRoute');
 var snippitInfo = require('../server/routes/snippitRoute');
 var inquiryTable = require('../server/routes/inquiryTableRoute');
 var applicationTable = require('../server/routes/applicationTableRoute');
+var saveUser = require('../server/routes/adminEditRoute');
 var inquiryForm = require('../server/routes/inquiryForm');
 var applicationForm = require('../server/routes/applicationForm');
+
 
 
 // Routes
@@ -68,5 +70,6 @@ app.use('/index', index);
 app.use('/snippitInfo', snippitInfo);
 app.use('/inquiryTable', inquiryTable);
 app.use('/applicationTable', applicationTable);
+app.use('/saveUser', saveUser);
 app.use('/inquiryForm', inquiryForm);
 app.use('/applicationForm', applicationForm);

@@ -5,11 +5,12 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="/vendors/angular-material.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/vendors/xeditable.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body ng-app="myApp">
 
-    <main ng-controller='adminView'>
+    <main id='adminMain' ng-controller='adminViewController'>
 
       <div class="page-header">
         <h1>Admin Dashboard <small>Welcome, {{username}}</small></h1>
@@ -25,6 +26,7 @@
     <script src="./vendors/angular-animate.js" charset="utf-8"></script>
     <script src="./vendors/angular-aria.js" charset="utf-8"></script>
     <script src="./vendors/angular-material.js" charset="utf-8"></script>
+    <script src="./vendors/xeditable.js" charset="utf-8"></script>
     <!-- End Vendors -->
     <script src="./scripts/admin.js" charset="utf-8"></script>
   </body>
