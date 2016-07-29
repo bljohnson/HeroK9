@@ -60,6 +60,7 @@ var applicationTable = require('../server/routes/applicationTableRoute');
 var saveUser = require('../server/routes/adminEditRoute');
 var inquiryForm = require('../server/routes/inquiryForm');
 var applicationForm = require('../server/routes/applicationForm');
+var updateStatus = require('../server/routes/updateStatusRoute');
 
 
 
@@ -73,3 +74,4 @@ app.use('/applicationTable', applicationTable);
 app.use('/saveUser', saveUser);
 app.use('/inquiryForm', inquiryForm);
 app.use('/applicationForm', applicationForm);
+app.use('/updateStatus', updateStatus);
