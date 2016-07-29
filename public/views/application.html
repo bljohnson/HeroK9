@@ -15,7 +15,7 @@
 
   <div class="" ng-controller="AppController">
     <h2>Enter K9 information</h2>
-    <form>
+    <form name="projectForm">
       <md-input-container class="md-block">
         <label for="name">Name</label>
         <input ng-model="name" id="name" type="text" name="name" value="" required>
@@ -263,7 +263,7 @@
         </md-radio-group>
       </form>
     </div>
-    
+
     <div class="" ng-show="additional == 'no'">
       <h1>Legal agreement*</h1>
       <form>
