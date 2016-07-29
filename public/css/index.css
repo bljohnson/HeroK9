@@ -1,0 +1,112 @@
+html {
+  position: relative;
+  min-height: 100%;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+@font-face {
+    font-family: 'robotolight';
+    src: url('fonts/Roboto-Light-webfont.eot');
+    src: url('fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Roboto-Light-webfont.woff') format('woff'),
+         url('fonts/Roboto-Light-webfont.ttf') format('truetype'),
+         url('fonts/Roboto-Light-webfont.svg#robotolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  font-family: 'robotolight', Helvetica, Arial, sans-serif;
+  margin-bottom: 60px;
+}
+
+md-card {
+  display: inline-block;
+  width: 33%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+md-card:last-child {
+  margin-left: 0px;
+}
+
+h1 {
+  color: #0b357b;
+}
+
+.footer {
+  height: 60px;
+  background-color: #0b357b;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+}
+
+.login-nav {
+  background-color: #000;
+  border-radius: 0px;
+}
+
+.logo {
+  width: 20%;
+}
+
+.login-right {
+  float: right;
+}
+
+.mission-statement p {
+  text-transform: uppercase;
+  float: right;
+}
+
+.main-nav {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  height: 30%;
+  margin: 20px 0;
+  text-transform: uppercase;
+}
+
+.main-nav a {
+  color: #000;
+}
+
+.hometron {
+  position: relative;
+  background: #fff url("/images/k9Placeholder.jpg") center center;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  overflow: hidden;
+  padding: 20% 0;
+  margin-bottom: 0;
+}
+
+.infoItem:hover {
+  background-color: #006dcc;
+  color: #ffffff;
+}
+.equipment , .equipment:last-of-type{
+  margin-left: 13px;
+}
+#test{
+  margin-left: 13px;
+}
+
+#adminMain {
+  margin: 20px;
+}
+
+.login {
+  /**/mai help pls
+  float:none;
+  width: 30%;
+  border: 0.5px;
+  border-style: ridge;
+  box-shadow: 2px 2px 2px #888888;
+  margin: 10% auto auto auto;
+}
