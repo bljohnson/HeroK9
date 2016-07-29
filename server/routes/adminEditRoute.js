@@ -7,8 +7,8 @@ var router = express.Router();
 
 router.post('/', function(req, res){
 
-  console.log("In inquiryTableRoute with:");
-  console.log(res.body);
+  console.log("In adminEditRoute with:");
+  console.log(req.body);
   res.sendStatus(200);
 
   // pg.connect(connection, function (err, client, done) {

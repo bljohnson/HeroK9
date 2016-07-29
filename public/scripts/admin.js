@@ -135,7 +135,7 @@ myApp.controller('adminEditController', ['$scope', '$http', function($scope, $ht
   $scope.saveUser = function(index) {
 
     //Will need more fields
-    $scope.user = {
+    var user = {
       primary_phone: $scope.inquiryData[index].primary_phone,
       alt_phone: $scope.inquiryData[index].alt_phone,
       email: $scope.inquiryData[index].email,
@@ -150,8 +150,8 @@ myApp.controller('adminEditController', ['$scope', '$http', function($scope, $ht
 
 
     // $scope.user already updated!
-    return $http.post('/saveUser', $scope.user).error(function(err) {
-      console.log($scope.user);
+    return $http.post('/saveUser', user).error(function(err) {
+      console.log(user);
       if(err.field && err.msg) {
         // err like {field: "name", msg: "Server-side error for this username!"}
         $scope.userForm.$setError(err.field, err.msg);
@@ -160,7 +160,7 @@ myApp.controller('adminEditController', ['$scope', '$http', function($scope, $ht
         $scope.userForm.$setError('name', 'Unknown error!');
       }
     });
-  };
+  };//End saveUser
 
 
 }]);//End adminEditController
