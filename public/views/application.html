@@ -62,7 +62,7 @@
 	  </md-input-container>
 	  <md-input-container class="md-block">
 	    <label for="email">Email Address</label>
-	    <input ng-model="email" id="email" type="text" name="name" value="" required>
+	    <input ng-model="contactEmail" id="email" type="text" name="name" value="" required>
 	    <div ng-messages="projectForm.description.$error">
 		<div ng-message="required">This is required.</div>
 	    </div>
@@ -393,12 +393,12 @@
         <h2>Identify confirmation</h2>
         <md-input-container class="md-block">
           <label for="emailConfirm">Email address</label>
-          <input ng-model="emailConfirm" id="checkk" type="text" name="emailConfirm"  ng-change="check()" value="" required>
+          <input ng-model="emailConfirm" id="check" type="text" name="emailConfirm"  ng-change="check()" value="" required>
           <div ng-messages="projectForm.description.$error">
             <div ng-message="required">This is required.</div>
           </div>
         </md-input-container><md-input-container class="md-block">
-          <label for="cell">Cell phone #</label>
+          <label for="primaryPhone">Cell phone #</label>
           <input ng-model="cell" id="cell" type="text" name="cell" value="" required>
           <div ng-messages="projectForm.description.$error">
             <div ng-message="required">This is required.</div>

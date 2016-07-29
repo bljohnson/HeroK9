@@ -60,7 +60,7 @@ myApp.controller('loginController', ['$scope', '$http', '$window', function( $sc
 
 myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
   $scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
-     $scope.role = '';
+     $scope.role;
      $scope.getRole = function() {
        if ($scope.role !== undefined) {
          return $scope.role;
@@ -122,7 +122,7 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
 
 myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
 	$scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
-	   $scope.role = '';
+	   $scope.role;
 	   $scope.getRole = function() {
 	     if ($scope.role !== undefined) {
 		 return $scope.role;
@@ -181,13 +181,15 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    }
 
    var objectToSend = {
+	   email: $scope.email,
+	   password: $scope.password,
 	   rank: $scope.rank,
 	   role: $scope.role,
 	   firstName: $scope.firstName,
 	   lastName: $scope.lastName,
 	   primaryPhone: $scope.primaryPhone,
 	   altPhone: $scope.altPhone,
-	   email: $scope.email,
+	   contactEmail: $scope.contactEmail,
 	   contactTime: $scope.contactTime,
 	   address1: $scope.address1,
 	   address2: $scope.address2,
@@ -221,5 +223,12 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
      objectToSend.equipment.push($scope.doorPop);
    }
    console.log(objectToSend);
+
+	$http({
+		method: 'POST',
+		url: '/applicationForm',
+		data: objectToSend
+	});
+
  };
 }]);
