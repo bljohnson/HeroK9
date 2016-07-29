@@ -1,3 +1,6 @@
+// for file uploads, loads environment variables locally before everything else
+// require('dotenv').load();
+
 var express=require('express');
 var app=express();
 var path=require('path');
@@ -6,6 +9,15 @@ var pg = require('pg');
 var passport = require('../server/strategies/userStrategy.js');
 var session = require('express-session');
 var urlencodedParser=bodyParser.urlencoded( { extended: false } );
+
+
+// middleware
+app.use( bodyParser.json() );
+app.use( express.static( 'public' ) );
+
+app.post('/sendInquiry', function(req, res){
+  console.log(req.body);
+});
 
 app.get( '/', function( req, res ){
   console.log( 'Home, sweet home' );
@@ -23,17 +35,11 @@ app.get( '/adminView', function( req, res ){
 });
 
 // set up server
-app.set('port', process.env.PORT || 4400);
+app.set('port', process.env.PORT || 4200);
 
 app.listen(app.get('port'), function() {
   console.log('human, wake up:', app.get('port'));
 });
-
-//static folder
-app.use( express.static( 'public' ) );
-
-//body paser
-app.use(bodyParser.json());
 
 
 // Passport Session Configuration //
@@ -50,7 +56,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-//Include Routes
+// include routes
 var user = require ('../server/routes/userRoute');
 var index = require('../server/routes/indexRoute');
 var register = require('../server/routes/registerRoute');
@@ -61,10 +67,10 @@ var saveUser = require('../server/routes/adminEditRoute');
 var inquiryForm = require('../server/routes/inquiryForm');
 var applicationForm = require('../server/routes/applicationForm');
 var updateStatus = require('../server/routes/updateStatusRoute');
+var userDash = require ('../server/routes/userDashRoute');
 
 
-
-// Routes
+// routes
 app.use('/user', user);
 app.use('/register', register);
 app.use('/index', index);
@@ -75,3 +81,4 @@ app.use('/saveUser', saveUser);
 app.use('/inquiryForm', inquiryForm);
 app.use('/applicationForm', applicationForm);
 app.use('/updateStatus', updateStatus);
+app.use('/userDash', userDash);

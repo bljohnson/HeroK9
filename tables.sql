@@ -1,4 +1,3 @@
-CREATE TYPE status AS ENUM ('New Inquiry', 'Pending Inquiry', 'Approved Inquiry', 'New Application', 'Pending Application', 'Approved Application', 'Admin');
 CREATE TYPE role AS ENUM ('K9 Handler', 'K9 Unit Supervisor', 'Department Admin', 'Other Admin Staff', 'Other Command Staff');
 
 CREATE TABLE users (
@@ -6,7 +5,7 @@ CREATE TABLE users (
 	email VARCHAR(255) UNIQUE,
 	contact_email VARCHAR(255) UNIQUE,
   	password VARCHAR(255) UNIQUE,
-  	status STATUS DEFAULT 'New Inquiry' NOT NULL,
+  	status_id INTEGER DEFAULT '1' NOT NULL REFERENCES status(id),
 	created TIMESTAMP DEFAULT current_timestamp NOT NULL,
 	rank VARCHAR(255),
 	role ROLE,
@@ -26,6 +25,11 @@ CREATE TABLE users (
 	auth_last_name VARCHAR(255),
 	auth_phone VARCHAR(30),
 	auth_email VARCHAR(255) UNIQUE
+);
+
+CREATE TABLE status (
+	id SERIAL PRIMARY KEY NOT NULL,
+	status_type VARCHAR (30)
 );
 
 CREATE TABLE K9s (
@@ -134,6 +138,11 @@ INSERT INTO certifications (name)
 VALUES ('Other');
 
 ---------------------------------///////////////////////////////////////////---------------------------------
+
+-- insert statuses
+
+INSERT INTO status (id, status_type) VALUES ('1', 'admin');
+INSERT INTO status (id, status_type) VALUES ('2', 'user');
 
 --/// insert dummy data ///--
 INSERT INTO users (email, contact_email, password, status, first_name, last_name, primary_phone, contact_time)

@@ -2,6 +2,7 @@ html {
   position: relative;
   min-height: 100%;
   background-color: #fff;
+  overflow: hidden;
 }
 
 @font-face {
@@ -85,9 +86,9 @@ h1 {
   margin-bottom: 0;
 }
 
-
 .infoItem:hover {
-  background-color: #ececec;
+  background-color: #006dcc;
+  color: #ffffff;
 }
 .equipment , .equipment:last-of-type{
   margin-left: 13px;
@@ -96,22 +97,16 @@ h1 {
   margin-left: 13px;
 }
 
-
 #adminMain {
   margin: 20px;
 }
 
-.confirm{
-  color: red;
-  font-size: 12px;
+.login {
+  /**/mai help pls
+  float:none;
+  width: 30%;
+  border: 0.5px;
+  border-style: ridge;
+  box-shadow: 2px 2px 2px #888888;
+  margin: 10% auto auto auto;
 }
-
-/* user dashboard */
-.checkboxcertSelectAll .cert-legend {
-  color: #3F51B5; }
-.checkboxcertSelectAll .cert-fieldset {
-  border-style: solid;
-  border-width: 1px;
-  height: 100%; }
-.checkboxcertSelectAll .cert-select-all-checkboxes {
-  padding-left: 30px; }
