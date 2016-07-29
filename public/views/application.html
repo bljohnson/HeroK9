@@ -263,7 +263,7 @@
         </md-radio-group>
       </form>
     </div>
-    
+
     <div class="" ng-show="additional == 'no'">
       <h1>Legal agreement*</h1>
       <form>
@@ -295,13 +295,15 @@
           <div ng-messages="projectForm.description.$error">
             <div ng-message="required">This is required.</div>
           </div>
-        </md-input-container><md-input-container class="md-block">
+        </md-input-container>
+        <md-input-container class="md-block">
           <label for="cell">Cell phone #</label>
           <input ng-model="cell" id="cell" type="text" name="cell" value="" required>
           <div ng-messages="projectForm.description.$error">
             <div ng-message="required">This is required.</div>
           </div>
-        </md-input-container><md-input-container class="md-block">
+        </md-input-container>
+        <md-input-container class="md-block">
           <label for="badge">Badge #</label>
           <input ng-model="badge" id="badge" type="text" name="badge" value="" required>
           <div ng-messages="projectForm.description.$error">
