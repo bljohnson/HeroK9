@@ -54,8 +54,9 @@ app.use(passport.session());
 
 app.get( '/adminView', function( req, res ){
   console.log( 'at adminView', req.user );
-  if (req.user.status_id == 99) {res.sendFile( path.resolve( 'public/views/admin.html' ) );}
-  else {res.sendFile( path.resolve( 'public/views/login.html' ) );}
+  if (req.user === undefined) {res.sendFile(path.resolve('public/views/login.html'));}
+  else if (req.user.status_id == 99) {res.sendFile(path.resolve('public/views/admin.html'));}
+  else {res.sendFile(path.resolve('public/views/login.html'));}
 });
 
 

@@ -13,25 +13,25 @@ router.post('/', function(req, res){
 
   var newStatus;
 
-  switch (req.body.status.toLowerCase()) {
-    case 'new inquiry':
-      newStatus = 'Pending Inquiry';
+  switch (req.body.status_id) {
+    case '1':
+      newStatus = '2';
       break;
 
-    case 'pending inquiry':
-      newStatus = 'Approved Inquiry';
+    case '2':
+      newStatus = '3';
       break;
 
-    case 'approved inquiry':
-      newStatus = 'New Application';
+    case '3':
+      newStatus = '4';
       break;
 
-    case 'new applictaion':
-      newStatus = 'Pending Application';
+    case '4':
+      newStatus = '5';
       break;
 
-    case 'pending application':
-      newStatus = 'Approved Application';
+    case '5':
+      newStatus = '6';
       break;
 
     default:
@@ -41,7 +41,7 @@ router.post('/', function(req, res){
 
   pg.connect(connection, function (err, client, done) {
 
-    client.query('UPDATE users SET status = ($1) WHERE users.email = ($2)', [ newStatus, req.body.user ] );
+    client.query('UPDATE users SET status_id = ($1) WHERE users.email = ($2)', [ newStatus, req.body.user ] );
 
   });
 

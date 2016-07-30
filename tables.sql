@@ -141,8 +141,13 @@ VALUES ('Other');
 
 -- hardwire statuses in, won't change unless more need to be added --
 
-INSERT INTO status (id, status_type) VALUES ('1', 'admin');
-INSERT INTO status (id, status_type) VALUES ('2', 'user');
+INSERT INTO status (id, status_type) VALUES ('1', 'New Inquiry');
+INSERT INTO status (id, status_type) VALUES ('2', 'Pending Inquiry');
+INSERT INTO status (id, status_type) VALUES ('3', 'Approved Inquiry');
+INSERT INTO status (id, status_type) VALUES ('4', 'New Application');
+INSERT INTO status (id, status_type) VALUES ('5', 'Pending Application');
+INSERT INTO status (id, status_type) VALUES ('6', 'Approved Application');
+INSERT INTO status (id, status_type) VALUES ('99', 'admin');
 
 ---------------------------------///////////////////////////////////////////---------------------------------
 

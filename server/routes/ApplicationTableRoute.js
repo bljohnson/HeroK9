@@ -13,7 +13,7 @@ router.get('/', function(req, res){
   pg.connect(connection, function (err, client, done) {
 
     var results = [];
-    var query = client.query("SELECT * FROM users WHERE status = 'New Application' OR status = 'Pending Application' OR status = 'Approved Application'");
+    var query = client.query("SELECT * FROM users WHERE status_id = '4' OR status_id = '5' OR status_id = '6'");
 
     query.on('row', function(row){
       results.push(row);
