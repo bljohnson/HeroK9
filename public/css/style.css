@@ -87,8 +87,7 @@ h1 {
 
 
 .infoItem:hover {
-  background-color: #006dcc;
-  color: #ffffff;
+  background-color: #ececec;
 }
 .equipment , .equipment:last-of-type{
   margin-left: 13px;

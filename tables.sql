@@ -32,6 +32,10 @@ CREATE TABLE status (
 	status_type VARCHAR (30)
 );
 
+CREATE TYPE vest_color AS ENUM ('Black', 'Multi-Cam', 'Ranger Green', 'Tan');
+CREATE TYPE vest_imprint AS ENUM ('Fire', 'Fire K9', 'Police', 'Police K9', 'Search and Rescue', 'Sheriff', 'Sheriff K9');
+CREATE TYPE vest_imprint_color AS ENUM ('Dark Gray', 'Reflective Silver', 'White', 'Yellow');
+
 CREATE TABLE K9s (
 	id SERIAL PRIMARY KEY NOT NULL,
 	user_id INTEGER NOT NULL REFERENCES users(id),
@@ -54,22 +58,23 @@ CREATE TABLE K9s (
 	k9_chest INTEGER,
 	k9_girth INTEGER,
 	k9_undercarriage INTEGER,
-	k9_vest_color VARCHAR(30),
-	k9_vest_imprint VARCHAR(30),
+	k9_vest_color VEST_COLOR,
+	k9_vest_imprint VEST_IMPRINT,
+	k9_vest_imprint_color VEST_IMPRINT_COLOR,
 	squad_make VARCHAR(50),
 	squad_model VARCHAR(50),
 	squad_year INTEGER,
 	squad_retirement BOOLEAN
 );
 
-CREATE TYPE certification AS ENUM ('Explosives', 'Narcotics', 'Patrol', 'Trailing', 'Tracking', 'Other');
+CREATE TYPE certification AS ENUM ('Explosives', 'Narcotics', 'Patrol', 'Tracking/Trailing', 'Other');
 
 CREATE TABLE certifications (
 	id SERIAL PRIMARY KEY NOT NULL,
 	name CERTIFICATION NOT NULL
 );
 
-CREATE TYPE offering AS ENUM ('In-squad kennel', 'Bullet resistant vest', 'Bullet and stab resistant vest', 'Door pop/heat alarm');
+CREATE TYPE offering AS ENUM ('In-squad kennel', 'Ballistic vest', 'Multi-threat vest', 'Door pop/heat alarm');
 
 CREATE TABLE equipment (
 	id SERIAL PRIMARY KEY NOT NULL,
@@ -110,10 +115,10 @@ INSERT INTO equipment (name)
 VALUES ('In-squad kennel');
 
 INSERT INTO equipment (name)
-VALUES ('Bullet resistant vest');
+VALUES ('Ballistic vest');
 
 INSERT INTO equipment (name)
-VALUES ('Bullet and stab resistant vest');
+VALUES ('Multi-threat vest');
 
 INSERT INTO equipment (name)
 VALUES ('Door pop/heat alarm');
@@ -129,20 +134,17 @@ INSERT INTO certifications (name)
 VALUES ('Patrol');
 
 INSERT INTO certifications (name)
-VALUES ('Trailing');
-
-INSERT INTO certifications (name)
-VALUES ('Tracking');
+VALUES ('Tracking/Trailing');
 
 INSERT INTO certifications (name)
 VALUES ('Other');
 
----------------------------------///////////////////////////////////////////---------------------------------
-
--- insert statuses
+-- hardwire statuses in, won't change unless more need to be added --
 
 INSERT INTO status (id, status_type) VALUES ('1', 'admin');
 INSERT INTO status (id, status_type) VALUES ('2', 'user');
+
+---------------------------------///////////////////////////////////////////---------------------------------
 
 --/// insert dummy data ///--
 INSERT INTO users (email, contact_email, password, status, first_name, last_name, primary_phone, contact_time)

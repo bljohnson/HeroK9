@@ -14,7 +14,7 @@ angular.module('myApp').controller('UserController', [
     ////////////////////////////////////////////////////////////
 
     // certification checkboxes
-    $scope.items = ['Explosives', 'Narcotics', 'Patrol', 'Trailing', 'Tracking', 'Other'];
+    $scope.items = ['Explosives', 'Narcotics', 'Patrol', 'Trailing/Tracking', 'Other'];
     $scope.selected = [1];
 
     $scope.toggle = function (item, list) {
@@ -45,15 +45,37 @@ angular.module('myApp').controller('UserController', [
     };
 
     // select vest colors
-    $scope.colors = ['Black', 'Tan', 'Green'];
+    $scope.colors = ['Black', 'Multi-Cam', 'Ranger Green', 'Tan'];
+    $scope.vestColor = '';
     $scope.getVestColor = function() {
-      if ($scope.color !== undefined) {
-        return $scope.color;
+      if ($scope.vestColor !== undefined) {
+        return $scope.vestColor;
       } else {
         return "Please select a color";
       }
     };
 
+    // select vest imprint
+    $scope.imprints = ['Fire', 'Fire K9', 'Police', 'Police K9', 'Search & Rescue', 'Sheriff', 'Sheriff K9'];
+    $scope.vestImprint = '';
+    $scope.getVestImprint = function() {
+      if ($scope.vestImprint !== undefined) {
+        return $scope.vestImprint;
+      } else {
+        return "Please select a vest imprint";
+      }
+    };
+
+    // select vest imprint color
+    $scope.imprintColors = ['Dark Gray', 'Reflective Silver', 'White', 'Yellow'];
+    $scope.vestImprintColor = '';
+    $scope.getImprintColor = function() {
+      if ($scope.vestImprintColor !== undefined) {
+        return $scope.vestImprintColor;
+      } else {
+        return "Please select a vest imprint color";
+      }
+    };
 
 
 

@@ -75,7 +75,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
 }]);//End snippitController
 
 
-myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog', function($scope, $http, $mdDialog){
+myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog',  function($scope, $http, $mdDialog){
 
   //Make a call to populate inquiryTable
   $http({
@@ -92,6 +92,25 @@ myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog', func
 
   $scope.expandView = function(index){
 
+    var statusData = {
+      user: $scope.inquiryData[index].email,
+      status: $scope.inquiryData[index].status
+    };
+
+    //Check to see if the application/inquiry is new
+    if ($scope.inquiryData[index].status == "New Inquiry" || $scope.inquiryData[index].status == "New Application"){
+      $http({
+        method: 'POST',
+        url: '/updateStatus',
+        data: statusData
+      })
+      .then(function(data){
+        $scope.inquiryData[index].status = data.data;
+      });
+
+
+    }
+
     if (document.getElementById('expand' + index).style.display == "none"){
       this.backgroundColor = "#AAAAAA";
       document.getElementById('expand' + index).style.display = "table-row";
@@ -99,6 +118,73 @@ myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog', func
       this.backgroundColor = "#FFFFFF";
       document.getElementById('expand' + index).style.display = "none";
     }
+
+  };
+
+
+  $scope.approveInquiry = function(e, index) {
+
+
+    var firstName = $scope.inquiryData[index].first_name;
+    var statusData = {
+      user: $scope.inquiryData[index].email,
+      status: $scope.inquiryData[index].status
+    };
+
+    var txt;
+    var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
+    if (r == true) {
+
+      $http({
+        method: 'POST',
+        url: '/updateStatus',
+        data: statusData
+      });
+
+       $scope.status = firstName + ' has been approved!';
+     } else {
+       $scope.status = firstName + ' has not been approved.';
+     }
+
+
+
+  //   // Appending dialog to document.body to cover sidenav in docs app
+  //   var confirm = $mdDialog.confirm({
+  //     parent: document.body,
+  //     targetEvent: e,
+  //     template:
+  //       '<md-dialog aria-label="Lucky Day">' +
+  //       '  <md-title>' +
+  //       '   "Are you sure you would like to approve " + firstName + "?"' +
+  //       '  </md-title>' +
+  //       '  <md-content>' +
+  //       '   <p>Hello</p>' +
+  //       '  </md-content>' +
+  //       '  <div class="md-dialog-actions">' +
+  //       '    <md-button ng-click="$mdDialog.cancel()">' +
+  //       '      Close Greeting' +
+  //       '    </md-button>' +
+  //       '  </div>' +
+  //       '</md-dialog>',
+  //       locals: {
+  //         firstName: firstName
+  //       }
+  //       // bindToController: true,
+  //       // controllerAs: 'ctrl',
+  //       // controller: 'inquiryTableController'
+  //   })
+  //         .title('Are you sure you would like to approve ' + firstName + '?')
+  //         .textContent('Once you approve ' + firstName + ', they will be sent an email directing them to complete the application process.')
+  //         .targetEvent(e)
+  //         .ariaLabel('Lucky Day')
+  //         .ok('Confirm')
+  //         .cancel('Cancel');
+  //
+  //   $mdDialog.show(confirm).then(function() {
+  //     $scope.status = firstName + ' has been approved!';
+  //   }, function() {
+  //     $scope.status = firstName + ' has not been approved.';
+  //   });
 
   };
 
@@ -136,22 +222,24 @@ myApp.controller('adminEditController', ['$scope', '$http', function($scope, $ht
 
     //Will need more fields
     var user = {
+      id: $scope.inquiryData[index].id,
       primary_phone: $scope.inquiryData[index].primary_phone,
       alt_phone: $scope.inquiryData[index].alt_phone,
       email: $scope.inquiryData[index].email,
       contact_email: $scope.inquiryData[index].contact_email,
       contact_time: $scope.inquiryData[index].contact_time,
-      add_street1: $scope.inquiryData[index].add_street1,
-      add_street2: $scope.inquiryData[index].add_street2,
-      add_city: $scope.inquiryData[index].add_city,
-      add_state: $scope.inquiryData[index].add_state,
-      add_zip: $scope.inquiryData[index].add_zip
+      add_street1: $scope.inquiryData[index].dept_add_street1,
+      add_street2: $scope.inquiryData[index].dept_add_street2,
+      add_city: $scope.inquiryData[index].dept_add_city,
+      add_state: $scope.inquiryData[index].dept_add_state,
+      add_zip: $scope.inquiryData[index].dept_add_zip
     }
+
+    console.log(user);
 
 
     // $scope.user already updated!
     return $http.post('/saveUser', user).error(function(err) {
-      console.log(user);
       if(err.field && err.msg) {
         // err like {field: "name", msg: "Server-side error for this username!"}
         $scope.userForm.$setError(err.field, err.msg);
