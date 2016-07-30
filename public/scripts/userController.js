@@ -45,35 +45,38 @@ angular.module('myApp').controller('UserController', [
     };
 
     // select vest colors
-    $scope.colors = ['Black', 'Multi-Cam' 'Ranger Green', 'Tan'];
+    $scope.colors = ['Black', 'Multi-Cam', 'Ranger Green', 'Tan'];
+    $scope.vestColor = '';
     $scope.getVestColor = function() {
-      if ($scope.color !== undefined) {
-        return $scope.color;
+      if ($scope.vestColor !== undefined) {
+        return $scope.vestColor;
       } else {
         return "Please select a color";
       }
     };
-    
+
     // select vest imprint
     $scope.imprints = ['Fire', 'Fire K9', 'Police', 'Police K9', 'Search & Rescue', 'Sheriff', 'Sheriff K9'];
+    $scope.vestImprint = '';
     $scope.getVestImprint = function() {
-      if ($scope.imprint !== undefined) {
-        return $scope.imprint;
+      if ($scope.vestImprint !== undefined) {
+        return $scope.vestImprint;
       } else {
         return "Please select a vest imprint";
       }
     };
-    
+
     // select vest imprint color
     $scope.imprintColors = ['Dark Gray', 'Reflective Silver', 'White', 'Yellow'];
+    $scope.vestImprintColor = '';
     $scope.getImprintColor = function() {
-      if ($scope.imprintColor !== undefined) {
-        return $scope.imprintColor;
+      if ($scope.vestImprintColor !== undefined) {
+        return $scope.vestImprintColor;
       } else {
         return "Please select a vest imprint color";
       }
     };
- 
+
 
 
     ////////////////////////////////////////////////////////////
