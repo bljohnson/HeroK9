@@ -53,8 +53,27 @@ angular.module('myApp').controller('UserController', [
         return "Please select a color";
       }
     };
-
-
+    
+    // select vest imprint
+    $scope.imprints = ['Fire', 'Fire K9', 'Police', 'Police K9', 'Search & Rescue', 'Sheriff', 'Sheriff K9'];
+    $scope.getVestImprint = function() {
+      if ($scope.imprint !== undefined) {
+        return $scope.imprint;
+      } else {
+        return "Please select a vest imprint";
+      }
+    };
+    
+    // select vest imprint color
+    $scope.imprintColors = ['Dark Gray', 'Reflective Silver', 'White', 'Yellow'];
+    $scope.getImprintColor = function() {
+      if ($scope.imprintColor !== undefined) {
+        return $scope.imprintColor;
+      } else {
+        return "Please select a vest imprint color";
+      }
+    };
+ 
 
 
     ////////////////////////////////////////////////////////////
