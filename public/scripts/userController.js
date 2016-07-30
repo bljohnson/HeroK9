@@ -14,7 +14,7 @@ angular.module('myApp').controller('UserController', [
     ////////////////////////////////////////////////////////////
 
     // certification checkboxes
-    $scope.items = ['Explosives', 'Narcotics', 'Patrol', 'Trailing', 'Tracking', 'Other'];
+    $scope.items = ['Explosives', 'Narcotics', 'Patrol', 'Trailing/Tracking', 'Other'];
     $scope.selected = [1];
 
     $scope.toggle = function (item, list) {
@@ -45,7 +45,7 @@ angular.module('myApp').controller('UserController', [
     };
 
     // select vest colors
-    $scope.colors = ['Black', 'Tan', 'Green'];
+    $scope.colors = ['Black', 'Multi-Cam' 'Ranger Green', 'Tan'];
     $scope.getVestColor = function() {
       if ($scope.color !== undefined) {
         return $scope.color;
