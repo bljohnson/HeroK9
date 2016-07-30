@@ -139,12 +139,12 @@ VALUES ('Tracking/Trailing');
 INSERT INTO certifications (name)
 VALUES ('Other');
 
----------------------------------///////////////////////////////////////////---------------------------------
-
--- insert statuses
+-- hardwire statuses in, won't change unless more need to be added --
 
 INSERT INTO status (id, status_type) VALUES ('1', 'admin');
 INSERT INTO status (id, status_type) VALUES ('2', 'user');
+
+---------------------------------///////////////////////////////////////////---------------------------------
 
 --/// insert dummy data ///--
 INSERT INTO users (email, contact_email, password, status, first_name, last_name, primary_phone, contact_time)
