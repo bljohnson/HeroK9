@@ -45,7 +45,7 @@ angular.module('myApp').controller('UserController', [
     };
 
     // select vest colors
-    $scope.colors = ['Black', 'Multi-Cam' 'Ranger Green', 'Tan'];
+    $scope.colors = ['Black', 'Multi-Cam', 'Ranger Green', 'Tan'];
     $scope.getVestColor = function() {
       if ($scope.color !== undefined) {
         return $scope.color;
