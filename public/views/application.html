@@ -189,7 +189,7 @@
       </md-input-container>
       <md-input-container class="md-block">
         <label for="badge">Confirm badge #</label>
-        <input ng-model="badgeConfirm" id="badge" type="text" name="badge" ng-change="checkBadge(); wuttt()"value="" required>
+        <input ng-model="badgeConfirm" id="badge" type="text" name="badge" ng-change="checkBadge()"value="" required>
         <div ng-messages="projectForm.description.$error">
           <div ng-message="required">This is required.</div>
         </div>
@@ -204,7 +204,7 @@
       </md-input-container>
       <md-input-container class="md-block">
         <label for="cell">Confirm cell phone #</label>
-        <input ng-model="cellConfirm" id="cell" type="text" name="cell" ng-change="checkCell(); wuttt()"value="" required>
+        <input ng-model="cellConfirm" id="cell" type="text" name="cell" ng-change="checkCell()"value="" required>
         <div ng-messages="projectForm.description.$error">
           <div ng-message="required">This is required.</div>
         </div>
@@ -226,7 +226,7 @@
       </md-input-container>
       <md-input-container class="md-block">
         <label for="emailConfirm">Confirm email address</label>
-        <input ng-model="emailConfirm" id="checkk" type="text" name="emailConfirm"  ng-change="checkEmail(); wuttt()" value="{{emailAddress}}" required>
+        <input ng-model="emailConfirm" id="checkk" type="text" name="emailConfirm"  ng-change="checkEmail()" value="{{emailAddress}}" required>
         <div ng-messages="projectForm.description.$error">
           <div ng-message="required">This is required.</div>
         </div>

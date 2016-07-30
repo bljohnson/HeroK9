@@ -113,101 +113,62 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
 }]);//end controller
 
 
-
 myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
 	$scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
-	   $scope.role;
-	   $scope.getRole = function() {
-	     if ($scope.role !== undefined) {
-		 return $scope.role;
-	     } else {
-		 return "Please select a role";
-	     }
-	   };
+	$scope.role;
+	$scope.getRole = function() {
+   if ($scope.role !== undefined) {
+     return $scope.role;
+    } else {
+	    return "Please select a role";
+    }
+  };
 
-	   $scope.times = ["Morning", "Afternoon", "Evening"];
-	      $scope.contactTime = '';
-	      $scope.getContactTime = function() {
-	        if ($scope.contactTime !== undefined) {
-	          return $scope.contactTime;
-	        } else {
-	          return "Please select a time";
-	        }
-	      };
-  // $scope.checkEmail = function(){
-  //   if($scope.emailConfirm !== $scope.emailAddress){
-  //     $scope.emailMatch = true;
-  //     // document.getElementsByName("submit")[0].disabled = true;
-  //     return false;
-  //   }
-  //   $scope.emailMatch = false;
-    // document.getElementsByName("submit")[0].disabled = false;
-  // };
+	$scope.times = ["Morning", "Afternoon", "Evening"];
+	$scope.contactTime = '';
+	$scope.getContactTime = function() {
+	  if ($scope.contactTime !== undefined) {
+	    return $scope.contactTime;
+	  } else {
+	    return "Please select a time";
+	  }
+	};
 
-  // $scope.alertEmail = function(){
-  //   if($scope.emailConfirm !== $scope.emailAddress){
-  //     alert('Your email does not match');
-  //   }
-  // };
-
-  // $scope.checkCell = function(){
-  //   if($scope.cellConfirm !== $scope.cell){
-  //     $scope.cellMatch = true;
-  //     // document.getElementsByName("submit")[0].disabled = true;
-  //     return false;
-  //   }
-  //   $scope.cellMatch=false;
-    // document.getElementsByName("submit")[0].disabled = false;
-  // };
-
-  // $scope.alertCell = function(){
-  //   if($scope.cellConfirm !== $scope.cell){
-  //     alert('your Cell phone # does not match');
-  //   }
-  // };
-
-  // $scope.checkBadge = function(){
-  //   if($scope.badgeConfirm !== $scope.badge){
-  //     $scope.badgeMatch = true;
-  //     // document.getElementsByName("submit")[0].disabled = true;
-  //     return false;
-  //   }
-  //   $scope.badgeMatch=false;
-    // document.getElementsByName("submit")[0].disabled = false;
-  // };
-
-  // $scope.alertBadge = function(){
-  //   if($scope.badgeConfirm !== $scope.badge){
-  //     alert('your badge # does not match');
-  //   }
-  // };
-
-  $scope.wuttt = function(){
+  $scope.checkEmail = function(){
     if($scope.emailConfirm !== $scope.emailAddress){
       $scope.emailMatch = true;
       document.getElementsByName("submit")[0].disabled = true;
-    } if($scope.cellConfirm !== $scope.cell){
-      $scope.cellMatch = true;
-      document.getElementsByName("submit")[0].disabled = true;
-    } if($scope.badgeConfirm !== $scope.badge){
-      $scope.badgeMatch = true;
-      document.getElementsByName("submit")[0].disabled = true;
-    } else {
-      document.getElementsByName("submit")[0].disabled = false;
+      console.log('checkEmail no');
+      return false;
     }
-    // if($scope.emailConfirm !== $scope.emailAddress || $scope.cellConfirm !== $scope.cell || $scope.badgeConfirm !== $scope.badge){
-    //   document.getElementsByName("submit")[0].disabled = true;
-    //   $scope.emailMatch = true;
-    //   $scope.cellMatch = true;
-    //   $scope.badgeMatch = true;
-    // }
-    // document.getElementsByName("submit")[0].disabled = false;
-    // // $scope.emailMatch = false;
-    // // $scope.cellMatch = false;
-    // // $scope.badgeMatch = false;
+    $scope.emailMatch = false;
+    document.getElementsByName("submit")[0].disabled = false;
+    console.log('checkEmail yes');
   };
 
+  $scope.checkCell = function(){
+    if($scope.cellConfirm !== $scope.cell){
+      $scope.cellMatch = true;
+      document.getElementsByName("submit")[0].disabled = true;
+      console.log('checkCell no');
+      return false;
+    }
+    $scope.cellMatch=false;
+    document.getElementsByName("submit")[0].disabled = false;
+    console.log('checkCell yes');
+  };
 
+  $scope.checkBadge = function(){
+    if($scope.badgeConfirm !== $scope.badge){
+      $scope.badgeMatch = true;
+      document.getElementsByName("submit")[0].disabled = true;
+      console.log('checkBadge no');
+      return false;
+    }
+    $scope.badgeMatch=false;
+    document.getElementsByName("submit")[0].disabled = false;
+    console.log('checkBadge yes');
+  };
 
   $scope.breeds = ["German Shepherd", "Belgian Malinois", "Bloodhound", "Other"];
   $scope.getBreed = function() {
