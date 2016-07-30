@@ -63,7 +63,7 @@ myApp.controller('loginController', ['$scope', '$http', '$window', function( $sc
 
 myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
   $scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
-     $scope.role;
+     $scope.role = '';
      $scope.getRole = function() {
        if ($scope.role !== undefined) {
          return $scope.role;
@@ -115,7 +115,7 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
 
 myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
 	$scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
-	$scope.role;
+	$scope.role = '';
 	$scope.getRole = function() {
    if ($scope.role !== undefined) {
      return $scope.role;
@@ -137,37 +137,59 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
   $scope.checkEmail = function(){
     if($scope.emailConfirm !== $scope.emailAddress){
       $scope.emailMatch = true;
-      document.getElementsByName("submit")[0].disabled = true;
+      // document.getElementsByName("submit")[0].disabled = true;
       console.log('checkEmail no');
       return false;
     }
     $scope.emailMatch = false;
-    document.getElementsByName("submit")[0].disabled = false;
+    // document.getElementsByName("submit")[0].disabled = false;
     console.log('checkEmail yes');
   };
 
   $scope.checkCell = function(){
     if($scope.cellConfirm !== $scope.cell){
       $scope.cellMatch = true;
-      document.getElementsByName("submit")[0].disabled = true;
+      // document.getElementsByName("submit")[0].disabled = true;
       console.log('checkCell no');
       return false;
     }
     $scope.cellMatch=false;
-    document.getElementsByName("submit")[0].disabled = false;
+    // document.getElementsByName("submit")[0].disabled = false;
     console.log('checkCell yes');
   };
 
   $scope.checkBadge = function(){
     if($scope.badgeConfirm !== $scope.badge){
       $scope.badgeMatch = true;
-      document.getElementsByName("submit")[0].disabled = true;
+      // document.getElementsByName("submit")[0].disabled = true;
       console.log('checkBadge no');
       return false;
     }
     $scope.badgeMatch=false;
-    document.getElementsByName("submit")[0].disabled = false;
+    // document.getElementsByName("submit")[0].disabled = false;
     console.log('checkBadge yes');
+  };
+
+
+
+  $scope.checkAll = function(){
+    $scope.checkEmail();
+    $scope.checkCell();
+    $scope.checkBadge();
+    // if($scope.badgeConfirm !== $scope.badge){
+    //   $scope.badgeMatch = true;
+    //   console.log('checkBadge no');
+    //   return false;
+    // } else {
+    //   $scope.badgeMatch = false;
+    //   console.log('checkBadge yes');
+    // }
+    if ($scope.emailConfirm !== $scope.emailAddress || $scope.cellConfirm !== $scope.cell || $scope.badgeConfirm !== $scope.badge){
+      document.getElementsByName("submit")[0].disabled = true;
+    }
+    if ($scope.emailConfirm === $scope.emailAddress && $scope.cellConfirm === $scope.cell && $scope.badgeConfirm === $scope.badge){
+      document.getElementsByName("submit")[0].disabled = false;
+    }
   };
 
   $scope.breeds = ["German Shepherd", "Belgian Malinois", "Bloodhound", "Other"];
