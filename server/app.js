@@ -29,10 +29,7 @@ app.get( '/login', function( req, res ){
   res.sendFile( path.resolve( 'public/views/login.html' ) );
 });
 
-app.get( '/adminView', function( req, res ){
-  console.log( 'at adminView' );
-  res.sendFile( path.resolve( 'public/views/admin.html' ) );
-});
+
 
 // set up server
 app.set('port', process.env.PORT || 4200);
@@ -54,6 +51,12 @@ app.use(session({
 // init passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get( '/adminView', function( req, res ){
+  console.log( 'at adminView', req.user );
+  if (req.user.status_id == 99) {res.sendFile( path.resolve( 'public/views/admin.html' ) );}
+  else {res.sendFile( path.resolve( 'public/views/login.html' ) );}
+});
 
 
 // include routes
