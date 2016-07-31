@@ -14,23 +14,23 @@ router.post('/', function(req, res){
   var newStatus;
 
   switch (req.body.status_id) {
-    case '1':
+    case 1:
       newStatus = '2';
       break;
 
-    case '2':
+    case 2:
       newStatus = '3';
       break;
 
-    case '3':
+    case 3:
       newStatus = '4';
       break;
 
-    case '4':
+    case 4:
       newStatus = '5';
       break;
 
-    case '5':
+    case 5:
       newStatus = '6';
       break;
 
@@ -41,7 +41,8 @@ router.post('/', function(req, res){
 
   pg.connect(connection, function (err, client, done) {
 
-    client.query('UPDATE users SET status_id = ($1) WHERE users.email = ($2)', [ newStatus, req.body.user ] );
+    console.log("The new status will be " + newStatus);
+    client.query('UPDATE users SET status_id = ($1) WHERE users.contact_email = ($2)', [ newStatus, req.body.contact_email ] );
 
   });
 

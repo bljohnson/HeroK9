@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', [
-  'ngRoute', 'ngMaterial', 'ui.bootstrap', 'ngMessages', 'ngFileUpload'
+  'ngRoute', 'ngMaterial', 'ui.bootstrap', 'ngMessages'
 ]);
 
 myApp.config(['$routeProvider', function($routeProvider) {
@@ -19,12 +19,15 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/application.html',
       controller: 'AppController'
     }).
+    when('/submitted',{
+      templateUrl: '/views/submitInquiry.html',
+    }).
     otherwise({
     redirectTo: 'home'
   });
 }]);
 
-myApp.controller('loginController', ['$scope', '$http', '$window', function( $scope , $http, $window){
+myApp.controller('loginController', ['$scope', '$http', '$window', function( $scope , $http, $window, $ngFileUpload){
 
   $scope.register = function(){
     var regObject = {
