@@ -29,7 +29,8 @@ CREATE TABLE users (
 
 CREATE TABLE status (
 	id SERIAL PRIMARY KEY NOT NULL,
-	status_type VARCHAR (30)
+	status_type VARCHAR (30),
+	description VARCHAR (255)
 );
 
 CREATE TYPE vest_color AS ENUM ('Black', 'Multi-Cam', 'Ranger Green', 'Tan');
@@ -141,13 +142,14 @@ VALUES ('Other');
 
 -- hardwire statuses in, won't change unless more need to be added --
 
-INSERT INTO status (id, status_type) VALUES ('1', 'New Inquiry');
-INSERT INTO status (id, status_type) VALUES ('2', 'Pending Inquiry');
-INSERT INTO status (id, status_type) VALUES ('3', 'Approved Inquiry');
-INSERT INTO status (id, status_type) VALUES ('4', 'New Application');
-INSERT INTO status (id, status_type) VALUES ('5', 'Pending Application');
-INSERT INTO status (id, status_type) VALUES ('6', 'Approved Application');
-INSERT INTO status (id, status_type) VALUES ('99', 'admin');
+INSERT INTO status (id, status_type, description) VALUES ('11', 'New Inquiry', 'A new inquiry has been added.');
+INSERT INTO status (id, status_type, description) VALUES ('22', 'Inquiry Review', 'The completed inquiry is in review.');
+INSERT INTO status (id, status_type, description) VALUES ('3', 'Form Sent', 'The inquiry was approved and an application form has been sent.');
+INSERT INTO status (id, status_type, description) VALUES ('4', 'New Application', 'A new application form has been submitted.');
+INSERT INTO status (id, status_type, description) VALUES ('5', 'Application Review', 'The completed application is in review.');
+INSERT INTO status (id, status_type, description) VALUES ('6', 'Application Needs Revision', 'More information is needed / Information is incorrect.');
+INSERT INTO status (id, status_type, description) VALUES ('7', 'Application Approved', 'The application has been approved.  Awaiting grant requet.');
+INSERT INTO status (id, status_type, description) VALUES ('99', 'Admin', 'This user is an administrator');
 
 ---------------------------------///////////////////////////////////////////---------------------------------
 
