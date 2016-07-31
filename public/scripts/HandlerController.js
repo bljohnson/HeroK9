@@ -122,13 +122,9 @@ angular.module('myApp').controller('HandlerController', [
           url: '/userDash/submitFile',
           data: fileToServer
         }).then(function() {
-          
           console.log('submitFile post success');
+          $scope.displayFileNames();
         });
-
-
-
-
       }, function(resp) {
         console.log('Error status: ' + resp.status);
       }, function(evt) {
@@ -137,7 +133,18 @@ angular.module('myApp').controller('HandlerController', [
       });
     };
 
-
+    // retrieve and display file names
+    // $scope.displayFileNames = function() {
+    //   $http({
+    //     method: 'GET',
+    //     url: '/userDash/getFileNames'
+    //   }).then(function() {
+    //     $scope.uploads = response.data;
+    //     console.log('file names back from server', response.data);
+    //   }, function myError(response) {
+    //     console.log(response.statusText);
+    //   });
+    // };
 
 
 

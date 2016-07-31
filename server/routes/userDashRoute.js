@@ -38,6 +38,27 @@ router.post('/uploads', upload.single('file'), function(req, res) {
   res.send(req.file);
 });
 
+// get route to retrieve file names to display
+// router.get('/getFileNames', function(req, res) {
+//   var results = [];
+//   pg.connect(connectionString, function(err, client, done) {
+//     var callDatabase = client.query('SELECT file name from k9s_certifications where k9_id equals x;');
+//     // push each row in query into our results array
+//     callDatabase.on('row', function(row) {
+//       results.push(row);
+//     }); // end query push
+//     callDatabase.on('end', function(){
+//       console.log('user files: ', results);
+//       return res.json(results);
+//     });
+//     if(err) {
+//       console.log(err);
+//     }
+//     done();
+//   }); // end pg connect
+// });
+
+
 ////////////////////////////////////////////////////////////
 //         POST ROUTE TO SEND HANDLER APP TO DB           //
 ////////////////////////////////////////////////////////////

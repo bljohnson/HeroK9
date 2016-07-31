@@ -8,7 +8,7 @@
       <md-content>
 
         <form name="form">
-          <div layout-gt-xs="row">
+          <div layout-gt-xs="row" class="handler-row">
             <md-input-container class="md-block" flex-gt-xs>
               <h1 class="md-title">Certification Types (Check all that apply)</h1>
               <fieldset class="cert-fieldset">
@@ -24,11 +24,23 @@
                 <div>
                   <div ngf-select ng-model="file" name="file" ngf-pattern="'application/pdf'" ngf-accept="'application/pdf'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
                     <button class="primary-btn">Select PDF</button>
-                    <p>Files Selected: {{ file.name }}</p>
+                    <p>File Selected: {{ file.name }}</p>
                   </div>
                   <button class="primary-btn" type="submit" ng-click="submitFile()">Upload PDF</button>
                 </div>
-
+            </md-input-container>
+          </div>
+          <div layout-gt-xs="row" class="handler-row">
+            <md-input-container class="md-block" flex-gt-xs>
+              <h1 class="md-title">Upload Photos</h1>
+              <p>Instructions: 2 Photos Max, Max Size, File Types (PNG or JPG), Quality must not be blurry and needs to have good lighting, Must be face shot, Photo can be of on or off duty.</p>
+                <div>
+                  <div ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
+                    <button class="primary-btn">Select Photos</button>
+                    <p>File Selected: {{ file.name }}</p>
+                  </div>
+                  <button class="primary-btn" type="submit" ng-click="submitFile()">Upload PDF</button>
+                </div>
             </md-input-container>
 
           </div>

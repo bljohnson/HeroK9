@@ -188,3 +188,11 @@ md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-i
 }
 
 /* restyle angular material form colors */
+
+
+/* handlerform view styles */
+.handler-row {
+  padding: 20px 40px;
+  border: 1px solid #000;
+  margin: 10px 0;
+}
