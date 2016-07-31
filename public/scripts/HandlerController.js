@@ -14,33 +14,33 @@ angular.module('myApp').controller('HandlerController', [
     ////////////////////////////////////////////////////////////
 
     // certification checkboxes
-    $scope.items = ['Explosives', 'Narcotics', 'Patrol', 'Trailing/Tracking', 'Other'];
+    $scope.certifications = ['Explosives', 'Narcotics', 'Patrol', 'Trailing/Tracking', 'Other'];
     $scope.selected = [1];
 
-    $scope.toggle = function (item, list) {
-      var idx = list.indexOf(item);
+    $scope.toggle = function (cert, list) {
+      var idx = list.indexOf(cert);
       if (idx > -1) {
         list.splice(idx, 1);
       }
       else {
-        list.push(item);
+        list.push(cert);
       }
     };
-    $scope.exists = function (item, list) {
-      return list.indexOf(item) > -1;
+    $scope.exists = function (cert, list) {
+      return list.indexOf(cert) > -1;
     };
     $scope.isIndeterminate = function() {
       return ($scope.selected.length !== 0 &&
-          $scope.selected.length !== $scope.items.length);
+          $scope.selected.length !== $scope.certifications.length);
     };
     $scope.isChecked = function() {
-      return $scope.selected.length === $scope.items.length;
+      return $scope.selected.length === $scope.certifications.length;
     };
     $scope.toggleAll = function() {
-      if ($scope.selected.length === $scope.items.length) {
+      if ($scope.selected.length === $scope.certifications.length) {
         $scope.selected = [];
       } else if ($scope.selected.length === 0 || $scope.selected.length > 0) {
-        $scope.selected = $scope.items.slice(0);
+        $scope.selected = $scope.certifications.slice(0);
       }
     };
 
@@ -87,10 +87,10 @@ angular.module('myApp').controller('HandlerController', [
     $scope.comment = '';
 
     // validate and upload files on submit
-    $scope.submit = function() {
+    $scope.submitFile = function() {
       if ($scope.form.file.$valid && $scope.file) {
-          $scope.upload($scope.file);
-          console.log('in submit function, file to upload:', $scope.file);
+        $scope.upload($scope.file);
+        console.log('in submit function, file to upload:', $scope.file);
       }
     };
 
@@ -104,17 +104,29 @@ angular.module('myApp').controller('HandlerController', [
           'comment': $scope.comment
         }
       }).then(function(resp) {
-        console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);
+        console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
 
-        // then, if success, also send data and file location to database
-        
+        // then, if success, also collect input & send data and file location to database
+        var fileToServer = {
+          id: '1',
+          k9_id: '2',
+          certification_id: '5',
+          url: resp.data.location,
+          notes: 'notes'
+        };
+        console.log('send to server: ', fileToServer);
 
-        // collect input and create object to send
+        // post method to send object to database
+        $http({
+          method: 'POST',
+          url: '/userDash/submitFile',
+          data: fileToServer
+        }).then(function() {
+          
+          console.log('submitFile post success');
+        });
 
-        // post method to send inputs to database
 
-        // redirect users to their dashboard after form submission
-        $location.path('/usersubmit');
 
 
       }, function(resp) {

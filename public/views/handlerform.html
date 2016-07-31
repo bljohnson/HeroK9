@@ -12,13 +12,25 @@
             <md-input-container class="md-block" flex-gt-xs>
               <h1 class="md-title">Certification Types (Check all that apply)</h1>
               <fieldset class="cert-fieldset">
-                <div class="cert-select-all-checkboxes" flex="100" ng-repeat="item in items">
-                  <md-checkbox ng-model="certType" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
-                   {{ item }}
+                <div class="cert-select-all-checkboxes" flex="100" ng-repeat="cert in certifications">
+                  <md-checkbox ng-model="certType" ng-change="otherCert" ng-checked="exists(cert, selected)" ng-click="toggle(cert, selected)">
+                   {{ cert }}
                   </md-checkbox>
                 </div>
               </fieldset>
             </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <h1 class="md-title">Upload Certifications (PDF)</h1>
+                <div>
+                  <div ngf-select ng-model="file" name="file" ngf-pattern="'application/pdf'" ngf-accept="'application/pdf'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
+                    <button class="primary-btn">Select PDF</button>
+                    <p>Files Selected: {{ file.name }}</p>
+                  </div>
+                  <button class="primary-btn" type="submit" ng-click="submitFile()">Upload PDF</button>
+                </div>
+
+            </md-input-container>
+
           </div>
         </form>
         <button class="primary-btn" type="button" name="button" ng-click="">Save</button>

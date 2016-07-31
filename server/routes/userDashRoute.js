@@ -12,6 +12,8 @@ var multerS3 = require('multer-s3');
 var aws = require('aws-sdk');
 var s3 = new aws.S3();
 
+var connectionString = require('../modules/connection');
+
 ////////////////////////////////////////////////////////////
 //                   UPLOAD FILE ROUTES                   //
 ////////////////////////////////////////////////////////////
@@ -32,9 +34,31 @@ var upload = multer({
 
 // upload post route to S3
 router.post('/uploads', upload.single('file'), function(req, res) {
-  console.log('in post uploads:', req.file);
+  console.log('in S3 post uploads:', req.file);
   res.send(req.file);
 });
+
+////////////////////////////////////////////////////////////
+//         POST ROUTE TO SEND HANDLER APP TO DB           //
+////////////////////////////////////////////////////////////
+
+router.post('/submitFile', function (req, res){
+  pg.connect(connectionString, function(err, client, done){
+    if(err){
+      console.log(err);
+    } else {
+      var sendFile = client.query('INSERT INTO k9s_certifications (id, k9_id, certification_id, url, notes) VALUES ($1, $2, $3, $4, $5)',
+        [req.body.id, req.body.k9_id, req.body.certification_id, req.body.url, req.body.notes]);
+        console.log('in submitFile post route, adding:', req.body.url);
+      sendFile.on('end', function(){
+        return res.end();
+      });
+    }
+    done();
+  });
+});
+
+
 
 
 module.exports = router;
