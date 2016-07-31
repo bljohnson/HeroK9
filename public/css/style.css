@@ -156,6 +156,10 @@ md-card:last-child {
 .checkboxcertSelectAll .cert-select-all-checkboxes {
   padding-left: 30px; }
 
+md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-icon {
+  background: #d24740;
+}
+
 /* site wide button styles */
 
 .primary-btn {

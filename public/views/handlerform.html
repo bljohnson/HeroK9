@@ -1,23 +1,35 @@
 <div class="container">
   <h1 class="text-center">Welcome {{ username }}!</h1>
   <div class="row">
-    <h1>This page is a mess. </h1>
-    <p>Puppy kitty ipsum dolor sit good dog . Treats sit cat water slobber sit. Head right paw litter box Spike Snowball finch Mittens litter. Scratch hamster crate scratcher furry bedding fleas polydactyl litter box. Kisses slobbery cage scratch slobber throw furry head play dead birds head vitamins right paw cat kitty kitten house train vaccine cage.</p>
+    <h2>Handler/K9 Form</h2>
+    <p>Some copy here about working with handler to get all K9 information and measurements and that you can save and come back to form. Puppy kitty ipsum dolor sit good dog window feeder aquatic warm stripes bird food lazy cat aquarium sit. Fur roll over leash nest toys park wet nose field bed toy turtle. Run Fast tuxedo running run kisses lol catz furry stay nest water dog fleas gimme five throw behavior head aquarium right paw shake ferret play.</p>
 
-    <div class="md-padding">
-      <div layout="row" layout-wrap>
-        <div flex="100" layout="column">
-          <div>
-            <fieldset class="cert-fieldset" >
-              <legend class="cert-legend">Certification Types (Check all that apply)</legend>
-              <div layout="row" layout-wrap flex>
+    <div layout="column" ng-cloak class="md-inline-form">
+      <md-content>
+
+        <form name="form">
+          <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex-gt-xs>
+              <h1 class="md-title">Certification Types (Check all that apply)</h1>
+              <fieldset class="cert-fieldset">
                 <div class="cert-select-all-checkboxes" flex="100" ng-repeat="item in items">
-                  <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                  <md-checkbox ng-model="certType" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
                    {{ item }}
                   </md-checkbox>
                 </div>
-              </div>
-            </fieldset>
+              </fieldset>
+            </md-input-container>
+          </div>
+        </form>
+        <button class="primary-btn" type="button" name="button" ng-click="">Save</button>
+        <button class="primary-btn" type="button" name="button" ng-click="sendK9App();">Submit</button>
+
+      </md-content>
+    </div>
+
+
+    <!-- <div class="md-padding">
+
             <form name="form">
               <fieldset class="cert-fieldset">
                 <legend class="cert-legend">Upload proof of certifications (PDF)</legend>
@@ -39,7 +51,7 @@
                   <input type="text" ng-model="comment" placeholder="Add comment.. " class="u-full-width" />
                   <button type="submit" ng-click="submit()">Upload</button>
                 </div>
-                <!-- what does this do? -->
+
                 <div ng-repeat="picture in uploads | orderBy: 'created' : true ">
                   <img ng-src="{{picture.file.location}}" />
                   <div>{{picture.comment}}</div>
@@ -119,10 +131,6 @@
         </div>
     </div>
 
-
-
-
-
-
+  </div> -->
   </div>
 </div>

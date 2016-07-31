@@ -77,8 +77,6 @@ angular.module('myApp').controller('HandlerController', [
       }
     };
 
-
-
     ////////////////////////////////////////////////////////////
     //                      FILE UPLOADS                      //
     ////////////////////////////////////////////////////////////
@@ -109,13 +107,14 @@ angular.module('myApp').controller('HandlerController', [
         console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);
 
         // then, if success, also send data and file location to database
+        
 
         // collect input and create object to send
 
         // post method to send inputs to database
 
         // redirect users to their dashboard after form submission
-        // $location.path('/');
+        $location.path('/usersubmit');
 
 
       }, function(resp) {
