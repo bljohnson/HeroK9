@@ -183,4 +183,8 @@ md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-i
   background: #0b357b;
 }
 
+#thankYou {
+	text-align: center;
+}
+
 /* restyle angular material form colors */
