@@ -165,9 +165,8 @@ md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-i
 .primary-btn {
   outline: 0;
   background: #d24740;
-  width: 100%;
   border: 0;
-  padding: 15px;
+  padding: 10px 25px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   border-bottom-left-radius: 3px;
