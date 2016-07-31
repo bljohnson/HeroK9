@@ -23,6 +23,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/usersubmit.html',
       controller: 'UserSubmitController'
     }).
+    when('/userdash', {
+      templateUrl: '/views/userdash.html',
+      controller: 'UserDashController'
+    }).
     when('/application', {
       templateUrl: '/views/application.html',
       controller: 'AppController'
