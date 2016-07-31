@@ -1,5 +1,9 @@
 var myApp = angular.module('myApp', [
-  'ngRoute', 'ngMaterial', 'ui.bootstrap', 'ngMessages'
+  'ngRoute',
+  'ngMaterial',
+  'ui.bootstrap',
+  'ngMessages',
+  'ngFileUpload'
 ]);
 
 myApp.config(['$routeProvider', function($routeProvider) {
@@ -11,9 +15,17 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/inquiry.html',
       controller: 'MainController'
     }).
-    when('/user', {
-      templateUrl: '/views/user.html',
-      controller: 'UserController'
+    when('/handlerform', {
+      templateUrl: '/views/handlerform.html',
+      controller: 'HandlerController'
+    }).
+    when('/usersubmit', {
+      templateUrl: '/views/usersubmit.html',
+      controller: 'UserSubmitController'
+    }).
+    when('/userdash', {
+      templateUrl: '/views/userdash.html',
+      controller: 'UserDashController'
     }).
     when('/application', {
       templateUrl: '/views/application.html',
@@ -27,7 +39,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
   });
 }]);
 
-myApp.controller('loginController', ['$scope', '$http', '$window', function( $scope , $http, $window, $ngFileUpload){
+myApp.controller('loginController', ['$scope', '$http', '$window', function( $scope , $http, $window){
 
   $scope.register = function(){
     var regObject = {

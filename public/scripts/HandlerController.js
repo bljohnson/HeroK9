@@ -1,4 +1,4 @@
-angular.module('myApp').controller('UserController', [
+angular.module('myApp').controller('HandlerController', [
   '$scope',
   '$http',
   '$window',
