@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/vendors/angular-material.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/css/index.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/login.css" media="screen" title="no title" charset="utf-8">
     <script src="/vendors/angular.js" charset="utf-8"></script>
     <script src="/vendors/angular-route.min.js" charset="utf-8"></script>
     <script src="/vendors/angular-material.js" charset="utf-8"></script>
@@ -19,8 +21,13 @@
     <script src="/scripts/script.js" charset="utf-8"></script>
   </head>
 
-<body ng-app="myApp">
-    <div class="login" ng-controller="loginController">
+<body id="login-style" ng-app="myApp">
+    <div class="container">
+      <div class="info">
+      </div>
+    </div>
+    <div class="login-form" ng-controller="loginController">
+      <div class="login-logo"><img src="/images/herok9.svg"/></div>
       <md-content flex layout-padding>
       <form name='loginForm' ng-submit="login()">
         <h1>Login</h1>
@@ -39,9 +46,9 @@
             <div ng-message="required">Please enter your password.</div>
           </div>
         </md-input-container>
-        <div>
-          <input type="submit" value="Log In" class="btn btn-primary">
-          <a href="" ng-click="">Forgot my password</a>
+        <div class="message">
+          <input type="submit" value="Log In" class="primary-btn">
+          <a href="" ng-click="">Forgot My Password</a>
         </div>
       </form>
     </md-content>

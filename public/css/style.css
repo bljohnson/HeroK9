@@ -20,6 +20,10 @@ body {
   margin-bottom: 60px;
 }
 
+md-content.md-default-theme, md-content {
+    background-color: #fff;
+}
+
 md-card {
   display: inline-block;
   width: 33%;
