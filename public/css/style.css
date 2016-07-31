@@ -85,6 +85,7 @@ h1 {
   margin-bottom: 0;
 }
 
+
 .infoItem:hover {
   background-color: #ececec;
 }
@@ -95,6 +96,22 @@ h1 {
   margin-left: 13px;
 }
 
+
 #adminMain {
   margin: 20px;
 }
+
+.confirm{
+  color: red;
+  font-size: 12px;
+}
+
+/* user dashboard */
+.checkboxcertSelectAll .cert-legend {
+  color: #3F51B5; }
+.checkboxcertSelectAll .cert-fieldset {
+  border-style: solid;
+  border-width: 1px;
+  height: 100%; }
+.checkboxcertSelectAll .cert-select-all-checkboxes {
+  padding-left: 30px; }

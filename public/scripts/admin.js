@@ -77,6 +77,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
 
 myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog',  function($scope, $http, $mdDialog){
 
+
   //Make a call to populate inquiryTable
   $http({
     method: 'GET',
@@ -93,19 +94,19 @@ myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog',  fun
   $scope.expandView = function(index){
 
     var statusData = {
-      user: $scope.inquiryData[index].email,
-      status: $scope.inquiryData[index].status
+      contact_email: $scope.inquiryData[index].contact_email,
+      status_id: $scope.inquiryData[index].status_id
     };
 
     //Check to see if the application/inquiry is new
-    if ($scope.inquiryData[index].status == "New Inquiry" || $scope.inquiryData[index].status == "New Application"){
+    if ($scope.inquiryData[index].status_id == 1 || $scope.inquiryData[index].status_id == 4){
       $http({
         method: 'POST',
         url: '/updateStatus',
         data: statusData
       })
       .then(function(data){
-        $scope.inquiryData[index].status = data.data;
+        $scope.inquiryData[index].status_id = data.data;
       });
 
 
@@ -127,9 +128,10 @@ myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog',  fun
 
     var firstName = $scope.inquiryData[index].first_name;
     var statusData = {
-      user: $scope.inquiryData[index].email,
-      status: $scope.inquiryData[index].status
+      contact_email: $scope.inquiryData[index].contact_email,
+      status_id: $scope.inquiryData[index].status_id
     };
+
 
     var txt;
     var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
@@ -142,12 +144,15 @@ myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog',  fun
       });
 
        $scope.status = firstName + ' has been approved!';
+       $scope.alertStatus = "alert alert-success"
+
      } else {
        $scope.status = firstName + ' has not been approved.';
+       $scope.alertStatus = "alert alert-warning"
      }
 
 
-
+  //   //This Dialog is NOT WORKING
   //   // Appending dialog to document.body to cover sidenav in docs app
   //   var confirm = $mdDialog.confirm({
   //     parent: document.body,

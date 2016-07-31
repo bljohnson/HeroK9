@@ -1,4 +1,3 @@
-CREATE TYPE status AS ENUM ('New Inquiry', 'Pending Inquiry', 'Approved Inquiry', 'New Application', 'Pending Application', 'Approved Application', 'Admin');
 CREATE TYPE role AS ENUM ('K9 Handler', 'K9 Unit Supervisor', 'Department Admin', 'Other Admin Staff', 'Other Command Staff');
 
 CREATE TABLE users (
@@ -6,7 +5,7 @@ CREATE TABLE users (
 	email VARCHAR(255) UNIQUE,
 	contact_email VARCHAR(255) UNIQUE,
   	password VARCHAR(255) UNIQUE,
-  	status STATUS DEFAULT 'New Inquiry' NOT NULL,
+  	status_id INTEGER DEFAULT '1' NOT NULL REFERENCES status(id),
 	created TIMESTAMP DEFAULT current_timestamp NOT NULL,
 	rank VARCHAR(255),
 	role ROLE,
@@ -27,6 +26,16 @@ CREATE TABLE users (
 	auth_phone VARCHAR(30),
 	auth_email VARCHAR(255) UNIQUE
 );
+
+CREATE TABLE status (
+	id SERIAL PRIMARY KEY NOT NULL,
+	status_type VARCHAR (30),
+	description VARCHAR (255)
+);
+
+CREATE TYPE vest_color AS ENUM ('Black', 'Multi-Cam', 'Ranger Green', 'Tan');
+CREATE TYPE vest_imprint AS ENUM ('Fire', 'Fire K9', 'Police', 'Police K9', 'Search and Rescue', 'Sheriff', 'Sheriff K9');
+CREATE TYPE vest_imprint_color AS ENUM ('Dark Gray', 'Reflective Silver', 'White', 'Yellow');
 
 CREATE TABLE K9s (
 	id SERIAL PRIMARY KEY NOT NULL,
@@ -50,22 +59,23 @@ CREATE TABLE K9s (
 	k9_chest INTEGER,
 	k9_girth INTEGER,
 	k9_undercarriage INTEGER,
-	k9_vest_color VARCHAR(30),
-	k9_vest_imprint VARCHAR(30),
+	k9_vest_color VEST_COLOR,
+	k9_vest_imprint VEST_IMPRINT,
+	k9_vest_imprint_color VEST_IMPRINT_COLOR,
 	squad_make VARCHAR(50),
 	squad_model VARCHAR(50),
 	squad_year INTEGER,
 	squad_retirement BOOLEAN
 );
 
-CREATE TYPE certification AS ENUM ('Explosives', 'Narcotics', 'Patrol', 'Trailing', 'Tracking', 'Other');
+CREATE TYPE certification AS ENUM ('Explosives', 'Narcotics', 'Patrol', 'Tracking/Trailing', 'Other');
 
 CREATE TABLE certifications (
 	id SERIAL PRIMARY KEY NOT NULL,
 	name CERTIFICATION NOT NULL
 );
 
-CREATE TYPE offering AS ENUM ('In-squad kennel', 'Bullet resistant vest', 'Bullet and stab resistant vest', 'Door pop/heat alarm');
+CREATE TYPE offering AS ENUM ('In-squad kennel', 'Ballistic vest', 'Multi-threat vest', 'Door pop/heat alarm');
 
 CREATE TABLE equipment (
 	id SERIAL PRIMARY KEY NOT NULL,
@@ -106,10 +116,10 @@ INSERT INTO equipment (name)
 VALUES ('In-squad kennel');
 
 INSERT INTO equipment (name)
-VALUES ('Bullet resistant vest');
+VALUES ('Ballistic vest');
 
 INSERT INTO equipment (name)
-VALUES ('Bullet and stab resistant vest');
+VALUES ('Multi-threat vest');
 
 INSERT INTO equipment (name)
 VALUES ('Door pop/heat alarm');
@@ -125,13 +135,21 @@ INSERT INTO certifications (name)
 VALUES ('Patrol');
 
 INSERT INTO certifications (name)
-VALUES ('Trailing');
-
-INSERT INTO certifications (name)
-VALUES ('Tracking');
+VALUES ('Tracking/Trailing');
 
 INSERT INTO certifications (name)
 VALUES ('Other');
+
+-- hardwire statuses in, won't change unless more need to be added --
+
+INSERT INTO status (id, status_type, description) VALUES ('11', 'New Inquiry', 'A new inquiry has been added.');
+INSERT INTO status (id, status_type, description) VALUES ('22', 'Inquiry Review', 'The completed inquiry is in review.');
+INSERT INTO status (id, status_type, description) VALUES ('3', 'Form Sent', 'The inquiry was approved and an application form has been sent.');
+INSERT INTO status (id, status_type, description) VALUES ('4', 'New Application', 'A new application form has been submitted.');
+INSERT INTO status (id, status_type, description) VALUES ('5', 'Application Review', 'The completed application is in review.');
+INSERT INTO status (id, status_type, description) VALUES ('6', 'Application Needs Revision', 'More information is needed / Information is incorrect.');
+INSERT INTO status (id, status_type, description) VALUES ('7', 'Application Approved', 'The application has been approved.  Awaiting grant requet.');
+INSERT INTO status (id, status_type, description) VALUES ('99', 'Admin', 'This user is an administrator');
 
 ---------------------------------///////////////////////////////////////////---------------------------------
 

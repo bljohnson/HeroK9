@@ -2,17 +2,15 @@
 <main ng-controller="adminEditController">
 
   <div class="page-header">
-    <h2>{{data.first_name}} {{data.last_name}}, <small>{{data.rank}}</small><md-button class="btn btn-success btn-lg" style="float: right;" ng-click="approveInquiry($event, $index)" type="Button">Approve</md-button></h2>
+    <h2>{{data.first_name}} {{data.last_name}}, <small>{{data.rank}}</small><md-button class="btn btn-success btn-lg" style="float: right;" ng-click="approveInquiry($event, $index)" type="Button"><strong>Approve</strong></md-button></h2>
     {{data.status}}
   </div>
 
   <form editable-form name="userForm" onaftersave="saveUser($index)">
 
     <!-- Approval Dialogue -->
-    <div ng-if="status" id="status">
-      <b layout="row" layout-align="center center" class="md-padding">
-        {{status}}
-      </b>
+    <div ng-if="status">
+      <div class="{{alertStatus}}" role="alert"><strong>{{status}}<strong></div>
     </div>
 
     <div>

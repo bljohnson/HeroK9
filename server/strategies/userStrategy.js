@@ -64,12 +64,20 @@ passport.use('local', new localStrategy({
               // all good!
               console.log('pass matched');
               done(null, user[i]);
+<<<<<<< HEAD
             }
           }
 
             console.log("no user found");
             done(null, false, {message: 'Incorrect username or password'});
 
+=======
+            } else {
+            console.log("no user found");
+            done(null, false, {message: 'Incorrect username or password'});
+          }
+        }
+>>>>>>> master
           client.end();
         });
 
