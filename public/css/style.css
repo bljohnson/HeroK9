@@ -179,4 +179,8 @@ md-card:last-child {
   background: #0b357b;
 }
 
+#thankYou {
+	text-align: center;
+}
+
 /* restyle angular material form colors */
