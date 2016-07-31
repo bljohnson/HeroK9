@@ -30,9 +30,9 @@
       <div class="login-logo"><img src="/images/herok9.svg"/></div>
       <md-content flex layout-padding>
       <form name='loginForm' ng-submit="login()">
-        <h1>Login</h1>
+        <h1>LOGIN</h1>
         <md-input-container class="md-block">
-          <label for="title">email</label>
+          <label for="title">Email</label>
           <input ng-model="email" id="email" type="email" name="username" required>
           <div ng-messages="loginForm.email.$error" role="alert">
             <div ng-message="required">Please enter your email address.</div>
@@ -40,14 +40,14 @@
           </div>
         </md-input-container>
         <md-input-container class="md-block">
-          <label for="title">password</label>
+          <label for="title">Password</label>
           <input ng-model="password" id="password" type="password" name="password" required>
           <div ng-messages="loginForm.password.$error" role="alert" ng-if="loginForm.password.$touched">
             <div ng-message="required">Please enter your password.</div>
           </div>
         </md-input-container>
+        <input type="submit" value="Log In" class="primary-btn">
         <div class="message">
-          <input type="submit" value="Log In" class="primary-btn">
           <a href="" ng-click="">Forgot My Password</a>
         </div>
       </form>
