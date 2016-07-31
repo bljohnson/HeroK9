@@ -54,9 +54,8 @@ app.use(passport.session());
 
 app.get( '/adminView', function( req, res ){
   console.log( 'at adminView', req.user );
-  if (req.user === undefined) {res.sendFile(path.resolve('public/views/login.html'));}
-  else if (req.user.status_id == 99) {res.sendFile(path.resolve('public/views/admin.html'));}
-  else {res.sendFile(path.resolve('public/views/login.html'));}
+  if (req.user.status_id == 99) {res.sendFile( path.resolve( 'public/views/admin.html' ) );}
+  else {res.sendFile( path.resolve( 'public/views/login.html' ) );}
 });
 
 
@@ -74,15 +73,21 @@ var updateStatus = require('../server/routes/updateStatusRoute');
 var userDash = require ('../server/routes/userDashRoute');
 
 
-// routes
-app.use('/user', user);
-app.use('/register', register);
-app.use('/index', index);
-app.use('/snippitInfo', snippitInfo);
-app.use('/inquiryTable', inquiryTable);
-app.use('/applicationTable', applicationTable);
-app.use('/saveUser', saveUser);
-app.use('/inquiryForm', inquiryForm);
-app.use('/applicationForm', applicationForm);
-app.use('/updateStatus', updateStatus);
-app.use('/userDash', userDash);
+// Routes
+
+  //Index
+    app.use('/user', user);
+    app.use('/register', register);
+    app.use('/index', index);
+
+  //Admin View
+    app.use('/snippitInfo', snippitInfo);
+    app.use('/inquiryTable', inquiryTable);
+    app.use('/applicationTable', applicationTable);
+    app.use('/inquiryForm', inquiryForm);
+    app.use('/updateStatus', updateStatus);
+
+  //User View
+    app.use('/userDash', userDash);
+    app.use('/applicationForm', applicationForm);
+    app.use('/saveUser', saveUser);

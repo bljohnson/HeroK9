@@ -77,6 +77,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
 
 myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog',  function($scope, $http, $mdDialog){
 
+
   //Make a call to populate inquiryTable
   $http({
     method: 'GET',
@@ -131,6 +132,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog',  fun
       status_id: $scope.inquiryData[index].status_id
     };
 
+
     var txt;
     var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
     if (r == true) {
@@ -142,12 +144,15 @@ myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog',  fun
       });
 
        $scope.status = firstName + ' has been approved!';
+       $scope.alertStatus = "alert alert-success"
+
      } else {
        $scope.status = firstName + ' has not been approved.';
+       $scope.alertStatus = "alert alert-warning"
      }
 
 
-
+  //   //This Dialog is NOT WORKING
   //   // Appending dialog to document.body to cover sidenav in docs app
   //   var confirm = $mdDialog.confirm({
   //     parent: document.body,
