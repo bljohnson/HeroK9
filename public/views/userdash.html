@@ -1,30 +1,24 @@
 <div class="container">
-		  <h1 class="text-center">Welcome {{ username }}!</h1>
+	<h1 class="text-center">Welcome {{ username }}!</h1>
+	<h1>We are processing your application!</h1>
+	<p>Check back at any time to view your status.</p>
+	<! -- To test add 'active' class and 'visited' class to different li elements -->
+	<div class="checkout-wrap">
+		<ul class="checkout-bar">
+			<li ng-repeat='status in userStatus' class="{{status.status}}">{{status.name}}</li>
+		</ul>
+	</div>
 
-	        		<h1>We are processing your application!</h1>
-	        		<p>Check back at any time to view your status.</p>
-
-	        		  <! -- To test add 'active' class and 'visited' class to different li elements -->
-
-	        		<div class="checkout-wrap">
-	        		  <ul class="checkout-bar">
-
-	        		    <li class="visited first">Application In Review</li>
-
-	        		    <li class="previous visited">Application Approved</li>
-
-	        		    <li class="active">Grant Approved</li>
-
-	        		    <li class="next">Order Sent In</li>
-
-	        		    <li class="">Shipped!</li>
-
-	        		  </ul>
-	        		</div>
 
 
     <!-- display read-only view of what info was submitted for each k9/handler -->
     <!-- "You requested the following for your department..." -->
     <!-- use ng-repeat to show info for each k9/handler, such as k9 name, breed, age, equipment requested for that k9 -->
+    <div style="margin-top:40px">
+	  <p>
+		  Lorizzle ipsum dolor sit , pimpin' adipiscing brizzle. Nullizzle get down get down velizzle, yo volutpat, suscipit break yo neck, yall, fo shizzle mah nizzle fo rizzle, mah home g-dizzle vizzle, for sure. Pellentesque dizzle tortizzle. Sed i'm in the shizzle. Brizzle izzle dolor dapibizzle turpizzle tempizzle dang. Maurizzle fizzle nibh izzle turpizzle. Fo shizzle yippiyo for sure. Pellentesque break yo neck, yall rhoncizzle phat. In hac habitasse platea check out this. Check out this dapibizzle. Doggy tellus urna, pretium yo, own yo' mah nizzle, eleifend vitae, owned. Sizzle hizzle. Izzle da bomb velit sizzle ass.
 
-	      </div>
+		  Vivamizzle bow wow wow dizzle eget nisi things pretizzle. Vivamizzle shit dizzle gizzle. Nam eu boofron break it down lacizzle auctizzle dope. Praesent suscipit viverra dang. Curabitizzle away arcu. Doggy enim enim, gizzle the bizzle, i saw beyonces tizzles and my pizzle went crizzle eu, dignissizzle non, libero. Nullam cool pede non fo shizzle mah nizzle fo rizzle, mah home g-dizzle posuere funky fresh. Quisque ass tortor, doggy pulvinizzle, auctor fo shizzle, mollis sit bizzle, erizzle. Gizzle at its fo rizzle. Aliquizzle fo shizzle mah nizzle fo rizzle, mah home g-dizzle purus, pimpin' consectetuer, my shizz izzle, consequat imperdizzle, . Quisque a ipsizzle eu mi rutrum vehicula. bizzle funky fresh ipsizzle. Dope habitant morbi shizzle my nizzle crocodizzle funky fresh izzle ass izzle go to hizzle phat izzle turpis egestas. In est. Curabitizzle ma nizzle. Break it down eros felizzle, dawg quis, yippiyo izzle, fo shizzle my nizzle pulvinizzle, ma nizzle. Nulla yo gravida i'm in the shizzle.
+	  </p>
+  </div>
+</div>

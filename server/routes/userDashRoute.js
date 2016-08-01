@@ -115,5 +115,31 @@ router.post('/submitK9App', function (req, res){
 });
 
 
+///////////// NOT WORKING//////////////
+
+router.get('/', function(req, res){
+	console.log('in router.get user dash');
+	pg.connect(connection, function (err, client, done) {
+
+	  var results = [];
+	  var query = client.query("SELECT * FROM K9s");
+	  console.log('results: ', results);
+	  console.log('query: ', query);
+
+	  query.on('row', function(row){
+	    results.push(row);
+	  });
+
+	  query.on('end', function(){
+	    res.send(results);
+	  });
+
+	});
+
+    });
+
+
+
+
 
 module.exports = router;
