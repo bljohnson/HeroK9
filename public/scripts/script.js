@@ -185,8 +185,6 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
     console.log('checkBadge yes');
   };
 
-
-
   $scope.checkAll = function(){
     // $scope.checkEmail();
     // $scope.checkCell();
@@ -198,6 +196,22 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
     } else {
       $scope.badgeMatch = false;
       console.log('checkBadge yes');
+    }
+    if($scope.cellConfirm !== $scope.cell){
+      $scope.cellMatch = true;
+      console.log('checkCell no');
+      return false;
+    } else {
+      $scope.cellMatch = false;
+      console.log('cellMatch yes');
+    }
+    if($scope.emailConfirm !== $scope.emailAddress){
+      $scope.emailMatch = true;
+      console.log('checkEmail no');
+      return false;
+    } else {
+      $scope.emailMatch = false;
+      console.log('checkEmail yes');
     }
     if ($scope.emailConfirm !== $scope.emailAddress || $scope.cellConfirm !== $scope.cell || $scope.badgeConfirm !== $scope.badge){
       document.getElementsByName("submit")[0].disabled = true;
@@ -226,22 +240,10 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
  };//end yesnoCheck
 
  $scope.sendApplication = function(){
-     var regObject = {
-       email: $scope.email,
-       password: $scope.password
-     };
-
-     $http({
-       method: 'POST',
-       url: '/register',
-       data: regObject
-     });
-   
-
-  console.log($scope.kennel);
-  console.log($scope.bulletResistant);
-  console.log($scope.stabResistant);
-  console.log($scope.doorPop);
+   console.log($scope.kennel);
+   console.log($scope.bulletResistant);
+   console.log($scope.stabResistant);
+   console.log($scope.doorPop);
    console.log($scope.otherBreed);
    var breedToSend;
    if ($scope.otherBreed !== undefined){
@@ -251,8 +253,6 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    }
 
    var objectToSend = {
-	   email: $scope.email,
-	   password: $scope.password,
 	   rank: $scope.rank,
 	   role: $scope.role,
 	   firstName: $scope.firstName,
