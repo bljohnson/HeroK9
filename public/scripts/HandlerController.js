@@ -111,10 +111,10 @@ angular.module('myApp').controller('PDFController', [
     $scope.comment = '';
 
     // validate and upload files on submit
-    $scope.submitFile = function() {
+    $scope.submitPdf = function() {
       if ($scope.form.file.$valid && $scope.file) {
         $scope.upload($scope.file);
-        console.log('in submit function, file to upload:', $scope.file);
+        console.log('in submitPdf function, file to upload:', $scope.file);
       }
     };
 
@@ -131,22 +131,22 @@ angular.module('myApp').controller('PDFController', [
         console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
 
         // then, if success, also collect input & send data and file location to database
-        var fileToServer = {
+        var pdfToServer = {
           id: '1',
           k9_id: '2',
           certification_id: '5',
           url: resp.data.location,
           notes: 'pdf notes'
         };
-        console.log('send to server: ', fileToServer);
+        console.log('send to server: ', pdfToServer);
 
         // post method to send object to database
         $http({
           method: 'POST',
-          url: '/userDash/submitFile',
-          data: fileToServer
+          url: '/userDash/submitPdf',
+          data: pdfToServer
         }).then(function() {
-          console.log('submitFile post success');
+          console.log('submitPdf post success');
         });
       }, function(resp) {
         console.log('Error status: ' + resp.status);
@@ -171,10 +171,10 @@ angular.module('myApp').controller('ImgController', [
     $scope.comment = '';
 
     // validate and upload files on submit
-    $scope.submitFile = function() {
+    $scope.submitImg = function() {
       if ($scope.form.file.$valid && $scope.file) {
         $scope.upload($scope.file);
-        console.log('in submit function, file to upload:', $scope.file);
+        console.log('in submitIMG function, file to upload:', $scope.file);
       }
     };
 
@@ -191,22 +191,18 @@ angular.module('myApp').controller('ImgController', [
         console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
 
         // then, if success, also collect input & send data and file location to database
-        var fileToServer = {
-          id: '2',
-          k9_id: '3',
-          certification_id: '1',
-          url: resp.data.location,
-          notes: 'img notes'
+        var imgToServer = {
+          url: resp.data.location
         };
-        console.log('send to server: ', fileToServer);
+        console.log('send img to server: ', imgToServer);
 
         // post method to send object to database
         $http({
           method: 'POST',
-          url: '/userDash/submitFile',
-          data: fileToServer
+          url: '/userDash/submitImg',
+          data: imgToServer
         }).then(function() {
-          console.log('submitFile post success');
+          console.log('submitImg post success');
         });
       }, function(resp) {
         console.log('Error status: ' + resp.status);
