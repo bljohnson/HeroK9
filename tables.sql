@@ -43,6 +43,7 @@ CREATE TABLE K9s (
 	k9_name VARCHAR(255) NOT NULL,
 	breed VARCHAR(255) NOT NULL,
 	age VARCHAR(30) NOT NULL,
+	k9_certified BOOLEAN NOT NULL,
 	k9_active_duty BOOLEAN NOT NULL,
 	k9_retirement BOOLEAN NOT NULL,
 	handler_rank VARCHAR(255) NOT NULL,
