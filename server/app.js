@@ -64,6 +64,7 @@ var user = require ('../server/routes/userRoute');
 var index = require('../server/routes/indexRoute');
 var register = require('../server/routes/registerRoute');
 var snippitInfo = require('../server/routes/snippitRoute');
+var mailer = require('../server/routes/mailerRoute');
 var inquiryTable = require('../server/routes/inquiryTableRoute');
 var applicationTable = require('../server/routes/applicationTableRoute');
 var saveUser = require('../server/routes/adminEditRoute');
@@ -79,6 +80,7 @@ var userDash = require ('../server/routes/userDashRoute');
     app.use('/user', user);
     app.use('/register', register);
     app.use('/index', index);
+    app.use('/sendMail', mailer);
 
   //Admin View
     app.use('/snippitInfo', snippitInfo);
