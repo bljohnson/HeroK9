@@ -179,7 +179,7 @@
       <input ng-model="authorizedEmail" id="authorizedEmail" type="text" name="name" value="">
     </md-input-container>
     <!-- <button type="submit" name="button" ng-click="sendInquiry()" ng-disabled="inquiry.$invalid">Submit</button> -->
-    <a href="#submitted"><button type="submit" ng-click='sendInquiry()' ng-disabled="inquiry.$invalid">Submit</button></a>
+    <button type="submit" ng-click="sendInquiry(); go('/submitted')" ng-disabled="inquiry.$invalid">Submit</button>
   </form>
 </div>
 </md-content>
