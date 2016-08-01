@@ -211,6 +211,18 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
  };//end yesnoCheck
 
  $scope.sendApplication = function(){
+     var regObject = {
+       email: $scope.email,
+       password: $scope.password
+     };
+
+     $http({
+       method: 'POST',
+       url: '/register',
+       data: regObject
+     });
+   
+
   console.log($scope.kennel);
   console.log($scope.bulletResistant);
   console.log($scope.stabResistant);
