@@ -77,9 +77,33 @@ angular.module('myApp').controller('HandlerController', [
       }
     };
 
-    ////////////////////////////////////////////////////////////
-    //                      FILE UPLOADS                      //
-    ////////////////////////////////////////////////////////////
+    // collect input to send to server
+    $scope.sendK9App = function() {
+      var k9AppToSend = {
+        bio: $scope.k9Bio,
+        back: $scope.k9Back,
+        chest: $scope.k9Chest
+      };
+      $http({
+        method: 'POST',
+        url: '/userDash/submitK9App',
+        data: k9AppToSend
+      }).success(function() {
+        console.log('in /submitK9App: ', k9AppToSend);
+      });
+    };
+
+
+}]); // end HandlerController
+
+
+angular.module('myApp').controller('PDFController', [
+  '$scope',
+  '$http',
+  '$window',
+  '$location',
+  'Upload',
+  function($scope, $http, $window, $location, Upload) {
 
     // file variables
     $scope.file = '';
@@ -112,7 +136,7 @@ angular.module('myApp').controller('HandlerController', [
           k9_id: '2',
           certification_id: '5',
           url: resp.data.location,
-          notes: 'notes'
+          notes: 'pdf notes'
         };
         console.log('send to server: ', fileToServer);
 
@@ -123,7 +147,6 @@ angular.module('myApp').controller('HandlerController', [
           data: fileToServer
         }).then(function() {
           console.log('submitFile post success');
-          $scope.displayFileNames();
         });
       }, function(resp) {
         console.log('Error status: ' + resp.status);
@@ -132,26 +155,64 @@ angular.module('myApp').controller('HandlerController', [
         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
       });
     };
+}]); // end PDFController
 
-    // retrieve and display file names
-    // $scope.displayFileNames = function() {
-    //   $http({
-    //     method: 'GET',
-    //     url: '/userDash/getFileNames'
-    //   }).then(function() {
-    //     $scope.uploads = response.data;
-    //     console.log('file names back from server', response.data);
-    //   }, function myError(response) {
-    //     console.log(response.statusText);
-    //   });
-    // };
+angular.module('myApp').controller('ImgController', [
+  '$scope',
+  '$http',
+  '$window',
+  '$location',
+  'Upload',
+  function($scope, $http, $window, $location, Upload) {
 
+    // file variables
+    $scope.file = '';
+    $scope.uploads = [];
+    $scope.comment = '';
 
+    // validate and upload files on submit
+    $scope.submitFile = function() {
+      if ($scope.form.file.$valid && $scope.file) {
+        $scope.upload($scope.file);
+        console.log('in submit function, file to upload:', $scope.file);
+      }
+    };
 
+    // upload files to S3 and to the database
+    $scope.upload = function(file) {
+      Upload.upload ({
+        url: '/userDash/uploads',
+        data: {
+          file: file,
+          'user': $scope.user,
+          'comment': $scope.comment
+        }
+      }).then(function(resp) {
+        console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
 
+        // then, if success, also collect input & send data and file location to database
+        var fileToServer = {
+          id: '2',
+          k9_id: '3',
+          certification_id: '1',
+          url: resp.data.location,
+          notes: 'img notes'
+        };
+        console.log('send to server: ', fileToServer);
 
-
-
-
-
+        // post method to send object to database
+        $http({
+          method: 'POST',
+          url: '/userDash/submitFile',
+          data: fileToServer
+        }).then(function() {
+          console.log('submitFile post success');
+        });
+      }, function(resp) {
+        console.log('Error status: ' + resp.status);
+      }, function(evt) {
+        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+      });
+    };
 }]);

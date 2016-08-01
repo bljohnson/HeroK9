@@ -15,7 +15,7 @@ var s3 = new aws.S3();
 var connectionString = require('../modules/connection');
 
 ////////////////////////////////////////////////////////////
-//                   UPLOAD FILE ROUTES                   //
+//                   UPLOAD FILES TO S3                   //
 ////////////////////////////////////////////////////////////
 
 var upload = multer({
@@ -38,7 +38,7 @@ router.post('/uploads', upload.single('file'), function(req, res) {
   res.send(req.file);
 });
 
-// get route to retrieve file names to display
+// get route to retrieve file names to display and then potentially allow users to delete too?
 // router.get('/getFileNames', function(req, res) {
 //   var results = [];
 //   pg.connect(connectionString, function(err, client, done) {
@@ -60,9 +60,10 @@ router.post('/uploads', upload.single('file'), function(req, res) {
 
 
 ////////////////////////////////////////////////////////////
-//         POST ROUTE TO SEND HANDLER APP TO DB           //
+//                     POST ROUTES                        //
 ////////////////////////////////////////////////////////////
 
+// send PDF URLs to k9s_certifications table
 router.post('/submitFile', function (req, res){
   pg.connect(connectionString, function(err, client, done){
     if(err){
@@ -79,6 +80,22 @@ router.post('/submitFile', function (req, res){
   });
 });
 
+// send handler application data to k9s table
+router.post('/submitK9App', function (req, res){
+  pg.connect(connectionString, function(err, client, done){
+    if(err){
+      console.log(err);
+    } else {
+      var sendFile = client.query('INSERT INTO test (k9_bio, k9_back, k9_chest) VALUES ($1, $2, $3)',
+        [req.body.bio, req.body.back, req.body.chest]);
+        console.log('in submitK9App post route, adding:', req.body.back);
+      sendFile.on('end', function(){
+        return res.end();
+      });
+    }
+    done();
+  });
+});
 
 
 

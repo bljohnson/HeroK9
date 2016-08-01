@@ -1,6 +1,6 @@
 <div class="container">
   <h1 class="text-center">Welcome {{ username }}!</h1>
-  <div class="row">
+  <div>
     <h2>Handler/K9 Form</h2>
     <p>Some copy here about working with handler to get all K9 information and measurements and that you can save and come back to form. Puppy kitty ipsum dolor sit good dog window feeder aquatic warm stripes bird food lazy cat aquarium sit. Fur roll over leash nest toys park wet nose field bed toy turtle. Run Fast tuxedo running run kisses lol catz furry stay nest water dog fleas gimme five throw behavior head aquarium right paw shake ferret play.</p>
 
@@ -21,7 +21,7 @@
             </md-input-container>
             <md-input-container class="md-block" flex-gt-xs>
               <h1 class="md-title">Upload Certifications (PDF)</h1>
-                <div>
+                <div ng-controller="PDFController">
                   <div ngf-select ng-model="file" name="file" ngf-pattern="'application/pdf'" ngf-accept="'application/pdf'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
                     <button class="primary-btn">Select PDF</button>
                     <p>File Selected: {{ file.name }}</p>
@@ -31,10 +31,10 @@
             </md-input-container>
           </div>
           <div layout-gt-xs="row" class="handler-row">
-            <md-input-container class="md-block" flex-gt-xs>
+            <md-input-container class="md-block">
               <h1 class="md-title">Upload Photos</h1>
               <p>Instructions: 2 Photos Max, Max Size, File Types (PNG or JPG), Quality must not be blurry and needs to have good lighting, Must be face shot, Photo can be of on or off duty.</p>
-                <div>
+                <div ng-controller="ImgController">
                   <div ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
                     <button class="primary-btn">Select Photos</button>
                     <p>File Selected: {{ file.name }}</p>
@@ -42,8 +42,41 @@
                   <button class="primary-btn" type="submit" ng-click="submitFile()">Upload PDF</button>
                 </div>
             </md-input-container>
-
           </div>
+          <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex-gt-xs>
+              <label for="k9Bio">K9 Biography/Personality Profile</label>
+              <textarea id="k9Bio" ng-model="k9Bio" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+            </md-input-container>
+          </div>
+          <div>
+            <h1 class="md-title">Ballistic Vest or Multi-Threat Vest</h1>
+            <p>If applying for Ballistic Vest or Multi-Threat Vest, provide K9 measurements and customization requests.</p>
+          </div>
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Back (inches)</label>
+              <input ng-model="k9Back" md-maxlength="2" name="k9Back"/>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Chest (inches)</label>
+              <input ng-model="k9Chest" md-maxlength="2" name="k9Chest"/>
+            </md-input-container>
+          </div>
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Girth (inches)</label>
+              <input ng-model="k9Girth" md-maxlength="2" name="k9Girth"/>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Inner Front Leg To Inner Hind Leg (inches)</label>
+              <input ng-model="k9Undercarriage" md-maxlength="2" name="k9Undercarriage"/>
+            </md-input-container>
+          </div>
+
+
         </form>
         <button class="primary-btn" type="button" name="button" ng-click="">Save</button>
         <button class="primary-btn" type="button" name="button" ng-click="sendK9App();">Submit</button>
@@ -54,41 +87,9 @@
 
     <!-- <div class="md-padding">
 
-            <form name="form">
-              <fieldset class="cert-fieldset">
-                <legend class="cert-legend">Upload proof of certifications (PDF)</legend>
-                <div>
-                  <div ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
-                    <button>Select File</button> <span> {{file.$ngfName}} </span> <img ngf-thumbnail="file || '/images/upload.svg'">
-                  </div>
-                  <input type="text" ng-model="comment" placeholder="Add comment.. " class="u-full-width" />
-                  <button type="submit" ng-click="submit()">Upload</button>
-                </div>
-              </fieldset>
-              <fieldset class="cert-fieldset">
-                <legend class="cert-legend">Upload K9 Photos (2 Max)</legend>
-                <p>Please upload max size, file types of PNG or JPG, high quality and not blurry or shadowed, a face shot and photo can be of on or off duty.</p>
-                <div>
-                  <div ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
-                    <button>Select File</button> <span> {{file.$ngfName}} </span> <img ngf-thumbnail="file || '/images/upload.svg'">
-                  </div>
-                  <input type="text" ng-model="comment" placeholder="Add comment.. " class="u-full-width" />
-                  <button type="submit" ng-click="submit()">Upload</button>
-                </div>
 
-                <div ng-repeat="picture in uploads | orderBy: 'created' : true ">
-                  <img ng-src="{{picture.file.location}}" />
-                  <div>{{picture.comment}}</div>
-                </div>
-              </fieldset>
-            </form>
-            <form name="userForm">
-              <fieldset class="cert-fieldset">
-                <md-input-container class="md-block">
-                  <label>Biography</label>
-                  <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-                </md-input-container>
-              </fieldset>
+
+
 
               <fieldset class="cert-fieldset">
                 <legend class="cert-legend">Ballistic or multi-threat vest</legend>
