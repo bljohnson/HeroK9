@@ -156,26 +156,27 @@ md-card:last-child {
 .checkboxcertSelectAll .cert-select-all-checkboxes {
   padding-left: 30px; }
 
+md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-icon {
+  background: #d24740;
+}
+
 /* site wide button styles */
 
 .primary-btn {
   outline: 0;
   background: #d24740;
   border: 0;
-  padding: 10px 25px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 3px;
   color: #FFFFFF;
   font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
+  transition: all 0.5s ease 0s;
   cursor: pointer;
 }
 
 .primary-btn:hover {
-  background: #0b357b;
+  background: #ca2c24;
 }
 
 #thankYou {
@@ -183,3 +184,11 @@ md-card:last-child {
 }
 
 /* restyle angular material form colors */
+
+
+/* handlerform view styles */
+.handler-row {
+  padding: 10px 40px;
+  border-bottom: 1px solid #d1d1d1;
+  margin: 10px 0;
+}
