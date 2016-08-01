@@ -173,17 +173,17 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
 
 
   $scope.checkAll = function(){
-    $scope.checkEmail();
-    $scope.checkCell();
-    $scope.checkBadge();
-    // if($scope.badgeConfirm !== $scope.badge){
-    //   $scope.badgeMatch = true;
-    //   console.log('checkBadge no');
-    //   return false;
-    // } else {
-    //   $scope.badgeMatch = false;
-    //   console.log('checkBadge yes');
-    // }
+    // $scope.checkEmail();
+    // $scope.checkCell();
+    // $scope.checkBadge();
+    if($scope.badgeConfirm !== $scope.badge){
+      $scope.badgeMatch = true;
+      console.log('checkBadge no');
+      return false;
+    } else {
+      $scope.badgeMatch = false;
+      console.log('checkBadge yes');
+    }
     if ($scope.emailConfirm !== $scope.emailAddress || $scope.cellConfirm !== $scope.cell || $scope.badgeConfirm !== $scope.badge){
       document.getElementsByName("submit")[0].disabled = true;
     }

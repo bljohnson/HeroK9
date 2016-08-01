@@ -412,8 +412,8 @@
             <div ng-message="required">This is required.</div>
           </div>
         </md-input-container>
-        <h2>Identify confirmation</h2>
-        <md-input-container class="md-block">
+        <!-- <h2>Identify confirmation</h2> -->
+        <!-- <md-input-container class="md-block">
           <label for="emailConfirm">Email address</label>
           <input ng-model="emailConfirm" id="check" type="text" name="emailConfirm"  ng-change="check()" value="" required>
           <div ng-messages="projectForm.description.$error">
@@ -434,7 +434,7 @@
           <div ng-messages="projectForm.description.$error">
             <div ng-message="required">This is required.</div>
           </div>
-        </md-input-container>
+        </md-input-container> -->
       </form>
     </div>
     <input type="submit" ng-click="sendApplication()" ng-disabled="application.$invalid" name="submit" value="Submit">
