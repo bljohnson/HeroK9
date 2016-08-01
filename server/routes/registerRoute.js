@@ -22,12 +22,13 @@ router.post('/', function(req, res) {
 
     var userToSave = {
       email: req.body.email,
-      password: encryptLib.encryptPassword(req.body.password)
+      password: encryptLib.encryptPassword(req.body.password),
+      contact_email: req.body.contact_email
     };
 
     //client.query takes the query, params, and optional callback
-    client.query("INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id",
-      [userToSave.email, userToSave.password],
+    client.query("UPDATE users SET email=($1),password=($2) WHERE contact_email=($3) RETURNING id",
+      [userToSave.email, userToSave.password, userToSave.contact_email],
         function(err, result) {
 
           done();

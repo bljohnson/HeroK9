@@ -13,25 +13,25 @@ router.post('/', function(req, res){
 
   var newStatus;
 
-  switch (req.body.status_id) {
+  switch (parseInt(req.body.status_id)) {
     case 1:
-      newStatus = '2';
+      newStatus = 2;
       break;
 
     case 2:
-      newStatus = '3';
+      newStatus = 3;
       break;
 
     case 3:
-      newStatus = '4';
+      newStatus = 4;
       break;
 
     case 4:
-      newStatus = '5';
+      newStatus = 5;
       break;
 
     case 5:
-      newStatus = '6';
+      newStatus = 6;
       break;
 
     default:
@@ -48,7 +48,7 @@ router.post('/', function(req, res){
 
   console.log("New Status " + newStatus);
 
-  res.send(newStatus);
+  res.send(newStatus.toString());
 
 });
 

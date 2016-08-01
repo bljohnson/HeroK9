@@ -13,7 +13,7 @@ require('dotenv').config();
 var smtpTransport = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: "",
+        user: "flytrendsz@gmail.com",
         pass: process.env.MAIL_PASS
     }
 });

@@ -122,6 +122,23 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
 
   };
 
+  $scope.sendApproveMail = function (index){
+    var mailObject = {
+      to: $scope.inquiryData[index].contact_email,
+      subject: "Your inquiry has been approved",
+      text: "here's a link, click it! http://localhost:4200/register?from=" + $scope.inquiryData[index].contact_email + " "
+    };
+
+    $http({
+      method: 'POST',
+      url: '/sendMail',
+      data: mailObject
+    }).then(function(Response) {
+  console.log("in sendMail post call success: ", Response);
+  }).error(function(Response) {
+  console.log(Response);
+  });
+  };
 
   $scope.approveInquiry = function(e, index) {
 
@@ -135,24 +152,27 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
 
     var txt;
     var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
-    if (r == true) {
+    if (r === true) {
 
       $http({
         method: 'POST',
         url: '/updateStatus',
         data: statusData
+      }).then(function(data){
+        $scope.inquiryData[index].status_id = data.data;
       });
 
        $scope.status = firstName + ' has been approved!';
-       $scope.alertStatus = "alert alert-success"
-
+       $scope.alertStatus = "alert alert-success";
+       $scope.sendApproveMail(index);
      } else {
        $scope.status = firstName + ' has not been approved.';
-       $scope.alertStatus = "alert alert-warning"
+       $scope.alertStatus = "alert alert-warning";
      }
 
 
   };
+
 
 
 }]);//End inquiryTableController

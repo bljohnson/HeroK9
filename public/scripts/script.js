@@ -4,7 +4,11 @@ var myApp = angular.module('myApp', [
   'ui.bootstrap',
   'ngMessages',
   'ngFileUpload'
-]);
+],function($locationProvider){
+    $locationProvider.html5Mode({
+  enabled: true,
+  requireBase: false});
+});
 
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
@@ -39,12 +43,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
   });
 }]);
 
-myApp.controller('loginController', ['$scope', '$http', '$window', function( $scope , $http, $window){
+myApp.controller('loginController', ['$scope', '$http', '$window', '$location', function( $scope , $http, $window, $location){
 
   $scope.register = function(){
+    // console.log($location.search());
     var regObject = {
       email: $scope.email,
-      password: $scope.password
+      password: $scope.password,
+      contact_email: $location.search().from
     };
 
     $http({
@@ -96,6 +102,8 @@ myApp.controller('loginController', ['$scope', '$http', '$window', function( $sc
   console.log(Response);
   });
   };
+
+
 
 }]);
 
