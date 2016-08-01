@@ -4,7 +4,7 @@ angular.module('myApp').controller('HandlerController', [
   '$window',
   '$location',
   'Upload',
-  function($scope, $http, $window, $location, Upload) {
+  function($scope, $http, $window, $location, Upload, $mdDialog) {
 
     // custom welcome message to the user
     $scope.username = "Officer Henry Hall";
@@ -92,6 +92,17 @@ angular.module('myApp').controller('HandlerController', [
         console.log('in /submitK9App: ', k9AppToSend);
       });
     };
+
+  // save alert modal
+  $scope.saveForm = function() {
+    $mdDialog.show (
+      $mdDialog.alert ({
+        title: 'Saved!',
+        textContent: 'Your application has been saved.',
+        ok: 'Okay'
+      })
+    );
+  };
 
 
 }]); // end HandlerController
