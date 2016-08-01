@@ -1,5 +1,5 @@
-// for file uploads, loads environment variables locally before everything else
-// require('dotenv').load();
+// for file uploads, loads environment variables before everything else
+require('dotenv').load();
 
 var express=require('express');
 var app=express();

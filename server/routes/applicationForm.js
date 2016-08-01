@@ -29,7 +29,7 @@ router.post('/', function(req, res){
 		var insertUser = client.query( 'INSERT INTO users ( email, password, contact_email, rank, role, first_name, last_name, primary_phone, alt_phone, contact_time, dept_add_street1, dept_add_street2, dept_add_city, dept_add_state, dept_add_zip, dept_k9s ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16 )', [ req.body.email, req.body.password, req.body.contactEmail, req.body.rank, req.body.role, req.body.firstName, req.body.lastName, req.body.primaryPhone, req.body.altPhone, req.body.contactTime, req.body.address1, req.body.address2, req.body.city, req.body.state, req.body.zip, req.body.numberOfDogs ] );
 >>>>>>> master
 
-		var insertK9 = client.query( 'INSERT INTO K9s ( k9_name, breed, age, k9_active_duty, k9_retirement, handler_rank, handler_first_name, handler_last_name, handler_badge, handler_cell_phone, handler_secondary_phone, handler_email ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 )', [ req.body.k9name, req.body.breed, req.body.age, req.body.certified, req.body.activeDuty, req.body.retirement, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail ] );
+		// var insertK9 = client.query( 'INSERT INTO K9s ( k9_name, breed, age, k9_active_duty, k9_retirement, handler_rank, handler_first_name, handler_last_name, handler_badge, handler_cell_phone, handler_secondary_phone, handler_email ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 )', [ req.body.k9name, req.body.breed, req.body.age, req.body.certified, req.body.activeDuty, req.body.retirement, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail ] );
 
 			// this comes after part 1 of application form is approved by admin:  data about dog/equipment auth signer can save and come back to before submitting - fields are NULLABLE
 
@@ -45,7 +45,11 @@ router.post('/', function(req, res){
 			// prepopulate first part of form
 		// var getUser = client.query ( 'SELECT contact_email, rank, role, first_name, last_name, primary_phone, alt_phone, contact_time, dept_add_street1, dept_add_street2, dept_add_city, dept_add_state, dept_add_zip, dept_k9s FROM users WHERE id = SOMETHINGSOMETHINGSOMETHING ' );
 			// add handler/k9 basic info
-		var addK9 = client.query( 'INSERT INTO K9s ( k9_name, breed, age, k9_active_duty, k9_retirement, handler_rank, handler_first_name, handler_last_name, handler_badge, handler_cell_phone, handler_secondary_phone, handler_email ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 )', [ req.body.k9name, req.body.breed, req.body.age, req.body.certified, req.body.activeDuty, req.body.retirement, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail ] );
+<<<<<<< HEAD
+			var addK9 = client.query( 'INSERT INTO K9s ( k9_name, breed, age, k9_active_duty, k9_retirement, handler_rank, handler_first_name, handler_last_name, handler_badge, handler_cell_phone, handler_secondary_phone, handler_email ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 )', [ req.body.k9name, req.body.breed, req.body.age, req.body.activeDuty, req.body.retirement, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerBadge, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail ] );
+=======
+			var addK9 = client.query( 'INSERT INTO K9s ( k9_name, breed, age, k9_certified, k9_active_duty, k9_retirement, handler_rank, handler_first_name, handler_last_name, handler_badge, handler_cell_phone, handler_secondary_phone, handler_email ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13 )', [ req.body.k9name, req.body.breed, req.body.age, req.body.certified, req.body.activeDuty, req.body.retirement, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerBadge, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail ] );
+>>>>>>> 434517765e9937858e8829a009a5dc354a53fbef
 
 	});
 });

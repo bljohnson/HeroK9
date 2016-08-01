@@ -11,7 +11,7 @@ myApp.controller('adminViewController', ['$scope', function($scope){
   console.log("In adminView");
 
   //Dummy Data
-  $scope.username = "Dummy Username";
+  $scope.username = "Dummy Username ®";
 
   //View selection
   $scope.tabs = [
