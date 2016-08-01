@@ -51,29 +51,31 @@ myApp.controller('loginController', ['$scope', '$http', '$window', function( $sc
       method: 'POST',
       url: '/register',
       data: regObject
+    }).success(function(data){
+      $window.location.href = '/#/application';
     });
   };
 
   $scope.login = function (){
     var loginObject = {
-    username: $scope.email,
-    password: $scope.password
-  };
-  $http({
-    method: "POST",
-    url: '/index',
-    data: loginObject
-  }).success(function(data){
-      console.log(data);
-        if (data.status_id == 99) {$window.location.href = '/adminView';}
-        else {$window.location.href = 'views/#/user';}
+      username: $scope.email,
+      password: $scope.password
+    };
+    $http({
+      method: "POST",
+      url: '/index',
+      data: loginObject
+    }).success(function(data){
+        console.log(data);
+          if (data.status_id == 99) {$window.location.href = '/adminView';}
+          else {$window.location.href = 'views/#/user';}
 
 
-    }).error(function(err){
-      console.log(err);
-        $window.location.href = 'views/failure.html';
-    });
-  };
+      }).error(function(err){
+        console.log(err);
+          $window.location.href = 'views/failure.html';
+      });
+    };
 
 }]);
 
@@ -132,11 +134,8 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
 
 myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
 	$scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
-<<<<<<< HEAD
-	   $scope.role = '';
-=======
+
 	   $scope.role;
->>>>>>> master
 	   $scope.getRole = function() {
 	     if ($scope.role !== undefined) {
 		 return $scope.role;
@@ -154,8 +153,8 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
 	          return "Please select a time";
 	        }
 	      };
-<<<<<<< HEAD
-=======
+
+
   // $scope.checkEmail = function(){
   //   if($scope.emailConfirm !== $scope.emailAddress){
   //     $scope.emailMatch = true;
@@ -230,8 +229,6 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
   };
 
 
->>>>>>> master
-
   $scope.breeds = ["German Shepherd", "Belgian Malinois", "Bloodhound", "Other"];
   $scope.getBreed = function() {
     if ($scope.breed !== undefined) {
@@ -264,22 +261,16 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    }
 
    var objectToSend = {
-<<<<<<< HEAD
-=======
+
 	   email: $scope.email,
 	   password: $scope.password,
->>>>>>> master
 	   rank: $scope.rank,
 	   role: $scope.role,
 	   firstName: $scope.firstName,
 	   lastName: $scope.lastName,
 	   primaryPhone: $scope.primaryPhone,
 	   altPhone: $scope.altPhone,
-<<<<<<< HEAD
-	   email: $scope.email,
-=======
 	   contactEmail: $scope.contactEmail,
->>>>>>> master
 	   contactTime: $scope.contactTime,
 	   address1: $scope.address1,
 	   address2: $scope.address2,

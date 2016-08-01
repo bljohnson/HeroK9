@@ -79,6 +79,10 @@ var userDash = require ('../server/routes/userDashRoute');
     app.use('/user', user);
     app.use('/register', register);
     app.use('/index', index);
+    app.use('/application', function(req, res){
+      console.log('in /application');
+      res.sendFile(path.resolve( 'public/views/application.html' ));
+    });
 
   //Admin View
     app.use('/snippitInfo', snippitInfo);
