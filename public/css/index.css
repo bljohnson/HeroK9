@@ -1,0 +1,49 @@
+html {
+  position: relative;
+  min-height: 100%;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+@font-face {
+    font-family: 'robotolight';
+    src: url('fonts/Roboto-Light-webfont.eot');
+    src: url('fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Roboto-Light-webfont.woff') format('woff'),
+         url('fonts/Roboto-Light-webfont.ttf') format('truetype'),
+         url('fonts/Roboto-Light-webfont.svg#robotolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  font-family: 'robotolight', Helvetica, Arial, sans-serif;
+  margin-bottom: 60px;
+}
+
+md-card {
+  display: inline-block;
+  width: 33%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+md-card:last-child {
+  margin-left: 0px;
+}
+
+
+.infoItem:hover {
+  background-color: #006dcc;
+  color: #ffffff;
+}
+.equipment , .equipment:last-of-type{
+  margin-left: 13px;
+}
+#test{
+  margin-left: 13px;
+}
+
+#adminMain {
+  margin: 20px;
+}

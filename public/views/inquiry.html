@@ -3,14 +3,10 @@
 <p>Thank you for caring about the safety and well-being of our K9s in uniform. To complete your inquiry about obtaining equipment for a K9 or public agency department, please answer the following question.</p>
 <p>Are you authorized to make this request and sign a binding, legal agreement on behalf of a public agency department?</p>
 <form name="inquiry" action="demo_form.asp" onsubmit="return validateForm()" method="post">
-  <div>
-    <label for="yes">Yes</label>
-    <input ng-model="authorized" id="yes" type="radio" name="authorized" value="yes">
-  </div>
-  <div>
-    <label for="no">No</label>
-    <input ng-model="authorized" id="no" type="radio" name="authorized" value="no">
-</div>
+  <md-radio-group ng-model="authorized">
+    <md-radio-button ng-model="authorized" class="md-primary" id="yes" name="authorized" value="yes">Yes</md-radio-button>
+    <md-radio-button ng-model="authorized" class="md-primary" id="no" name="authorized" value="no">No</md-radio-button>
+  </md-radio-group>
 </form>
 
 <div class="full" ng-show="authorized == 'yes'">
@@ -182,7 +178,8 @@
       <label for="authorizedEmail">Authorized Signer Email Address</label>
       <input ng-model="authorizedEmail" id="authorizedEmail" type="text" name="name" value="">
     </md-input-container>
-    <button type="submit" name="button" ng-click="sendInquiry()" ng-disabled="inquiry.$invalid">Submit</button>
+    <!-- <button type="submit" name="button" ng-click="sendInquiry()" ng-disabled="inquiry.$invalid">Submit</button> -->
+    <a href="#submitted"><button type="submit" ng-click='sendInquiry()' ng-disabled="inquiry.$invalid">Submit</button></a>
   </form>
 </div>
 </md-content>

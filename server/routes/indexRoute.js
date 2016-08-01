@@ -5,7 +5,7 @@ var router = express.Router();
 
 router.post('/',
   passport.authenticate('local'), function(req, res){
-  res.send('OK');
+  res.send(req.user);
 });
 
 

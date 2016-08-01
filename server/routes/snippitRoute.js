@@ -14,7 +14,7 @@ router.get('/', function(req, res){
 
     var results = [];
 
-    var query = client.query("SELECT * FROM users");
+    var query = client.query("SELECT * FROM users WHERE status_id != 99");
 
     query.on('row', function(row){
       results.push(row);
@@ -30,22 +30,22 @@ router.get('/', function(req, res){
       var applicationsApproved = 0;
 
       for (var i=0; i<results.length; i++){
-        if(results[i].status === 0){
+        if(results[i].status_id === 1){
           //New Inquiry
           inquiriesNew++;
-        } else if (results[i].status === 1){
+        } else if (results[i].status_id === 2){
           //Pending Inquiry
           inquiriesPending++;
-        } else if (results[i].status === 2){
+        } else if (results[i].status_id === 3){
           //Approved Inquiry
           inquiriesApproved++;
-        } else if (results[i].status === 3){
+        } else if (results[i].status_id === 4){
           //New Application
           applicationsNew++;
-        } else if (results[i].status === 4){
+        } else if (results[i].status_id === 5){
           //Pending Application
           applicationsPending++;
-        } else if (results[i].status === 5){
+        } else if (results[i].status_id === 6){
           //Approved Application
           applicationsApproved++;
         }
@@ -67,6 +67,9 @@ router.get('/', function(req, res){
         pending: applicationsPending,
         approved: applicationsApproved
       };
+
+      console.log("object to send, data ", data);
+      console.log(results);
 
       res.send(data);
 
