@@ -76,10 +76,10 @@ myApp.controller('loginController', ['$scope', '$http', '$window', function( $sc
 
   $scope.sendMail = function (){
     var mailObj = {
-      to: "madonionik@hotmail.com", //email to send to
-      from : "flytrendsz@gmail.com",
-      subject: "lolproject",
-      text: "getrekt from project server"
+      to: "", //email to send to
+      from : "",
+      subject: "",
+      text: ""
     };
     console.log(mailObj);
     $http({
