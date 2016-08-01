@@ -1,17 +1,17 @@
+////////////////////////////////////////////////////////////
+//     HandlerController for Form Functionality           //
+////////////////////////////////////////////////////////////
 angular.module('myApp').controller('HandlerController', [
   '$scope',
   '$http',
   '$window',
   '$location',
   'Upload',
+  '$mdDialog',
   function($scope, $http, $window, $location, Upload, $mdDialog) {
 
     // custom welcome message to the user
     $scope.username = "Officer Henry Hall";
-
-    ////////////////////////////////////////////////////////////
-    //                  FORM FUNCTIONALITY                    //
-    ////////////////////////////////////////////////////////////
 
     // certification checkboxes
     $scope.certifications = ['Explosives', 'Narcotics', 'Patrol', 'Trailing/Tracking', 'Other'];
@@ -93,21 +93,32 @@ angular.module('myApp').controller('HandlerController', [
       });
     };
 
-  // save alert modal
+  // save button alert modal
   $scope.saveForm = function() {
-    $mdDialog.show (
-      $mdDialog.alert ({
+    $mdDialog.show(
+      $mdDialog.alert({
         title: 'Saved!',
-        textContent: 'Your application has been saved.',
+        textContent: 'Your application has been successfully saved.',
         ok: 'Okay'
       })
     );
   };
 
-
+  // submit button alert modal
+  $scope.submitForm = function() {
+    $mdDialog.show(
+      $mdDialog.alert({
+        title: 'Submitted!',
+        textContent: 'Your application has been successfully submitted.',
+        ok: 'Okay'
+      })
+    );
+  };
 }]); // end HandlerController
 
-
+////////////////////////////////////////////////////////////
+//                     PdfController                      //
+////////////////////////////////////////////////////////////
 angular.module('myApp').controller('PDFController', [
   '$scope',
   '$http',
@@ -123,7 +134,7 @@ angular.module('myApp').controller('PDFController', [
 
     // validate and upload files on submit
     $scope.submitPdf = function() {
-      if ($scope.form.file.$valid && $scope.file) {
+      if ($scope.k9form.file.$valid && $scope.file) {
         $scope.upload($scope.file);
         console.log('in submitPdf function, file to upload:', $scope.file);
       }
@@ -168,6 +179,9 @@ angular.module('myApp').controller('PDFController', [
     };
 }]); // end PDFController
 
+////////////////////////////////////////////////////////////
+//             ImgController for K9 photos                //
+////////////////////////////////////////////////////////////
 angular.module('myApp').controller('ImgController', [
   '$scope',
   '$http',
@@ -183,7 +197,7 @@ angular.module('myApp').controller('ImgController', [
 
     // validate and upload files on submit
     $scope.submitImg = function() {
-      if ($scope.form.file.$valid && $scope.file) {
+      if ($scope.k9form.file.$valid && $scope.file) {
         $scope.upload($scope.file);
         console.log('in submitIMG function, file to upload:', $scope.file);
       }
@@ -222,4 +236,63 @@ angular.module('myApp').controller('ImgController', [
         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
       });
     };
-}]);
+}]); // end ImgController
+
+////////////////////////////////////////////////////////////
+//         SquadImgController for Squad Photos            //
+////////////////////////////////////////////////////////////
+angular.module('myApp').controller('SquadImgController', [
+  '$scope',
+  '$http',
+  '$window',
+  '$location',
+  'Upload',
+  function($scope, $http, $window, $location, Upload) {
+
+    // file variables
+    $scope.file = '';
+    $scope.uploads = [];
+    $scope.comment = '';
+
+    // validate and upload files on submit
+    $scope.submitSquadImg = function() {
+      if ($scope.k9form.file.$valid && $scope.file) {
+        $scope.upload($scope.file);
+        console.log('in submitSquadImg function, file to upload:', $scope.file);
+      }
+    };
+
+    // upload files to S3 and to the database
+    $scope.upload = function(file) {
+      Upload.upload ({
+        url: '/userDash/uploads',
+        data: {
+          file: file,
+          'user': $scope.user,
+          'comment': $scope.comment
+        }
+      }).then(function(resp) {
+        console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
+
+        // then, if success, also collect input & send data and file location to database
+        var imgToServer = {
+          url: resp.data.location
+        };
+        console.log('send img to server: ', imgToServer);
+
+        // post method to send object to database
+        $http({
+          method: 'POST',
+          url: '/userDash/submitImg',
+          data: imgToServer
+        }).then(function() {
+          console.log('submitImg post success');
+        });
+      }, function(resp) {
+        console.log('Error status: ' + resp.status);
+      }, function(evt) {
+        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+      });
+    };
+}]); // end SquadImgController

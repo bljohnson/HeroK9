@@ -165,9 +165,26 @@ md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-i
 .md-button.md-primary.md-raised {
   background: #d24740;
   box-shadow: none;
+  color: #fff;
 }
 
 .md-button.md-primary.md-raised:not([disabled]):hover {
+  background: #ca2c24;
+}
+
+md-dialog .md-primary {
+  background: #d24740;
+}
+
+md-dialog .md-button:not([disabled]) {
+  background: #d24740;
+}
+
+md-dialog .md-button.md-default-theme.md-primary, .md-button.md-primary {
+  color: #fff;
+}
+
+.md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover {
   background: #ca2c24;
 }
 
