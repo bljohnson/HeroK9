@@ -2,10 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Hero K9 login</title>
+    <title>Hero K9 | Login</title>
     <link rel="stylesheet" href="/vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/vendors/angular-material.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/css/index.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/login.css" media="screen" title="no title" charset="utf-8">
     <script src="/vendors/angular.js" charset="utf-8"></script>
     <script src="/vendors/angular-route.min.js" charset="utf-8"></script>
     <script src="/vendors/angular-material.js" charset="utf-8"></script>
@@ -19,13 +21,18 @@
     <script src="/scripts/script.js" charset="utf-8"></script>
   </head>
 
-<body ng-app="myApp">
-    <div class="login" ng-controller="loginController">
+<body id="login-style" ng-app="myApp">
+    <div class="container">
+      <div class="info">
+      </div>
+    </div>
+    <div class="login-form" ng-controller="loginController">
+      <div class="login-logo"><img src="/images/herok9.svg"/></div>
       <md-content flex layout-padding>
       <form name='loginForm' ng-submit="login()">
-        <h1>Login</h1>
+        <h1>LOGIN</h1>
         <md-input-container class="md-block">
-          <label for="title">email</label>
+          <label for="title">Email</label>
           <input ng-model="email" id="email" type="email" name="username" required>
           <div ng-messages="loginForm.email.$error" role="alert">
             <div ng-message="required">Please enter your email address.</div>
@@ -33,15 +40,15 @@
           </div>
         </md-input-container>
         <md-input-container class="md-block">
-          <label for="title">password</label>
+          <label for="title">Password</label>
           <input ng-model="password" id="password" type="password" name="password" required>
           <div ng-messages="loginForm.password.$error" role="alert" ng-if="loginForm.password.$touched">
             <div ng-message="required">Please enter your password.</div>
           </div>
         </md-input-container>
-        <div>
-          <input type="submit" value="Log In" class="btn btn-primary">
-          <a href="" ng-click="">Forgot my password</a>
+        <input type="submit" value="Log In" class="login-btn">
+        <div class="message">
+          <a href="" ng-click="">Forgot My Password</a>
         </div>
       </form>
     </md-content>

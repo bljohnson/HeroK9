@@ -1,5 +1,9 @@
 var myApp = angular.module('myApp', [
-  'ngRoute', 'ngMaterial', 'ui.bootstrap', 'ngMessages', 'ngFileUpload'
+  'ngRoute',
+  'ngMaterial',
+  'ui.bootstrap',
+  'ngMessages',
+  'ngFileUpload'
 ]);
 
 myApp.config(['$routeProvider', function($routeProvider) {
@@ -11,13 +15,24 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/inquiry.html',
       controller: 'MainController'
     }).
-    when('/user', {
-      templateUrl: '/views/user.html',
-      controller: 'UserController'
+    when('/handlerform', {
+      templateUrl: '/views/handlerform.html',
+      controller: 'HandlerController'
+    }).
+    when('/usersubmit', {
+      templateUrl: '/views/usersubmit.html',
+      controller: 'UserSubmitController'
+    }).
+    when('/userdash', {
+      templateUrl: '/views/userdash.html',
+      controller: 'UserDashController'
     }).
     when('/application', {
       templateUrl: '/views/application.html',
       controller: 'AppController'
+    }).
+    when('/submitted',{
+      templateUrl: '/views/submitInquiry.html',
     }).
     otherwise({
     redirectTo: 'home'
@@ -261,6 +276,7 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
      handlerTitle: $scope.title,
      handlerFirstName: $scope.first,
      handlerLastName: $scope.last,
+     handlerBadge: $scope.badge,
      handlerCellPhone: $scope.cell,
      handlerSecondaryCell: $scope.secondaryCell,
      handlerEmail: $scope.emailAddress,

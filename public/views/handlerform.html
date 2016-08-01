@@ -1,0 +1,161 @@
+<div class="container">
+  <h1 class="text-center">Welcome {{ username }}!</h1>
+  <div>
+    <h2>Handler/K9 Form</h2>
+    <p>Some copy here about working with handler to get all K9 information and measurements and that you can save and come back to form. Puppy kitty ipsum dolor sit good dog window feeder aquatic warm stripes bird food lazy cat aquarium sit. Fur roll over leash nest toys park wet nose field bed toy turtle. Run Fast tuxedo running run kisses lol catz furry stay nest water dog fleas gimme five throw behavior head aquarium right paw shake ferret play.</p>
+
+    <div layout="column" ng-cloak class="md-inline-form">
+      <md-content>
+
+        <form name="form">
+          <div layout-gt-xs="row" class="handler-row">
+            <md-input-container class="md-block" flex-gt-xs>
+              <h1 class="md-title">Certification Types (Check all that apply)</h1>
+              <fieldset class="cert-fieldset">
+                <div class="cert-select-all-checkboxes" flex="100" ng-repeat="cert in certifications">
+                  <md-checkbox ng-model="certType" ng-change="otherCert" ng-checked="exists(cert, selected)" ng-click="toggle(cert, selected)">
+                   {{ cert }}
+                  </md-checkbox>
+                </div>
+              </fieldset>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <h1 class="md-title">Upload Certifications (PDF)</h1>
+                <div ng-controller="PDFController">
+                  <div ngf-select ng-model="file" name="file" ngf-pattern="'application/pdf'" ngf-accept="'application/pdf'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
+                    <button class="primary-btn">Select PDF</button>
+                    <p>File Selected: {{ file.name }}</p>
+                  </div>
+                  <button class="primary-btn" type="submit" ng-click="submitPdf()">Upload PDF</button>
+                </div>
+            </md-input-container>
+          </div>
+          <div layout-gt-xs="row" class="handler-row">
+            <md-input-container class="md-block">
+              <h1 class="md-title">Upload Photos</h1>
+              <p>Instructions: 2 Photos Max, Max Size, File Types (PNG or JPG), Quality must not be blurry and needs to have good lighting, Must be face shot, Photo can be of on or off duty.</p>
+                <div ng-controller="ImgController">
+                  <div ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
+                    <button class="primary-btn">Select Photos</button>
+                    <p>File Selected: {{ file.name }}</p>
+                  </div>
+                  <button class="primary-btn" type="submit" ng-click="submitImg()">Upload PDF</button>
+                </div>
+            </md-input-container>
+          </div>
+          <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex-gt-xs>
+              <label for="k9Bio">K9 Biography/Personality Profile</label>
+              <textarea id="k9Bio" ng-model="k9Bio" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+            </md-input-container>
+          </div>
+          <div>
+            <h1 class="md-title">Ballistic Vest or Multi-Threat Vest</h1>
+            <p>If applying for Ballistic Vest or Multi-Threat Vest, provide K9 measurements and customization requests.</p>
+          </div>
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Back (inches)</label>
+              <input ng-model="k9Back" md-maxlength="2" name="k9Back"/>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Chest (inches)</label>
+              <input ng-model="k9Chest" md-maxlength="2" name="k9Chest"/>
+            </md-input-container>
+          </div>
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Girth (inches)</label>
+              <input ng-model="k9Girth" md-maxlength="2" name="k9Girth"/>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Inner Front Leg To Inner Hind Leg (inches)</label>
+              <input ng-model="k9Undercarriage" md-maxlength="2" name="k9Undercarriage"/>
+            </md-input-container>
+          </div>
+
+
+        </form>
+        <button class="primary-btn" type="button" name="button" ng-click="">Save</button>
+        <button class="primary-btn" type="button" name="button" ng-click="sendK9App();">Submit</button>
+
+      </md-content>
+    </div>
+
+
+    <!-- <div class="md-padding">
+
+
+
+
+
+              <fieldset class="cert-fieldset">
+                <legend class="cert-legend">Ballistic or multi-threat vest</legend>
+                <p>If applying for ballistic or multi-threat vest, provide K9 measurements and customization requests:</p>
+                <md-input-container class="md-block">
+                  <label>Back (inches)</label>
+                  <input md-maxlength="2" name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Chest (inches)</label>
+                  <input md-maxlength="2" name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Girth (inches)</label>
+                  <input md-maxlength="2" name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Inner front leg to inner hind leg (inches)</label>
+                  <input md-maxlength="2" name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container>
+                  <h1 class="md-title">Select a vest color</h1>
+                  <md-select ng-model="vestColor" md-selected-text="getVestColor()" placeholder="Select a vest color">
+                      <md-option ng-value="color" ng-repeat="color in colors">{{color}}</md-option>
+                  </md-select>
+                </md-input-container>
+                <md-input-container>
+                  <h1 class="md-title">Select vest imprint</h1>
+                  <md-select ng-model="vestImprint" md-selected-text="getVestImprint()" placeholder="Select vest imprint">
+                      <md-option ng-value="imprint" ng-repeat="imprint in imprints">{{imprint}}</md-option>
+                  </md-select>
+                </md-input-container>
+                <md-input-container>
+                  <h1 class="md-title">Select imprint color</h1>
+                  <md-select ng-model="vestImprintColor" md-selected-text="getImprintColor()" placeholder="Select imprint color">
+                      <md-option ng-value="imprintColor" ng-repeat="imprintColor in imprintColors">{{imprintColor}}</md-option>
+                  </md-select>
+                </md-input-container>
+              </fieldset>
+              <fieldset class="cert-fieldset">
+                <legend class="cert-legend">In-squad kennel and/or door pop/heat alarm unit</legend>
+                <md-input-container class="md-block">
+                  <label>Squad vehicle make</label>
+                  <input name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Squad vehicle model</label>
+                  <input name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Squad vehicle year</label>
+                  <input name="name" ng-model="user.name" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Upload squad vehicle photo (2 photos max)</label>
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Is Squad Vehicle scheduled for retirement in the next year?</label>
+
+                </md-input-container>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+    </div>
+
+  </div> -->
+  </div>
+</div>
