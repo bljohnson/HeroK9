@@ -5,6 +5,14 @@ angular.module('myApp').controller('UserDashController', [
   '$location',
   function($scope, $http, $window, $location) {
 
+	  $http({
+		method: 'GET',
+		url: '/userDash'
+	}).then(function(data){ // query results
+		data = data.data; // scope in where you want stuff to go
+		console.log(data);
+	});
+
     // custom welcome message to the user
     $scope.username = "Officer Henry Hall";
 
