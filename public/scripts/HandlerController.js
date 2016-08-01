@@ -14,33 +14,33 @@ angular.module('myApp').controller('HandlerController', [
     ////////////////////////////////////////////////////////////
 
     // certification checkboxes
-    $scope.items = ['Explosives', 'Narcotics', 'Patrol', 'Trailing/Tracking', 'Other'];
+    $scope.certifications = ['Explosives', 'Narcotics', 'Patrol', 'Trailing/Tracking', 'Other'];
     $scope.selected = [1];
 
-    $scope.toggle = function (item, list) {
-      var idx = list.indexOf(item);
+    $scope.toggle = function (cert, list) {
+      var idx = list.indexOf(cert);
       if (idx > -1) {
         list.splice(idx, 1);
       }
       else {
-        list.push(item);
+        list.push(cert);
       }
     };
-    $scope.exists = function (item, list) {
-      return list.indexOf(item) > -1;
+    $scope.exists = function (cert, list) {
+      return list.indexOf(cert) > -1;
     };
     $scope.isIndeterminate = function() {
       return ($scope.selected.length !== 0 &&
-          $scope.selected.length !== $scope.items.length);
+          $scope.selected.length !== $scope.certifications.length);
     };
     $scope.isChecked = function() {
-      return $scope.selected.length === $scope.items.length;
+      return $scope.selected.length === $scope.certifications.length;
     };
     $scope.toggleAll = function() {
-      if ($scope.selected.length === $scope.items.length) {
+      if ($scope.selected.length === $scope.certifications.length) {
         $scope.selected = [];
       } else if ($scope.selected.length === 0 || $scope.selected.length > 0) {
-        $scope.selected = $scope.items.slice(0);
+        $scope.selected = $scope.certifications.slice(0);
       }
     };
 
@@ -77,11 +77,33 @@ angular.module('myApp').controller('HandlerController', [
       }
     };
 
+    // collect input to send to server
+    $scope.sendK9App = function() {
+      var k9AppToSend = {
+        bio: $scope.k9Bio,
+        back: $scope.k9Back,
+        chest: $scope.k9Chest
+      };
+      $http({
+        method: 'POST',
+        url: '/userDash/submitK9App',
+        data: k9AppToSend
+      }).success(function() {
+        console.log('in /submitK9App: ', k9AppToSend);
+      });
+    };
 
 
-    ////////////////////////////////////////////////////////////
-    //                      FILE UPLOADS                      //
-    ////////////////////////////////////////////////////////////
+}]); // end HandlerController
+
+
+angular.module('myApp').controller('PDFController', [
+  '$scope',
+  '$http',
+  '$window',
+  '$location',
+  'Upload',
+  function($scope, $http, $window, $location, Upload) {
 
     // file variables
     $scope.file = '';
@@ -89,10 +111,10 @@ angular.module('myApp').controller('HandlerController', [
     $scope.comment = '';
 
     // validate and upload files on submit
-    $scope.submit = function() {
+    $scope.submitPdf = function() {
       if ($scope.form.file.$valid && $scope.file) {
-          $scope.upload($scope.file);
-          console.log('in submit function, file to upload:', $scope.file);
+        $scope.upload($scope.file);
+        console.log('in submitPdf function, file to upload:', $scope.file);
       }
     };
 
@@ -106,18 +128,26 @@ angular.module('myApp').controller('HandlerController', [
           'comment': $scope.comment
         }
       }).then(function(resp) {
-        console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);
+        console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
 
-        // then, if success, also send data and file location to database
+        // then, if success, also collect input & send data and file location to database
+        var pdfToServer = {
+          id: '1',
+          k9_id: '2',
+          certification_id: '5',
+          url: resp.data.location,
+          notes: 'pdf notes'
+        };
+        console.log('send to server: ', pdfToServer);
 
-        // collect input and create object to send
-
-        // post method to send inputs to database
-
-        // redirect users to their dashboard after form submission
-        // $location.path('/');
-
-
+        // post method to send object to database
+        $http({
+          method: 'POST',
+          url: '/userDash/submitPdf',
+          data: pdfToServer
+        }).then(function() {
+          console.log('submitPdf post success');
+        });
       }, function(resp) {
         console.log('Error status: ' + resp.status);
       }, function(evt) {
@@ -125,15 +155,60 @@ angular.module('myApp').controller('HandlerController', [
         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
       });
     };
+}]); // end PDFController
 
+angular.module('myApp').controller('ImgController', [
+  '$scope',
+  '$http',
+  '$window',
+  '$location',
+  'Upload',
+  function($scope, $http, $window, $location, Upload) {
 
+    // file variables
+    $scope.file = '';
+    $scope.uploads = [];
+    $scope.comment = '';
 
+    // validate and upload files on submit
+    $scope.submitImg = function() {
+      if ($scope.form.file.$valid && $scope.file) {
+        $scope.upload($scope.file);
+        console.log('in submitIMG function, file to upload:', $scope.file);
+      }
+    };
 
+    // upload files to S3 and to the database
+    $scope.upload = function(file) {
+      Upload.upload ({
+        url: '/userDash/uploads',
+        data: {
+          file: file,
+          'user': $scope.user,
+          'comment': $scope.comment
+        }
+      }).then(function(resp) {
+        console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
 
+        // then, if success, also collect input & send data and file location to database
+        var imgToServer = {
+          url: resp.data.location
+        };
+        console.log('send img to server: ', imgToServer);
 
-
-
-
-
-
+        // post method to send object to database
+        $http({
+          method: 'POST',
+          url: '/userDash/submitImg',
+          data: imgToServer
+        }).then(function() {
+          console.log('submitImg post success');
+        });
+      }, function(resp) {
+        console.log('Error status: ' + resp.status);
+      }, function(evt) {
+        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+      });
+    };
 }]);
