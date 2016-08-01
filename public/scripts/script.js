@@ -282,6 +282,7 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
      handlerTitle: $scope.title,
      handlerFirstName: $scope.first,
      handlerLastName: $scope.last,
+     handlerBadge: $scope.badge,
      handlerCellPhone: $scope.cell,
      handlerSecondaryCell: $scope.secondaryCell,
      handlerEmail: $scope.emailAddress,
