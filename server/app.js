@@ -80,14 +80,11 @@ var userDash = require ('../server/routes/userDashRoute');
     app.use('/user', user);
     app.use('/register', register);
     app.use('/index', index);
-<<<<<<< HEAD
     app.use('/sendMail', mailer);
-=======
     app.use('/application', function(req, res){
       console.log('in /application');
       res.sendFile(path.resolve( 'public/views/application.html' ));
     });
->>>>>>> adminDash
 
   //Admin View
     app.use('/snippitInfo', snippitInfo);
