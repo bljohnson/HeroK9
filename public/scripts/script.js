@@ -51,29 +51,31 @@ myApp.controller('loginController', ['$scope', '$http', '$window', function( $sc
       method: 'POST',
       url: '/register',
       data: regObject
+    }).success(function(data){
+      $window.location.href = '/#/application';
     });
   };
 
   $scope.login = function (){
     var loginObject = {
-    username: $scope.email,
-    password: $scope.password
-  };
-  $http({
-    method: "POST",
-    url: '/index',
-    data: loginObject
-  }).success(function(data){
-      console.log(data);
-        if (data.status_id == 99) {$window.location.href = '/adminView';}
-        else {$window.location.href = 'views/#/user';}
+      username: $scope.email,
+      password: $scope.password
+    };
+    $http({
+      method: "POST",
+      url: '/index',
+      data: loginObject
+    }).success(function(data){
+        console.log(data);
+          if (data.status_id == 99) {$window.location.href = '/adminView';}
+          else {$window.location.href = 'views/#/user';}
 
 
-    }).error(function(err){
-      console.log(err);
-        $window.location.href = 'views/failure.html';
-    });
-  };
+      }).error(function(err){
+        console.log(err);
+          $window.location.href = 'views/failure.html';
+      });
+    };
 
   $scope.sendMail = function (){
     var mailObj = {
@@ -99,7 +101,7 @@ myApp.controller('loginController', ['$scope', '$http', '$window', function( $sc
 
 myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
   $scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
-     $scope.role;
+     $scope.role = '';
      $scope.getRole = function() {
        if ($scope.role !== undefined) {
          return $scope.role;
@@ -152,6 +154,7 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
 
 myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
 	$scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
+
 	   $scope.role;
 	   $scope.getRole = function() {
 	     if ($scope.role !== undefined) {
@@ -170,6 +173,8 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
 	          return "Please select a time";
 	        }
 	      };
+
+
   // $scope.checkEmail = function(){
   //   if($scope.emailConfirm !== $scope.emailAddress){
   //     $scope.emailMatch = true;
@@ -244,7 +249,6 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
   };
 
 
-
   $scope.breeds = ["German Shepherd", "Belgian Malinois", "Bloodhound", "Other"];
   $scope.getBreed = function() {
     if ($scope.breed !== undefined) {
@@ -277,6 +281,7 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    }
 
    var objectToSend = {
+
 	   email: $scope.email,
 	   password: $scope.password,
 	   rank: $scope.rank,
