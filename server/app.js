@@ -65,6 +65,7 @@ var user = require ('../server/routes/userRoute');
 var index = require('../server/routes/indexRoute');
 var register = require('../server/routes/registerRoute');
 var snippitInfo = require('../server/routes/snippitRoute');
+var mailer = require('../server/routes/mailerRoute');
 var inquiryTable = require('../server/routes/inquiryTableRoute');
 var applicationTable = require('../server/routes/applicationTableRoute');
 var saveUser = require('../server/routes/adminEditRoute');
@@ -73,12 +74,12 @@ var applicationForm = require('../server/routes/applicationForm');
 var updateStatus = require('../server/routes/updateStatusRoute');
 var userDash = require ('../server/routes/userDashRoute');
 
-
 // routes
 app.use('/user', user);
 app.use('/register', register);
 app.use('/index', index);
 app.use('/snippitInfo', snippitInfo);
+app.use('/sendMail', mailer);
 app.use('/inquiryTable', inquiryTable);
 app.use('/applicationTable', applicationTable);
 app.use('/saveUser', saveUser);

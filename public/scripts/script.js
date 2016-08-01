@@ -74,6 +74,26 @@ myApp.controller('loginController', ['$scope', '$http', '$window', function( $sc
     });
   };
 
+  $scope.sendMail = function (){
+    var mailObj = {
+      to: "", //email to send to
+      from : "",
+      subject: "",
+      text: ""
+    };
+    console.log(mailObj);
+    $http({
+      method: 'POST',
+      url: '/sendMail',
+      data: mailObj,
+      headers: {'Content-Type': 'application/json;charset=utf-8'}
+    }).then(function(Response) {
+  console.log("in sendMail post call success: ",Response);
+  }).error(function(Response) {
+  console.log(Response);
+  });
+  };
+
 }]);
 
 myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
