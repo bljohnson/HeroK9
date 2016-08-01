@@ -126,7 +126,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
     var mailObject = {
       to: $scope.inquiryData[index].contact_email,
       subject: "Your inquiry has been approved",
-      text: "here's a link, click it! http://localhost:4200/register?from=" + $scope.inquiryData[index].contact_email + " "
+      admin: $scope.inquiryData[index].contact_email
     };
 
     $http({

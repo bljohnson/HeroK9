@@ -5,6 +5,8 @@ var connection = require('../modules/connection');
 var pg = require('pg');
 var localStrategy = require('passport-local').Strategy;
 var flash = require('express-flash');
+var sha1 = require('sha-1');
+
 
 router.use(flash());
 
@@ -20,11 +22,20 @@ var smtpTransport = nodemailer.createTransport({
 
 router.post('/',function(req,res){
   console.log("in nodemailer request: ",req.body);
-    var mailOptions={
-        to : req.body.to,
-        subject : req.body.subject,
-        text : req.body.text
-    };
+    if (req.body.admin){
+      var mailOptions={
+          to : req.body.to,
+          subject : req.body.subject,
+          text : "here's a link, click it! http://localhost:4200/register?from=" + sha1(req.body.admin) + " "
+      };
+    } else {
+      var mailOptions={
+          to : req.body.to,
+          subject : req.body.subject,
+          text : req.body.text
+      };
+    }
+
     console.log(mailOptions);
     smtpTransport.sendMail(mailOptions, function(error, info){
     if(error){
