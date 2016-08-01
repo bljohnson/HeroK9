@@ -51,28 +51,31 @@ myApp.controller('loginController', ['$scope', '$http', '$window', function( $sc
       method: 'POST',
       url: '/register',
       data: regObject
+    }).success(function(data){
+      $window.location.href = '/#/application';
     });
   };
 
   $scope.login = function (){
     var loginObject = {
-    username: $scope.email,
-    password: $scope.password
-  };
-  $http({
-    method: "POST",
-    url: '/index',
-    data: loginObject
-  }).success(function(data){
-      console.log(data);
-        if (data.status_id == 99) {$window.location.href = '/adminView';}
-        else if (data.status_id == 1) {$window.location.href = 'views/#/user';}
+      username: $scope.email,
+      password: $scope.password
+    };
+    $http({
+      method: "POST",
+      url: '/index',
+      data: loginObject
+    }).success(function(data){
+        console.log(data);
+          if (data.status_id == 99) {$window.location.href = '/adminView';}
+          else {$window.location.href = 'views/#/user';}
 
-    }).error(function(err){
-      console.log(err);
-        $window.location.href = 'views/failure.html';
-    });
-  };
+
+      }).error(function(err){
+        console.log(err);
+          $window.location.href = 'views/failure.html';
+      });
+    };
 
   $scope.sendMail = function (){
     var mailObj = {

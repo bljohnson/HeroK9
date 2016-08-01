@@ -75,7 +75,8 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
 }]);//End snippitController
 
 
-myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog',  function($scope, $http, $mdDialog){
+myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, $http){
+
 
   //Make a call to populate inquiryTable
   $http({
@@ -131,6 +132,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog',  fun
       status_id: $scope.inquiryData[index].status_id
     };
 
+
     var txt;
     var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
     if (r == true) {
@@ -142,49 +144,13 @@ myApp.controller('inquiryTableController', ['$scope', '$http', '$mdDialog',  fun
       });
 
        $scope.status = firstName + ' has been approved!';
+       $scope.alertStatus = "alert alert-success"
+
      } else {
        $scope.status = firstName + ' has not been approved.';
+       $scope.alertStatus = "alert alert-warning"
      }
 
-
-
-  //   // Appending dialog to document.body to cover sidenav in docs app
-  //   var confirm = $mdDialog.confirm({
-  //     parent: document.body,
-  //     targetEvent: e,
-  //     template:
-  //       '<md-dialog aria-label="Lucky Day">' +
-  //       '  <md-title>' +
-  //       '   "Are you sure you would like to approve " + firstName + "?"' +
-  //       '  </md-title>' +
-  //       '  <md-content>' +
-  //       '   <p>Hello</p>' +
-  //       '  </md-content>' +
-  //       '  <div class="md-dialog-actions">' +
-  //       '    <md-button ng-click="$mdDialog.cancel()">' +
-  //       '      Close Greeting' +
-  //       '    </md-button>' +
-  //       '  </div>' +
-  //       '</md-dialog>',
-  //       locals: {
-  //         firstName: firstName
-  //       }
-  //       // bindToController: true,
-  //       // controllerAs: 'ctrl',
-  //       // controller: 'inquiryTableController'
-  //   })
-  //         .title('Are you sure you would like to approve ' + firstName + '?')
-  //         .textContent('Once you approve ' + firstName + ', they will be sent an email directing them to complete the application process.')
-  //         .targetEvent(e)
-  //         .ariaLabel('Lucky Day')
-  //         .ok('Confirm')
-  //         .cancel('Cancel');
-  //
-  //   $mdDialog.show(confirm).then(function() {
-  //     $scope.status = firstName + ' has been approved!';
-  //   }, function() {
-  //     $scope.status = firstName + ' has not been approved.';
-  //   });
 
   };
 

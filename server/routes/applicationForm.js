@@ -16,11 +16,7 @@ router.post('/', function(req, res){
 		console.log('something');
 		// var insertK9 = client.query( 'INSERT INTO K9s ( k9_name, breed, age, k9_active_duty, k9_retirement, handler_first_name, handler_last_name, handler_badge, handler_cell_phone, handler_secondary_phone, handler_email ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 )', [ req.body.k9name, req.body.breed, req.body.age, req.body.activeDuty, req.body.retirement, req.body.certified, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail ] );
 
-		// var insertK9 = client.query( 'INSERT INTO K9s ( k9_name, breed, age, k9_active_duty, k9_retirement, handler_rank, handler_first_name, handler_last_name, handler_badge, handler_cell_phone, handler_secondary_phone, handler_email ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 )', [ req.body.k9name, req.body.breed, req.body.age, req.body.certified, req.body.activeDuty, req.body.retirement, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail ] );
-
-			// this comes after part 1 of application form is approved by admin:  data about dog/equipment auth signer can save and come back to before submitting - fields are NULLABLE
-
-		// var updateK9 = client.query( 'UPDATE K9s SET k9_bio = ($1), k9_back = ($2), k9_chest = ($3), k9_girth = ($4), k9_undercarriage = ($5), k9_vest_color = ($6), k9_vest_imprint = ($7), squad_make = ($8), squad_model = ($9), squad_year = ($10), squad_retirement = ($11) WHERE id = SOMETHINGSOMETHINGSOMETHING', [ req.body.somethingsomethingsomething ] );
+		// var updateK9 = client.query( 'UPDATE K9s SET k9_bio = ($1), k9_back = ($2), k9_chest = ($3), k9_girth = ($4), k9_undercarriage = ($5), k9_vest_color = ($6), k9_vest_imprint = ($7), squad_make = ($8), squad_model = ($9), squad_year = ($10), squad_retirement = ($11) WHERE K9s.id = SOMETHINGSOMETHINGSOMETHING', [ req.body.placeholder ] );
 
 			// need to insert equipment selected, certifications selected, k9 photos, squad photos
 			// need junction tables for equipment and certifications

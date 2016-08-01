@@ -1,42 +1,55 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Intro Passport SQL</title>
+    <meta charset="utf-8">
+    <title>Hero K9 | Login</title>
     <link rel="stylesheet" href="/vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/vendors/angular-material.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/css/index.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/login.css" media="screen" title="no title" charset="utf-8">
     <script src="/vendors/angular.js" charset="utf-8"></script>
     <script src="/vendors/angular-route.min.js" charset="utf-8"></script>
     <script src="/vendors/angular-material.js" charset="utf-8"></script>
     <script src="/vendors/angular-aria.js" charset="utf-8"></script>
     <script src="/vendors/angular-animate.js" charset="utf-8"></script>
     <script src="/vendors/angular-messages.js"></script>
-    <script src="/vendors/ui-bootstrap-tpls.js" charset="utf-8"></script>
-    <script src="/vendors/ui-bootstrap.js" charset="utf-8"></script>
     <script src="/vendors/ng-file-upload.min.js"></script>
     <script src="/vendors/ng-file-upload-shim.min.js"></script>
+    <script src="/vendors/ui-bootstrap-tpls.js" charset="utf-8"></script>
+    <script src="/vendors/ui-bootstrap.js" charset="utf-8"></script>
     <script src="/scripts/script.js" charset="utf-8"></script>
   </head>
-  <body ng-app="myApp">
-    <div class="banner">
-      <h1>Register: Passport SQL</h1>
-    </div>
-    <div class="register" ng-controller="loginController">
 
-      <form>
-        <div>
-          <label>Email:</label>
-          <input type="text" ng-model="email">
-        </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" ng-model="password">
-        </div>
-        <div>
-          <button type="button" ng-click="register()">Submit</button>
-          <a href="/login">Login</a>
-        </div>
+<body id="login-style" ng-app="myApp">
+    <div class="container">
+      <div class="info">
+      </div>
+    </div>
+    <div class="login-form" ng-controller="loginController">
+      <div class="login-logo"><img src="/images/herok9.svg"/></div>
+      <md-content flex layout-padding>
+      <form name='loginForm' ng-submit="register()">
+        <h1>REGISTER</h1>
+        <md-input-container class="md-block">
+          <label for="title">Email</label>
+          <input ng-model="email" id="email" type="email" name="username" required>
+          <div ng-messages="loginForm.email.$error" role="alert">
+            <div ng-message="required">Please enter your email address.</div>
+            <div ng-message="email">This field must be a valid email address.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label for="title">Password</label>
+          <input ng-model="password" id="password" type="password" name="password" required>
+          <div ng-messages="loginForm.password.$error" role="alert" ng-if="loginForm.password.$touched">
+            <div ng-message="required">Please enter your password.</div>
+          </div>
+        </md-input-container>
+        <input type="submit" value="Log In" class="login-btn">
       </form>
+    </md-content>
     </div>
 
 
