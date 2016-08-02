@@ -18,6 +18,31 @@ angular.module('myApp').controller('HandlerController', [
       $scope.certList = data;
     });
 
+    $http({
+      method: 'GET',
+      url: '/userDash/getDogs'
+    }).success(function(data) {
+      console.log('after /getDogs: ', data);
+      $scope.dogList = data;
+    });
+
+    $scope.updateForm = function(){
+      for (var i=0; i<$scope.dogList.length; i++){
+        if ($scope.selectedDog.id == $scope.dogList[i].id){
+          $scope.k9Age = $scope.dogList[i].age;
+          $scope.breed = $scope.dogList[i].breed;
+
+//////////////////////////////////////////////////////////////////////////////
+///                                                                        ///
+///                Scope in the rest of the stuff here!                    ///
+///                                                                        ///
+//////////////////////////////////////////////////////////////////////////////
+
+        }
+      }
+
+    };
+
 
     // k9 breeds
     $scope.breeds = ['German Shepherd', 'Belgian Malinois', 'Bloodhound', 'Other'];

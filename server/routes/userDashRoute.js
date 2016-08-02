@@ -139,4 +139,19 @@ router.get('/getCerts', function (req, res){
 });
 
 
+router.get('/getDogs', function (req, res){
+  pg.connect(connectionString, function(err, client, done){
+    var results = [];
+    var query = client.query('SELECT * from k9s WHERE user_id=($1)', [req.user.id]);
+    query.on('row', function(row){
+      results.push(row);
+    });
+    query.on('end', function(){
+      res.send(results);
+    });
+  });
+});
+
+
+
 module.exports = router;

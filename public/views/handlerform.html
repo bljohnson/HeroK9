@@ -76,13 +76,16 @@
           <div class="handler-row">
             <h2>K9 Information</h2>
             <div layout-gt-sm="row">
-              <md-input-container class="md-block" flex-gt-sm>
-                <label for="k9Name">Name</label>
-                <input id="k9Name" ng-model="k9Name" name="k9Name" required>
-                <div ng-messages="k9form.k9Name.$error">
-                  <div ng-message="required">This is required.</div>
-                </div>
+
+              <md-input-container>
+                <label>Dog</label>
+                <md-select ng-model="selectedDog" ng-model-options="{trackBy: '$value.id'}" ng-change="updateForm()">
+                  <md-option ng-repeat="dog in dogList" ng-value="dog">
+                    {{dog.k9_name}}
+                  </md-option>
+                </md-select>
               </md-input-container>
+
               <div flex="5" hide-xs hide-sm></div>
               <md-input-container class="md-block" flex-gt-sm>
                 <label for="k9Age">Age</label>
