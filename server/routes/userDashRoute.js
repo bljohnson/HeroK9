@@ -115,8 +115,6 @@ router.post('/submitK9App', function (req, res){
 });
 
 
-///////////// NOT WORKING//////////////
-
 router.get('/', function(req, res){
 	console.log('in router.get user dash');
 	pg.connect(connectionString, function (err, client, done) {
