@@ -126,11 +126,14 @@
     <div>
       <fieldset class="standard">
         <div layout="column" layout-wrap layout-gt-sm="row">
-          <div flex-xs flex="50">
-            <md-checkbox id="check1" class="equipment md-primary" ng-model="kennel" aria-label="Checkbox 1" ng-true-value="'Kennel'">
-              In-squad kennel
+          <div ng-repeat= 'equipment in equipmentList track by $index' flex-xs flex="50">
+            <md-checkbox id="equipment{{$index}}" class="equipment md-primary" aria-label="{{equipment.name}}">
+              {{equipment.name}}
             </md-checkbox><br>
-            <md-checkbox id="check2" class="equipment md-primary" ng-model="ballistic" aria-label="Checkbox 2" ng-true-value="'Bullet resistant vest'">
+
+
+
+            <!-- <md-checkbox id="check2" class="equipment md-primary" ng-model="ballistic" aria-label="Checkbox 2" ng-true-value="'Bullet resistant vest'">
               Ballistic vest
             </md-checkbox><br>
             <md-checkbox id="check3" class="equipment md-primary" ng-model="multiThreat" aria-label="Checkbox 3" ng-true-value="'Bullet and stab resistant vest'">
@@ -138,7 +141,7 @@
             </md-checkbox><br>
             <md-checkbox id="check4" class="equipment md-primary" ng-model="doorPop" aria-label="Checkbox 4" ng-true-value="'Door pop/Heat alarm'">
               Door pop/Heat alarm
-            </md-checkbox>
+            </md-checkbox> -->
           </div>
         </div>
       </fieldset>

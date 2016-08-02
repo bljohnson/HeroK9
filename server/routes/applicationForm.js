@@ -37,4 +37,18 @@ router.post('/part2', function(req, res){
 	});
 });
 
+router.get('/', function(req, res){
+	console.log('in application GET');
+	pg.connect(connection, function(err, client, done){
+		var results = [];
+		var query = client.query( 'SELECT * FROM equipment ');
+		query.on('row', function(row){
+			results.push(row);
+		});
+		query.on('end', function(){
+			res.send(results);
+		});
+	});
+});
+
   module.exports = router;
