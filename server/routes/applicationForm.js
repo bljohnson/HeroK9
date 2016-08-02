@@ -14,7 +14,7 @@ router.post('/part1', function(req, res){
 		////// admin emails link --> auth signer needs to fill out ENTIRE form top to bottom
 		var insertUser = client.query( 'INSERT INTO users ( contact_email, rank, role, first_name, last_name, primary_phone, alt_phone, contact_time, dept_add_street1, dept_add_street2, dept_add_city, dept_add_state, dept_add_zip, dept_k9s ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14 )', [ req.body.contactEmail, req.body.rank, req.body.role, req.body.firstName, req.body.lastName, req.body.primaryPhone, req.body.altPhone, req.body.contactTime, req.body.address1, req.body.address2, req.body.city, req.body.state, req.body.zip, req.body.numberOfDogs ] );
 		console.log('something');
-		
+
 		res.sendStatus(200);
 	});
 });
@@ -35,14 +35,15 @@ router.post('/part2', function(req, res){
 	                res.sendStatus(500);
 	              }else{
 	        	//console.log('id of k9/handler: ', result.rows[0].id);
-
-			client.query( 'INSERT INTO k9s_equipment ( k9_id, equipment_id ) VALUES ( $1, $2 )', [ result.rows[0].id, req.body.equipment ] );
+			for (var i=0; i<req.body.equipment.length; i++){
+				client.query( 'INSERT INTO k9s_equipment ( k9_id, equipment_id ) VALUES ( $1, $2 )', [ result.rows[0].id, req.body.equipment[i] ] );
+			}
 
 		      } // end if else
 		} // end function
 		); // end query
-		
-		
+
+
 		// var updateK9 = client.query( 'UPDATE K9s SET k9_bio = ($1), k9_back = ($2), k9_chest = ($3), k9_girth = ($4), k9_undercarriage = ($5), k9_vest_color = ($6), k9_vest_imprint = ($7), squad_make = ($8), squad_model = ($9), squad_year = ($10), squad_retirement = ($11) WHERE K9s.id = SOMETHINGSOMETHINGSOMETHING', [ req.body.placeholder ] );
 
 
