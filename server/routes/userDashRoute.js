@@ -104,8 +104,7 @@ router.post('/submitK9App', function (req, res){
       console.log(err);
     } else {
       var results = [];
-      var dummyUserId = 1;
-      var k9id = client.query('SELECT id FROM k9s WHERE user_id=($1)', [dummyUserId]); //Replace with req.user.id
+      var k9id = client.query('SELECT id FROM k9s WHERE user_id=($1)', [req.user.id]);
 
       k9id.on('row', function(row){
         results.push(parseInt(row.id));
@@ -125,32 +124,50 @@ router.post('/submitK9App', function (req, res){
   });
 });
 
-router.get('/getCerts', function (req, res){
+router.get('/getFormInfo', function (req, res){
   pg.connect(connectionString, function(err, client, done){
-    var results = [];
-    var query = client.query('SELECT * from certifications');
-    query.on('row', function(row){
-      results.push(row);
+
+    var results = {
+      certs: [],
+      dogs: [],
+      form_info: {
+        breeds: [],
+        vest_colors: [],
+        vest_imprints: [],
+        vest_imprint_colors: []
+      }
+    };
+
+
+    //Get Certs
+    var queryCerts = client.query('SELECT * from certifications');
+    queryCerts.on('row', function(row){
+      results.certs.push(row);
     });
-    query.on('end', function(){
-      res.send(results);
+    queryCerts.on('end', function(){
+
+      //Get Dogs
+      var queryDogs = client.query('SELECT * from k9s WHERE user_id=($1)', [req.user.id]);
+      queryDogs.on('row', function(row){
+        results.dogs.push(row);
+      });
+      queryDogs.on('end', function(){
+
+        //Get Form Information
+        results.form_info.vest_colors = client.query('SELECT enum_range(NULL::vest_color)');
+        results.form_info.vest_imprints = client.query('SELECT enum_range(NULL::vest_imprint)');
+        results.form_info.vest_imprint_colors = client.query('SELECT enum_range(NULL::vest_imprint_color)');
+
+
+        //All done!
+        res.send(results);
+
+      });
+
     });
   });
 });
 
-
-router.get('/getDogs', function (req, res){
-  pg.connect(connectionString, function(err, client, done){
-    var results = [];
-    var query = client.query('SELECT * from k9s WHERE user_id=($1)', [req.user.id]);
-    query.on('row', function(row){
-      results.push(row);
-    });
-    query.on('end', function(){
-      res.send(results);
-    });
-  });
-});
 
 
 

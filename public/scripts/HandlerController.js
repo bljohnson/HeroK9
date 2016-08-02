@@ -10,33 +10,49 @@ angular.module('myApp').controller('HandlerController', [
   '$mdDialog',
   function($scope, $http, $window, $location, Upload, $mdDialog) {
 
-    $http({
-      method: 'GET',
-      url: '/userDash/getCerts'
-    }).success(function(data) {
-      console.log('after /getCerts: ', data);
-      $scope.certList = data;
-    });
+    // $http({
+    //   method: 'GET',
+    //   url: '/userDash/getCerts'
+    // }).success(function(data) {
+    //   console.log('after /getCerts: ', data);
+    //   $scope.certList = data;
+    // });
+    //
+    // $http({
+    //   method: 'GET',
+    //   url: '/userDash/getDogs'
+    // }).success(function(data) {
+    //   console.log('after /getDogs: ', data);
+    //   $scope.dogList = data;
+    // });
 
     $http({
       method: 'GET',
-      url: '/userDash/getDogs'
-    }).success(function(data) {
-      console.log('after /getDogs: ', data);
-      $scope.dogList = data;
+      url: '/getFormInfo'
+    }).success(function(data){
+      console.log('In /getFormInfo success with:', data);
+      $scope.certList = data.certs;
+      $scope.dogList = data.dogs;
+      $scope.breeds = data.form_info.breeds;
+      $scope.colors = data.form_info.vest_colors;
+      $scope.imprints = data.form_info.vest_imprints;
+      $scope.imprintColors = data.form_info.vest_imprint_colors;
     });
 
     $scope.updateForm = function(){
       for (var i=0; i<$scope.dogList.length; i++){
         if ($scope.selectedDog.id == $scope.dogList[i].id){
+          $scope.dog_name = $scope.dogList[i].k9_name + "'s Information";
           $scope.k9Age = $scope.dogList[i].age;
           $scope.breed = $scope.dogList[i].breed;
-
-//////////////////////////////////////////////////////////////////////////////
-///                                                                        ///
-///                Scope in the rest of the stuff here!                    ///
-///                                                                        ///
-//////////////////////////////////////////////////////////////////////////////
+          $scope.handlerTitle = $scope.dogList[i].handler_rank;
+          $scope.handlerFirstName = $scope.dogList[i].handler_first_name;
+          $scope.handlerLastName = $scope.dogList[i].handler_last_name;
+          $scope.handlerBadge = $scope.dogList[i].handler_badge;
+          $scope.handlerCell = $scope.dogList[i].handler_cell_phone;
+          $scope.handlerPhone = $scope.dogList[i].handler_secondary_phone;
+          $scope.handlerEmail = $scope.dogList[i].handler_email;
+          //There are still a few fields missing that still need to be scoped in
 
         }
       }
@@ -45,7 +61,7 @@ angular.module('myApp').controller('HandlerController', [
 
 
     // k9 breeds
-    $scope.breeds = ['German Shepherd', 'Belgian Malinois', 'Bloodhound', 'Other'];
+    // $scope.breeds = ['German Shepherd', 'Belgian Malinois', 'Bloodhound', 'Other'];
     $scope.getBreed = function() {
       if ($scope.breed !== undefined) {
         return $scope.breed;
@@ -67,7 +83,7 @@ angular.module('myApp').controller('HandlerController', [
 
 
     // select vest colors
-    $scope.colors = ['Black', 'Multi-Cam®', 'Ranger Green', 'Tan'];
+    // $scope.colors = ['Black', 'Multi-Cam®', 'Ranger Green', 'Tan'];
     $scope.vestColor = '';
     $scope.getVestColor = function() {
       if ($scope.vestColor !== undefined) {
@@ -78,7 +94,7 @@ angular.module('myApp').controller('HandlerController', [
     };
 
     // select vest imprint
-    $scope.imprints = ['Fire', 'Fire K9', 'Police', 'Police K9', 'Search & Rescue', 'Sheriff', 'Sheriff K9'];
+    // $scope.imprints = ['Fire', 'Fire K9', 'Police', 'Police K9', 'Search & Rescue', 'Sheriff', 'Sheriff K9'];
     $scope.vestImprint = '';
     $scope.getVestImprint = function() {
       if ($scope.vestImprint !== undefined) {
@@ -89,7 +105,7 @@ angular.module('myApp').controller('HandlerController', [
     };
 
     // select vest imprint color
-    $scope.imprintColors = ['Dark Gray', 'Reflective Silver', 'White', 'Yellow'];
+    // $scope.imprintColors = ['Dark Gray', 'Reflective Silver', 'White', 'Yellow'];
     $scope.vestImprintColor = '';
     $scope.getImprintColor = function() {
       if ($scope.vestImprintColor !== undefined) {
