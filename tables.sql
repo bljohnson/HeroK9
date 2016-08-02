@@ -143,8 +143,8 @@ VALUES ('Other');
 
 -- hardwire statuses in, won't change unless more need to be added --
 
-INSERT INTO status (id, status_type, description) VALUES ('11', 'New Inquiry', 'A new inquiry has been added.');
-INSERT INTO status (id, status_type, description) VALUES ('22', 'Inquiry Review', 'The completed inquiry is in review.');
+INSERT INTO status (id, status_type, description) VALUES ('1', 'New Inquiry', 'A new inquiry has been added.');
+INSERT INTO status (id, status_type, description) VALUES ('2', 'Inquiry Review', 'The completed inquiry is in review.');
 INSERT INTO status (id, status_type, description) VALUES ('3', 'Form Sent', 'The inquiry was approved and an application form has been sent.');
 INSERT INTO status (id, status_type, description) VALUES ('4', 'New Application', 'A new application form has been submitted.');
 INSERT INTO status (id, status_type, description) VALUES ('5', 'Application Review', 'The completed application is in review.');

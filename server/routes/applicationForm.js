@@ -24,10 +24,25 @@ router.post('/', function(req, res){
 			// HOW???? -- email confirmation field on application form (phone and badge # are populated via ng-bind)
 			// HOW???? -- prepopulate fields from inquiry form if already filled out by auth signer
 
-			var addK9 = client.query( 'INSERT INTO K9s ( user_id, k9_name, breed, age, k9_certified, k9_active_duty, k9_retirement, handler_rank, handler_first_name, handler_last_name, handler_badge, handler_cell_phone, handler_secondary_phone, handler_email ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14 )', [ req.user.id, req.body.k9name, req.body.breed, req.body.age, req.body.certified, req.body.activeDuty, req.body.retirement, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerBadge, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail ] );
+			var addK9 = client.query( 'INSERT INTO K9s ( user_id, k9_name, breed, age, k9_certified, k9_active_duty, k9_retirement, handler_rank, handler_first_name, handler_last_name, handler_badge, handler_cell_phone, handler_secondary_phone, handler_email ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14 ) RETURNING id', [ req.user.id, req.body.k9name, req.body.breed, req.body.age, req.body.certified, req.body.activeDuty, req.body.retirement, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerBadge, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail ],
 
-			var addEquipment = client.query( 'INSERT INTO k9s_equipment ( k9_id, equipment_id ) ' )
-	});
-});
+			function(err, result) {
+
+	              done();
+
+	              if(err){
+	                console.log(err);
+	                res.sendStatus(500);
+	              }else{
+	                //redirect to get on / route
+	                console.log('id of k9/handler: ', result.rows[0].id);
+		    } // end if else
+		  	} // end function
+		); // end query
+
+			// var addEquipment = client.query( 'INSERT INTO k9s_equipment ( k9_id, equipment_id ) VALUES ( $1, $2 )', [  ] );
+
+	}); // end pg connect
+}); // end router.post
 
   module.exports = router;

@@ -27,7 +27,7 @@ angular.module('myApp').controller('UserDashController', [
 
  	// create button on user dash for admin only to update status to update progress bar
 	$scope.setStatus = function( newStatus ){
-			if( status === 0 ){
+			if( status === 5 ){
 				$scope.userStatus = [
 					{ status: "active", name: "Application In Review"},
 					{ status: "", name: "Application Approved"},
@@ -35,8 +35,8 @@ angular.module('myApp').controller('UserDashController', [
 					{ status: "", name: "Order Sent In"},
 					{ status: "", name: "Shipped"}
 				];
-			}// end 0
-			if( status === 1 ){
+			}// end 5
+			if( status === 7 ){
 				$scope.userStatus = [
 					{ status: "visited", name: "Application In Review"},
 					{ status: "active", name: "Application Approved"},
@@ -44,8 +44,8 @@ angular.module('myApp').controller('UserDashController', [
 					{ status: "", name: "Order Sent In"},
 					{ status: "", name: "Shipped"}
 				];
-			}// end 1
-			if( status === 2 ){
+			}// end 7
+			if( status === 8 ){
 				$scope.userStatus = [
 					{ status: "visited", name: "Application In Review"},
 					{ status: "visited", name: "Application Approved"},
@@ -53,8 +53,8 @@ angular.module('myApp').controller('UserDashController', [
 					{ status: "", name: "Order Sent In"},
 					{ status: "", name: "Shipped"}
 				];
-			}// end 2
-			if( status === 3 ){
+			}// end 8
+			if( status === 9 ){
 				$scope.userStatus = [
 					{ status: "visited", name: "Application In Review"},
 					{ status: "visited", name: "Application Approved"},
@@ -62,8 +62,8 @@ angular.module('myApp').controller('UserDashController', [
 					{ status: "active", name: "Order Sent In"},
 					{ status: "", name: "Shipped"}
 				];
-			}// end 3
-			if( status === 4 ){
+			}// end 9
+			if( status === 10 ){
 				$scope.userStatus = [
 					{ status: "visited", name: "Application In Review"},
 					{ status: "visited", name: "Application Approved"},
@@ -71,7 +71,7 @@ angular.module('myApp').controller('UserDashController', [
 					{ status: "visited", name: "Order Sent In"},
 					{ status: "active", name: "Shipped"}
 				];
-			}// end 4
+			}// end 10
 	}; // end setStatus
 
 
