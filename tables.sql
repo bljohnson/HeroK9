@@ -3,7 +3,7 @@ CREATE TYPE role AS ENUM ('K9 Handler', 'K9 Unit Supervisor', 'Department Admin'
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY NOT NULL,
 	email VARCHAR(255) UNIQUE,
-	contact_email VARCHAR(255) UNIQUE,
+	contact_email VARCHAR(255) UNIQUE NOT NULL,
   	password VARCHAR(255) UNIQUE,
   	status_id INTEGER DEFAULT '1' NOT NULL REFERENCES status(id),
 	created TIMESTAMP DEFAULT current_timestamp NOT NULL,
