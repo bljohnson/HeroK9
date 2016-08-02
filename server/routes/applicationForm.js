@@ -31,11 +31,26 @@ router.post('/part2', function(req, res){
   	console.log('req.body: ', req.body);
   	pg.connect(connection, function (err, client, done) {
 
-			var addK9 = client.query( 'INSERT INTO K9s ( k9_name, breed, age, k9_certified, k9_active_duty, k9_retirement, handler_rank, handler_first_name, handler_last_name, handler_badge, handler_cell_phone, handler_secondary_phone, handler_email ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13 )', [ req.body.k9name, req.body.breed, req.body.age, req.body.certified, req.body.activeDuty, req.body.retirement, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerBadge, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail ] );
-			res.sendStatus(200);
+		var addK9 = client.query( 'INSERT INTO K9s ( user_id, k9_name, breed, age, k9_certified, k9_active_duty, k9_retirement, handler_rank, handler_first_name, handler_last_name, handler_badge, handler_cell_phone, handler_secondary_phone, handler_email ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14 ) RETURNING id', [ req.user.id, req.body.k9name, req.body.breed, req.body.age, req.body.certified, req.body.activeDuty, req.body.retirement, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerBadge, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail ],
 
-	});
-});
+		function(err, result) {
+
+	              done();
+
+	              if(err){
+	                console.log(err);
+	                res.sendStatus(500);
+	              }else{
+	        	//console.log('id of k9/handler: ', result.rows[0].id);
+
+			client.query( 'INSERT INTO k9s_equipment ( k9_id, equipment_id ) VALUES ( $1, $2 )', [ result.rows[0].id, req.body.equipment ] );
+
+		      } // end if else
+		} // end function
+		); // end query
+
+	}); // end pg connect
+}); // end router.post
 
 router.get('/', function(req, res){
 	console.log('in application GET');
