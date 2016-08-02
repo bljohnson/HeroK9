@@ -35,6 +35,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/application.html',
       controller: 'AppController'
     }).
+    when('/part2', {
+      templateUrl: '/views/k9application.html',
+      controller: 'AppController'
+    }).
     when('/submitted',{
       templateUrl: '/views/submitInquiry.html',
     }).
@@ -44,6 +48,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
 }]);
 
 myApp.controller('loginController', ['$scope', '$http', '$window', '$location', function( $scope , $http, $window, $location){
+
 
   $scope.register = function(){
     // console.log($location.search());
@@ -163,6 +168,17 @@ myApp.controller('MainController', ['$scope', '$http', '$location', function($sc
 
 
 myApp.controller('AppController', ['$scope', '$http', '$location', function($scope, $http, $location){
+
+  $http({
+    method: 'GET',
+    url: '/applicationForm'
+  }).then(function(data){
+    data = data.data;
+    console.log(data);
+    $scope.equipmentList = data;
+  });
+
+
 	$scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
 	$scope.role = '';
 	$scope.getRole = function() {
@@ -274,17 +290,6 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
  };//end yesnoCheck
 
  $scope.sendApplication = function(){
-   console.log($scope.kennel);
-   console.log($scope.bulletResistant);
-   console.log($scope.stabResistant);
-   console.log($scope.doorPop);
-   console.log($scope.otherBreed);
-   var breedToSend;
-   if ($scope.otherBreed !== undefined){
-     breedToSend = $scope.otherBreed;
-   } else {
-     breedToSend = $scope.breed;
-   }
 
    var objectToSend = {
 	   rank: $scope.rank,
@@ -301,39 +306,75 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
 	   state: $scope.state,
 	   zip: $scope.zip,
 	   numberOfDogs: $scope.numberOfDogs,
-     k9name: $scope.name,
-     breed: breedToSend,
-     age: $scope.age,
-     certified: $scope.certified,
-     activeDuty: $scope.activeDuty,
-     retirement: $scope.retirement,
-     handlerTitle: $scope.title,
-     handlerFirstName: $scope.first,
-     handlerLastName: $scope.last,
-     handlerBadge: $scope.badge,
-     handlerCellPhone: $scope.cell,
-     handlerSecondaryCell: $scope.secondaryCell,
-     handlerEmail: $scope.emailAddress,
-     equipment: [],
-     additionalHandler: $scope.additionalHandler
    };//end objectToSend
 
-   if($scope.kennel !== undefined){
-     objectToSend.equipment.push($scope.kennel);
-   } if($scope.bulletResistant !== undefined){
-     objectToSend.equipment.push($scope.ballistic);
-   } if($scope.stabResistant !== undefined){
-     objectToSend.equipment.push($scope.multiThreat);
-   } if($scope.doorPop !== undefined){
-     objectToSend.equipment.push($scope.doorPop);
-   }
    console.log(objectToSend);
 
 	$http({
 		method: 'POST',
-		url: '/applicationForm',
+		url: '/applicationForm/part1',
 		data: objectToSend
 	});
+
+ }; //end sendApplication
+
+$scope.sendk9 = function(){
+
+  var breedToSend;
+  if ($scope.otherBreed !== undefined){
+    breedToSend = $scope.otherBreed;
+  } else {
+    breedToSend = $scope.breed;
+  }
+
+
+
+
+  var objectToSend = {
+    k9name: $scope.name,
+    breed: breedToSend,
+    age: $scope.age,
+    certified: $scope.certified,
+    activeDuty: $scope.activeDuty,
+    retirement: $scope.retirement,
+    handlerTitle: $scope.title,
+    handlerFirstName: $scope.first,
+    handlerLastName: $scope.last,
+    handlerBadge: $scope.badge,
+    handlerCellPhone: $scope.cell,
+    handlerSecondaryCell: $scope.secondaryCell,
+    handlerEmail: $scope.emailAddress,
+    equipment: [],
+    additionalHandler: $scope.additionalHandler
+  };
+
+  if($scope.kennel !== undefined){
+    objectToSend.equipment.push($scope.kennel);
+  } if($scope.ballistic !== undefined){
+    objectToSend.equipment.push($scope.ballistic);
+  } if($scope.multiThreat !== undefined){
+    objectToSend.equipment.push($scope.multiThreat);
+  } if($scope.doorPop !== undefined){
+    objectToSend.equipment.push($scope.doorPop);
+  }
+
+
+  for (var i =0; i<$scope.equipmentList.length; i++){
+    if (document.getElementById('equipment' + i).className.indexOf('md-checked') >= 0){
+      objectToSend.equipment.push($scope.equipmentList[i].id);
+    }
+  }
+
+
+
+
+
+  $http({
+		method: 'POST',
+		url: '/applicationForm/part2',
+		data: objectToSend
+	});
+
   $scope.name = '';
   breedToSend = '';
   $scope.age = '';
@@ -354,7 +395,10 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
   $scope.ballistic = false;
   $scope.multiThreat = false;
   $scope.doorPop = false;
- }; //end sendApplication
+};
+
+
+
  $scope.go = function(path){
    $location.path(path);
  };
