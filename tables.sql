@@ -3,7 +3,7 @@ CREATE TYPE role AS ENUM ('K9 Handler', 'K9 Unit Supervisor', 'Department Admin'
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY NOT NULL,
 	email VARCHAR(255) UNIQUE,
-	contact_email VARCHAR(255) UNIQUE,
+	contact_email VARCHAR(255) UNIQUE NOT NULL,
   	password VARCHAR(255) UNIQUE,
   	status_id INTEGER DEFAULT '1' NOT NULL REFERENCES status(id),
 	created TIMESTAMP DEFAULT current_timestamp NOT NULL,
@@ -43,6 +43,7 @@ CREATE TABLE K9s (
 	k9_name VARCHAR(255) NOT NULL,
 	breed VARCHAR(255) NOT NULL,
 	age VARCHAR(30) NOT NULL,
+	k9_certified BOOLEAN NOT NULL,
 	k9_active_duty BOOLEAN NOT NULL,
 	k9_retirement BOOLEAN NOT NULL,
 	handler_rank VARCHAR(255) NOT NULL,
@@ -142,13 +143,16 @@ VALUES ('Other');
 
 -- hardwire statuses in, won't change unless more need to be added --
 
-INSERT INTO status (id, status_type, description) VALUES ('11', 'New Inquiry', 'A new inquiry has been added.');
-INSERT INTO status (id, status_type, description) VALUES ('22', 'Inquiry Review', 'The completed inquiry is in review.');
+INSERT INTO status (id, status_type, description) VALUES ('1', 'New Inquiry', 'A new inquiry has been added.');
+INSERT INTO status (id, status_type, description) VALUES ('2', 'Inquiry Review', 'The completed inquiry is in review.');
 INSERT INTO status (id, status_type, description) VALUES ('3', 'Form Sent', 'The inquiry was approved and an application form has been sent.');
 INSERT INTO status (id, status_type, description) VALUES ('4', 'New Application', 'A new application form has been submitted.');
 INSERT INTO status (id, status_type, description) VALUES ('5', 'Application Review', 'The completed application is in review.');
 INSERT INTO status (id, status_type, description) VALUES ('6', 'Application Needs Revision', 'More information is needed / Information is incorrect.');
-INSERT INTO status (id, status_type, description) VALUES ('7', 'Application Approved', 'The application has been approved.  Awaiting grant requet.');
+INSERT INTO status (id, status_type, description) VALUES ('7', 'Application Approved', 'The application has been approved.  Awaiting grant request.');
+INSERT INTO status (id, status_type, description) VALUES ('8', 'Grant Approved', 'Grant for equipment has been approved.');
+INSERT INTO status (id, status_type, description) VALUES ('9', 'Equipment Order Submitted', 'Equipment has been ordered.');
+INSERT INTO status (id, status_type, description) VALUES ('10', 'Equipment Shipped', 'Equipment has been shipped to department address.');
 INSERT INTO status (id, status_type, description) VALUES ('99', 'Admin', 'This user is an administrator');
 
 ---------------------------------///////////////////////////////////////////---------------------------------

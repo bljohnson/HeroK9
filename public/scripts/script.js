@@ -4,7 +4,11 @@ var myApp = angular.module('myApp', [
   'ui.bootstrap',
   'ngMessages',
   'ngFileUpload'
-]);
+],function($locationProvider){
+    $locationProvider.html5Mode({
+  enabled: true,
+  requireBase: false});
+});
 
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
@@ -39,46 +43,73 @@ myApp.config(['$routeProvider', function($routeProvider) {
   });
 }]);
 
-myApp.controller('loginController', ['$scope', '$http', '$window', function( $scope , $http, $window){
+myApp.controller('loginController', ['$scope', '$http', '$window', '$location', function( $scope , $http, $window, $location){
 
   $scope.register = function(){
+    // console.log($location.search());
     var regObject = {
       email: $scope.email,
-      password: $scope.password
+      password: $scope.password,
+      contact_email: $location.search().from
     };
 
     $http({
       method: 'POST',
       url: '/register',
       data: regObject
+    }).success(function(data){
+      $window.location.href = '/#/application';
     });
   };
 
   $scope.login = function (){
     var loginObject = {
-    username: $scope.email,
-    password: $scope.password
-  };
-  $http({
-    method: "POST",
-    url: '/index',
-    data: loginObject
-  }).success(function(data){
-      console.log(data);
-        if (data.status_id == 99) {$window.location.href = '/adminView';}
-        else if (data.status_id == 1) {$window.location.href = 'views/#/user';}
+      username: $scope.email,
+      password: $scope.password
+    };
+    $http({
+      method: "POST",
+      url: '/index',
+      data: loginObject
+    }).success(function(data){
+        console.log(data);
+          if (data.status_id == 99) {$window.location.href = '/adminView';}
+          else {$window.location.href = 'views/#/user';}
 
-    }).error(function(err){
-      console.log(err);
-        $window.location.href = 'views/failure.html';
-    });
+
+      }).error(function(err){
+        console.log(err);
+          $window.location.href = 'views/failure.html';
+      });
+    };
+
+  $scope.sendMail = function (){
+    var mailObj = {
+      to: "", //email to send to
+      from : "",
+      subject: "",
+      text: ""
+    };
+    console.log(mailObj);
+    $http({
+      method: 'POST',
+      url: '/sendMail',
+      data: mailObj,
+      headers: {'Content-Type': 'application/json;charset=utf-8'}
+    }).then(function(Response) {
+  console.log("in sendMail post call success: ",Response);
+  }).error(function(Response) {
+  console.log(Response);
+  });
   };
+
+
 
 }]);
 
-myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
+myApp.controller('MainController', ['$scope', '$http', '$location', function($scope, $http, $location){
   $scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
-     $scope.role;
+     $scope.role = '';
      $scope.getRole = function() {
        if ($scope.role !== undefined) {
          return $scope.role;
@@ -125,104 +156,104 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
     });//end $http
     console.log(testObject);
   };//end sendInquiry
+  $scope.go = function(path){
+    $location.path(path);
+  };
 }]);//end controller
 
 
-
-myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
+myApp.controller('AppController', ['$scope', '$http', '$location', function($scope, $http, $location){
 	$scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
-	   $scope.role;
-	   $scope.getRole = function() {
-	     if ($scope.role !== undefined) {
-		 return $scope.role;
-	     } else {
-		 return "Please select a role";
-	     }
-	   };
-
-	   $scope.times = ["Morning", "Afternoon", "Evening"];
-	      $scope.contactTime = '';
-	      $scope.getContactTime = function() {
-	        if ($scope.contactTime !== undefined) {
-	          return $scope.contactTime;
-	        } else {
-	          return "Please select a time";
-	        }
-	      };
-  // $scope.checkEmail = function(){
-  //   if($scope.emailConfirm !== $scope.emailAddress){
-  //     $scope.emailMatch = true;
-  //     // document.getElementsByName("submit")[0].disabled = true;
-  //     return false;
-  //   }
-  //   $scope.emailMatch = false;
-    // document.getElementsByName("submit")[0].disabled = false;
-  // };
-
-  // $scope.alertEmail = function(){
-  //   if($scope.emailConfirm !== $scope.emailAddress){
-  //     alert('Your email does not match');
-  //   }
-  // };
-
-  // $scope.checkCell = function(){
-  //   if($scope.cellConfirm !== $scope.cell){
-  //     $scope.cellMatch = true;
-  //     // document.getElementsByName("submit")[0].disabled = true;
-  //     return false;
-  //   }
-  //   $scope.cellMatch=false;
-    // document.getElementsByName("submit")[0].disabled = false;
-  // };
-
-  // $scope.alertCell = function(){
-  //   if($scope.cellConfirm !== $scope.cell){
-  //     alert('your Cell phone # does not match');
-  //   }
-  // };
-
-  // $scope.checkBadge = function(){
-  //   if($scope.badgeConfirm !== $scope.badge){
-  //     $scope.badgeMatch = true;
-  //     // document.getElementsByName("submit")[0].disabled = true;
-  //     return false;
-  //   }
-  //   $scope.badgeMatch=false;
-    // document.getElementsByName("submit")[0].disabled = false;
-  // };
-
-  // $scope.alertBadge = function(){
-  //   if($scope.badgeConfirm !== $scope.badge){
-  //     alert('your badge # does not match');
-  //   }
-  // };
-
-  $scope.wuttt = function(){
-    if($scope.emailConfirm !== $scope.emailAddress){
-      $scope.emailMatch = true;
-      document.getElementsByName("submit")[0].disabled = true;
-    } if($scope.cellConfirm !== $scope.cell){
-      $scope.cellMatch = true;
-      document.getElementsByName("submit")[0].disabled = true;
-    } if($scope.badgeConfirm !== $scope.badge){
-      $scope.badgeMatch = true;
-      document.getElementsByName("submit")[0].disabled = true;
+	$scope.role = '';
+	$scope.getRole = function() {
+   if ($scope.role !== undefined) {
+     return $scope.role;
     } else {
-      document.getElementsByName("submit")[0].disabled = false;
+	    return "Please select a role";
     }
-    // if($scope.emailConfirm !== $scope.emailAddress || $scope.cellConfirm !== $scope.cell || $scope.badgeConfirm !== $scope.badge){
-    //   document.getElementsByName("submit")[0].disabled = true;
-    //   $scope.emailMatch = true;
-    //   $scope.cellMatch = true;
-    //   $scope.badgeMatch = true;
-    // }
-    // document.getElementsByName("submit")[0].disabled = false;
-    // // $scope.emailMatch = false;
-    // // $scope.cellMatch = false;
-    // // $scope.badgeMatch = false;
   };
 
+	$scope.times = ["Morning", "Afternoon", "Evening"];
+	$scope.contactTime = '';
+	$scope.getContactTime = function() {
+	  if ($scope.contactTime !== undefined) {
+	    return $scope.contactTime;
+	  } else {
+	    return "Please select a time";
+	  }
+	};
 
+  $scope.checkEmail = function(){
+    if($scope.emailConfirm !== $scope.emailAddress){
+      $scope.emailMatch = true;
+      // document.getElementsByName("submit")[0].disabled = true;
+      console.log('checkEmail no');
+      return false;
+    }
+    $scope.emailMatch = false;
+    // document.getElementsByName("submit")[0].disabled = false;
+    console.log('checkEmail yes');
+  };
+
+  $scope.checkCell = function(){
+    if($scope.cellConfirm !== $scope.cell){
+      $scope.cellMatch = true;
+      // document.getElementsByName("submit")[0].disabled = true;
+      console.log('checkCell no');
+      return false;
+    }
+    $scope.cellMatch=false;
+    // document.getElementsByName("submit")[0].disabled = false;
+    console.log('checkCell yes');
+  };
+
+  $scope.checkBadge = function(){
+    if($scope.badgeConfirm !== $scope.badge){
+      $scope.badgeMatch = true;
+      // document.getElementsByName("submit")[0].disabled = true;
+      console.log('checkBadge no');
+      return false;
+    }
+    $scope.badgeMatch=false;
+    // document.getElementsByName("submit")[0].disabled = false;
+    console.log('checkBadge yes');
+  };
+
+  $scope.checkAll = function(){
+    // $scope.checkEmail();
+    // $scope.checkCell();
+    // $scope.checkBadge();
+    if($scope.badgeConfirm !== $scope.badge){
+      $scope.badgeMatch = true;
+      console.log('checkBadge no');
+      return false;
+    } else {
+      $scope.badgeMatch = false;
+      console.log('checkBadge yes');
+    }
+    if($scope.cellConfirm !== $scope.cell){
+      $scope.cellMatch = true;
+      console.log('checkCell no');
+      return false;
+    } else {
+      $scope.cellMatch = false;
+      console.log('cellMatch yes');
+    }
+    if($scope.emailConfirm !== $scope.emailAddress){
+      $scope.emailMatch = true;
+      console.log('checkEmail no');
+      return false;
+    } else {
+      $scope.emailMatch = false;
+      console.log('checkEmail yes');
+    }
+    if ($scope.emailConfirm !== $scope.emailAddress || $scope.cellConfirm !== $scope.cell || $scope.badgeConfirm !== $scope.badge){
+      document.getElementsByName("submit")[0].disabled = true;
+    }
+    if ($scope.emailConfirm === $scope.emailAddress && $scope.cellConfirm === $scope.cell && $scope.badgeConfirm === $scope.badge){
+      document.getElementsByName("submit")[0].disabled = false;
+    }
+  };
 
   $scope.breeds = ["German Shepherd", "Belgian Malinois", "Bloodhound", "Other"];
   $scope.getBreed = function() {
@@ -243,10 +274,10 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
  };//end yesnoCheck
 
  $scope.sendApplication = function(){
-  console.log($scope.kennel);
-  console.log($scope.bulletResistant);
-  console.log($scope.stabResistant);
-  console.log($scope.doorPop);
+   console.log($scope.kennel);
+   console.log($scope.bulletResistant);
+   console.log($scope.stabResistant);
+   console.log($scope.doorPop);
    console.log($scope.otherBreed);
    var breedToSend;
    if ($scope.otherBreed !== undefined){
@@ -256,8 +287,6 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    }
 
    var objectToSend = {
-	   email: $scope.email,
-	   password: $scope.password,
 	   rank: $scope.rank,
 	   role: $scope.role,
 	   firstName: $scope.firstName,
@@ -292,9 +321,9 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    if($scope.kennel !== undefined){
      objectToSend.equipment.push($scope.kennel);
    } if($scope.bulletResistant !== undefined){
-     objectToSend.equipment.push($scope.bulletResistant);
+     objectToSend.equipment.push($scope.ballistic);
    } if($scope.stabResistant !== undefined){
-     objectToSend.equipment.push($scope.stabResistant);
+     objectToSend.equipment.push($scope.multiThreat);
    } if($scope.doorPop !== undefined){
      objectToSend.equipment.push($scope.doorPop);
    }
@@ -305,5 +334,28 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
 		url: '/applicationForm',
 		data: objectToSend
 	});
+  $scope.name = '';
+  breedToSend = '';
+  $scope.age = '';
+  $scope.certified = false;
+  $scope.activeDuty = false;
+  $scope.retirement = false;
+  $scope.title = '';
+  $scope.first = '';
+  $scope.last = '';
+  $scope.badge = '';
+  $scope.badgeConfirm = '';
+  $scope.cell = '';
+  $scope.cellConfirm = '';
+  $scope.secondaryCell = '';
+  $scope.emailAddress = '';
+  $scope.emailConfirm = '';
+  $scope.kennel = false;
+  $scope.ballistic = false;
+  $scope.multiThreat = false;
+  $scope.doorPop = false;
  }; //end sendApplication
+ $scope.go = function(path){
+   $location.path(path);
+ };
 }]);
