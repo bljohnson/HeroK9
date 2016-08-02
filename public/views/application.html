@@ -229,10 +229,10 @@
               <md-checkbox id="check1" class="equipment md-primary" ng-model="kennel" aria-label="Checkbox 1" ng-true-value="'Kennel'">
                 In-squad kennel
               </md-checkbox><br>
-              <md-checkbox id="check2" class="equipment md-primary" ng-model="bulletResistant" aria-label="Checkbox 2" ng-true-value="'Bullet resistant vest'">
+              <md-checkbox id="check2" class="equipment md-primary" ng-model="ballistic" aria-label="Checkbox 2" ng-true-value="'Bullet resistant vest'">
                 Ballistic vest
               </md-checkbox><br>
-              <md-checkbox id="check3" class="equipment md-primary" ng-model="stabResistant" aria-label="Checkbox 3" ng-true-value="'Bullet and stab resistant vest'">
+              <md-checkbox id="check3" class="equipment md-primary" ng-model="multiThreat" aria-label="Checkbox 3" ng-true-value="'Bullet and stab resistant vest'">
                 Multi-threat vest
               </md-checkbox><br>
               <md-checkbox id="check4" class="equipment md-primary" ng-model="doorPop" aria-label="Checkbox 4" ng-true-value="'Door pop/Heat alarm'">
@@ -271,7 +271,9 @@
           </md-input-container>
         </form>
       </div>
-      <input type="submit" ng-click="sendApplication()" ng-disabled="application.$invalid" name="submit" value="Submit">
+      <input type="submit" ng-click="sendApplication(); go('/userdash')" ng-disabled="application.$invalid" name="submit" value="Submit application">
+      <input type="submit" ng-click="sendApplication()" name="submit" value="Submit K9 and add another">
+      <!-- <a href="#userdash"></a> -->
 
     <!-- End AppController -->
   </div>

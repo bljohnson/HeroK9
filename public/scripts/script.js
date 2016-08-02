@@ -109,7 +109,7 @@ myApp.controller('loginController', ['$scope', '$http', '$window', '$location', 
 
 }]);
 
-myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
+myApp.controller('MainController', ['$scope', '$http', '$location', function($scope, $http, $location){
   $scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
      $scope.role = '';
      $scope.getRole = function() {
@@ -158,10 +158,13 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http){
     });//end $http
     console.log(testObject);
   };//end sendInquiry
+  $scope.go = function(path){
+    $location.path(path);
+  };
 }]);//end controller
 
 
-myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
+myApp.controller('AppController', ['$scope', '$http', '$location', function($scope, $http, $location){
 	$scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
 	$scope.role = '';
 	$scope.getRole = function() {
@@ -320,9 +323,9 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
    if($scope.kennel !== undefined){
      objectToSend.equipment.push($scope.kennel);
    } if($scope.bulletResistant !== undefined){
-     objectToSend.equipment.push($scope.bulletResistant);
+     objectToSend.equipment.push($scope.ballistic);
    } if($scope.stabResistant !== undefined){
-     objectToSend.equipment.push($scope.stabResistant);
+     objectToSend.equipment.push($scope.multiThreat);
    } if($scope.doorPop !== undefined){
      objectToSend.equipment.push($scope.doorPop);
    }
@@ -333,5 +336,28 @@ myApp.controller('AppController', ['$scope', '$http', function($scope, $http){
 		url: '/applicationForm',
 		data: objectToSend
 	});
+  $scope.name = '';
+  breedToSend = '';
+  $scope.age = '';
+  $scope.certified = false;
+  $scope.activeDuty = false;
+  $scope.retirement = false;
+  $scope.title = '';
+  $scope.first = '';
+  $scope.last = '';
+  $scope.badge = '';
+  $scope.badgeConfirm = '';
+  $scope.cell = '';
+  $scope.cellConfirm = '';
+  $scope.secondaryCell = '';
+  $scope.emailAddress = '';
+  $scope.emailConfirm = '';
+  $scope.kennel = false;
+  $scope.ballistic = false;
+  $scope.multiThreat = false;
+  $scope.doorPop = false;
  }; //end sendApplication
+ $scope.go = function(path){
+   $location.path(path);
+ };
 }]);
