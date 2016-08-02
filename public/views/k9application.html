@@ -13,9 +13,15 @@
       <div>
         <h1 class="md-title">Breed</h1>
         <div layout="row">
-          <md-input-container>
+          <!-- <md-input-container>
             <md-select ng-model="breed" md-selected-text="getBreed()" placeholder="Select a breed" ng-change="yesnoCheck()">
                 <md-option ng-value="breed" ng-repeat="breed in breeds">{{breed}}</md-option>
+            </md-select>
+          </md-input-container> -->
+          <md-input-container style="margin-right: 10px;">
+            <label>Select a breed</label>
+            <md-select ng-model="breed" ng-change="yesnoCheck()">
+              <md-option ng-repeat="breed in breeds" value="{{breed}}">{{breed}}</md-option>
             </md-select>
           </md-input-container>
           <md-input-container id="ifYes" style="display: none;" class="md-block">
@@ -156,10 +162,10 @@
           <fieldset class="standard">
             <div layout="column" layout-wrap layout-gt-sm="row">
               <div flex-xs flex="50">
-                <md-checkbox id="agreement" class="equipment md-primary" ng-model="agreement" aria-label="agreement">
+                <md-checkbox id="agreement" class="equipment md-primary" ng-model="agreement" aria-label="agreement" required>
                   I am authorized to apply for a grant on behalf of the department.
                 </md-checkbox>
-                <md-checkbox id="terms" class="equipment md-primary" ng-model="terms" aria-label="terms">
+                <md-checkbox id="terms" class="equipment md-primary" ng-model="terms" aria-label="terms" required>
                   Terms & Conditions: I accept the terms and conditions of this application and confirm the information entered above to be accurate and complete.
                 </md-checkbox>
               </div>
@@ -176,7 +182,7 @@
       </form>
     </div>
     <input type="submit" ng-click="sendk9(); go('/userdash')" ng-disabled="application.$invalid" name="submit" value="Submit application">
-    <input type="submit" ng-click="sendk9()" name="submit" value="Submit K9 and add another">
+    <input type="submit" ng-click="sendk9(); go('/part3')" ng-disabled="application.$invalid" name="submit" value="Submit K9 and add another">
     <!-- <a href="#userdash"></a> -->
 
     <!-- End AppController -->
