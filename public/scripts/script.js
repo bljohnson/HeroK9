@@ -8,11 +8,15 @@ var myApp = angular.module('myApp', [
 ,function($locationProvider){
     $locationProvider.html5Mode({
   enabled: true,
-  requireBase: true});
+  requireBase: true
+});
 }
 );
 
-myApp.config(['$routeProvider', function($routeProvider) {
+myApp.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
+  $locationProvider
+  .html5Mode(false);
+
   $routeProvider.
     when('/home', {
       templateUrl: '/views/home.html',
@@ -60,7 +64,7 @@ myApp.controller('loginController', ['$scope', '$http', '$window', '$location', 
       url: '/register',
       data: regObject
     }).success(function(data){
-      $window.location.href = '/#/application';
+      $window.location.href = "/#/application?" +  +  "";
     });
   };
 
@@ -75,7 +79,13 @@ myApp.controller('loginController', ['$scope', '$http', '$window', '$location', 
       data: loginObject
     }).success(function(data){
         console.log(data);
-          if (data.status_id == 99) {$window.location.href = '/adminView';}
+          if (data.status_id == 99) {$window.location.href ='/adminView';}
+          else if (data.status_id == 1) {$window.location.href = '/#/application';}
+          else if (data.status_id == 2) {$window.location.href = '/';}
+          else if (data.status_id == 3) {$window.location.href = '/';}
+          else if (data.status_id == 4) {$window.location.href = '/';}
+          else if (data.status_id == 5) {$window.location.href = '/';}
+          else if (data.status_id == 6) {$window.location.href = '/';}
           else {$window.location.href = 'views/#/user';}
 
 

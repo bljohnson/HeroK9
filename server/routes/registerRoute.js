@@ -54,8 +54,8 @@ router.post('/', function(req, res) {
               res.sendStatus(500);
             }else{
               //redirect to get on / route
-              console.log('id of registered user = ', result);
-              res.redirect('/');
+              console.log('id of registered user = ', result.rows[0]);
+              res.send(result.rows[0]);
             }
       });
     });
