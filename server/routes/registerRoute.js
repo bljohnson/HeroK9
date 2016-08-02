@@ -59,9 +59,6 @@ router.post('/', function(req, res) {
             }
       });
     });
-
-    //client.query takes the query, params, and optional callback
-
   });
 });
 

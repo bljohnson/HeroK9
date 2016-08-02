@@ -4,11 +4,13 @@ var myApp = angular.module('myApp', [
   'ui.bootstrap',
   'ngMessages',
   'ngFileUpload'
-],function($locationProvider){
+]
+,function($locationProvider){
     $locationProvider.html5Mode({
   enabled: true,
-  requireBase: false});
-});
+  requireBase: true});
+}
+);
 
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
