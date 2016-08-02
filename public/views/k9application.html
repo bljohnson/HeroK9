@@ -1,10 +1,8 @@
 <md-content flex layout-padding>
   <h1>Application form</h1>
   <div class="" ng-controller="AppController">
-  
-
-      <h2>Enter K9 information</h2>
-      <form name="application" novalidate>
+    <h2>Enter K9 information</h2>
+    <form name="application" novalidate>
       <md-input-container class="md-block">
         <label for="name">Name</label>
         <input ng-model="name" id="name" type="text" name="name" value="" required>
@@ -49,134 +47,134 @@
         <md-radio-button value="no" class="md-primary">No</md-radio-button>
       </md-radio-group>
     </form>
-    <h2>Add Handler Information</h2>
-    <form>
-      <md-input-container class="md-block">
-        <label for="title">Title/Rank</label>
-        <input ng-model="title" id="title" type="text" name="title" value="" required>
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="first">First Name</label>
-        <input ng-model="first" id="first" type="text" name="first" value="" required>
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="last">Last Name</label>
-        <input ng-model="last" id="last" type="text" name="last" value="" required>
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="badge">Badge #</label>
-        <input ng-model="badge" id="badge" type="text" name="badge" value="" required>
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="badge">Confirm badge #</label>
-        <input ng-model="badgeConfirm" id="badge" type="text" name="badge" ng-change="checkAll()"value="" required>
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-        <p ng-show="badgeMatch" class="confirm">Badge # has to match</p>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="cell">Cell Phone # (xxx-xxx-xxxx)</label>
-        <input ng-model="cell" id="cell" type="text" name="cell" value="" required>
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="cell">Confirm cell phone #</label>
-        <input ng-model="cellConfirm" id="cell" type="text" name="cell" ng-change="checkAll()"value="" required>
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-        <p ng-show="cellMatch" class="confirm">Cell phone # has to match</p>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="secondaryCell">Secondary Cell Phone # (xxx-xxx-xxxx)</label>
-        <input ng-model="secondaryCell" id="secondaryCell" type="text" name="secondaryCell" value="">
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="emailAddress">Email Address</label>
-        <input ng-model="emailAddress" id="emailAddress" type="text" name="emailAddress" value="" required>
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="emailConfirm">Confirm email address</label>
-        <input ng-model="emailConfirm" id="checkk" type="text" name="emailConfirm"  ng-change="checkAll()" value="{{emailAddress}}" required>
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-          <p ng-show="emailMatch" class="confirm">Email has to match</p>
-      </md-input-container>
-      <h4>Equipment being requested</h4>
-      <div>
-        <fieldset class="standard">
-          <div layout="column" layout-wrap layout-gt-sm="row">
-            <div flex-xs flex="50">
-              <md-checkbox id="check1" class="equipment md-primary" ng-model="kennel" aria-label="Checkbox 1" ng-true-value="'Kennel'">
-                In-squad kennel
-              </md-checkbox><br>
-              <md-checkbox id="check2" class="equipment md-primary" ng-model="ballistic" aria-label="Checkbox 2" ng-true-value="'Bullet resistant vest'">
-                Ballistic vest
-              </md-checkbox><br>
-              <md-checkbox id="check3" class="equipment md-primary" ng-model="multiThreat" aria-label="Checkbox 3" ng-true-value="'Bullet and stab resistant vest'">
-                Multi-threat vest
-              </md-checkbox><br>
-              <md-checkbox id="check4" class="equipment md-primary" ng-model="doorPop" aria-label="Checkbox 4" ng-true-value="'Door pop/Heat alarm'">
-                Door pop/Heat alarm
-              </md-checkbox>
-            </div>
-          </div>
-        </fieldset>
-      </div><br>
-    </form>
-
-
-      <div class="">
-        <h1>Legal agreement*</h1>
-        <form name="application" novalidate>
-          <div>
-            <fieldset class="standard">
-              <div layout="column" layout-wrap layout-gt-sm="row">
-                <div flex-xs flex="50">
-                  <md-checkbox id="agreement" class="equipment md-primary" ng-model="agreement" aria-label="agreement">
-                    I am authorized to apply for a grant on behalf of the department.
-                  </md-checkbox>
-                  <md-checkbox id="terms" class="equipment md-primary" ng-model="terms" aria-label="terms">
-                    Terms & Conditions: I accept the terms and conditions of this application and confirm the information entered above to be accurate and complete.
-                  </md-checkbox>
-                </div>
-              </div>
-            </fieldset>
-          </div>
-          <md-input-container class="md-block">
-            <label for="signature">Signature</label>
-            <input ng-model="signature" id="signature" type="text" name="signature" value="" required>
-            <div ng-messages="projectForm.description.$error">
-              <div ng-message="required">This is required.</div>
-            </div>
-          </md-input-container>
-        </form>
+  <h2>Add Handler Information</h2>
+  <form>
+    <md-input-container class="md-block">
+      <label for="title">Title/Rank</label>
+      <input ng-model="title" id="title" type="text" name="title" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
       </div>
-      <input type="submit" ng-click="sendApplication(); go('/userdash')" ng-disabled="application.$invalid" name="submit" value="Submit application">
-      <input type="submit" ng-click="sendApplication()" name="submit" value="Submit K9 and add another">
-      <!-- <a href="#userdash"></a> -->
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="first">First Name</label>
+      <input ng-model="first" id="first" type="text" name="first" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="last">Last Name</label>
+      <input ng-model="last" id="last" type="text" name="last" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="badge">Badge #</label>
+      <input ng-model="badge" id="badge" type="text" name="badge" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="badge">Confirm badge #</label>
+      <input ng-model="badgeConfirm" id="badge" type="text" name="badge" ng-change="checkAll()"value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+      <p ng-show="badgeMatch" class="confirm">Badge # has to match</p>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="cell">Cell Phone # (xxx-xxx-xxxx)</label>
+      <input ng-model="cell" id="cell" type="text" name="cell" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="cell">Confirm cell phone #</label>
+      <input ng-model="cellConfirm" id="cell" type="text" name="cell" ng-change="checkAll()"value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+      <p ng-show="cellMatch" class="confirm">Cell phone # has to match</p>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="secondaryCell">Secondary Cell Phone # (xxx-xxx-xxxx)</label>
+      <input ng-model="secondaryCell" id="secondaryCell" type="text" name="secondaryCell" value="">
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="emailAddress">Email Address</label>
+      <input ng-model="emailAddress" id="emailAddress" type="text" name="emailAddress" value="" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="emailConfirm">Confirm email address</label>
+      <input ng-model="emailConfirm" id="checkk" type="text" name="emailConfirm"  ng-change="checkAll()" value="{{emailAddress}}" required>
+      <div ng-messages="projectForm.description.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+        <p ng-show="emailMatch" class="confirm">Email has to match</p>
+    </md-input-container>
+    <h4>Equipment being requested</h4>
+    <div>
+      <fieldset class="standard">
+        <div layout="column" layout-wrap layout-gt-sm="row">
+          <div flex-xs flex="50">
+            <md-checkbox id="check1" class="equipment md-primary" ng-model="kennel" aria-label="Checkbox 1" ng-true-value="'Kennel'">
+              In-squad kennel
+            </md-checkbox><br>
+            <md-checkbox id="check2" class="equipment md-primary" ng-model="ballistic" aria-label="Checkbox 2" ng-true-value="'Bullet resistant vest'">
+              Ballistic vest
+            </md-checkbox><br>
+            <md-checkbox id="check3" class="equipment md-primary" ng-model="multiThreat" aria-label="Checkbox 3" ng-true-value="'Bullet and stab resistant vest'">
+              Multi-threat vest
+            </md-checkbox><br>
+            <md-checkbox id="check4" class="equipment md-primary" ng-model="doorPop" aria-label="Checkbox 4" ng-true-value="'Door pop/Heat alarm'">
+              Door pop/Heat alarm
+            </md-checkbox>
+          </div>
+        </div>
+      </fieldset>
+    </div><br>
+  </form>
+
+
+    <div class="">
+      <h1>Legal agreement*</h1>
+      <form name="application" novalidate>
+        <div>
+          <fieldset class="standard">
+            <div layout="column" layout-wrap layout-gt-sm="row">
+              <div flex-xs flex="50">
+                <md-checkbox id="agreement" class="equipment md-primary" ng-model="agreement" aria-label="agreement">
+                  I am authorized to apply for a grant on behalf of the department.
+                </md-checkbox>
+                <md-checkbox id="terms" class="equipment md-primary" ng-model="terms" aria-label="terms">
+                  Terms & Conditions: I accept the terms and conditions of this application and confirm the information entered above to be accurate and complete.
+                </md-checkbox>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <md-input-container class="md-block">
+          <label for="signature">Signature</label>
+          <input ng-model="signature" id="signature" type="text" name="signature" value="" required>
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+      </form>
+    </div>
+    <input type="submit" ng-click="sendk9(); go('/userdash')" ng-disabled="application.$invalid" name="submit" value="Submit application">
+    <input type="submit" ng-click="sendk9()" name="submit" value="Submit K9 and add another">
+    <!-- <a href="#userdash"></a> -->
 
     <!-- End AppController -->
   </div>

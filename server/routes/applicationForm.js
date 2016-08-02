@@ -6,7 +6,7 @@ var connection = require('../modules/connection');
 var router = express.Router();
 
 
-router.post('/', function(req, res){
+router.post('/part1', function(req, res){
 	console.log("In applicationForm route");
   	console.log('req.body: ', req.body);
   	pg.connect(connection, function (err, client, done) {
@@ -22,13 +22,18 @@ router.post('/', function(req, res){
 			// need junction tables for equipment and certifications
 			// HOW???? -- email confirmation field on application form (phone and badge # are populated via ng-bind)
 			// HOW???? -- prepopulate fields from inquiry form if already filled out by auth signer
+			res.sendStatus(200);
+	});
+});
 
+router.post('/part2', function(req, res){
+	console.log("In applicationForm route");
+  	console.log('req.body: ', req.body);
+  	pg.connect(connection, function (err, client, done) {
 
-		////// if auth signer already filled out full inquiry form, and now just registering for account/adding handlers
-			// prepopulate first part of form
-		// var getUser = client.query ( 'SELECT contact_email, rank, role, first_name, last_name, primary_phone, alt_phone, contact_time, dept_add_street1, dept_add_street2, dept_add_city, dept_add_state, dept_add_zip, dept_k9s FROM users WHERE id = SOMETHINGSOMETHINGSOMETHING ' );
-			// add handler/k9 basic info
 			var addK9 = client.query( 'INSERT INTO K9s ( k9_name, breed, age, k9_certified, k9_active_duty, k9_retirement, handler_rank, handler_first_name, handler_last_name, handler_badge, handler_cell_phone, handler_secondary_phone, handler_email ) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13 )', [ req.body.k9name, req.body.breed, req.body.age, req.body.certified, req.body.activeDuty, req.body.retirement, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerBadge, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail ] );
+			res.sendStatus(200);
+
 	});
 });
 
