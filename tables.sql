@@ -3,7 +3,7 @@ CREATE TYPE role AS ENUM ('K9 Handler', 'K9 Unit Supervisor', 'Department Admin'
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY NOT NULL,
 	email VARCHAR(255) UNIQUE,
-	contact_email VARCHAR(255) UNIQUE,
+	contact_email VARCHAR(255) UNIQUE NOT NULL,
   	password VARCHAR(255) UNIQUE,
   	status_id INTEGER DEFAULT '1' NOT NULL REFERENCES status(id),
 	created TIMESTAMP DEFAULT current_timestamp NOT NULL,
@@ -149,7 +149,10 @@ INSERT INTO status (id, status_type, description) VALUES ('3', 'Form Sent', 'The
 INSERT INTO status (id, status_type, description) VALUES ('4', 'New Application', 'A new application form has been submitted.');
 INSERT INTO status (id, status_type, description) VALUES ('5', 'Application Review', 'The completed application is in review.');
 INSERT INTO status (id, status_type, description) VALUES ('6', 'Application Needs Revision', 'More information is needed / Information is incorrect.');
-INSERT INTO status (id, status_type, description) VALUES ('7', 'Application Approved', 'The application has been approved.  Awaiting grant requet.');
+INSERT INTO status (id, status_type, description) VALUES ('7', 'Application Approved', 'The application has been approved.  Awaiting grant request.');
+INSERT INTO status (id, status_type, description) VALUES ('8', 'Grant Approved', 'Grant for equipment has been approved.');
+INSERT INTO status (id, status_type, description) VALUES ('9', 'Equipment Order Submitted', 'Equipment has been ordered.');
+INSERT INTO status (id, status_type, description) VALUES ('10', 'Equipment Shipped', 'Equipment has been shipped to department address.');
 INSERT INTO status (id, status_type, description) VALUES ('99', 'Admin', 'This user is an administrator');
 
 ---------------------------------///////////////////////////////////////////---------------------------------
