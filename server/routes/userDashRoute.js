@@ -103,17 +103,40 @@ router.post('/submitK9App', function (req, res){
     if(err){
       console.log(err);
     } else {
-      var sendFile = client.query('INSERT INTO test (k9_bio, k9_back, k9_chest) VALUES ($1, $2, $3)',
-        [req.body.bio, req.body.back, req.body.chest]);
-        console.log('in submitK9App post route, adding:', req.body.back);
-      sendFile.on('end', function(){
-        return res.end();
+      var results = [];
+      var dummyUserId = 1;
+      var k9id = client.query('SELECT id FROM k9s WHERE user_id=($1)', [dummyUserId]); //Replace with req.user.id
+
+      k9id.on('row', function(row){
+        results.push(parseInt(row.id));
+        console.log('Row:', row);
+      });
+
+      k9id.on('end', function(){
+
+        for (var i=0; i<results.length; i++){
+          var sendFile = client.query('INSERT INTO k9s_certifications (k9_id, certification_id, url) VALUES ($1, $2, $3)', [results[i], req.body.certs[i], req.body.url]);
+        }
+
+        res.sendStatus(200);
+
       });
     }
-    done();
   });
 });
 
+router.get('/getCerts', function (req, res){
+  pg.connect(connectionString, function(err, client, done){
+    var results = [];
+    var query = client.query('SELECT * from certifications');
+    query.on('row', function(row){
+      results.push(row);
+    });
+    query.on('end', function(){
+      res.send(results);
+    });
+  });
+});
 
 
 module.exports = router;

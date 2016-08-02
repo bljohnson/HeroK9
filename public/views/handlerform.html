@@ -2,41 +2,156 @@
   <h1 class="text-center">Welcome {{ username }}!</h1>
   <div>
     <h1>Handler/K9 Form</h1>
-    <p>Some copy here about working with handler to get all K9 information and measurements and that you can save and come back to form. Puppy kitty ipsum dolor sit good dog window feeder aquatic warm stripes bird food lazy cat aquarium sit. Fur roll over leash nest toys park wet nose field bed toy turtle. Run Fast tuxedo running run kisses lol catz furry stay nest water dog fleas gimme five throw behavior head aquarium right paw shake ferret play.</p>
+    <p>Some copy here about working with handler to get all K9 information and measurements and that you can save and come back to form. K9 and Handler sections are auto populated from previous application. Please check and confirm that all fields are correct.</p>
+
+    <div class="handler-row">
+      <div>
+        <h2>Handler Information</h2>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label for="handlerTitle">Title/Rank</label>
+          <input id="handlerTitle" ng-model="handlerTitle" name="handlerTitle" required>
+          <div ng-messages="k9form.handlerTitle.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label for="handlerFirstName">First Name</label>
+          <input id="handlerFirstName" ng-model="handlerFirstName" name="handlerFirstName" required>
+          <div ng-messages="k9form.handlerFirstName.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <div flex="5" hide-xs hide-sm></div>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label for="handlerLastName">Last Name</label>
+          <input id="handlerLastName" ng-model="handlerLastName" name="handlerLastName" required>
+          <div ng-messages="k9form.handlerLastName.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label for="handlerBadge">Badge #</label>
+          <input id="handlerBadge" ng-model="handlerBadge" name="handlerBadge" required>
+          <div ng-messages="k9form.handlerBadge.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <div flex="5" hide-xs hide-sm></div>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label for="handlerCell">Cell Phone</label>
+          <input id="handlerCell" ng-model="handlerCell" name="handlerCell" required>
+          <div ng-messages="k9form.handlerCell.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label for="handlerPhone">Secondary Phone</label>
+          <input id="handlerPhone" ng-model="handlerPhone" name="handlerPhone" required>
+          <div ng-messages="k9form.handlerPhone.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <div flex="5" hide-xs hide-sm></div>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label for="handlerEmail">Email</label>
+          <input id="handlerEmail" ng-model="handlerEmail" name="handlerEmail" required>
+          <div ng-messages="k9form.handlerEmail.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+      </div>
+    </div>
 
     <div layout="column" ng-cloak class="md-inline-form">
       <md-content>
         <form name="k9form">
-          <h2>K9 Information</h2>
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label for="k9Name">Name</label>
-              <input id="k9Name" ng-model="k9Name" name="k9Name" required/>
-              <div ng-messages="k9form.k9Name.$error">
-                <div ng-message="required">This is required.</div>
+          <div class="handler-row">
+            <h2>K9 Information</h2>
+            <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label for="k9Name">Name</label>
+                <input id="k9Name" ng-model="k9Name" name="k9Name" required>
+                <div ng-messages="k9form.k9Name.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <div flex="5" hide-xs hide-sm></div>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label for="k9Age">Age</label>
+                <input id="k9Age" ng-model="k9Age" name="k9Age" required>
+                <div ng-messages="k9form.k9Age.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+            </div>
+            <div>
+              <h1 class="md-title">Breed</h1>
+              <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <md-select ng-model="breed" md-selected-text="getBreed()" placeholder="Select a breed" ng-change="yesnoCheck()">
+                    <md-option ng-value="breed" ng-repeat="breed in breeds">{{breed}}</md-option>
+                  </md-select>
+                </md-input-container>
+                <md-input-container id="ifYes" style="display: none;" class="md-block" flex-gt-sm>
+                  <label for="otherBreed">Other breed: </label>
+                  <input ng-model="otherBreed" id="otherBreed" type="text" name="otherBreed" value="">
+                </md-input-container>
               </div>
-            </md-input-container>
-            <div flex="5" hide-xs hide-sm></div>
-            <md-input-container class="md-block" flex-gt-sm>
-              <h2 class="md-subhead">Select a Vest Imprint</h2>
-              <md-select ng-model="vestImprint" md-selected-text="getVestImprint()" placeholder="Select vest imprint">
-                <md-option ng-value="imprint" ng-repeat="imprint in imprints">{{ imprint }}</md-option>
-              </md-select>
-            </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+              <md-radio-group ng-model="k9Cert" class="md-primary">
+                <label for="k9Cert">Is this K9 currently certified or in the process of obtaining certification in any of the following areas: Explosives, Narcotics, Patrol, Tracking/Trailing, etc.</label><br>
+                <md-radio-button value="Yes">Yes</md-radio-button>
+                <md-radio-button value="No">No</md-radio-button>
+              </md-radio-group>
+            </div>
+            <div layout-gt-sm="row">
+              <md-radio-group ng-model="k9Active" class="md-primary">
+                <label for="k9Active">Is this K9 currently on active duty with the department?</label><br>
+                <md-radio-button value="Yes">Yes</md-radio-button>
+                <md-radio-button value="No">No</md-radio-button>
+              </md-radio-group>
+            </div>
+            <div layout-gt-sm="row">
+              <md-radio-group ng-model="k9Retire" class="md-primary">
+                <label for="k9Retire">Is this K9 scheduled for retirement within the next year?</label><br>
+                <md-radio-button value="Yes">Yes</md-radio-button>
+                <md-radio-button value="No">No</md-radio-button>
+              </md-radio-group>
+            </div>
           </div>
-
 
 
           <div layout-gt-xs="row" class="handler-row">
             <md-input-container class="md-block" flex-gt-xs>
               <h1 class="md-title">Certification Types (Check all that apply)</h1>
-              <fieldset class="cert-fieldset">
-                <div class="cert-select-all-checkboxes" flex="100" ng-repeat="cert in certifications">
-                  <md-checkbox ng-model="certType" ng-change="otherCert" ng-checked="exists(cert, selected)" ng-click="toggle(cert, selected)">
-                   {{ cert }}
-                  </md-checkbox>
+              <fieldset>
+                <div ng-repeat='cert in certList track by $index' >
+                  <md-checkbox id="cert{{$index}}" class="md-primary" aria-label="{{cert.name}}">
+                  {{cert.name}}
+                  </md-checkbox><br>
                 </div>
+
+                <!-- <div ng-repeat= 'equipment in equipmentList track by $index' flex-xs flex="50">
+                  <md-checkbox id="equipment{{$index}}" class="equipment md-primary" aria-label="{{equipment.name}}">
+                    {{equipment.name}}
+                  </md-checkbox><br>
+                </div> -->
+
+
+
+
               </fieldset>
+              <label for="otherCert">Other</label>
+              <input id="otherCert" ng-model="otherCert" name="otherCert">
             </md-input-container>
             <md-input-container class="md-block" flex-gt-xs>
               <h1 class="md-title">Upload Certifications (PDF)</h1>

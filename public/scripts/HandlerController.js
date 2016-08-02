@@ -10,39 +10,36 @@ angular.module('myApp').controller('HandlerController', [
   '$mdDialog',
   function($scope, $http, $window, $location, Upload, $mdDialog) {
 
-    // custom welcome message to the user
-    $scope.username = "Officer Henry Hall";
+    $http({
+      method: 'GET',
+      url: '/userDash/getCerts'
+    }).success(function(data) {
+      console.log('after /getCerts: ', data);
+      $scope.certList = data;
+    });
+
+
+    // k9 breeds
+    $scope.breeds = ['German Shepherd', 'Belgian Malinois', 'Bloodhound', 'Other'];
+    $scope.getBreed = function() {
+      if ($scope.breed !== undefined) {
+        return $scope.breed;
+      } else {
+        return 'Please select a breed';
+      }
+    };
+
+    // if 'Other' breed
+    $scope.yesnoCheck = function() {
+      if (this.breed == 'Other') {
+        document.getElementById('ifYes').style.display = 'block';
+      } else {
+        document.getElementById('ifYes').style.display = 'none';
+     }
+    };
 
     // certification checkboxes
-    $scope.certifications = ['Explosives', 'Narcotics', 'Patrol', 'Trailing/Tracking', 'Other'];
-    $scope.selected = [1];
 
-    $scope.toggle = function (cert, list) {
-      var idx = list.indexOf(cert);
-      if (idx > -1) {
-        list.splice(idx, 1);
-      }
-      else {
-        list.push(cert);
-      }
-    };
-    $scope.exists = function (cert, list) {
-      return list.indexOf(cert) > -1;
-    };
-    $scope.isIndeterminate = function() {
-      return ($scope.selected.length !== 0 &&
-          $scope.selected.length !== $scope.certifications.length);
-    };
-    $scope.isChecked = function() {
-      return $scope.selected.length === $scope.certifications.length;
-    };
-    $scope.toggleAll = function() {
-      if ($scope.selected.length === $scope.certifications.length) {
-        $scope.selected = [];
-      } else if ($scope.selected.length === 0 || $scope.selected.length > 0) {
-        $scope.selected = $scope.certifications.slice(0);
-      }
-    };
 
     // select vest colors
     $scope.colors = ['Black', 'Multi-Cam®', 'Ranger Green', 'Tan'];
@@ -80,10 +77,16 @@ angular.module('myApp').controller('HandlerController', [
     // collect input to send to server
     $scope.sendK9App = function() {
       var k9AppToSend = {
-        bio: $scope.k9Bio,
-        back: $scope.k9Back,
-        chest: $scope.k9Chest
+        certs: [],
+        url: 'dummyURL'
       };
+
+      for (var i =0; i<$scope.certList.length; i++){
+        if (document.getElementById('cert' + i).className.indexOf('md-checked') >= 0){
+          k9AppToSend.certs.push($scope.certList[i].id);
+        }
+      }
+
       $http({
         method: 'POST',
         url: '/userDash/submitK9App',
