@@ -4,13 +4,23 @@ var myApp = angular.module('myApp', [
   'ui.bootstrap',
   'ngMessages',
   'ngFileUpload'
-],function($locationProvider){
-    $locationProvider.html5Mode({
-  enabled: true,
-  requireBase: false});
-});
+]
+// ,function($locationProvider){
+//     $locationProvider.html5Mode({
+//   enabled: true,
+//   requireBase: true});
+// }
+);
 
-myApp.config(['$routeProvider', function($routeProvider) {
+myApp.config(['$routeProvider', '$locationProvider', '$provide', function($routeProvider, $locationProvider, $provide) {
+
+  $provide.decorator('$sniffer', function($delegate) {
+    $delegate.history = false;
+    return $delegate;
+  });
+
+  $locationProvider.html5Mode(true).hashPrefix('');
+
   $routeProvider.
     when('/home', {
       templateUrl: '/views/home.html',
@@ -36,14 +46,16 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: 'AppController'
     }).
     when('/submitted',{
-      templateUrl: '/views/submitInquiry.html',
+
+      templateUrl: '/views/submitInquiry.html'
     }).
-    otherwise({
-    redirectTo: 'home'
+    when('/login', function () {
+      $window.location.href = '/login';
   });
 }]);
 
 myApp.controller('loginController', ['$scope', '$http', '$window', '$location', function( $scope , $http, $window, $location){
+
 
   $scope.register = function(){
     // console.log($location.search());
@@ -74,7 +86,8 @@ myApp.controller('loginController', ['$scope', '$http', '$window', '$location', 
     }).success(function(data){
         console.log(data);
           if (data.status_id == 99) {$window.location.href = '/adminView';}
-          else {$window.location.href = 'views/#/user';}
+          else if (data.status_id == 3) {$window.location.href = '/#/application';}
+          else {$window.location.href = "/#/userdash";}
 
 
       }).error(function(err){
