@@ -128,6 +128,7 @@ router.get('/getFormInfo', function (req, res){
   pg.connect(connectionString, function(err, client, done){
 
     var results = {
+	username: req.user.first_name,
       certs: [],
       dogs: [],
       form_info: {
@@ -180,6 +181,30 @@ router.get('/getFormInfo', function (req, res){
     });
   });
 });
+
+
+
+router.get('/', function(req, res){
+	console.log('in router.get user dash');
+	pg.connect(connectionString, function (err, client, done) {
+
+	  var results = [];
+	  var query = client.query("SELECT * FROM K9s");
+	  console.log('results: ', results);
+	  console.log('query: ', query);
+
+	  query.on('row', function(row){
+	    results.push(row);
+	  });
+
+	  query.on('end', function(){
+	    res.send(results);
+	  });
+
+	});
+
+    });
+
 
 
 

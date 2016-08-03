@@ -3,13 +3,6 @@
     left: 0%; }
   to {
     left: 50%; } }
-h1 {
-  text-align: center;
-  /*font-family: 'PT Sans Caption', sans-serif;*/
-  font-weight: 400;
-  font-size: 30px;
-  padding: 20px 0;
-  color: #777; }
 
 .checkout-wrap {
   color: #444;
@@ -102,7 +95,6 @@ ul.checkout-bar {
     height: 15px;
     margin: 0 auto;
     padding: 0;
-    position: absolute;
     width: 100%; }
     ul.checkout-bar:before {
       background-size: 35px 35px;

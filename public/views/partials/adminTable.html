@@ -9,8 +9,8 @@
   <form editable-form name="userForm" onaftersave="saveUser($index)">
 
     <!-- Approval Dialogue -->
-    <div ng-if="status">
-      <div class="{{alertStatus}}" role="alert"><strong>{{status}}<strong></div>
+    <div ng-if="data.statusAlert">
+      <div class="{{alertStatus}}" role="alert"><strong>{{data.statusAlert}}<strong></div>
     </div>
 
     <div>

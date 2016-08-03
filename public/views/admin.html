@@ -12,8 +12,9 @@
 
     <main id='adminMain' ng-controller='adminViewController'>
 
-      <div class="page-header">
+      <div class="page-header" ng-controller="snippitController">
         <h1>Admin Dashboard <small>Welcome, {{username}}</small></h1>
+
       </div>
 
       <ng-include src="activeTab.url"></ng-include>

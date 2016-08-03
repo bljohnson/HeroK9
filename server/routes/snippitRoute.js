@@ -53,7 +53,8 @@ router.get('/', function(req, res){
 
       var data = {
         inquiry: undefined,
-        application: undefined
+        application: undefined,
+        user: req.user.first_name
       };
 
       data.inquiry = {

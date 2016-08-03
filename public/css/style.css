@@ -1,6 +1,6 @@
-html {
-  position: relative;
-  min-height: 100%;
+html, body {
+  /*position: relative;*/
+  height: 100%;
   background-color: #fff;
 }
 
@@ -17,7 +17,12 @@ html {
 
 body {
   font-family: 'robotolight', Helvetica, Arial, sans-serif;
-  margin-bottom: 60px;
+  display: table;
+  width: 100%;
+}
+
+.agencies {
+  width: 154px;
 }
 
 md-content.md-default-theme, md-content {
@@ -69,7 +74,7 @@ md-card:last-child {
 }
 
 .home-col {
-  margin: 40px 0;
+  margin-top: 40px;
 }
 
 /* user header social media links and login */
@@ -134,16 +139,25 @@ md-card:last-child {
   font-size: 18px;
 }
 
+/* sticky footer */
+.page-row {
+  display: table-row;
+  height: 1px;
+}
 
+.page-row-expanded {
+  height: 100%;
+}
 
 /* footer */
 .footer {
   height: 60px;
   background-color: #0b357b;
   color: #fff;
-  text-align: center;
-  padding: 10px 0;
-  margin-top: 20px;
+  margin-top: 40px;
+  /*position: absolute;*/
+  /*bottom: 0;*/
+  /*width: 100%;*/
 }
 
 /* user dashboard */
@@ -194,10 +208,19 @@ md-dialog .md-button.md-default-theme.md-primary, .md-button.md-primary {
 
 /* restyle angular material form colors */
 
+/* radio buttons */
+md-radio-group:not([disabled]) .md-primary ._md-on {
+  background-color: #d24740;
+}
+
+md-radio-button:not([disabled]).md-primary.md-checked ._md-off {
+  border-color: #d24740;
+}
 
 /* handlerform view styles */
-.handler-row {
-  padding: 10px 40px;
-  border-bottom: 1px solid #d1d1d1;
-  margin: 10px 0;
+.handler-row, .form-bg {
+  padding: 20px 35px;
+  background-color: #ebebeb;
+  margin: 15px 0;
+  border-radius: 5px;
 }
