@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <base href="/"/>
     <meta charset="utf-8">
     <title>Hero K9</title>
     <link rel="icon" type="image/ico" href="/images/favicon.ico"/>
@@ -22,8 +23,8 @@
 
   <body ng-app="myApp">
     <header ng-include="'/views/partials/header.html'"></header>
-      <main ng-view></main>
-    <footer class="footer" ng-include="'/views/partials/footer.html'"></footer>
+      <main class="page-row page-row-expanded" ng-view></main>
+    <footer class="page-row" ng-include="'/views/partials/footer.html'"></footer>
 
     <script src="/vendors/angular.js" charset="utf-8"></script>
     <script src="/vendors/angular-route.min.js" charset="utf-8"></script>

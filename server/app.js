@@ -24,6 +24,7 @@ app.get( '/', function( req, res ){
   res.sendFile( path.resolve( 'public/views/index.html' ) );
 }); // end base url
 
+
 app.get( '/login', function( req, res ){
   console.log( 'at login' );
   res.sendFile( path.resolve( 'public/views/login.html' ) );
