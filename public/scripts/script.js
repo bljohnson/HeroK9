@@ -57,9 +57,9 @@ myApp.config(['$routeProvider', '$locationProvider', '$provide', function($route
 
       templateUrl: '/views/submitInquiry.html'
     }).
-    when('/login', function () {
-      $window.location.href = '/login';
-  });
+    otherwise({
+      redirectTo: 'home'
+    });
 }]);
 
 myApp.controller('loginController', ['$scope', '$http', '$window', '$location', function( $scope , $http, $window, $location){
