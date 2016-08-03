@@ -1,8 +1,9 @@
 <md-content flex layout-padding>
   <h1>Application Authorization</h1>
   <div class="" ng-controller="AppController">
+    <!-- ng-click="sendApplication(); go('/part2')" -->
       <form name="application" novalidate>
-    	  <h2>Authorized Signer Info:</h2>
+    	   <h2>Authorized Signer Info:</h2>
     	  <md-input-container class="md-block">
     	    <label for="rank">Rank/Title</label>
     	    <input ng-model="rank" id="rank" type="text" name="rank" value="" required>
@@ -110,8 +111,7 @@
             <div ng-message="required">This is required.</div>
           </div>
     	  </md-input-container>
-      </form>
       <input type="submit" ng-click="sendApplication(); go('/part2')" ng-disabled="application.$invalid" name="submit" value="Submit application">
+    </form>
   </div>
-
 </md-content>

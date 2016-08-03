@@ -180,6 +180,7 @@ md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-i
   background: #d24740;
   box-shadow: none;
   color: #fff;
+  margin: 6px 0; 
 }
 
 .md-button.md-primary.md-raised:not([disabled]):hover {
