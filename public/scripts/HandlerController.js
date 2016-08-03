@@ -28,7 +28,7 @@ angular.module('myApp').controller('HandlerController', [
 
     $http({
       method: 'GET',
-      url: '/getFormInfo'
+      url: '/userDash/getFormInfo'
     }).success(function(data){
       console.log('In /getFormInfo success with:', data);
       $scope.certList = data.certs;

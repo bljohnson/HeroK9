@@ -153,15 +153,28 @@ router.get('/getFormInfo', function (req, res){
       });
       queryDogs.on('end', function(){
 
-        //Get Form Information
-        results.form_info.vest_colors = client.query('SELECT enum_range(NULL::vest_color)');
-        results.form_info.vest_imprints = client.query('SELECT enum_range(NULL::vest_imprint)');
-        results.form_info.vest_imprint_colors = client.query('SELECT enum_range(NULL::vest_imprint_color)');
+		//Get Form Information
+		       var vest_colorQuery = client.query('SELECT unnest(enum_range(NULL::vest_color))');
+		       vest_colorQuery.on('row', function(row){
+				 console.log('vestcolor row: ', row);
+		         results.form_info.vest_colors.push(row.unnest);
+			   console.log('vestcolor array: ', results.form_info.vest_colors);
+		       });
 
+		       var vest_imprintQuery = client.query('SELECT unnest(enum_range(NULL::vest_imprint))');
+		       vest_imprintQuery.on('row', function(row){
+		         results.form_info.vest_imprints.push(row.unnest);
+		       });
 
-        //All done!
-        res.send(results);
-
+		       var vest_imprint_colorsQuery = client.query('SELECT unnest(enum_range(NULL::vest_imprint_color))');
+		       vest_imprint_colorsQuery.on('row', function(row){
+		         results.form_info.vest_imprint_colors.push(row.unnest);
+		       });
+			 vest_imprint_colorsQuery.on('end', function() {
+				 //All done!
+			      console.log('results: ', results);
+				res.send(results);
+			 });
       });
 
     });
