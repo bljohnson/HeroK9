@@ -176,9 +176,10 @@ myApp.controller('MainController', ['$scope', '$http', '$location', function($sc
       data: testObject
     });//end $http
     console.log(testObject);
+    $scope.go();
   };//end sendInquiry
-  $scope.go = function(path){
-    $location.path(path);
+  $scope.go = function(){
+    $location.path('/submitted');
   };
 }]);//end controller
 
