@@ -307,6 +307,8 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
    console.log(this.breed);
  };//end yesnoCheck
 
+
+
  $scope.sendApplication = function(){
 
    var objectToSend = {
@@ -333,7 +335,6 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
 		url: '/applicationForm/part1',
 		data: objectToSend
 	});
-
  }; //end sendApplication
 
 $scope.sendk9 = function(){
@@ -411,8 +412,7 @@ $scope.sendk9 = function(){
   // $scope.multiThreat = false;
   // $scope.doorPop = false;
 };
-
- $scope.go = function(path){
-   $location.path(path);
- };
+$scope.go = function(path){
+  $location.path(path);
+};
 }]);
