@@ -27,7 +27,7 @@
         <md-input-container class="md-block" flex-gt-sm>
           <label for="role">Role</label>
           <md-select ng-model="role" md-selected-text="getRole()" placeholder="Select a Role">
-            <md-option value="role" ng-repeat="role in roles">{{role}}</md-option>
+            <md-option value="{{role}}" ng-repeat="role in roles">{{role}}</md-option>
           </md-select>
         </md-input-container>
       </div>
