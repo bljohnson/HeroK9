@@ -58,7 +58,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$provide', function($route
       templateUrl: '/views/submitInquiry.html'
     }).
     otherwise({
-      redirectTo: 'home'
+      redirectTo: '/home'
     });
 }]);
 
@@ -93,7 +93,8 @@ myApp.controller('loginController', ['$scope', '$http', '$window', '$location', 
       data: loginObject
     }).success(function(data){
         console.log(data);
-          if (data.status_id == 99) {$window.location.href = '/adminView';}
+          if (!data.status_id) {$window.location.href = "/#/home";}
+          else if (data.status_id == 99) {$window.location.href = '/adminView';}
           else if (data.status_id == 3) {$window.location.href = '/#/application';}
           else {$window.location.href = "/#/userdash";}
 
