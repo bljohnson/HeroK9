@@ -73,10 +73,10 @@ router.post('/submitPdf', function (req, res){
         [req.body.id, req.body.k9_id, req.body.certification_id, req.body.url, req.body.notes]);
         console.log('in submitPdf post route, adding:', req.body.url);
       sendFile.on('end', function(){
+        done();
         return res.end();
       });
     }
-    done();
   });
 });
 
@@ -90,10 +90,10 @@ router.post('/submitImg', function (req, res){
         [req.body.url]);
         console.log('in submitImg post route, adding:', req.body.url);
       sendFile.on('end', function(){
+        done();
         return res.end();
       });
     }
-    done();
   });
 });
 
@@ -107,10 +107,10 @@ router.post('/submitK9App', function (req, res){
         [req.body.bio, req.body.back, req.body.chest]);
         console.log('in submitK9App post route, adding:', req.body.back);
       sendFile.on('end', function(){
+        done();
         return res.end();
       });
     }
-    done();
   });
 });
 
@@ -129,6 +129,7 @@ router.get('/', function(req, res){
 	  });
 
 	  query.on('end', function(){
+      done();
 	    res.send(results);
 	  });
 
