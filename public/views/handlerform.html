@@ -94,8 +94,8 @@
             <div layout-gt-sm="row">
               <md-input-container class="md-block">
                 <h2 class="md-subhead">Select a Vest Imprint Color</h2>
-                <md-select ng-model="vestColor" md-selected-text="getVestColor()" placeholder="Select a vest color">
-                  <md-option ng-value="color" ng-repeat="color in colors">{{ color }}</md-option>
+                <md-select ng-model="vestImprintColor" md-selected-text="getImprintColor()" placeholder="Select a vest imprint color">
+                  <md-option ng-value="vestImprintColor" ng-repeat="imprintColor in imprintColors">{{ imprintColor }}</md-option>
                 </md-select>
               </md-input-container>
             </div>
