@@ -9,7 +9,7 @@ passport.serializeUser(function(user, done) {
     done(null, user.id);
 });
 
-passport.deserializeUser(function(id, passDone) {
+passport.deserializeUser(function(err, id, passDone) {
   console.log('called deserializeUser');
 
   pg.connect(connection, function(err, client, pgDone) {
@@ -20,8 +20,8 @@ passport.deserializeUser(function(id, passDone) {
     }
 
     client.query("SELECT * FROM users WHERE id = $1", [id], function(err, results) {
-      pgDone();
 
+      pgDone();
       if(results.rows.length >= 1){
         console.log(results.rows[0]);
         return passDone(null, results.rows[0]);
@@ -33,6 +33,8 @@ passport.deserializeUser(function(id, passDone) {
       }
 
     });
+
+
   });
 });
 
