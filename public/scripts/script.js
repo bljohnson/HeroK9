@@ -62,8 +62,21 @@ myApp.config(['$routeProvider', '$locationProvider', '$provide', function($route
     });
 }]);
 
-myApp.controller('loginController', ['$scope', '$http', '$window', '$location', function( $scope , $http, $window, $location){
+myApp.controller('loginController', ['$scope', '$rootScope' , '$http', '$window', '$location', function( $scope ,$rootScope , $http, $window, $location){
 
+  $http({
+    method: "GET",
+    url: '/user/'
+  }).
+    success(function(data){
+      console.log("on load ", data);
+      if (data === false) {
+        $rootScope.isUserLoggedIn = false;
+      } else if (data.id !== undefined) {
+        $rootScope.isUserLoggedIn = true;
+      } else { console.log("how?");}
+
+  });
 
   $scope.register = function(){
     // console.log($location.search());
@@ -93,17 +106,23 @@ myApp.controller('loginController', ['$scope', '$http', '$window', '$location', 
       data: loginObject
     }).success(function(data){
         console.log(data);
-          if (!data.status_id) {$window.location.href = "/#/home";}
-          else if (data.status_id == 99) {$window.location.href = '/adminView';}
+          if (data.status_id == 99) {$window.location.href = '/adminView';}
           else if (data.status_id == 3) {$window.location.href = '/#/application';}
           else {$window.location.href = "/#/userdash";}
-
 
       }).error(function(err){
         console.log(err);
           $window.location.href = 'views/failure.html';
       });
     };
+
+    $scope.logout = function (){
+      $http({
+        method: "GET",
+        url: '/user/logout'
+      });
+    $rootScope.isUserLoggedIn = false;
+  };
 
   $scope.sendMail = function (){
     var mailObj = {

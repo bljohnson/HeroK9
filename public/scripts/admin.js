@@ -1,5 +1,3 @@
-console.log("Admin.js");
-
 var myApp = angular.module('myApp', ['ngMaterial', 'xeditable']);
 
 // xeditable Initialize
@@ -149,7 +147,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
     };
 
 
-<<<<<<< HEAD
+
     if ($scope.inquiryData[index].status_id == 3){
       var r = confirm("Would you like to resend " + firstName + "'s applicationForm?");
       if (r === true) {
@@ -191,8 +189,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
     }
 
     var firstName = $scope.inquiryData[index].first_name;
-=======
->>>>>>> application
+
     var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
     if (r === true){
 
@@ -202,13 +199,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
         data: deleteUserObject
       });
 
-<<<<<<< HEAD
 
-      $scope.inquiryData[index].statusAlert = firstName + ' has been deleted from your records!';
-      $scope.alertStatus = "alert alert-success";
-    } else {
-      $scope.inquiryData[index].statusAlert = firstName + ' has not been deleted from your records.';
-=======
        $scope.status = firstName + ' has been approved!';
        $scope.alertStatus = "alert alert-success";
        $scope.sendApproveMail(index);
@@ -224,7 +215,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
 
     var deleteUserObject = {
       contact_email: $scope.inquiryData[index].contact_email
-    }
+    };
 
     var firstName = $scope.inquiryData[index].first_name;
     var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
@@ -241,7 +232,6 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
       $scope.alertStatus = "alert alert-success";
     } else {
       $scope.status = firstName + ' has not been deleted from your records.';
->>>>>>> application
       $scope.alertStatus = "alert alert-warning";
     }
   };
