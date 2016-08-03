@@ -1,33 +1,33 @@
 <div class="container">
-  <h1>REQUEST APPLICATION</h1>
+<h1>REQUEST APPLICATION</h1>
   <p>To begin the grant application process to request equipment for your K9 and/or agency or department, please respond to the following question.</p>
 
+  <!-- Serve different forms depending on authorization status. -->
   <div class="form-bg">
     <p>Are you authorized to apply for a grant (a legal, binding agreement) on behalf of your agency or department?</p>
-    <form name="inquiry" action="demo_form.asp" onsubmit="return validateForm()" method="post">
-      <md-radio-group ng-model="authorized">
+    <md-radio-group ng-model="authorized">
         <md-radio-button ng-model="authorized" class="md-primary" id="yes" name="authorized" value="yes">Yes</md-radio-button>
         <md-radio-button ng-model="authorized" class="md-primary" id="no" name="authorized" value="no">No</md-radio-button>
-      </md-radio-group>
-    </form>
+    </md-radio-group>
   </div>
 
+  <!-- If authorized, serve full form. -->
   <div class="full" ng-show="authorized == 'yes'">
-    <form role="form" name="inquiry" method="post" novalidate>
-      <h2>Contact Information</h2>
+    <h2>Contact Information</h2>
+    <form name="fullForm" ng-submit="sendInquiry()" novalidate>
       <div layout-gt-sm="row">
         <md-input-container class="md-block" flex-gt-sm>
           <label for="rank">Rank/Title</label>
           <input ng-model="rank" id="rank" type="text" name="rank" required>
-          <div ng-messages="inquiry.rank.$error">
+          <div ng-messages="fullForm.rank.$error">
             <div ng-message="required">This is required.</div>
           </div>
         </md-input-container>
         <div flex="5" hide-xs hide-sm></div>
         <md-input-container class="md-block" flex-gt-sm>
-          <label>Role</label>
+          <label for="role">Role</label>
           <md-select ng-model="role" md-selected-text="getRole()" placeholder="Select a Role">
-            <md-option ng-value="Role" ng-repeat="role in roles">{{role}}</md-option>
+            <md-option value="role" ng-repeat="role in roles">{{role}}</md-option>
           </md-select>
         </md-input-container>
       </div>
@@ -121,9 +121,10 @@
     </form>
   </div>
 
+  <!-- If not authorized, serve the basic form. -->
   <div class="basic" ng-show="authorized == 'no'">
     <h2>Contact Information</h2>
-    <form role="form" name="inquiry" method="post" novalidate>
+    <form role="form" name="basicForm" method="post" novalidate>
       <md-input-container class="md-block form-group">
         <label for="firstName">First Name</label>
         <input ng-model="firstName" class="form-control" id="firstName" type="text" name="name" value="" ng-required="!firstName">
@@ -226,8 +227,7 @@
         <input ng-model="authorizedEmail" id="authorizedEmail" type="text" name="name" value="">
       </md-input-container>
       <!-- <button type="submit" name="button" ng-click="sendInquiry()" ng-disabled="inquiry.$invalid">Submit</button> -->
-      <button type="submit" ng-click="sendInquiry(); go('/submitted')" ng-disabled="inquiry.$invalid">Submit</button>
+      <button type="submit" ng-disabled="inquiry.$invalid">Submit</button>
     </form>
   </div>
 </div>
-</md-content>

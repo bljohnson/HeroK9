@@ -149,6 +149,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
     };
 
 
+<<<<<<< HEAD
     if ($scope.inquiryData[index].status_id == 3){
       var r = confirm("Would you like to resend " + firstName + "'s applicationForm?");
       if (r === true) {
@@ -190,6 +191,42 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
     }
 
     var firstName = $scope.inquiryData[index].first_name;
+=======
+>>>>>>> application
+    var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
+    if (r === true){
+
+      $http({
+        method: 'POST',
+        url: '/deleteUser',
+        data: deleteUserObject
+      });
+
+<<<<<<< HEAD
+
+      $scope.inquiryData[index].statusAlert = firstName + ' has been deleted from your records!';
+      $scope.alertStatus = "alert alert-success";
+    } else {
+      $scope.inquiryData[index].statusAlert = firstName + ' has not been deleted from your records.';
+=======
+       $scope.status = firstName + ' has been approved!';
+       $scope.alertStatus = "alert alert-success";
+       $scope.sendApproveMail(index);
+     } else {
+       $scope.status = firstName + ' has not been approved.';
+       $scope.alertStatus = "alert alert-warning";
+     }
+
+  };//End approveInquiry
+
+
+  $scope.deleteInquiry = function(e, index) {
+
+    var deleteUserObject = {
+      contact_email: $scope.inquiryData[index].contact_email
+    }
+
+    var firstName = $scope.inquiryData[index].first_name;
     var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
     if (r === true){
 
@@ -200,10 +237,11 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
       });
 
 
-      $scope.inquiryData[index].statusAlert = firstName + ' has been deleted from your records!';
+      $scope.status = firstName + ' has been deleted from your records!';
       $scope.alertStatus = "alert alert-success";
     } else {
-      $scope.inquiryData[index].statusAlert = firstName + ' has not been deleted from your records.';
+      $scope.status = firstName + ' has not been deleted from your records.';
+>>>>>>> application
       $scope.alertStatus = "alert alert-warning";
     }
   };
