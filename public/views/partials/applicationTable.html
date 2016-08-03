@@ -1,5 +1,5 @@
 <div ng-controller="applicationTableController">
-  <h3>Active Applications</h3>
+  <h3>Active Inquiries</h3>
 
   <label>Search: </label>
   <input type="text" ng-model='applicationSearchIn' placeholder="Not coded yet">
@@ -7,51 +7,53 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Applications</div>
     <div class="panel-body">
+      <button class='btn btn-info btn-lg' type="button" ng-click='viewControl(0)'>Dashboard home</button>
+
       <table class="table">
         <tr>
-          <th>
-            ID
-          </th>
-          <th>
-            First Name
-          </th>
-          <th>
-            Last Name
-          </th>
-          <th>
-            Phone
-          </th>
-          <th>
-            E-mail
-          </th>
-          <th>
-            Status
-          </th>
+          <th>ID</th> <th>First Name</th> <th>Last Name</th>  <th>Phone</th>  <th>E-mail</th> <th>Status</th>
         </tr>
-        <tr ng-repeat="data in applicationData" ng-click="expandView($index)" data-toggle="modal" data-target=".user-modal">
-          <td>
-            {{data.id}}
-          </td>
-          <td>
-            {{data.first_name}}
-          </td>
-          <td>
-            {{data.last_name}}
-          </td>
-          <td>
-            {{data.primary_phone}}
-          </td>
-          <td>
-            {{data.email}}
-          </td>
-          <td>
-            {{data.status}}
-          </td>
-        </tr>
+        <tbody ng-repeat="data in applicationData">
+          <tr ng-click="expandView($index)">
+            <td>
+              {{data.id}}
+            </td>
+            <td>
+              {{data.first_name}}
+            </td>
+            <td>
+              {{data.last_name}}
+            </td>
+            <td>
+              {{data.primary_phone}}
+            </td>
+            <td>
+              {{data.contact_email}}
+            </td>
+            <td>
+              {{data.status_id}}
+            </td>
+          </tr>
+
+          <tr style="display: none" id="{{ 'expand' + $index }}">
+            <td colspan='6'>
+
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">{{data.first_name}}'s Information</h3>
+                </div>
+                <div class="panel-body">
+
+                  <div ng-include="'./views/partials/adminTable.html'"></div>
+
+                </div>
+              </div>
+
+            </td>
+          </tr>
+        </tbody>
+
       </table>
     </div>
   </div>
-
-  <div class="md-padding dialogdemoBasicUsage" id="editUser" ng-cloak="">
-
 </div>

@@ -10,9 +10,6 @@ myApp.run(function(editableOptions) {
 myApp.controller('adminViewController', ['$scope', function($scope){
   console.log("In adminView");
 
-  //Dummy Data
-  $scope.username = "Dummy Username";
-
   //View selection
   $scope.tabs = [
     {url: './views/partials/snippit.html'},
@@ -54,6 +51,8 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
    $scope.newApplication = snippitData.application.new;
    $scope.pendingApplication = snippitData.application.pending;
    $scope.approvedApplication = snippitData.application.approved;
+
+   $scope.username = snippitData.user;
   });
 
 
@@ -150,24 +149,36 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
     };
 
 
-    var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
-    if (r === true) {
+    if ($scope.inquiryData[index].status_id == 3){
+      var r = confirm("Would you like to resend " + firstName + "'s applicationForm?");
+      if (r === true) {
+        $scope.inquiryData[index].statusAlert = 'Another email has been sent to ' + firstName + ' with instructions for the application process.';
+        $scope.alertStatus = "alert alert-success";
+        $scope.sendApproveMail(index);
+      } else {
+        $scope.inquiryData[index].statusAlert = firstName + ' was not send another email.';
+        $scope.alertStatus = "alert alert-warning";
+      }
+    } else {
+      var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
+      if (r === true) {
 
-      $http({
-        method: 'POST',
-        url: '/updateStatus',
-        data: statusData
-      }).then(function(data){
-        $scope.inquiryData[index].status_id = data.data;
-      });
+        $http({
+          method: 'POST',
+          url: '/updateStatus',
+          data: statusData
+        }).then(function(data){
+          $scope.inquiryData[index].status_id = data.data;
+        });
 
-       $scope.status = firstName + ' has been approved!';
-       $scope.alertStatus = "alert alert-success";
-       $scope.sendApproveMail(index);
-     } else {
-       $scope.status = firstName + ' has not been approved.';
-       $scope.alertStatus = "alert alert-warning";
-     }
+         $scope.inquiryData[index].statusAlert = firstName + ' has been approved!  An email has been sent to ' + firstName + ' with instructions for the application process.';
+         $scope.alertStatus = "alert alert-success";
+         $scope.sendApproveMail(index);
+       } else {
+         $scope.inquiryData[index].statusAlert = firstName + ' has not been approved.';
+         $scope.alertStatus = "alert alert-warning";
+       }
+    }
 
   };//End approveInquiry
 
@@ -189,10 +200,10 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
       });
 
 
-      $scope.status = firstName + ' has been deleted from your records!';
+      $scope.inquiryData[index].statusAlert = firstName + ' has been deleted from your records!';
       $scope.alertStatus = "alert alert-success";
     } else {
-      $scope.status = firstName + ' has not been deleted from your records.';
+      $scope.inquiryData[index].statusAlert = firstName + ' has not been deleted from your records.';
       $scope.alertStatus = "alert alert-warning";
     }
   };
@@ -218,7 +229,33 @@ myApp.controller('applicationTableController', ['$scope', '$http', function($sco
 
 
   $scope.expandView = function(index){
-    console.log(index, 'was clicked.');
+
+    var statusData = {
+      contact_email: $scope.applicationData[index].contact_email,
+      status_id: $scope.applicationData[index].status_id
+    };
+
+    //Check to see if the application/inquiry is new
+    if ($scope.applicationData[index].status_id == 1 || $scope.applicationData[index].status_id == 4){
+      $http({
+        method: 'POST',
+        url: '/updateStatus',
+        data: statusData
+      })
+      .then(function(data){
+        $scope.applicationData[index].status_id = data.data;
+      });
+
+
+    }
+
+    if (document.getElementById('expand' + index).style.display == "none"){
+      this.backgroundColor = "#AAAAAA";
+      document.getElementById('expand' + index).style.display = "table-row";
+    } else if (document.getElementById('expand' + index).style.display == "table-row"){
+      this.backgroundColor = "#FFFFFF";
+      document.getElementById('expand' + index).style.display = "none";
+    }
 
   };
 
