@@ -1,51 +1,72 @@
+////////////////////////////////////////////////////////////
+//     HandlerController for Form Functionality           //
+////////////////////////////////////////////////////////////
 angular.module('myApp').controller('HandlerController', [
   '$scope',
   '$http',
   '$window',
   '$location',
   'Upload',
-  function($scope, $http, $window, $location, Upload) {
+  '$mdDialog',
+  function($scope, $http, $window, $location, Upload, $mdDialog) {
+    $http({
+      method: 'GET',
+      url: '/userDash/getFormInfo'
+    }).success(function(data){
+      console.log('In /getFormInfo success with:', data);
+      $scope.certList = data.certs;
+      $scope.dogList = data.dogs;
+      $scope.breeds = data.form_info.breeds;
+      $scope.colors = data.form_info.vest_colors;
+      $scope.imprints = data.form_info.vest_imprints;
+      $scope.imprintColors = data.form_info.vest_imprint_colors;
+    });
 
-    // custom welcome message to the user
-    $scope.username = "Officer Henry Hall";
+    $scope.updateForm = function(){
+      for (var i=0; i<$scope.dogList.length; i++){
+        if ($scope.selectedDog.id == $scope.dogList[i].id){
+          $scope.dog_name = $scope.dogList[i].k9_name + "'s Information";
+          $scope.k9Age = $scope.dogList[i].age;
+          $scope.breed = $scope.dogList[i].breed;
+          $scope.handlerTitle = $scope.dogList[i].handler_rank;
+          $scope.handlerFirstName = $scope.dogList[i].handler_first_name;
+          $scope.handlerLastName = $scope.dogList[i].handler_last_name;
+          $scope.handlerBadge = $scope.dogList[i].handler_badge;
+          $scope.handlerCell = $scope.dogList[i].handler_cell_phone;
+          $scope.handlerPhone = $scope.dogList[i].handler_secondary_phone;
+          $scope.handlerEmail = $scope.dogList[i].handler_email;
+          //There are still a few fields missing that still need to be scoped in
 
-    ////////////////////////////////////////////////////////////
-    //                  FORM FUNCTIONALITY                    //
-    ////////////////////////////////////////////////////////////
+        }
+      }
+
+    };
+
+
+    // k9 breeds
+    $scope.breeds = ['German Shepherd', 'Belgian Malinois', 'Bloodhound', 'Other'];
+    $scope.getBreed = function() {
+      if ($scope.breed !== undefined) {
+        return $scope.breed;
+      } else {
+        return 'Please select a breed';
+      }
+    };
+
+    // if 'Other' breed
+    $scope.yesnoCheck = function() {
+      if (this.breed == 'Other') {
+        document.getElementById('ifYes').style.display = 'block';
+      } else {
+        document.getElementById('ifYes').style.display = 'none';
+     }
+    };
 
     // certification checkboxes
-    $scope.certifications = ['Explosives', 'Narcotics', 'Patrol', 'Trailing/Tracking', 'Other'];
-    $scope.selected = [1];
 
-    $scope.toggle = function (cert, list) {
-      var idx = list.indexOf(cert);
-      if (idx > -1) {
-        list.splice(idx, 1);
-      }
-      else {
-        list.push(cert);
-      }
-    };
-    $scope.exists = function (cert, list) {
-      return list.indexOf(cert) > -1;
-    };
-    $scope.isIndeterminate = function() {
-      return ($scope.selected.length !== 0 &&
-          $scope.selected.length !== $scope.certifications.length);
-    };
-    $scope.isChecked = function() {
-      return $scope.selected.length === $scope.certifications.length;
-    };
-    $scope.toggleAll = function() {
-      if ($scope.selected.length === $scope.certifications.length) {
-        $scope.selected = [];
-      } else if ($scope.selected.length === 0 || $scope.selected.length > 0) {
-        $scope.selected = $scope.certifications.slice(0);
-      }
-    };
 
     // select vest colors
-    $scope.colors = ['Black', 'Multi-Cam®', 'Ranger Green', 'Tan'];
+    // $scope.colors = ['Black', 'Multi-Cam®', 'Ranger Green', 'Tan'];
     $scope.vestColor = '';
     $scope.getVestColor = function() {
       if ($scope.vestColor !== undefined) {
@@ -56,7 +77,7 @@ angular.module('myApp').controller('HandlerController', [
     };
 
     // select vest imprint
-    $scope.imprints = ['Fire', 'Fire K9', 'Police', 'Police K9', 'Search & Rescue', 'Sheriff', 'Sheriff K9'];
+    // $scope.imprints = ['Fire', 'Fire K9', 'Police', 'Police K9', 'Search & Rescue', 'Sheriff', 'Sheriff K9'];
     $scope.vestImprint = '';
     $scope.getVestImprint = function() {
       if ($scope.vestImprint !== undefined) {
@@ -67,7 +88,7 @@ angular.module('myApp').controller('HandlerController', [
     };
 
     // select vest imprint color
-    $scope.imprintColors = ['Dark Gray', 'Reflective Silver', 'White', 'Yellow'];
+    // $scope.imprintColors = ['Dark Gray', 'Reflective Silver', 'White', 'Yellow'];
     $scope.vestImprintColor = '';
     $scope.getImprintColor = function() {
       if ($scope.vestImprintColor !== undefined) {
@@ -80,10 +101,16 @@ angular.module('myApp').controller('HandlerController', [
     // collect input to send to server
     $scope.sendK9App = function() {
       var k9AppToSend = {
-        bio: $scope.k9Bio,
-        back: $scope.k9Back,
-        chest: $scope.k9Chest
+        certs: [],
+        url: 'dummyURL'
       };
+
+      for (var i =0; i<$scope.certList.length; i++){
+        if (document.getElementById('cert' + i).className.indexOf('md-checked') >= 0){
+          k9AppToSend.certs.push($scope.certList[i].id);
+        }
+      }
+
       $http({
         method: 'POST',
         url: '/userDash/submitK9App',
@@ -93,10 +120,32 @@ angular.module('myApp').controller('HandlerController', [
       });
     };
 
+  // save button alert modal
+  $scope.saveForm = function() {
+    $mdDialog.show(
+      $mdDialog.alert({
+        title: 'Saved!',
+        textContent: 'Your application has been successfully saved.',
+        ok: 'Okay'
+      })
+    );
+  };
 
+  // submit button alert modal
+  $scope.submitForm = function() {
+    $mdDialog.show(
+      $mdDialog.alert({
+        title: 'Submitted!',
+        textContent: 'Your application has been successfully submitted.',
+        ok: 'Okay'
+      })
+    );
+  };
 }]); // end HandlerController
 
-
+////////////////////////////////////////////////////////////
+//                     PdfController                      //
+////////////////////////////////////////////////////////////
 angular.module('myApp').controller('PDFController', [
   '$scope',
   '$http',
@@ -112,7 +161,7 @@ angular.module('myApp').controller('PDFController', [
 
     // validate and upload files on submit
     $scope.submitPdf = function() {
-      if ($scope.form.file.$valid && $scope.file) {
+      if ($scope.k9form.file.$valid && $scope.file) {
         $scope.upload($scope.file);
         console.log('in submitPdf function, file to upload:', $scope.file);
       }
@@ -157,6 +206,9 @@ angular.module('myApp').controller('PDFController', [
     };
 }]); // end PDFController
 
+////////////////////////////////////////////////////////////
+//             ImgController for K9 photos                //
+////////////////////////////////////////////////////////////
 angular.module('myApp').controller('ImgController', [
   '$scope',
   '$http',
@@ -172,7 +224,7 @@ angular.module('myApp').controller('ImgController', [
 
     // validate and upload files on submit
     $scope.submitImg = function() {
-      if ($scope.form.file.$valid && $scope.file) {
+      if ($scope.k9form.file.$valid && $scope.file) {
         $scope.upload($scope.file);
         console.log('in submitIMG function, file to upload:', $scope.file);
       }
@@ -211,4 +263,63 @@ angular.module('myApp').controller('ImgController', [
         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
       });
     };
-}]);
+}]); // end ImgController
+
+////////////////////////////////////////////////////////////
+//         SquadImgController for Squad Photos            //
+////////////////////////////////////////////////////////////
+angular.module('myApp').controller('SquadImgController', [
+  '$scope',
+  '$http',
+  '$window',
+  '$location',
+  'Upload',
+  function($scope, $http, $window, $location, Upload) {
+
+    // file variables
+    $scope.file = '';
+    $scope.uploads = [];
+    $scope.comment = '';
+
+    // validate and upload files on submit
+    $scope.submitSquadImg = function() {
+      if ($scope.k9form.file.$valid && $scope.file) {
+        $scope.upload($scope.file);
+        console.log('in submitSquadImg function, file to upload:', $scope.file);
+      }
+    };
+
+    // upload files to S3 and to the database
+    $scope.upload = function(file) {
+      Upload.upload ({
+        url: '/userDash/uploads',
+        data: {
+          file: file,
+          'user': $scope.user,
+          'comment': $scope.comment
+        }
+      }).then(function(resp) {
+        console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
+
+        // then, if success, also collect input & send data and file location to database
+        var imgToServer = {
+          url: resp.data.location
+        };
+        console.log('send img to server: ', imgToServer);
+
+        // post method to send object to database
+        $http({
+          method: 'POST',
+          url: '/userDash/submitImg',
+          data: imgToServer
+        }).then(function() {
+          console.log('submitImg post success');
+        });
+      }, function(resp) {
+        console.log('Error status: ' + resp.status);
+      }, function(evt) {
+        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+      });
+    };
+}]); // end SquadImgController

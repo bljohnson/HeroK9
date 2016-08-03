@@ -69,7 +69,7 @@ CREATE TABLE K9s (
 	squad_retirement BOOLEAN
 );
 
-CREATE TYPE certification AS ENUM ('Explosives', 'Narcotics', 'Patrol', 'Tracking/Trailing', 'Other');
+CREATE TYPE certification AS ENUM ('Explosives', 'Narcotics', 'Patrol', 'Tracking/Trailing');
 
 CREATE TABLE certifications (
 	id SERIAL PRIMARY KEY NOT NULL,

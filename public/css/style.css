@@ -176,20 +176,29 @@ md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-i
 
 /* site wide button styles */
 
-.primary-btn {
-  outline: 0;
+.md-button.md-primary.md-raised {
   background: #d24740;
-  border: 0;
-  padding: 10px 20px;
-  margin: 10px 0;
-  border-radius: 3px;
-  color: #FFFFFF;
-  font-size: 14px;
-  transition: all 0.5s ease 0s;
-  cursor: pointer;
+  box-shadow: none;
+  color: #fff;
 }
 
-.primary-btn:hover {
+.md-button.md-primary.md-raised:not([disabled]):hover {
+  background: #ca2c24;
+}
+
+md-dialog .md-primary {
+  background: #d24740;
+}
+
+md-dialog .md-button:not([disabled]) {
+  background: #d24740;
+}
+
+md-dialog .md-button.md-default-theme.md-primary, .md-button.md-primary {
+  color: #fff;
+}
+
+.md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover {
   background: #ca2c24;
 }
 

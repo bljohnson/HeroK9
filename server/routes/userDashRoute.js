@@ -103,16 +103,84 @@ router.post('/submitK9App', function (req, res){
     if(err){
       console.log(err);
     } else {
-      var sendFile = client.query('INSERT INTO test (k9_bio, k9_back, k9_chest) VALUES ($1, $2, $3)',
-        [req.body.bio, req.body.back, req.body.chest]);
-        console.log('in submitK9App post route, adding:', req.body.back);
-      sendFile.on('end', function(){
-        return res.end();
+      var results = [];
+      var k9id = client.query('SELECT id FROM k9s WHERE user_id=($1)', [req.user.id]);
+
+      k9id.on('row', function(row){
+        results.push(parseInt(row.id));
+        console.log('Row:', row);
+      });
+
+      k9id.on('end', function(){
+
+        for (var i=0; i<results.length; i++){
+          var sendFile = client.query('INSERT INTO k9s_certifications (k9_id, certification_id, url) VALUES ($1, $2, $3)', [results[i], req.body.certs[i], req.body.url]);
+        }
+
+        res.sendStatus(200);
+
       });
     }
-    done();
   });
 });
+
+router.get('/getFormInfo', function (req, res){
+  pg.connect(connectionString, function(err, client, done){
+
+    var results = {
+      certs: [],
+      dogs: [],
+      form_info: {
+        breeds: [],
+        vest_colors: [],
+        vest_imprints: [],
+        vest_imprint_colors: []
+      }
+    };
+
+
+    //Get Certs
+    var queryCerts = client.query('SELECT * from certifications');
+    queryCerts.on('row', function(row){
+      results.certs.push(row);
+    });
+    queryCerts.on('end', function(){
+
+      //Get Dogs
+      var queryDogs = client.query('SELECT * from k9s WHERE user_id=($1)', [req.user.id]);
+      queryDogs.on('row', function(row){
+        results.dogs.push(row);
+      });
+      queryDogs.on('end', function(){
+
+		//Get Form Information
+		       var vest_colorQuery = client.query('SELECT unnest(enum_range(NULL::vest_color))');
+		       vest_colorQuery.on('row', function(row){
+				 console.log('vestcolor row: ', row);
+		         results.form_info.vest_colors.push(row.unnest);
+			   console.log('vestcolor array: ', results.form_info.vest_colors);
+		       });
+
+		       var vest_imprintQuery = client.query('SELECT unnest(enum_range(NULL::vest_imprint))');
+		       vest_imprintQuery.on('row', function(row){
+		         results.form_info.vest_imprints.push(row.unnest);
+		       });
+
+		       var vest_imprint_colorsQuery = client.query('SELECT unnest(enum_range(NULL::vest_imprint_color))');
+		       vest_imprint_colorsQuery.on('row', function(row){
+		         results.form_info.vest_imprint_colors.push(row.unnest);
+		       });
+			 vest_imprint_colorsQuery.on('end', function() {
+				 //All done!
+			      console.log('results: ', results);
+				res.send(results);
+			 });
+      });
+
+    });
+  });
+});
+
 
 
 router.get('/', function(req, res){
