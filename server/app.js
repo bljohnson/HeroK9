@@ -73,6 +73,7 @@ var applicationForm = require('../server/routes/applicationForm');
 var updateStatus = require('../server/routes/updateStatusRoute');
 var userDash = require ('../server/routes/userDashRoute');
 var deleteUser = require ('../server/routes/deleteUser');
+var handlerForm = require ('../server/routes/handlerForm');
 
 
 
@@ -100,3 +101,4 @@ var deleteUser = require ('../server/routes/deleteUser');
     app.use('/userDash', userDash);
     app.use('/applicationForm', applicationForm);
     app.use('/saveUser', saveUser);
+    app.use('/handlerForm', handlerForm);
