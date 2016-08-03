@@ -12,13 +12,21 @@
     	  </md-input-container>
     	  <div>
     	    <h1 class="md-title">Role</h1>
-    	    <div layout="row">
+    	    <!-- <div layout="row">
       		  <md-input-container>
         		  <md-select ng-model="role" md-selected-text="getRole()" placeholder="Select a role">
         			  <md-option ng-value="role" ng-repeat="role in roles">{{role}}</md-option>
         		  </md-select>
       		  </md-input-container>
-    	    </div>
+    	    </div> -->
+          <div layout="row">
+            <md-input-container style="margin-right: 10px;">
+              <label>Select a role</label>
+              <md-select ng-model="role">
+                <md-option ng-repeat="role in roles" value="{{role}}">{{role}}</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
     	  </div>
     	  <md-input-container class="md-block">
     	    <label for="firstName">First Name</label>
@@ -54,13 +62,14 @@
     	  </md-input-container>
     	  <div>
     	    <h1 class="md-title">Best time of day to contact</h1>
-    	    <div layout="row">
-    		<md-input-container>
-    		  <md-select ng-model="contactTime" md-selected-text="getContactTime()" placeholder="Select a time">
-    			<md-option ng-value="time" ng-repeat="time in times">{{time}}</md-option>
-    		  </md-select>
-    		</md-input-container>
-    	    </div>
+          <div layout="row">
+            <md-input-container style="margin-right: 10px;">
+              <label>Select a time</label>
+              <md-select ng-model="time">
+                <md-option ng-repeat="time in times" value="{{time}}">{{time}}</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
     	  </div>
     	  <md-input-container class="md-block">
     	    <label for="address1">Department Address - Street 1</label>

@@ -39,6 +39,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/k9application.html',
       controller: 'AppController'
     }).
+    when('/part3', {
+      templateUrl: '/views/k9application.html',
+      controller: 'AppController'
+    }).
     when('/submitted',{
       templateUrl: '/views/submitInquiry.html',
     }).
@@ -287,6 +291,7 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
    } else {
      document.getElementById("ifYes").style.display = "none";
    }
+   console.log(this.breed);
  };//end yesnoCheck
 
  $scope.sendApplication = function(){
@@ -363,11 +368,8 @@ $scope.sendk9 = function(){
     if (document.getElementById('equipment' + i).className.indexOf('md-checked') >= 0){
       objectToSend.equipment.push($scope.equipmentList[i].id);
     }
+    console.log(objectToSend.equipment);
   }
-
-
-
-
 
   $http({
 		method: 'POST',
@@ -375,29 +377,27 @@ $scope.sendk9 = function(){
 		data: objectToSend
 	});
 
-  $scope.name = '';
-  breedToSend = '';
-  $scope.age = '';
-  $scope.certified = false;
-  $scope.activeDuty = false;
-  $scope.retirement = false;
-  $scope.title = '';
-  $scope.first = '';
-  $scope.last = '';
-  $scope.badge = '';
-  $scope.badgeConfirm = '';
-  $scope.cell = '';
-  $scope.cellConfirm = '';
-  $scope.secondaryCell = '';
-  $scope.emailAddress = '';
-  $scope.emailConfirm = '';
-  $scope.kennel = false;
-  $scope.ballistic = false;
-  $scope.multiThreat = false;
-  $scope.doorPop = false;
+  // $scope.name = '';
+  // breedToSend = '';
+  // $scope.age = '';
+  // $scope.certified = false;
+  // $scope.activeDuty = false;
+  // $scope.retirement = false;
+  // $scope.title = '';
+  // $scope.first = '';
+  // $scope.last = '';
+  // $scope.badge = '';
+  // $scope.badgeConfirm = '';
+  // $scope.cell = '';
+  // $scope.cellConfirm = '';
+  // $scope.secondaryCell = '';
+  // $scope.emailAddress = '';
+  // $scope.emailConfirm = '';
+  // $scope.kennel = false;
+  // $scope.ballistic = false;
+  // $scope.multiThreat = false;
+  // $scope.doorPop = false;
 };
-
-
 
  $scope.go = function(path){
    $location.path(path);
