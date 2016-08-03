@@ -2,22 +2,17 @@
   <h1>Application form</h1>
   <div class="" ng-controller="AppController">
     <h2>Enter K9 information</h2>
-    <form name="application" novalidate>
+    <form name="k9application" novalidate>
       <md-input-container class="md-block">
         <label for="name">Name</label>
         <input ng-model="name" id="name" type="text" name="name" value="" required>
-        <div ng-messages="projectForm.description.$error">
+        <div ng-messages="k9application.name.$error">
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
       <div>
         <h1 class="md-title">Breed</h1>
         <div layout="row">
-          <!-- <md-input-container>
-            <md-select ng-model="breed" md-selected-text="getBreed()" placeholder="Select a breed" ng-change="yesnoCheck()">
-                <md-option ng-value="breed" ng-repeat="breed in breeds">{{breed}}</md-option>
-            </md-select>
-          </md-input-container> -->
           <md-input-container style="margin-right: 10px;">
             <label>Select a breed</label>
             <md-select ng-model="breed" ng-change="yesnoCheck()">
@@ -33,7 +28,7 @@
       <md-input-container class="md-block">
         <label for="age">Age (in months)</label>
         <input ng-model="age" id="age" type="text" name="age" value="" required>
-        <div ng-messages="projectForm.description.$error">
+        <div ng-messages="k9application.age.$error">
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
@@ -52,41 +47,39 @@
         <md-radio-button value="yes" class="md-primary">Yes</md-radio-button>
         <md-radio-button value="no" class="md-primary">No</md-radio-button>
       </md-radio-group>
-    </form>
   <h2>Add Handler Information</h2>
-  <form>
     <md-input-container class="md-block">
       <label for="title">Title/Rank</label>
       <input ng-model="title" id="title" type="text" name="title" value="" required>
-      <div ng-messages="projectForm.description.$error">
+      <div ng-messages="k9application.title.$error">
         <div ng-message="required">This is required.</div>
       </div>
     </md-input-container>
     <md-input-container class="md-block">
       <label for="first">First Name</label>
       <input ng-model="first" id="first" type="text" name="first" value="" required>
-      <div ng-messages="projectForm.description.$error">
+      <div ng-messages="k9application.first.$error">
         <div ng-message="required">This is required.</div>
       </div>
     </md-input-container>
     <md-input-container class="md-block">
       <label for="last">Last Name</label>
       <input ng-model="last" id="last" type="text" name="last" value="" required>
-      <div ng-messages="projectForm.description.$error">
+      <div ng-messages="k9application.last.$error">
         <div ng-message="required">This is required.</div>
       </div>
     </md-input-container>
     <md-input-container class="md-block">
       <label for="badge">Badge #</label>
       <input ng-model="badge" id="badge" type="text" name="badge" value="" required>
-      <div ng-messages="projectForm.description.$error">
+      <div ng-messages="k9application.badge.$error">
         <div ng-message="required">This is required.</div>
       </div>
     </md-input-container>
     <md-input-container class="md-block">
       <label for="badge">Confirm badge #</label>
-      <input ng-model="badgeConfirm" id="badge" type="text" name="badge" ng-change="checkAll()"value="" required>
-      <div ng-messages="projectForm.description.$error">
+      <input ng-model="badgeConfirm" id="badge" type="text" name="badgeConfirm" ng-change="checkAll()"value="" required>
+      <div ng-messages="k9application.badgeConfirm.$error">
         <div ng-message="required">This is required.</div>
       </div>
       <p ng-show="badgeMatch" class="confirm">Badge # has to match</p>
@@ -94,14 +87,14 @@
     <md-input-container class="md-block">
       <label for="cell">Cell Phone # (xxx-xxx-xxxx)</label>
       <input ng-model="cell" id="cell" type="text" name="cell" value="" required>
-      <div ng-messages="projectForm.description.$error">
+      <div ng-messages="k9application.cell.$error">
         <div ng-message="required">This is required.</div>
       </div>
     </md-input-container>
     <md-input-container class="md-block">
       <label for="cell">Confirm cell phone #</label>
-      <input ng-model="cellConfirm" id="cell" type="text" name="cell" ng-change="checkAll()"value="" required>
-      <div ng-messages="projectForm.description.$error">
+      <input ng-model="cellConfirm" id="cell" type="text" name="cellConfirm" ng-change="checkAll()"value="" required>
+      <div ng-messages="k9application.cellConfirm.$error">
         <div ng-message="required">This is required.</div>
       </div>
       <p ng-show="cellMatch" class="confirm">Cell phone # has to match</p>
@@ -109,21 +102,21 @@
     <md-input-container class="md-block">
       <label for="secondaryCell">Secondary Cell Phone # (xxx-xxx-xxxx)</label>
       <input ng-model="secondaryCell" id="secondaryCell" type="text" name="secondaryCell" value="">
-      <div ng-messages="projectForm.description.$error">
+      <div ng-messages="k9application.secondaryCell.$error">
         <div ng-message="required">This is required.</div>
       </div>
     </md-input-container>
     <md-input-container class="md-block">
       <label for="emailAddress">Email Address</label>
       <input ng-model="emailAddress" id="emailAddress" type="text" name="emailAddress" value="" required>
-      <div ng-messages="projectForm.description.$error">
+      <div ng-messages="k9application.emailAddress.$error">
         <div ng-message="required">This is required.</div>
       </div>
     </md-input-container>
     <md-input-container class="md-block">
       <label for="emailConfirm">Confirm email address</label>
       <input ng-model="emailConfirm" id="checkk" type="text" name="emailConfirm"  ng-change="checkAll()" value="{{emailAddress}}" required>
-      <div ng-messages="projectForm.description.$error">
+      <div ng-messages="k9application.emailConfirm.$error">
         <div ng-message="required">This is required.</div>
       </div>
         <p ng-show="emailMatch" class="confirm">Email has to match</p>
@@ -136,28 +129,14 @@
             <md-checkbox id="equipment{{$index}}" class="equipment md-primary" aria-label="{{equipment.name}}">
               {{equipment.name}}
             </md-checkbox><br>
-
-
-
-            <!-- <md-checkbox id="check2" class="equipment md-primary" ng-model="ballistic" aria-label="Checkbox 2" ng-true-value="'Bullet resistant vest'">
-              Ballistic vest
-            </md-checkbox><br>
-            <md-checkbox id="check3" class="equipment md-primary" ng-model="multiThreat" aria-label="Checkbox 3" ng-true-value="'Bullet and stab resistant vest'">
-              Multi-threat vest
-            </md-checkbox><br>
-            <md-checkbox id="check4" class="equipment md-primary" ng-model="doorPop" aria-label="Checkbox 4" ng-true-value="'Door pop/Heat alarm'">
-              Door pop/Heat alarm
-            </md-checkbox> -->
           </div>
         </div>
       </fieldset>
     </div><br>
-  </form>
 
 
     <div class="">
       <h1>Legal agreement*</h1>
-      <form name="application" novalidate>
         <div>
           <fieldset class="standard">
             <div layout="column" layout-wrap layout-gt-sm="row">
@@ -175,7 +154,7 @@
         <md-input-container class="md-block">
           <label for="signature">Signature</label>
           <input ng-model="signature" id="signature" type="text" name="signature" value="" required>
-          <div ng-messages="projectForm.description.$error">
+          <div ng-messages="k9application.signature.$error">
             <div ng-message="required">This is required.</div>
           </div>
         </md-input-container>
@@ -184,6 +163,7 @@
     <input type="submit" ng-click="sendk9(); go('/userdash')" ng-disabled="application.$invalid" name="submit" value="Submit application">
     <input type="submit" ng-click="sendk9(); go('/part3')" ng-disabled="application.$invalid" name="submit" value="Submit K9 and add another">
     <!-- <a href="#userdash"></a> -->
+  </form>
 
     <!-- End AppController -->
   </div>
