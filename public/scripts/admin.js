@@ -11,7 +11,7 @@ myApp.controller('adminViewController', ['$scope', function($scope){
   console.log("In adminView");
 
   //Dummy Data
-  $scope.username = "Dummy Username ®";
+  $scope.username = "Dummy Username";
 
   //View selection
   $scope.tabs = [
@@ -70,7 +70,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
     //Set the ng-include
     $scope.viewControl(2);
 
-  }//End showApplications
+  };//End showApplications
 
 }]);//End snippitController
 
@@ -150,7 +150,6 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
     };
 
 
-    var txt;
     var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
     if (r === true) {
 
@@ -170,7 +169,32 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
        $scope.alertStatus = "alert alert-warning";
      }
 
+  };//End approveInquiry
 
+
+  $scope.deleteInquiry = function(e, index) {
+
+    var deleteUserObject = {
+      contact_email: $scope.inquiryData[index].contact_email
+    }
+
+    var firstName = $scope.inquiryData[index].first_name;
+    var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
+    if (r === true){
+
+      $http({
+        method: 'POST',
+        url: '/deleteUser',
+        data: deleteUserObject
+      });
+
+
+      $scope.status = firstName + ' has been deleted from your records!';
+      $scope.alertStatus = "alert alert-success";
+    } else {
+      $scope.status = firstName + ' has not been deleted from your records.';
+      $scope.alertStatus = "alert alert-warning";
+    }
   };
 
 
@@ -187,7 +211,7 @@ myApp.controller('applicationTableController', ['$scope', '$http', function($sco
   }).
   then(function(tableData){
     //Bind the returned data
-    tableData = tableData.data
+    tableData = tableData.data;
     console.log(tableData);
     $scope.applicationData = tableData;
   });
@@ -219,7 +243,7 @@ myApp.controller('adminEditController', ['$scope', '$http', function($scope, $ht
       add_city: $scope.inquiryData[index].dept_add_city,
       add_state: $scope.inquiryData[index].dept_add_state,
       add_zip: $scope.inquiryData[index].dept_add_zip
-    }
+};
 
     console.log(user);
 
