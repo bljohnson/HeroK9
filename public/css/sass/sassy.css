@@ -102,7 +102,6 @@ ul.checkout-bar {
     height: 15px;
     margin: 0 auto;
     padding: 0;
-    position: absolute;
     width: 100%; }
     ul.checkout-bar:before {
       background-size: 35px 35px;

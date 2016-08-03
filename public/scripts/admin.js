@@ -11,7 +11,7 @@ myApp.controller('adminViewController', ['$scope', function($scope){
   console.log("In adminView");
 
   //Dummy Data
-  $scope.username = "Dummy Username ®";
+  $scope.username = "Dummy Username";
 
   //View selection
   $scope.tabs = [
@@ -70,7 +70,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
     //Set the ng-include
     $scope.viewControl(2);
 
-  }//End showApplications
+  };//End showApplications
 
 }]);//End snippitController
 
@@ -211,7 +211,7 @@ myApp.controller('applicationTableController', ['$scope', '$http', function($sco
   }).
   then(function(tableData){
     //Bind the returned data
-    tableData = tableData.data
+    tableData = tableData.data;
     console.log(tableData);
     $scope.applicationData = tableData;
   });
@@ -243,7 +243,7 @@ myApp.controller('adminEditController', ['$scope', '$http', function($scope, $ht
       add_city: $scope.inquiryData[index].dept_add_city,
       add_state: $scope.inquiryData[index].dept_add_state,
       add_zip: $scope.inquiryData[index].dept_add_zip
-    }
+};
 
     console.log(user);
 
