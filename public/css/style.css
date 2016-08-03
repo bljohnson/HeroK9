@@ -21,6 +21,9 @@ body {
   width: 100%;
 }
 
+.agencies {
+  width: 154px;
+}
 
 md-content.md-default-theme, md-content {
     background-color: #fff;
@@ -71,7 +74,7 @@ md-card:last-child {
 }
 
 .home-col {
-  margin: 40px 0;
+  margin-top: 40px;
 }
 
 /* user header social media links and login */
@@ -196,10 +199,19 @@ md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-i
 
 /* restyle angular material form colors */
 
+/* radio buttons */
+md-radio-group:not([disabled]) .md-primary ._md-on {
+  background-color: #d24740;
+}
+
+md-radio-button:not([disabled]).md-primary.md-checked ._md-off {
+  border-color: #d24740;
+}
 
 /* handlerform view styles */
-.handler-row {
-  padding: 10px 40px;
-  border-bottom: 1px solid #d1d1d1;
-  margin: 10px 0;
+.handler-row, .form-bg {
+  padding: 20px 35px;
+  background-color: #ebebeb;
+  margin: 15px 0;
+  border-radius: 5px;
 }
