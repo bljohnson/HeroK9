@@ -21,6 +21,7 @@ router.get('/', function(req, res){
     });
 
     query.on('end', function(){
+      done();
 
       var inquiriesNew = 0;
       var inquiriesPending = 0;
@@ -69,8 +70,8 @@ router.get('/', function(req, res){
         approved: applicationsApproved
       };
 
-      console.log("object to send, data ", data);
-      console.log(results);
+      // console.log("object to send, data ", data);
+      // console.log(results);
 
       res.send(data);
 

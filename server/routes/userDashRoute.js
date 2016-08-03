@@ -73,10 +73,10 @@ router.post('/submitPdf', function (req, res){
         [req.body.id, req.body.k9_id, req.body.certification_id, req.body.url, req.body.notes]);
         console.log('in submitPdf post route, adding:', req.body.url);
       sendFile.on('end', function(){
+        done();
         return res.end();
       });
     }
-    done();
   });
 });
 
@@ -90,10 +90,10 @@ router.post('/submitImg', function (req, res){
         [req.body.url]);
         console.log('in submitImg post route, adding:', req.body.url);
       sendFile.on('end', function(){
+        done();
         return res.end();
       });
     }
-    done();
   });
 });
 
@@ -118,7 +118,6 @@ router.post('/submitK9App', function (req, res){
         }
 
         res.sendStatus(200);
-
       });
     }
   });
@@ -154,12 +153,12 @@ router.get('/getFormInfo', function (req, res){
       });
       queryDogs.on('end', function(){
 
-		//Get Form Information
+		      //Get Form Information
 		       var vest_colorQuery = client.query('SELECT unnest(enum_range(NULL::vest_color))');
 		       vest_colorQuery.on('row', function(row){
-				 console.log('vestcolor row: ', row);
+             console.log('vestcolor row: ', row);
 		         results.form_info.vest_colors.push(row.unnest);
-			   console.log('vestcolor array: ', results.form_info.vest_colors);
+             console.log('vestcolor array: ', results.form_info.vest_colors);
 		       });
 
 		       var vest_imprintQuery = client.query('SELECT unnest(enum_range(NULL::vest_imprint))');
@@ -198,6 +197,7 @@ router.get('/', function(req, res){
 	  });
 
 	  query.on('end', function(){
+      done();
 	    res.send(results);
 	  });
 
