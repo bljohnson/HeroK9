@@ -150,7 +150,6 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
     };
 
 
-    var txt;
     var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
     if (r === true) {
 
@@ -170,7 +169,32 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
        $scope.alertStatus = "alert alert-warning";
      }
 
+  };//End approveInquiry
 
+
+  $scope.deleteInquiry = function(e, index) {
+
+    var deleteUserObject = {
+      contact_email: $scope.inquiryData[index].contact_email
+    }
+
+    var firstName = $scope.inquiryData[index].first_name;
+    var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
+    if (r === true){
+
+      $http({
+        method: 'POST',
+        url: '/deleteUser',
+        data: deleteUserObject
+      });
+
+
+      $scope.status = firstName + ' has been deleted from your records!';
+      $scope.alertStatus = "alert alert-success";
+    } else {
+      $scope.status = firstName + ' has not been deleted from your records.';
+      $scope.alertStatus = "alert alert-warning";
+    }
   };
 
 

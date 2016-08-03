@@ -43,37 +43,68 @@
                 </div>
             </md-input-container>
           </div>
-          <div layout-gt-xs="row">
+          <div layout-gt-xs="row" class="handler-row">
             <md-input-container class="md-block" flex-gt-xs>
-              <label for="k9Bio">K9 Biography/Personality Profile</label>
+              <label class="md-subhead" for="k9Bio">K9 Biography/Personality Profile</label>
               <textarea id="k9Bio" ng-model="k9Bio" md-maxlength="150" rows="5" md-select-on-focus></textarea>
             </md-input-container>
           </div>
-          <div>
-            <h1 class="md-title">Ballistic Vest or Multi-Threat Vest</h1>
-            <p>If applying for Ballistic Vest or Multi-Threat Vest, provide K9 measurements and customization requests.</p>
+          <div class="handler-row">
+            <div>
+              <h1 class="md-title">Ballistic Vest or Multi-Threat Vest</h1>
+              <p>If applying for Ballistic Vest or Multi-Threat Vest, provide K9 measurements and customization requests.</p>
+            </div>
+            <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Back (inches)</label>
+                <input ng-model="k9Back" md-maxlength="2" name="k9Back"/>
+              </md-input-container>
+              <div flex="5" hide-xs hide-sm></div>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Chest (inches)</label>
+                <input ng-model="k9Chest" md-maxlength="2" name="k9Chest"/>
+              </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Girth (inches)</label>
+                <input ng-model="k9Girth" md-maxlength="2" name="k9Girth"/>
+              </md-input-container>
+              <div flex="5" hide-xs hide-sm></div>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Inner Front Leg To Inner Hind Leg (inches)</label>
+                <input ng-model="k9Undercarriage" md-maxlength="2" name="k9Undercarriage"/>
+              </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <h2 class="md-subhead">Select a Vest Color</h2>
+                <md-select ng-model="vestColor" md-selected-text="getVestColor()" placeholder="Select a vest color">
+                    <md-option ng-value="color" ng-repeat="color in colors">{{ color }}</md-option>
+                </md-select>
+              </md-input-container>
+              <div flex="5" hide-xs hide-sm></div>
+              <md-input-container class="md-block" flex-gt-sm>
+                <h2 class="md-subhead">Select a Vest Imprint</h2>
+                <md-select ng-model="vestImprint" md-selected-text="getVestImprint()" placeholder="Select vest imprint">
+                  <md-option ng-value="imprint" ng-repeat="imprint in imprints">{{ imprint }}</md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+              <md-input-container class="md-block">
+                <h2 class="md-subhead">Select a Vest Imprint Color</h2>
+                <md-select ng-model="vestColor" md-selected-text="getVestColor()" placeholder="Select a vest color">
+                  <md-option ng-value="color" ng-repeat="color in colors">{{ color }}</md-option>
+                </md-select>
+              </md-input-container>
+            </div>
           </div>
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Back (inches)</label>
-              <input ng-model="k9Back" md-maxlength="2" name="k9Back"/>
-            </md-input-container>
-            <div flex="5" hide-xs hide-sm></div>
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Chest (inches)</label>
-              <input ng-model="k9Chest" md-maxlength="2" name="k9Chest"/>
-            </md-input-container>
-          </div>
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Girth (inches)</label>
-              <input ng-model="k9Girth" md-maxlength="2" name="k9Girth"/>
-            </md-input-container>
-            <div flex="5" hide-xs hide-sm></div>
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Inner Front Leg To Inner Hind Leg (inches)</label>
-              <input ng-model="k9Undercarriage" md-maxlength="2" name="k9Undercarriage"/>
-            </md-input-container>
+          <div class="handler-row">
+            <div>
+              <h1 class="md-title">In-Squad Kennel and/or Door Pop/Heat Alarm Unit</h1>
+              <p>If applying for In-Squad Kennel and/or Door Pop/Heat Alarm Unit, provide Squad information and photos.</p>
+            </div>
           </div>
 
 
@@ -85,31 +116,8 @@
     </div>
 
 
-    <!-- <div class="md-padding">
+    <!--
 
-
-
-
-
-              <fieldset class="cert-fieldset">
-                <legend class="cert-legend">Ballistic or multi-threat vest</legend>
-                <p>If applying for ballistic or multi-threat vest, provide K9 measurements and customization requests:</p>
-                <md-input-container class="md-block">
-                  <label>Back (inches)</label>
-                  <input md-maxlength="2" name="name" ng-model="user.name" />
-                </md-input-container>
-                <md-input-container class="md-block">
-                  <label>Chest (inches)</label>
-                  <input md-maxlength="2" name="name" ng-model="user.name" />
-                </md-input-container>
-                <md-input-container class="md-block">
-                  <label>Girth (inches)</label>
-                  <input md-maxlength="2" name="name" ng-model="user.name" />
-                </md-input-container>
-                <md-input-container class="md-block">
-                  <label>Inner front leg to inner hind leg (inches)</label>
-                  <input md-maxlength="2" name="name" ng-model="user.name" />
-                </md-input-container>
                 <md-input-container>
                   <h1 class="md-title">Select a vest color</h1>
                   <md-select ng-model="vestColor" md-selected-text="getVestColor()" placeholder="Select a vest color">

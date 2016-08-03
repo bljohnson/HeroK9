@@ -5,7 +5,6 @@ var pg = require('pg');
 var connection = require('../modules/connection');
 var router = express.Router();
 
-
 router.post('/part1', function(req, res){
 	console.log("In applicationForm route");
   	console.log('req.body: ', req.body);
