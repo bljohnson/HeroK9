@@ -20,6 +20,7 @@ router.get('/', function(req, res){
     });
 
     query.on('end', function(){
+      done();
       res.send(results);
     });
 
