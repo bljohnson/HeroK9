@@ -196,6 +196,14 @@ md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-i
 
 /* restyle angular material form colors */
 
+/* radio buttons */
+md-radio-group:not([disabled]) .md-primary ._md-on {
+  background-color: #d24740;
+}
+
+md-radio-button:not([disabled]).md-primary.md-checked ._md-off {
+  border-color: #d24740;
+}
 
 /* handlerform view styles */
 .handler-row {
