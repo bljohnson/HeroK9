@@ -118,13 +118,6 @@ router.post('/submitK9App', function (req, res){
         }
 
         res.sendStatus(200);
-
-      var sendFile = client.query('INSERT INTO test (k9_bio, k9_back, k9_chest) VALUES ($1, $2, $3)',
-        [req.body.bio, req.body.back, req.body.chest]);
-        console.log('in submitK9App post route, adding:', req.body.back);
-      sendFile.on('end', function(){
-        done();
-        return res.end();
       });
     }
   });
