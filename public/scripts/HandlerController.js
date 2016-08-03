@@ -9,23 +9,6 @@ angular.module('myApp').controller('HandlerController', [
   'Upload',
   '$mdDialog',
   function($scope, $http, $window, $location, Upload, $mdDialog) {
-
-    // $http({
-    //   method: 'GET',
-    //   url: '/userDash/getCerts'
-    // }).success(function(data) {
-    //   console.log('after /getCerts: ', data);
-    //   $scope.certList = data;
-    // });
-    //
-    // $http({
-    //   method: 'GET',
-    //   url: '/userDash/getDogs'
-    // }).success(function(data) {
-    //   console.log('after /getDogs: ', data);
-    //   $scope.dogList = data;
-    // });
-
     $http({
       method: 'GET',
       url: '/userDash/getFormInfo'
@@ -61,7 +44,7 @@ angular.module('myApp').controller('HandlerController', [
 
 
     // k9 breeds
-    // $scope.breeds = ['German Shepherd', 'Belgian Malinois', 'Bloodhound', 'Other'];
+    $scope.breeds = ['German Shepherd', 'Belgian Malinois', 'Bloodhound', 'Other'];
     $scope.getBreed = function() {
       if ($scope.breed !== undefined) {
         return $scope.breed;
