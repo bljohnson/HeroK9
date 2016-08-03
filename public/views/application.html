@@ -5,20 +5,13 @@
     	  <h2>Authorized Signer Info:</h2>
     	  <md-input-container class="md-block">
     	    <label for="rank">Rank/Title</label>
-    	    <input ng-model="rank" id="rank" type="text" name="name" value="" required>
-    	    <div ng-messages="projectForm.description.$error">
+    	    <input ng-model="rank" id="rank" type="text" name="rank" value="" required>
+    	    <div ng-messages="application.rank.$error">
     		    <div ng-message="required">This is required.</div>
     	    </div>
     	  </md-input-container>
     	  <div>
     	    <h1 class="md-title">Role</h1>
-    	    <!-- <div layout="row">
-      		  <md-input-container>
-        		  <md-select ng-model="role" md-selected-text="getRole()" placeholder="Select a role">
-        			  <md-option ng-value="role" ng-repeat="role in roles">{{role}}</md-option>
-        		  </md-select>
-      		  </md-input-container>
-    	    </div> -->
           <div layout="row">
             <md-input-container style="margin-right: 10px;">
               <label>Select a role</label>
@@ -30,23 +23,23 @@
     	  </div>
     	  <md-input-container class="md-block">
     	    <label for="firstName">First Name</label>
-    	    <input ng-model="firstName" id="firstName" type="text" name="name" value="" required>
-    	    <div ng-messages="projectForm.description.$error">
+    	    <input ng-model="firstName" id="firstName" type="text" name="firstName" value="" required>
+    	    <div ng-messages="application.firstName.$error">
     		    <div ng-message="required">This is required.</div>
     	    </div>
     	  </md-input-container>
     	  <md-input-container class="md-block">
     	    <label for="lastName">Last Name</label>
-    	    <input ng-model="lastName" id="lastName" type="text" name="name" value="" required>
-    	    <div ng-messages="projectForm.description.$error">
-    		<div ng-message="required">This is required.</div>
+    	    <input ng-model="lastName" id="lastName" type="text" name="lastName" value="" required>
+    	    <div ng-messages="application.lastName.$error">
+    		    <div ng-message="required">This is required.</div>
     	    </div>
     	  </md-input-container>
     	  <md-input-container class="md-block">
     	    <label for="primaryPhone">Primary Phone Number</label>
-    	    <input ng-model="primaryPhone" id="primaryPhone" type="text" name="name" value="" required>
-    	    <div ng-messages="projectForm.description.$error">
-    		<div ng-message="required">This is required.</div>
+    	    <input ng-model="primaryPhone" id="primaryPhone" type="text" name="primaryPhone" value="" required>
+    	    <div ng-messages="application.primaryPhone.$error">
+    		    <div ng-message="required">This is required.</div>
     	    </div>
     	  </md-input-container>
     	  <md-input-container class="md-block">
@@ -55,9 +48,9 @@
     	  </md-input-container>
     	  <md-input-container class="md-block">
     	    <label for="email">Email Address</label>
-    	    <input ng-model="contactEmail" id="email" type="text" name="name" value="" required>
-    	    <div ng-messages="projectForm.description.$error">
-    		<div ng-message="required">This is required.</div>
+    	    <input ng-model="contactEmail" id="email" type="text" name="emailAddress" value="" required>
+    	    <div ng-messages="application.emailAddress.$error">
+    		    <div ng-message="required">This is required.</div>
     	    </div>
     	  </md-input-container>
     	  <div>
@@ -73,9 +66,9 @@
     	  </div>
     	  <md-input-container class="md-block">
     	    <label for="address1">Department Address - Street 1</label>
-    	    <input ng-model="address1" id="address1" type="text" name="name" value="" required>
-    	    <div ng-messages="projectForm.description.$error">
-    		<div ng-message="required">This is required.</div>
+    	    <input ng-model="address1" id="address1" type="text" name="address" value="" required>
+    	    <div ng-messages="application.address.$error">
+        		<div ng-message="required">This is required.</div>
     	    </div>
     	  </md-input-container>
     	  <md-input-container class="md-block">
@@ -84,28 +77,31 @@
     	  </md-input-container>
     	  <md-input-container class="md-block">
     	    <label for="city">Department Address - City</label>
-    	    <input ng-model="city" id="city" type="text" name="name" value="" required>
-    	    <div ng-messages="projectForm.description.$error">
-    		<div ng-message="required">This is required.</div>
+    	    <input ng-model="city" id="city" type="text" name="city" value="" required>
+    	    <div ng-messages="application.city.$error">
+    		    <div ng-message="required">This is required.</div>
     	    </div>
     	  </md-input-container>
     	  <md-input-container class="md-block">
     	    <label for="state">Department Address - State</label>
-    	    <input ng-model="state" id="state" type="text" name="name" value="" required>
-    	    <div ng-messages="projectForm.description.$error">
-    		<div ng-message="required">This is required.</div>
+    	    <input ng-model="state" id="state" type="text" name="state" value="" required>
+    	    <div ng-messages="application.state.$error">
+    		    <div ng-message="required">This is required.</div>
     	    </div>
     	  </md-input-container>
     	  <md-input-container class="md-block">
     	    <label for="zip">Department Address - Zip Code</label>
-    	    <input ng-model="zip" id="zip" type="text" name="name" value="" required>
-    	    <div ng-messages="projectForm.description.$error">
+    	    <input ng-model="zip" id="zip" type="text" name="zip" value="" required>
+    	    <div ng-messages="application.zip.$error">
     		    <div ng-message="required">This is required.</div>
     	    </div>
     	  </md-input-container>
     	  <md-input-container class="md-block">
     	    <label for="numberOfDogs">Number of K9s in Unit</label>
-    	    <input ng-model="numberOfDogs" id="numberOfDogs" type="text" name="name" value="" required>
+    	    <input ng-model="numberOfDogs" id="numberOfDogs" type="text" name="dogs" value="" required>
+          <div ng-messages="application.dogs.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
     	  </md-input-container>
       </form>
       <input type="submit" ng-click="sendApplication(); go('/part2')" ng-disabled="application.$invalid" name="submit" value="Submit application">
