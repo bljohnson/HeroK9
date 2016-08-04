@@ -181,11 +181,8 @@ angular.module('myApp').controller('PDFController', [
 
         // then, if success, also collect input & send data and file location to database
         var pdfToServer = {
-          id: '1',
-          k9_id: '2',
-          certification_id: '5',
           url: resp.data.location,
-          notes: 'pdf notes'
+          notes: $scope.comment
         };
         console.log('send to server: ', pdfToServer);
 

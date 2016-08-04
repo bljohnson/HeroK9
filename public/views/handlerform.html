@@ -163,6 +163,7 @@
                   <div ngf-select ng-model="file" name="file" ngf-pattern="'application/pdf'" ngf-accept="'application/pdf'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
                     <md-button class="md-primary md-raised">Select</md-button>
                     <p>File Selected: {{ file.name }}</p>
+                    <input type="text" ng-model="comment" placeholder="Description" class="u-full-width" />
                   </div>
                   <md-button class="md-primary md-raised" type="submit" ng-click="submitPdf()">Upload</md-button>
                 </div>
