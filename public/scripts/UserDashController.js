@@ -152,7 +152,7 @@ angular.module('myApp').controller('UserDashController', [
           } else {
             return "Please select a vest imprint";
           }
-        };
+    };
 
         // select vest imprint color
         $scope.getImprintColor = function() {
@@ -196,11 +196,6 @@ angular.module('myApp').controller('UserDashController', [
 
     	console.log('test: ', k9ToSend);
 
-	for (var i =0; i<$scope.certList.length; i++){
-	  if (document.getElementById('cert' + i).className.indexOf('md-checked') >= 0){
-	    k9ToSend.certs.push($scope.certList[i].id);
-	  }
-	}
 
           $http({
             method: 'POST',
