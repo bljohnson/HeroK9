@@ -101,7 +101,7 @@ router.post('/newMessage', function(req, res){
   pg.connect(connection, function (err, client, done) {
     client.query('INSERT INTO messages (message, subject, username) VALUES ($1, $2, $3)', [req.body.message, req.body.subject, req.user.first_name + " " + req.user.last_name]);
     done();
-    res.sendStatus(500);
+    res.sendStatus(200);
   });
 });
 
