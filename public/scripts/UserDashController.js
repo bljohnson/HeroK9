@@ -199,20 +199,18 @@ angular.module('myApp').controller('UserDashController', [
     		squadModel: $scope.squadModel,
     		squadYear: $scope.squadYear,
     		squadRetire: $scope.squadRetire
-
           };
-    	console.log(objectToSend);
+    	console.log('test: ', k9ToSend);
 
-
-          for (var i =0; i<$scope.certList.length; i++){
-            if (document.getElementById('cert' + i).className.indexOf('md-checked') >= 0){
-              k9ToSend.certs.push($scope.certList[i].id);
-            }
-          }
+	for (var i =0; i<$scope.certList.length; i++){
+	  if (document.getElementById('cert' + i).className.indexOf('md-checked') >= 0){
+	    k9ToSend.certs.push($scope.certList[i].id);
+	  }
+	}
 
           $http({
             method: 'POST',
-            url: '/handlerForm',
+            url: '/userDash/canine',
             data: k9ToSend
           }).success(function() {
             console.log('in /submitK9App: ', k9ToSend);
@@ -273,7 +271,7 @@ angular.module('myApp').controller('UserDashController', [
         // upload files to S3 and to the database
         $scope.upload = function(file) {
           Upload.upload ({
-            url: '/handlerForm',
+            url: '/userDash/submitPdf',
             data: {
               file: file,
               'user': $scope.user,
@@ -391,7 +389,7 @@ angular.module('myApp').controller('UserDashController', [
         // upload files to S3 and to the database
         $scope.upload = function(file) {
           Upload.upload ({
-            url: '/handlerForm',
+            url: '/userDash/upload',
             data: {
               file: file,
               'user': $scope.user,
