@@ -54,16 +54,31 @@ myApp.config(['$routeProvider', '$locationProvider', '$provide', function($route
       controller: 'AppController'
     }).
     when('/submitted',{
-
       templateUrl: '/views/submitInquiry.html'
     }).
+    when('/agreement',{
+      templateUrl: '/views/agreement.html'
+    }).
     otherwise({
-      redirectTo: 'home'
+      redirectTo: '/home'
     });
 }]);
 
-myApp.controller('loginController', ['$scope', '$http', '$window', '$location', function( $scope , $http, $window, $location){
+myApp.controller('loginController', ['$scope', '$rootScope' , '$http', '$window', '$location', function( $scope ,$rootScope , $http, $window, $location){
 
+  $http({
+    method: "GET",
+    url: '/user/'
+  }).
+    success(function(data){
+      console.log("on load ", data);
+      if (data === false) {
+        $rootScope.isUserLoggedIn = false;
+      } else if (data.id !== undefined) {
+        $rootScope.isUserLoggedIn = true;
+      } else { console.log("how?");}
+
+  });
 
   $scope.register = function(){
     // console.log($location.search());
@@ -97,12 +112,19 @@ myApp.controller('loginController', ['$scope', '$http', '$window', '$location', 
           else if (data.status_id == 3) {$window.location.href = '/#/application';}
           else {$window.location.href = "/#/userdash";}
 
-
       }).error(function(err){
         console.log(err);
           $window.location.href = 'views/failure.html';
       });
     };
+
+    $scope.logout = function (){
+      $http({
+        method: "GET",
+        url: '/user/logout'
+      });
+    $rootScope.isUserLoggedIn = false;
+  };
 
   $scope.sendMail = function (){
     var mailObj = {
@@ -307,6 +329,8 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
    console.log(this.breed);
  };//end yesnoCheck
 
+
+
  $scope.sendApplication = function(){
 
    var objectToSend = {
@@ -333,7 +357,6 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
 		url: '/applicationForm/part1',
 		data: objectToSend
 	});
-
  }; //end sendApplication
 
 $scope.sendk9 = function(){
@@ -411,8 +434,7 @@ $scope.sendk9 = function(){
   // $scope.multiThreat = false;
   // $scope.doorPop = false;
 };
-
- $scope.go = function(path){
-   $location.path(path);
- };
+$scope.go = function(path){
+  $location.path(path);
+};
 }]);

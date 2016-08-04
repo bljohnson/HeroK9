@@ -73,10 +73,10 @@ router.post('/submitPdf', function (req, res){
         [req.body.id, req.body.k9_id, req.body.certification_id, req.body.url, req.body.notes]);
         console.log('in submitPdf post route, adding:', req.body.url);
       sendFile.on('end', function(){
+        done();
         return res.end();
       });
     }
-    done();
   });
 });
 
@@ -90,10 +90,10 @@ router.post('/submitImg', function (req, res){
         [req.body.url]);
         console.log('in submitImg post route, adding:', req.body.url);
       sendFile.on('end', function(){
+        done();
         return res.end();
       });
     }
-    done();
   });
 });
 
@@ -116,9 +116,8 @@ router.post('/submitK9App', function (req, res){
         for (var i=0; i<results.length; i++){
           var sendFile = client.query('INSERT INTO k9s_certifications (k9_id, certification_id, url) VALUES ($1, $2, $3)', [results[i], req.body.certs[i], req.body.url]);
         }
-
+        done();
         res.sendStatus(200);
-
       });
     }
   });
@@ -152,34 +151,35 @@ router.get('/getFormInfo', function (req, res){
         results.dogs.push(row);
       });
       queryDogs.on('end', function(){
+        //Get Form Information
+		    var vest_colorQuery = client.query('SELECT unnest(enum_range(NULL::vest_color))');
+		    vest_colorQuery.on('row', function(row){
+        console.log('vestcolor row: ', row);
+		    results.form_info.vest_colors.push(row.unnest);
+        console.log('vestcolor array: ', results.form_info.vest_colors);
+		    });
 
-		//Get Form Information
-		       var vest_colorQuery = client.query('SELECT unnest(enum_range(NULL::vest_color))');
-		       vest_colorQuery.on('row', function(row){
-				 console.log('vestcolor row: ', row);
-		         results.form_info.vest_colors.push(row.unnest);
-			   console.log('vestcolor array: ', results.form_info.vest_colors);
-		       });
+		    var vest_imprintQuery = client.query('SELECT unnest(enum_range(NULL::vest_imprint))');
+		    vest_imprintQuery.on('row', function(row){
+		      results.form_info.vest_imprints.push(row.unnest);
+		    });
 
-		       var vest_imprintQuery = client.query('SELECT unnest(enum_range(NULL::vest_imprint))');
-		       vest_imprintQuery.on('row', function(row){
-		         results.form_info.vest_imprints.push(row.unnest);
-		       });
+		    var vest_imprint_colorsQuery = client.query('SELECT unnest(enum_range(NULL::vest_imprint_color))');
+		    vest_imprint_colorsQuery.on('row', function(row){
+		      results.form_info.vest_imprint_colors.push(row.unnest);
+		    });
 
-		       var vest_imprint_colorsQuery = client.query('SELECT unnest(enum_range(NULL::vest_imprint_color))');
-		       vest_imprint_colorsQuery.on('row', function(row){
-		         results.form_info.vest_imprint_colors.push(row.unnest);
-		       });
-			 vest_imprint_colorsQuery.on('end', function() {
-				 //All done!
-			      console.log('results: ', results);
-				res.send(results);
-			 });
-      });
+        vest_imprint_colorsQuery.on('end', function() {
+          //All done!
+          console.log('results: ', results);
+          done();
+				  res.send(results);
+        });
 
-    });
-  });
-});
+      });//End queryDogs
+    });//End queryCerts
+  });//End pg.connect
+});//End /getFormInfo
 
 
 
@@ -197,6 +197,7 @@ router.get('/', function(req, res){
 	  });
 
 	  query.on('end', function(){
+      done();
 	    res.send(results);
 	  });
 

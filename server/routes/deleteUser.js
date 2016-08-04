@@ -12,6 +12,7 @@ router.post('/', function(req, res){
 
   pg.connect(connection, function (err, client, done) {
     client.query('DELETE FROM users WHERE contact_email = ($1)', [req.body.contact_email]);
+    done();
     res.sendStatus(200);
   });
 

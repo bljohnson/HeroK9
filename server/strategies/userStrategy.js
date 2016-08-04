@@ -6,24 +6,27 @@ var pg = require('pg');
 
 //serialize user
 passport.serializeUser(function(user, done) {
+  console.log('serializeUser');
     done(null, user.id);
 });
 
-passport.deserializeUser(function(id, passDone) {
+passport.deserializeUser(function(err, id, passDone) {
   console.log('called deserializeUser');
 
   pg.connect(connection, function(err, client, pgDone) {
     //connection error
     if(err){
+      pgDone();
       console.log(err);
       res.sendStatus(500);
     }
 
     client.query("SELECT * FROM users WHERE id = $1", [id], function(err, results) {
-      pgDone();
 
+      pgDone();
       if(results.rows.length >= 1){
-        console.log(results.rows[0]);
+        console.log('in deserializeUser success');
+        // console.log(results.rows[0]);
         return passDone(null, results.rows[0]);
       }
 
@@ -33,6 +36,8 @@ passport.deserializeUser(function(id, passDone) {
       }
 
     });
+
+
   });
 });
 

@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>REQUEST APPLICATION</h1>
+<h1>REQUEST APPLICATION</h1>
   <p>To begin the grant application process to request equipment for your K9 and/or agency or department, please respond to the following question.</p>
 
   <!-- Serve different forms depending on authorization status. -->
@@ -143,6 +143,7 @@
   </div>
 
 
+
   <!-- If not authorized, serve the basic form. -->
   <div class="basic" ng-show="authorized == 'no'">
     <form name="basicForm" ng-submit="sendInquiry()" novalidate>
@@ -165,6 +166,7 @@
               <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>
+
         </div>
 
         <div layout-gt-sm="row">
@@ -315,4 +317,40 @@
         <div ng-message="required">This is required.</div>
       </div>
     </md-input-container>
-    <div> -->
+<<<<<<< HEAD
+    <div>
+      <h1 class="md-title">Best time of day to contact</h1>
+      <div layout="row">
+        <md-input-container style="margin-right: 10px;">
+          <label>Select a time</label>
+          <md-select ng-model="time">
+            <md-option ng-repeat="time in times" value="{{time}}">{{time}}</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+    </div>
+
+      <div>
+        <h2>Department Information</h2>
+      </div>
+      <h4>If the information for the authorized signer is known:</h4>
+      <md-input-container class="md-block">
+        <label for="authorizedTitle">Authorized Signer Title</label>
+        <input ng-model="authorizedTitle" id="authorizedTitle" type="text" name="name" value="">
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label for="authorizedFirstName">Authorized Signer First Name</label>
+        <input ng-model="authorizedFirstName" id="authorizedFirstName" type="text" name="name" value="">
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label for="authorizedLastName">Authorized Signer Last Name</label>
+        <input ng-model="authorizedLastName" id="authorizedLastName" type="text" name="name" value="">
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label for="authorizedPhone">Authorized Signer Phone Number</label>
+        <input ng-model="authorizedPhone" id="authorizedPhone" type="text" name="name" value="">
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label for="authorizedEmail">Authorized Signer Email Address</label>
+        <input ng-model="authorizedEmail" id="authorizedEmail" type="text" name="name" value="">
+      </md-input-container>

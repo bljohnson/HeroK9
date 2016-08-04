@@ -1,12 +1,13 @@
 <header role="banner">
   <nav class="navbar navbar-inverse login-nav">
     <div class="container-fluid login-right">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav" ng-controller="loginController">
         <li><i class="fa fa-facebook" aria-hidden="true"></i></li>
         <li><i class="fa fa-twitter" aria-hidden="true"></i></li>
         <li><i class="fa fa-instagram" aria-hidden="true"></i></li>
         <li><i class="fa fa-google-plus" aria-hidden="true"></i></li>
-        <li><a href="/login" target="_self">Log In</a></li>
+        <li><a href="/login" ng-show="!isUserLoggedIn" target="_self">Log In</a></li>
+        <li><a href="/user/logout" ng-show="isUserLoggedIn" target="_self">Log Out</a></li>
       </ul>
     </div>
   </nav>

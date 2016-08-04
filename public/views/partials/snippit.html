@@ -10,7 +10,7 @@
 
     <ul>
       <li>New Inquiries: {{newInquiry}}</li>
-      <li>Pending Inquiries: {{pendingInquiry}}</li>
+      <li>Pending Review: {{pendingInquiry}}</li>
       <li>Approved Inquiries: {{approvedInquiry}}</li>
     </ul>
 
@@ -29,7 +29,7 @@
 
     <ul>
       <li>New Applications: {{newApplication}}</li>
-      <li>Pending Applications: {{pendingApplication}}</li>
+      <li>Pending Review: {{pendingApplication}}</li>
       <li>Approved Applications: {{approvedApplication}}</li>
     </ul>
 
@@ -37,5 +37,37 @@
       <md-button class="md-raised md-primary" type="button" ng-click="showApplications()">View Table</md-button>
     </md-card-actions>
   </md-card>
+
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Messages</h3>
+    </div>
+    <div class="panel-body">
+
+      <button ng-click='newMessage()' type="button" class="btn btn-success btn-lg">New Message</button>
+
+      <table>
+        <tr>
+          <th>Subject</th>
+          <th>Posted By</th>
+          <th>Timestamp</th>
+        </tr>
+        <tbody ng-repeat='message in messages'>
+          <tr ng-click='expandMessage($index)'>
+            <td>{{message.subject}}</td>
+            <td>{{message.username}}</td>
+            <td>{{message.messagetime}}</td>
+          </tr>
+          <tr style="display: none; border: solid black 1px" id="{{ 'expandMessage' + $index }}">
+            <td colspan="3">{{message.message}}</p>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  <!-- End Message Panel -->
+  </div>
 
 </div>

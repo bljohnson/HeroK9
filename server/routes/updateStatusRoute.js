@@ -43,7 +43,7 @@ router.post('/', function(req, res){
 
     console.log("The new status will be " + newStatus);
     client.query('UPDATE users SET status_id = ($1) WHERE users.contact_email = ($2)', [ newStatus, req.body.contact_email ] );
-
+    done();
   });
 
   console.log("New Status " + newStatus);
