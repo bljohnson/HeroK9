@@ -92,14 +92,27 @@ myApp.controller('loginController', ['$scope', '$rootScope' , '$http', '$window'
       method: 'POST',
       url: '/register',
       data: regObject
+    }).success(function(){
+      $http({
+      method: "POST",
+      url: '/index',
+      data: regObject
     }).success(function(data){
-      $window.location.href = '/#/application';
+        console.log(data);
+          if (data.status_id == 99) {$window.location.href = '/adminView';}
+          else if (data.status_id == 3) {$window.location.href = '/#/application';}
+          else {$window.location.href = "/#/userdash";}
+
+      }).error(function(err){
+        console.log(err);
+          $window.location.href = 'views/failure.html';
+      });
     });
   };
 
   $scope.login = function (){
     var loginObject = {
-      username: $scope.email,
+      email: $scope.email,
       password: $scope.password
     };
     $http({
