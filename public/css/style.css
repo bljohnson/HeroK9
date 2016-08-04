@@ -228,8 +228,9 @@ md-radio-button:not([disabled]).md-primary.md-checked ._md-off {
 
 md-input-container.md-default-theme label, md-input-container label,
 md-input-container.md-default-theme ._md-placeholder,
-md-input-container ._md-placeholder {
+md-input-container ._md-placeholder, label {
   color: rgba(0,0,0,0.5);
+  /*color: #000;*/
 }
 
 /* handlerform view styles */
