@@ -141,7 +141,17 @@
 
 			        <p>Please complete all of the fields below to ensure the proper fit of the equipment provided to your agency or department for your K9. If you don’t have all of the information with you at this time, you will be able to save your progress and return to this form to finish entering the necessary information.</p>
 
-			              <div layout-gt-xs="row" class="handler-row">
+
+							<md-input-container>
+								<label>Certification Types</label>
+								<md-select ng-model="uploadCert" ng-model-options="{trackBy: '$value.id'}">
+									<md-option ng-repeat='cert in certList track by $index' ng-value="cert">
+										{{cert.name}}
+									</md-option>
+								</md-select>
+							</md-input-container>
+
+			              <!-- <div layout-gt-xs="row" class="handler-row">
 			                <md-input-container class="md-block" flex-gt-xs>
 			                  <h1 class="md-title">Certification Types (Check all that apply)</h1>
 			                  <fieldset>
@@ -149,7 +159,7 @@
 			                      <md-checkbox id="cert{{$index}}" class="md-primary" aria-label="{{cert.name}}">
 			                      {{cert.name}}
 			                      </md-checkbox><br>
-			                    </div>
+			                    </div> -->
 
 			                    <!-- <div ng-repeat= 'equipment in equipmentList track by $index' flex-xs flex="50">
 			                      <md-checkbox id="equipment{{$index}}" class="equipment md-primary" aria-label="{{equipment.name}}">
@@ -165,7 +175,7 @@
 			                  <input id="otherCert" ng-model="otherCert" name="otherCert">
 			                </md-input-container>
 			                <md-input-container class="md-block" flex-gt-xs>
-			                  <h1 class="md-title">Upload Certifications (PDF)</h1>
+			                  <h1 class="md-title">Upload {{uploadCert.name}} Certifications (PDF)</h1>
 			                    <div ng-controller="PDFController">
 			                      <div ngf-select ng-model="file" name="file" ngf-pattern="'application/pdf'" ngf-accept="'application/pdf'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
 			                        <md-button class="md-primary md-raised">Select</md-button>

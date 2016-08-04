@@ -69,8 +69,8 @@ router.post('/submitPdf', function (req, res){
     if(err){
       console.log(err);
     } else {
-      var sendFile = client.query('INSERT INTO k9s_certifications (url, notes) VALUES ($1, $2)',
-        [req.body.url, req.body.notes]);
+      var sendFile = client.query('INSERT INTO k9s_certifications (k9_id, certification_id, url, notes) VALUES ($1, $2, $3, $4)',
+        [req.body.k9Id, req.body.certType.id, req.body.url, req.body.notes]);
         console.log('in submitPdf post route, adding:', req.body.url);
       sendFile.on('end', function(){
         done();

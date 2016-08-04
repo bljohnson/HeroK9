@@ -281,6 +281,8 @@ angular.module('myApp').controller('UserDashController', [
 
             // then, if success, also send file location (url) to database
             var pdfToServer = {
+              k9Id: $scope.k9Id,
+              certType: $scope.uploadCert,
               url: resp.data.location,
               comment: $scope.comment
             };
