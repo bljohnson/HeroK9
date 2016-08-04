@@ -118,20 +118,20 @@ angular.module('myApp').controller('UserDashController', [
         };
 
         // if 'Other' breed
-        $scope.yesnoCheck = function() {
-          if (this.breed == 'Other') {
-            document.getElementById('ifYes').style.display = 'block';
-          } else {
-            document.getElementById('ifYes').style.display = 'none';
-         }
-        };
+      //   $scope.yesnoCheck = function() {
+      //     if (this.breed == 'Other') {
+      //       document.getElementById('ifYes').style.display = 'block';
+      //     } else {
+      //       document.getElementById('ifYes').style.display = 'none';
+      //    }
+      //   };
 
-        var breedToSend;
-        if ($scope.otherBreed !== undefined){
-        	breedToSend = $scope.otherBreed;
-        } else {
-          	breedToSend = $scope.breed;
-        }
+      //   var breedToSend;
+      //   if ($scope.otherBreed !== undefined){
+      //   	breedToSend = $scope.otherBreed;
+      //   } else {
+      //     	breedToSend = $scope.breed;
+      //   }
 
         // certification checkboxes
 
@@ -175,14 +175,10 @@ angular.module('myApp').controller('UserDashController', [
     		handlerSecondaryCell: $scope.handlerPhone,
     		handlerEmail: $scope.handlerEmail,
     		age: $scope.k9Age,
-    	      breed: breedToSend,
+    	      breed: $scope.breed,
       	certified: $scope.k9Cert,
       	activeDuty: $scope.k9Active,
       	retirement: $scope.k9Retire,
-    		certs: [],
-           //  	certUrl: 'dummyCertURL',
-    		// k9PhotoUrl: 'dummyK9PhotoURL',
-    		// squadUrl: 'dummySquadURL',
     		bio: $scope.k9Bio,
     		back: $scope.k9Back,
     		chest: $scope.k9Chest,
