@@ -54,8 +54,10 @@ myApp.config(['$routeProvider', '$locationProvider', '$provide', function($route
       controller: 'AppController'
     }).
     when('/submitted',{
-
       templateUrl: '/views/submitInquiry.html'
+    }).
+    when('/agreement',{
+      templateUrl: '/views/agreement.html'
     }).
     otherwise({
       redirectTo: '/home'
