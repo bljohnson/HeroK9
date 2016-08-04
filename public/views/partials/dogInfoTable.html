@@ -1,0 +1,108 @@
+
+<main ng-controller="adminEditController">
+
+  <div class="page-header">
+    <h2>{{dogData.k9_name}}, <small>Loyal Companion</small><md-button class="btn btn-success btn-lg" style="float: right;" ng-click="approveInquiry($event, $index)" type="Button"><strong>Approve</strong></md-button><md-button class="btn btn-danger btn-lg" style="float: right;" ng-click="deleteInquiry($event, $index)" type="Button"><strong>Delete</strong></md-button></h2>
+  </div>
+
+  <form editable-form name="dogForm" onaftersave="saveDog($index)">
+
+    <!-- Approval Dialogue -->
+    <div ng-if="dogData.statusAlert">
+      <div class="{{dogAlertStatus}}" role="alert"><strong>{{dogData.statusAlert}}</strong></div>
+    </div>
+
+    <div>
+      <h4><strong>Handler Contact Information</strong></h4>
+
+      <content>
+        <span class="infoItem">
+          <label>Primary Phone: </label>
+            <span editable-text="dogData.handler_cell_phone"> {{dogData.handler_cell_phone}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Secondary Phone: </label>
+            <span editable-text="dogData.handler_secondary_phone"> {{dogData.handler_secondary_phone}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Rank: </label>
+            <span editable-text="dogData.handler_rank"> {{dogData.handler_rank}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Badge Number: </label>
+            <span editable-text="dogData.handler_badge"> {{dogData.handler_badge}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Contact Email: </label>
+            <span editable-text="dogData.handler_email"> {{dogData.handler_email}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Form Submission Date: </label>
+            <span editable-text="dogData.signed"> {{dogData.signed}} </span>
+        </span>
+        </br>
+
+      </content>
+
+
+      <h4><strong>{{dogData.k9_name}}'s Information</strong></h4>
+
+      <content>
+
+        <span class="infoItem">
+          <label>Breed: </label>
+            <span editable-text="dogData.breed"> {{dogData.breed}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Age: </label>
+            <span editable-text="dogData.age"> {{dogData.age}} </span>
+        </span>
+        </br>
+
+        <!-- <span class="infoItem">
+          <label>State: </label>
+            <span editable-text="data.dept_add_state"> {{data.dept_add_state}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Zip Code: </label>
+            <span editable-text="data.dept_add_zip"> {{data.dept_add_zip}} </span>
+        </span>
+        </br> -->
+
+      </content>
+
+    </div>
+
+    <div class="buttons">
+      <!-- button to show form -->
+      <button type="button" class="btn btn-default" ng-click="dogForm.$show()" ng-show="!dogForm.$visible">
+        Edit
+      </button>
+      <!-- buttons to submit / cancel form -->
+      <span ng-show="dogForm.$visible">
+        <button type="submit" class="btn btn-primary" ng-disabled="dogForm.$waiting">
+          Save
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="dogForm.$waiting" ng-click="dogForm.$cancel()">
+          Cancel
+        </button>
+      </span>
+    </div>
+
+  </form>
+
+</main>

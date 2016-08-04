@@ -16,11 +16,7 @@ router.post('/', function(req, res){
 
     if(err){
       console.log(err);
-      done();
-      res.sendStatus(500);
     }
-    done();
-    res.sendStatus(200);
   });
 
 });

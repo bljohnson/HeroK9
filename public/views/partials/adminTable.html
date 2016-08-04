@@ -10,11 +10,11 @@
 
     <!-- Approval Dialogue -->
     <div ng-if="data.statusAlert">
-      <div class="{{alertStatus}}" role="alert"><strong>{{data.statusAlert}}<strong></div>
+      <div class="{{alertStatus}}" role="alert"><strong>{{data.statusAlert}}</strong></div>
     </div>
 
     <div>
-      <h4><strong>Contact Information</strong></h4>
+      <h4><strong>Authorized Signer Contact Information</strong></h4>
 
       <content>
         <span class="infoItem">
@@ -50,7 +50,7 @@
       </content>
 
 
-      <h4><strong>Address</strong></h4>
+      <h4><strong>Department Address</strong></h4>
 
       <content>
 
@@ -99,5 +99,12 @@
     </div>
 
   </form>
+
+  <!-- Only visible in applicationTable -->
+  <div ng-if='applicationTable'>
+    <content>
+      <ng-include src="'/views/partials/dogTable.html'"></ng-include>
+    </content>
+  </div>
 
 </main>

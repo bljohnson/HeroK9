@@ -1,0 +1,55 @@
+<div ng-controller="dogTableController">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">Department Dogs</div>
+    <div class="panel-body">
+
+    <table class="table">
+      <tr>
+        <th>K9 ID</th> <th>K9 Name</th> <th>Handler First Name</th> <th>Handler Last Name</th> <th>Phone</th> <th>E-mail</th>
+      </tr>
+      <tbody ng-repeat="dogData in dogDataTable">
+        <tr ng-click="expandDogView($index)">
+          <td>
+            {{dogData.id}}
+          </td>
+          <td>
+            {{dogData.k9_name}}
+          </td>
+          <td>
+            {{dogData.handler_first_name}}
+          </td>
+          <td>
+            {{dogData.handler_last_name}}
+          </td>
+          <td>
+            {{dogData.handler_cell_phone}}
+          </td>
+          <td>
+            {{dogData.handler_email}}
+          </td>
+        </tr>
+
+        <tr style="display: none" id="{{ 'expandDog' + $index }}">
+          <td colspan='6'>
+
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">{{dogData.k9_name}}'s Information</h3>
+              </div>
+              <div class="panel-body">
+
+                <div ng-include="'./views/partials/dogInfoTable.html'"></div>
+
+              </div>
+            </div>
+
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+</div>

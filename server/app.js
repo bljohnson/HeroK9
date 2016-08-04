@@ -66,8 +66,7 @@ var index = require('../server/routes/indexRoute');
 var register = require('../server/routes/registerRoute');
 var snippitInfo = require('../server/routes/snippitRoute');
 var mailer = require('../server/routes/mailerRoute');
-var inquiryTable = require('../server/routes/inquiryTableRoute');
-var applicationTable = require('../server/routes/applicationTableRoute');
+var adminTable = require('../server/routes/adminTableRoute');
 var saveUser = require('../server/routes/adminEditRoute');
 var inquiryForm = require('../server/routes/inquiryForm');
 var applicationForm = require('../server/routes/applicationForm');
@@ -91,13 +90,13 @@ var deleteUser = require ('../server/routes/deleteUser');
 
   //Admin View
     app.use('/snippitInfo', snippitInfo);
-    app.use('/inquiryTable', inquiryTable);
-    app.use('/applicationTable', applicationTable);
+    app.use('/adminTable', adminTable);
     app.use('/inquiryForm', inquiryForm);
     app.use('/updateStatus', updateStatus);
     app.use('/deleteUser', deleteUser);
+    app.use('/saveUser', saveUser);
+
 
   //User View
     app.use('/userDash', userDash);
     app.use('/applicationForm', applicationForm);
-    app.use('/saveUser', saveUser);
