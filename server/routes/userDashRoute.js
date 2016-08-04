@@ -69,8 +69,8 @@ router.post('/submitPdf', function (req, res){
     if(err){
       console.log(err);
     } else {
-      var sendFile = client.query('INSERT INTO k9s_certifications (id, k9_id, certification_id, url, notes) VALUES ($1, $2, $3, $4, $5)',
-        [req.body.id, req.body.k9_id, req.body.certification_id, req.body.url, req.body.notes]);
+      var sendFile = client.query('INSERT INTO k9s_certifications (k9_id, certification_id, url, notes) VALUES ($1, $2, $3, $4)',
+        [req.body.k9Id, req.body.certType.id, req.body.url, req.body.notes]);
         console.log('in submitPdf post route, adding:', req.body.url);
       sendFile.on('end', function(){
         done();
@@ -86,9 +86,9 @@ router.post('/submitImg', function (req, res){
     if(err){
       console.log(err);
     } else {
-      var sendFile = client.query('INSERT INTO test (url) VALUES ($1)',
+      var sendFile = client.query('INSERT INTO k9_photos (url) VALUES ($1)',
         [req.body.url]);
-        console.log('in submitImg post route, adding:', req.body.url);
+        console.log('in submitImg post route, adding to k9_photos:', req.body.url);
       sendFile.on('end', function(){
         done();
         return res.end();

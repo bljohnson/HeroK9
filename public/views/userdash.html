@@ -1,6 +1,6 @@
 <div class="container" ng-controller="UserDashController">
-	<h1 class="text-center">Welcome {{ username }}!</h1>
-	<h1>Check back at any time to view your status.</h1>
+	<h1 class="text-center form-bg">Welcome {{ username }}!</h1>
+	<h2 class="text-center">Check back at any time to view your status.</h2>
 
 	<div class="checkout-wrap">
 		<ul class="checkout-bar">
@@ -9,14 +9,17 @@
 		</ul>
 	</div>
 
-				<md-input-container>
-			        <label>Dog</label>
-			        <md-select ng-model="selectedDog" ng-model-options="{trackBy: '$value.id'}" ng-change="updateForm()">
-			          <md-option ng-repeat="dog in dogList" ng-value="dog">
-			            {{dog.k9_name}}
-			          </md-option>
-			        </md-select>
-			      </md-input-container>
+	<div class="form-bg">
+		<h1 class="md-title">Select K9</h1>
+		<md-input-container>
+	    <label>K9</label>
+	    <md-select ng-model="selectedDog" ng-model-options="{trackBy: '$value.id'}" ng-change="updateForm()">
+	      <md-option ng-repeat="dog in dogList" ng-value="dog">
+	        {{dog.k9_name}}
+	      </md-option>
+	    </md-select>
+	  </md-input-container>
+</div>
 
 			      <div>
 			        <h1>Handler/K9 Form</h1>
@@ -136,7 +139,17 @@
 
 			        <p>Please complete all of the fields below to ensure the proper fit of the equipment provided to your agency or department for your K9. If you don’t have all of the information with you at this time, you will be able to save your progress and return to this form to finish entering the necessary information.</p>
 
-			              <div layout-gt-xs="row" class="handler-row">
+
+							<md-input-container>
+								<label>Certification Types</label>
+								<md-select ng-model="uploadCert" ng-model-options="{trackBy: '$value.id'}">
+									<md-option ng-repeat='cert in certList track by $index' ng-value="cert">
+										{{cert.name}}
+									</md-option>
+								</md-select>
+							</md-input-container>
+
+			              <!-- <div layout-gt-xs="row" class="handler-row">
 			                <md-input-container class="md-block" flex-gt-xs>
 			                  <h1 class="md-title">Certification Types (Check all that apply)</h1>
 			                  <fieldset>
@@ -144,7 +157,7 @@
 			                      <md-checkbox id="cert{{$index}}" class="md-primary" aria-label="{{cert.name}}">
 			                      {{cert.name}}
 			                      </md-checkbox><br>
-			                    </div>
+			                    </div> -->
 
 			                    <!-- <div ng-repeat= 'equipment in equipmentList track by $index' flex-xs flex="50">
 			                      <md-checkbox id="equipment{{$index}}" class="equipment md-primary" aria-label="{{equipment.name}}">
@@ -160,13 +173,14 @@
 			                  <input id="otherCert" ng-model="otherCert" name="otherCert">
 			                </md-input-container>
 			                <md-input-container class="md-block" flex-gt-xs>
-			                  <h1 class="md-title">Upload Certifications (PDF)</h1>
+			                  <h1 class="md-title">Upload {{uploadCert.name}} Certifications (PDF)</h1>
 			                    <div ng-controller="PDFController">
 			                      <div ngf-select ng-model="file" name="file" ngf-pattern="'application/pdf'" ngf-accept="'application/pdf'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
 			                        <md-button class="md-primary md-raised">Select</md-button>
 			                        <p>File Selected: {{ file.name }}</p>
+
 			                      </div>
-			                      <md-button class="md-primary md-raised" type="submit" ng-click="submitPdf()">Upload</md-button>
+			                      <md-button class="md-primary md-raised" type="button" ng-click="submitPdf()">Upload</md-button>
 			                    </div>
 			                </md-input-container>
 			              </div>
