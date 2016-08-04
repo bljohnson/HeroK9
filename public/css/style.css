@@ -226,6 +226,10 @@ md-radio-button:not([disabled]).md-primary.md-checked ._md-off {
   border-color: #d24740;
 }
 
+md-checkbox:not([disabled]).md-primary.md-checked ._md-icon {
+  background-color: #d24740;
+}
+
 md-input-container.md-default-theme label, md-input-container label,
 md-input-container.md-default-theme ._md-placeholder,
 md-input-container ._md-placeholder, label {
@@ -240,7 +244,30 @@ md-input-container ._md-placeholder, label {
   margin: 15px 0;
   border-radius: 5px;
 }
-.terms{
+
+.header{
+  text-align: center;
+}
+
+.terms {
+  padding: 20px 40px;
+}
+
+.terms li {
+  list-style: decimal-leading-zero;
+  font-size: 16px;
+  margin: 0 0 0 10px;
+  font-weight: bold;
+  padding: 10px 5px;
+  border-bottom: 1px solid #fff;
+}
+
+.terms li span {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+/*.terms{
   overflow: scroll;
   height: 400px;
   width: 650px;
@@ -249,9 +276,7 @@ md-input-container ._md-placeholder, label {
   margin: auto;
   margin-bottom: 20px;
 }
-.header{
-  text-align: center;
-}
+
 .conditions{
   padding: 5px;
-}
+}*/
