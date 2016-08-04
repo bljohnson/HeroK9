@@ -20,7 +20,7 @@
 
 			      <div>
 			        <h1>Handler/K9 Form</h1>
-
+            		  <form name="k9form" ng-controller="UserDashController" ng-submit ="sendK9App(); submitForm();">
 			        <div class="handler-row">
 			          <div>
 			            <h2>Handler Information</h2>
@@ -89,7 +89,6 @@
 
 			        <div layout="column" ng-cloak class="md-inline-form">
 			          <md-content>
-			            <form name="k9form">
 			              <div class="handler-row">
 			                <h2>{{dog_name}}</h2>
 			                <div layout-gt-sm="row">
@@ -286,10 +285,10 @@
 			                    </div>
 			                </md-input-container>
 			              </div>
-
+						  <md-button ng-click="saveForm();" class="md-primary md-raised">Save</md-button>
+	  			            <md-button class="md-primary md-raised" type="submit" name="button">Submit</md-button>
 			            </form>
-			            <md-button ng-click="saveForm();" class="md-primary md-raised">Save</md-button>
-			            <md-button class="md-primary md-raised" type="button" name="button" ng-click="sendK9App(); submitForm();">Submit</md-button>
+
 			          </md-content>
 			        </div>
 			      </div>

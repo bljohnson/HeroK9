@@ -88,6 +88,7 @@ angular.module('myApp').controller('UserDashController', [
         $scope.updateForm = function(){
           for (var i=0; i<$scope.dogList.length; i++){
             if ($scope.selectedDog.id == $scope.dogList[i].id){
+			$scope.k9Id = $scope.dogList[i].id;
               $scope.dog_name = $scope.dogList[i].k9_name + "'s Information";
               $scope.k9Age = $scope.dogList[i].age;
               $scope.breed = $scope.dogList[i].breed;
@@ -136,7 +137,6 @@ angular.module('myApp').controller('UserDashController', [
 
 
         // select vest colors
-        $scope.vestColor = '';
         $scope.getVestColor = function() {
           if ($scope.vestColor !== undefined) {
             return $scope.vestColor;
@@ -146,7 +146,6 @@ angular.module('myApp').controller('UserDashController', [
         };
 
         // select vest imprint
-        $scope.vestImprint = '';
         $scope.getVestImprint = function() {
           if ($scope.vestImprint !== undefined) {
             return $scope.vestImprint;
@@ -156,7 +155,6 @@ angular.module('myApp').controller('UserDashController', [
         };
 
         // select vest imprint color
-        $scope.vestImprintColor = '';
         $scope.getImprintColor = function() {
           if ($scope.vestImprintColor !== undefined) {
             return $scope.vestImprintColor;
@@ -168,6 +166,7 @@ angular.module('myApp').controller('UserDashController', [
         ////////////////////////////////////////  collect input to send to server  ////////////////////////////////////////
         $scope.sendK9App = function() {
           var k9ToSend = {
+		k9Id: $scope.k9Id,
     		handlerTitle: $scope.handlerTitle,
     		handlerFirstName: $scope.handlerFirstName,
     		handlerLastName: $scope.handlerLastName,
@@ -197,6 +196,8 @@ angular.module('myApp').controller('UserDashController', [
     		squadYear: $scope.squadYear,
     		squadRetire: $scope.squadRetire
           };
+
+
     	console.log('test: ', k9ToSend);
 
 	for (var i =0; i<$scope.certList.length; i++){
@@ -210,7 +211,7 @@ angular.module('myApp').controller('UserDashController', [
             url: '/userDash/canine',
             data: k9ToSend
           }).success(function() {
-            console.log('in /submitK9App: ', k9ToSend);
+            console.log('in /sendK9App: ', k9ToSend);
           });
         };
 
