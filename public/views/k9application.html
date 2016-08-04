@@ -1,12 +1,14 @@
-<md-content flex layout-padding>
-  <h1>Application form</h1>
+<div class="container">
+  <h1>APPLICATION</h1>
+  <p>Copy?</p>
+
   <div class="" ng-controller="AppController">
-    <h2>Enter K9 information</h2>
-    <form name="application" novalidate>
+    <h2>K9 Information</h2>
+    <form name="tapplication" novalidate>
       <md-input-container class="md-block">
         <label for="name">Name</label>
         <input ng-model="name" id="name" type="text" name="name" value="" required>
-        <div ng-messages="projectForm.description.$error">
+        <div ng-messages="tapplication.name.$error">
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
@@ -188,4 +190,4 @@
     <!-- End AppController -->
   </div>
 
-</md-content>
+</div>
