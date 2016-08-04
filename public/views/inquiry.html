@@ -19,9 +19,9 @@
         <h1 class="md-title">Role</h1>
         <div layout-gt-sm="row">
           <md-input-container class="md-block">
-            <label>Select Role</label>
-            <md-select ng-model="role" md-selected-text="getRole()">
-              <md-option value="{{ role }}" ng-repeat="role in roles">{{ role }}</md-option>
+            <label>Select a Role</label>
+            <md-select ng-model="role">
+              <md-option ng-repeat="role in roles" value="{{role}}">{{role}}</md-option>
             </md-select>
           </md-input-container>
         </div>
@@ -78,8 +78,9 @@
         <h1 class="md-title">Best time of day to contact</h1>
         <div layout-gt-sm="row">
           <md-input-container class="md-block">
-            <md-select ng-model="contactTime" md-selected-text="getContactTime()" placeholder="Select a time">
-              <md-option ng-value="time" ng-repeat="time in times">{{ time }}</md-option>
+            <label>Select a time</label>
+            <md-select ng-model="time">
+              <md-option ng-repeat="time in times" value="{{time}}">{{time}}</md-option>
             </md-select>
           </md-input-container>
         </div>
@@ -218,7 +219,6 @@
             <input ng-model="authorizedLastName" id="authorizedLastName" type="text" name="name" value="">
           </md-input-container>
         </div>
-
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label for="authorizedPhone">Authorized Signer Phone Number</label>
@@ -242,7 +242,6 @@
             <input ng-model="address2" id="address2" type="text" name="name" value="">
           </md-input-container>
         </div>
-
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label for="city">Department Address - City</label>
@@ -254,103 +253,14 @@
             <input ng-model="state" id="state" type="text" name="state" value="">
           </md-input-container>
         </div>
-
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label for="zip">Department Address - Zip Code</label>
             <input ng-model="zip" id="zip" type="text" name="zip" value="">
           </md-input-container>
           <div flex="5" hide-xs hide-sm></div>
-          <md-input-container class="md-block" flex-gt-sm>
-            <label for="numberOfDogs">Number of K9s in Unit</label>
-            <input ng-model="numberOfDogs" id="numberOfDogs" type="text" name="numberOfDogs" value="">
-          </md-input-container>
-        </div>
 
         <md-button class="md-primary md-raised" type="submit" ng-disabled="inquiry.$invalid">Submit</md-button>
       </form>
     </div>
   </div>
-
-
-
-      <!-- <md-input-container class="md-block">
-        <label for="lastName">Last Name</label>
-        <input ng-model="lastName" id="lastName" type="text" name="name" value="" required>
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="primaryPhone">Primary Phone Number</label>
-        <input md-maxlength="13" ng-model="primaryPhone" id="primaryPhone" type="text" name="name" value="" required>
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="email">Email Address</label>
-        <input ng-model="email" id="email" type="text" name="name" value="" required>
-        <div ng-messages="projectForm.description.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container> -->
-
-    <!-- <md-input-container class="md-block">
-      <label for="lastName">Last Name</label>
-      <input ng-model="lastName" id="lastName" type="text" name="name" value="" required>
-      <div ng-messages="projectForm.description.$error">
-        <div ng-message="required">This is required.</div>
-      </div>
-    </md-input-container>
-    <md-input-container class="md-block">
-      <label for="primaryPhone">Primary Phone Number</label>
-      <input md-maxlength="13" ng-model="primaryPhone" id="primaryPhone" type="text" name="name" value="" required>
-      <div ng-messages="projectForm.description.$error">
-        <div ng-message="required">This is required.</div>
-      </div>
-    </md-input-container>
-    <md-input-container class="md-block">
-      <label for="email">Email Address</label>
-      <input ng-model="email" id="email" type="text" name="name" value="" required>
-      <div ng-messages="projectForm.description.$error">
-        <div ng-message="required">This is required.</div>
-      </div>
-    </md-input-container>
-<<<<<<< HEAD
-    <div>
-      <h1 class="md-title">Best time of day to contact</h1>
-      <div layout="row">
-        <md-input-container style="margin-right: 10px;">
-          <label>Select a time</label>
-          <md-select ng-model="time">
-            <md-option ng-repeat="time in times" value="{{time}}">{{time}}</md-option>
-          </md-select>
-        </md-input-container>
-      </div>
-    </div>
-
-      <div>
-        <h2>Department Information</h2>
-      </div>
-      <h4>If the information for the authorized signer is known:</h4>
-      <md-input-container class="md-block">
-        <label for="authorizedTitle">Authorized Signer Title</label>
-        <input ng-model="authorizedTitle" id="authorizedTitle" type="text" name="name" value="">
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="authorizedFirstName">Authorized Signer First Name</label>
-        <input ng-model="authorizedFirstName" id="authorizedFirstName" type="text" name="name" value="">
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="authorizedLastName">Authorized Signer Last Name</label>
-        <input ng-model="authorizedLastName" id="authorizedLastName" type="text" name="name" value="">
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="authorizedPhone">Authorized Signer Phone Number</label>
-        <input ng-model="authorizedPhone" id="authorizedPhone" type="text" name="name" value="">
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label for="authorizedEmail">Authorized Signer Email Address</label>
-        <input ng-model="authorizedEmail" id="authorizedEmail" type="text" name="name" value="">
-      </md-input-container>

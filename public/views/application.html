@@ -6,11 +6,13 @@
   <p>This step of the application requires the user to fill out the AUTHORIZED SIGNER INFORMATION and DEPARTMENT INFORMATION.</p>
   <p>They should not be clicking on "Submit" but instead click on "Next".</p>
 
-  <div class="" ng-controller="AppController">
-    <form name="application" novalidate>
+  <div class="" ng-controller="AppController" ui-view="header" autoscroll="true">
+      <form name="application" novalidate>
       <div class="form-bg">
     	  <h2>Authorized Signer Information</h2>
         <div>
+
+    	  <div>
     	    <h1 class="md-title">Role</h1>
     	    <!-- <div layout="row">
       		  <md-input-container>
@@ -70,9 +72,9 @@
           </md-input-container>
           <div flex="5" hide-xs hide-sm></div>
           <md-input-container class="md-block" flex-gt-sm>
-            <label for="email">Email Address</label>
-            <input ng-model="email" id="email" type="text" name="email" value="" required>
-            <div ng-messages="application.email.$error">
+            <label for="contactEmail">Email Address</label>
+            <input ng-model="contactEmail" id="contactEmail" type="text" name="contactEmail" value="" required>
+            <div ng-messages="application.contactEmail.$error">
               <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>

@@ -127,6 +127,10 @@ router.get('/getFormInfo', function (req, res){
   pg.connect(connectionString, function(err, client, done){
 
     var results = {
+	userInfo: {
+		username: req.user.first_name,
+		status_id: req.user.status_id
+	},
       certs: [],
       dogs: [],
       form_info: {
@@ -183,6 +187,10 @@ router.get('/getFormInfo', function (req, res){
 
 
 
+
+
+
+
 router.get('/', function(req, res){
 	console.log('in router.get user dash');
 	pg.connect(connectionString, function (err, client, done) {
@@ -206,6 +214,26 @@ router.get('/', function(req, res){
     });
 
 
+    router.post('/canine', function(req, res){
+    	console.log('In userdash handlerform route');
+    	pg.connect(connectionString, function (err, client, done) {
+
+    		var addCertifications = client.query( 'INSERT INTO k9s_certifications ( k9_id, certification_id, url, notes ) VALUES ($1, $2, $3, $4)', [ 12, 2, 'www.blingbling.com', 'patrol certification' ] );
+
+		for (var i=0; i<req.body.equipment.length; i++){
+			client.query( 'INSERT INTO k9s_certifications ( k9_id, certification_id ) VALUES ( $1, $2 )', [ result.rows[0].id, req.body.certs[i] ] );
+		} // end for loop
+
+  //   		var addK9Photos = client.query( 'INSERT INTO k9s_photos ( url, k9_id ) VALUES ($1, $2)', [  ] );
+		//
+  //   		var addSquadPhotos = client.query( 'INSERT INTO squad_photos ( url, k9_id ) VALUES ($1, $2)', [  ] );
+		//
+
+			// var updateK9 = client.query ( 'UPDATE K9s SET age = ($1), k9_certified = ($2), k9_active_duty = ($3), k9_retirement = ($4), handler_rank = ($5), handler_first_name = ($6), handler_last_name = ($7), handler_badge = ($8), handler_cell_phone = ($9), handler_secondary_phone = ($10), handler_email = ($11), k9_bio = ($12), k9_back = ($13), k9_chest = ($14), k9_girth = ($15), k9_undercarriage = ($16), k9_vest_color = ($17), k9_vest_imprint = ($18), k9_vest_imprint_color = ($19), squad_make = ($20), squad_model = ($21), squad_year = ($22), squad_retirement = ($23) WHERE K9s.id = SOMETHINGSOMETHINGSOMETHING', [  ] );
+
+
+    	});
+    });
 
 
 

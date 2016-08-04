@@ -18,6 +18,35 @@ router.post('/', function(req, res) {
   console.log('req.body.username = ', req.body.email);
   console.log('req.body.password = ', req.body.password);
 
+if (req.body.contact_email == undefined) {
+
+  pg.connect(connection, function (err, client, done) {
+
+      var userToSave = {
+        email: req.body.email,
+        password: encryptLib.encryptPassword(req.body.password)
+      };
+
+      //client.query takes the query, params, and optional callback
+      client.query("INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id",
+        [userToSave.email, userToSave.password],
+          function(err, result) {
+
+            done();
+
+            if(err){
+              console.log(err);
+              res.sendStatus(500);
+            }else{
+              //redirect to get on / route
+              console.log('id of registered user = ', result.rows[0].id);
+              res.redirect('/');
+            }
+      });
+    });
+
+} else if (req.body.contact_email !== undefined) {
+
   //test the db connection
   pg.connect(connection, function (err, client, done) {
 
@@ -54,15 +83,14 @@ router.post('/', function(req, res) {
               res.sendStatus(500);
             }else{
               //redirect to get on / route
-              console.log('id of registered user = ', result);
+              console.log('id of registered user = ', result.rows[0].id);
               res.redirect('/');
             }
       });
     });
 
-    //client.query takes the query, params, and optional callback
 
   });
-});
+}});
 
 module.exports = router;
