@@ -232,6 +232,7 @@
             <div layout-gt-sm="row">
               <md-input-container class="md-block">
                 <h2 class="md-subhead">Select a Vest Imprint Color</h2>
+
                 <md-select ng-model="vestImprintColor" md-selected-text="getImprintColor()" placeholder="Select a vest imprint color">
                   <md-option ng-value="imprintColor" ng-repeat="imprintColor in imprintColors">{{ imprintColor }}</md-option>
                 </md-select>
@@ -278,6 +279,7 @@
                   <md-button class="md-primary md-raised" type="submit" ng-click="submitSquadImg()">Upload</md-button>
                 </div>
             </md-input-container>
+
           </div>
         </form>
         <md-button ng-click="saveForm();" class="md-primary md-raised">Save</md-button>
