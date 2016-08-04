@@ -1,42 +1,45 @@
 <div ng-controller='snippitController'>
 
-  <md-card id='inquirySnippit' md-theme="{{ showDarkTheme ? 'blue-grey' : 'default' }}" md-theme-watch="">
 
-    <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Inquiry Snapshot</span>
-      </md-card-title-text>
-    </md-card-title>
+  <div layout="row">
+    <md-card id='inquirySnippit' flex='25' md-theme="{{ showDarkTheme ? 'blue-grey' : 'default' }}" md-theme-watch="">
 
-    <ul>
-      <li>New Inquiries: {{newInquiry}}</li>
-      <li>Pending Review: {{pendingInquiry}}</li>
-      <li>Approved Inquiries: {{approvedInquiry}}</li>
-    </ul>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Inquiry Snapshot</span>
+        </md-card-title-text>
+      </md-card-title>
 
-    <md-card-actions layout="row" layout-align="end center">
-      <md-button class="md-raised md-primary" type="button" ng-click="showInquiries()">View Table</md-button>
-    </md-card-actions>
-  </md-card>
+      <ul>
+        <li>New Inquiries: {{newInquiry}}</li>
+        <li>Pending Review: {{pendingInquiry}}</li>
+        <li>Approved Inquiries: {{approvedInquiry}}</li>
+      </ul>
 
-  <md-card id='applicationSnippit' md-theme="{{ showDarkTheme ? 'blue-grey' : 'default' }}" md-theme-watch="">
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-raised md-primary" type="button" ng-click="showInquiries()">View Table</md-button>
+      </md-card-actions>
+    </md-card>
 
-    <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Application Snapshot</span>
-      </md-card-title-text>
-    </md-card-title>
+    <md-card id='applicationSnippit' flex='25' md-theme="{{ showDarkTheme ? 'blue-grey' : 'default' }}" md-theme-watch="">
 
-    <ul>
-      <li>New Applications: {{newApplication}}</li>
-      <li>Pending Review: {{pendingApplication}}</li>
-      <li>Approved Applications: {{approvedApplication}}</li>
-    </ul>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Application Snapshot</span>
+        </md-card-title-text>
+      </md-card-title>
 
-    <md-card-actions layout="row" layout-align="end center">
-      <md-button class="md-raised md-primary" type="button" ng-click="showApplications()">View Table</md-button>
-    </md-card-actions>
-  </md-card>
+      <ul>
+        <li>New Applications: {{newApplication}}</li>
+        <li>Pending Review: {{pendingApplication}}</li>
+        <li>Approved Applications: {{approvedApplication}}</li>
+      </ul>
+
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-raised md-primary" type="button" ng-click="showApplications()">View Table</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
 
 
   <div class="panel panel-primary">
@@ -45,9 +48,41 @@
     </div>
     <div class="panel-body">
 
-      <button ng-click='newMessage()' type="button" class="btn btn-success btn-lg">New Message</button>
+      <button ng-click='newMessage()' type="button" ng-if='!showCancelMessage' class="btn btn-success btn-lg">New Message</button>
 
-      <table>
+      <br>
+      <br>
+
+      <div class="" ng-if='showCancelMessage'>
+
+        <form name='messageForm' ng-submit="sendMessage()">
+
+          <button type="submit" class="btn btn-success btn-lg">Submit</button>
+          <button type="button" ng-click='newMessage()' class="btn btn-danger btn-lg">Cancel</button>
+          <br>
+
+          <md-input-container class="md-block">
+            <label>Subject</label>
+            <input required="" name="subject" ng-model="messageSubject" md-maxlength="255">
+            <div ng-messages="messageForm.subject.$error">
+              <div ng-message="required">You must have a subject.</div>
+              <div ng-message="md-maxlength">That's too long!</div>
+            </div>
+          </md-input-container>
+
+          <md-input-container>
+            <label>Message</label>
+            <textarea style="resize: both" name="messageToSend" ng-model="messageBody" required md-maxlength="1000"></textarea>
+            <div ng-messages="messageForm.messageToSend.$error" ng-show="messageForm.messageToSend.$dirty">
+              <div ng-message="required">This is required!</div>
+              <div ng-message="md-maxlength">That's too long!</div>
+            </div>
+          </md-input-container>
+        </form>
+
+      </div>
+
+      <table class="table table-hover table-responsive">
         <tr>
           <th>Subject</th>
           <th>Posted By</th>
@@ -60,7 +95,15 @@
             <td>{{message.messagetime}}</td>
           </tr>
           <tr style="display: none; border: solid black 1px" id="{{ 'expandMessage' + $index }}">
-            <td colspan="3">{{message.message}}</p>
+            <td colspan="3">
+              <div class="page-header">
+                <h1>{{message.subject}} <small>{{message.username}}</small><button type="button" class="btn btn-warning btn-lg" style='float:right' ng-click='deleteMessage($index)'>Resolve</button></h1>
+                <br>
+                <br>
+              </div>
+              <span style='float: right'>{{message.messagetime}}</span>
+              <p>{{message.message}}</p>
+            </td>
           </tr>
         </tbody>
       </table>
