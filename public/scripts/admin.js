@@ -51,6 +51,8 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
    $scope.approvedApplication = snippitData.application.approved;
 
    $scope.username = snippitData.user;
+
+   $scope.messages = snippitData.messages;
   });
 
 
@@ -68,6 +70,19 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
     $scope.viewControl(2);
 
   };//End showApplications
+
+
+  $scope.expandMessage = function(index){
+
+    if (document.getElementById('expandMessage' + index).style.display == "none"){
+      this.backgroundColor = "#AAAAAA";
+      document.getElementById('expandMessage' + index).style.display = "table-row";
+    } else if (document.getElementById('expandMessage' + index).style.display == "table-row"){
+      this.backgroundColor = "#FFFFFF";
+      document.getElementById('expandMessage' + index).style.display = "none";
+    }
+
+  };
 
 }]);//End snippitController
 

@@ -33,6 +33,14 @@ CREATE TABLE status (
 	description VARCHAR (255)
 );
 
+CREATE TABLE messages (
+	id SERIAL PRIMARY KEY NOT NULL,
+	message VARCHAR (1020),
+	subject VARCHAR (255),
+	username VARCHAR(30),
+	messagetime TIMESTAMP DEFAULT current_timestamp NOT NULL
+);
+
 CREATE TYPE vest_color AS ENUM ('Black', 'Multi-Cam®', 'Ranger Green', 'Tan');
 CREATE TYPE vest_imprint AS ENUM ('Fire', 'Fire K9', 'Police', 'Police K9', 'Search and Rescue', 'Sheriff', 'Sheriff K9');
 CREATE TYPE vest_imprint_color AS ENUM ('Dark Gray', 'Reflective Silver', 'White', 'Yellow');

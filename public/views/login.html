@@ -33,7 +33,7 @@
         <h1>LOGIN</h1>
         <md-input-container class="md-block">
           <label for="title">Email</label>
-          <input ng-model="email" id="email" type="email" name="username" required>
+          <input ng-model="email" id="email" type="email" name="username" required autofocus>
           <div ng-messages="loginForm.email.$error" role="alert">
             <div ng-message="required">Please enter your email address.</div>
             <div ng-message="email">This field must be a valid email address.</div>
