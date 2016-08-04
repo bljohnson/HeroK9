@@ -219,15 +219,15 @@ md-dialog .md-button.md-default-theme.md-primary, .md-button.md-primary {
 
 /* radio buttons */
 md-radio-group:not([disabled]) .md-primary ._md-on {
-  background-color: #d24740;
+  background-color: #0f439b;
 }
 
 md-radio-button:not([disabled]).md-primary.md-checked ._md-off {
-  border-color: #d24740;
+  border-color: #0f439b;
 }
 
 md-checkbox:not([disabled]).md-primary.md-checked ._md-icon {
-  background-color: #d24740;
+  background-color: #0f439b;
 }
 
 md-input-container.md-default-theme label, md-input-container label,

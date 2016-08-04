@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>APPLICATION AUTHORIZATION</h1>
+  <h1>Application Authorization</h1>
   <p>We really, really need copy here to clarify this lengthy process for users. I can't imagine coming here and filling out this form and hitting submit and then being directed to another page of form and hitting submit there and finally getting directed to sign the legal terms.</p>
   <p>All the steps needs to be highlighted here.</p>
   <p>This is Step 1, Page 1 of a long application process.</p>
@@ -11,13 +11,6 @@
       <div class="form-bg">
     	  <h2>Authorized Signer Information</h2>
 
-    	  <md-input-container class="md-block">
-    	    <label for="rank">Rank/Title</label>
-    	    <input ng-model="rank" id="rank" type="text" name="rank" value="" required>
-    	    <div ng-messages="application.rank.$error">
-    		    <div ng-message="required">This is required.</div>
-    	    </div>
-    	  </md-input-container>
     	  <div>
     	    <h1 class="md-title">Role</h1>
     	    <!-- <div layout="row">
@@ -78,9 +71,9 @@
           </md-input-container>
           <div flex="5" hide-xs hide-sm></div>
           <md-input-container class="md-block" flex-gt-sm>
-            <label for="email">Email Address</label>
-            <input ng-model="contactEmail" id="email" type="text" name="email" value="" required>
-            <div ng-messages="application.email.$error">
+            <label for="contactEmail">Email Address</label>
+            <input ng-model="contactEmail" id="contactEmail" type="text" name="contactEmail" value="" required>
+            <div ng-messages="application.contactEmail.$error">
               <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>
