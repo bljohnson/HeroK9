@@ -268,7 +268,8 @@ angular.module('myApp').controller('UserDashController', [
         // upload files to S3 and to the database
         $scope.upload = function(file) {
           Upload.upload ({
-            url: '/userDash/submitPdf',
+            // this goes to /uploads to S3
+            url: '/userDash/uploads',
             data: {
               file: file,
               'user': $scope.user,
@@ -277,16 +278,17 @@ angular.module('myApp').controller('UserDashController', [
           }).then(function(resp) {
             console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
 
-            // then, if success, also collect input & send data and file location to database
+            // then, if success, also send file location (url) to database
             var pdfToServer = {
-              url: resp.data.location
+              url: resp.data.location,
+              comment: $scope.comment
             };
             console.log('send to server: ', pdfToServer);
 
             // post method to send object to database
             $http({
               method: 'POST',
-              url: '/handlerForm',
+              url: '/userDash/submitPdf',
               data: pdfToServer
             }).then(function() {
               console.log('submitPdf post success');
@@ -327,7 +329,8 @@ angular.module('myApp').controller('UserDashController', [
         // upload files to S3 and to the database
         $scope.upload = function(file) {
           Upload.upload ({
-            url: '/handlerForm',
+            // this needs to go to /uploads to go to S3 first
+            url: '/userDash/uploads',
             data: {
               file: file,
               'user': $scope.user,
