@@ -10,7 +10,6 @@
       <form name="application" novalidate>
       <div class="form-bg">
     	  <h2>Authorized Signer Information</h2>
-        <div>
 
     	  <md-input-container class="md-block">
     	    <label for="rank">Rank/Title</label>
@@ -80,7 +79,7 @@
           <div flex="5" hide-xs hide-sm></div>
           <md-input-container class="md-block" flex-gt-sm>
             <label for="email">Email Address</label>
-            <input ng-model="email" id="email" type="text" name="email" value="" required>
+            <input ng-model="contactEmail" id="email" type="text" name="email" value="" required>
             <div ng-messages="application.email.$error">
               <div ng-message="required">This is required.</div>
             </div>
