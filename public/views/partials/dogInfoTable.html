@@ -1,8 +1,9 @@
 
-<main ng-controller="adminEditController">
+<main ng-controller="dogEditController">
 
   <div class="page-header">
     <h2>{{dogData.k9_name}}, <small>Loyal Companion</small><md-button class="btn btn-success btn-lg" style="float: right;" ng-click="approveInquiry($event, $index)" type="Button"><strong>Approve</strong></md-button><md-button class="btn btn-danger btn-lg" style="float: right;" ng-click="deleteInquiry($event, $index)" type="Button"><strong>Delete</strong></md-button></h2>
+    Submission Date: {{dogData.signed}}
   </div>
 
   <form editable-form name="dogForm" onaftersave="saveDog($index)">
@@ -16,6 +17,18 @@
       <h4><strong>Handler Contact Information</strong></h4>
 
       <content>
+        <span class="infoItem">
+          <label>First Name: </label>
+            <span editable-text="dogData.handler_first_name"> {{dogData.handler_first_name}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Last Name: </label>
+            <span editable-text="dogData.handler_last_name"> {{dogData.handler_last_name}} </span>
+        </span>
+        </br>
+
         <span class="infoItem">
           <label>Primary Phone: </label>
             <span editable-text="dogData.handler_cell_phone"> {{dogData.handler_cell_phone}} </span>
@@ -46,12 +59,6 @@
         </span>
         </br>
 
-        <span class="infoItem">
-          <label>Form Submission Date: </label>
-            <span editable-text="dogData.signed"> {{dogData.signed}} </span>
-        </span>
-        </br>
-
       </content>
 
 
@@ -71,17 +78,82 @@
         </span>
         </br>
 
-        <!-- <span class="infoItem">
-          <label>State: </label>
-            <span editable-text="data.dept_add_state"> {{data.dept_add_state}} </span>
+        <label>Active Duty: </label>
+        <a editable-select="dogData.k9_active_duty" e-ng-options="g.value as g.text for g in bool">
+          {{ showStatusDuty() }}
+        </a>
+        </br>
+
+        <label>Retired: </label>
+        <a editable-select="dogData.k9_retirement" e-ng-options="h.value as h.text for h in bool">
+          {{ showStatusRetirement() }}
+        </a>
+        </br>
+
+        <h4><strong>Equipment Specs</strong></h4>
+
+        <h5>Vest Measurements:</h5>
+        <span class="infoItem">
+          <label>Back: </label>
+            <span editable-text="dogData.k9_back"> {{dogData.k9_back}} </span>
         </span>
         </br>
 
         <span class="infoItem">
-          <label>Zip Code: </label>
-            <span editable-text="data.dept_add_zip"> {{data.dept_add_zip}} </span>
+          <label>Chest: </label>
+            <span editable-text="dogData.k9_chest"> {{dogData.k9_chest}} </span>
         </span>
-        </br> -->
+        </br>
+
+        <span class="infoItem">
+          <label>Girth: </label>
+            <span editable-text="dogData.k9_girth"> {{dogData.k9_girth}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Undercarriage: </label>
+            <span editable-text="dogData.k9_undercarriage"> {{dogData.k9_undercarriage}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Vest Color: </label>
+            <span editable-text="dogData.k9_vest_color"> {{dogData.k9_vest_color}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Vest Imprint: </label>
+            <span editable-text="dogData.k9_vest_imprint"> {{dogData.k9_vest_imprint}} </span>
+        </span>
+        </br>
+
+
+        <h4><strong>Vehicle Specs</strong></h4>
+        <span class="infoItem">
+          <label>Squad Car Make: </label>
+            <span editable-text="dogData.squad_make"> {{dogData.squad_make}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Squad Car Model: </label>
+            <span editable-text="dogData.squad_model"> {{dogData.squad_model}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Squad Car Year: </label>
+            <span editable-text="dogData.squad_year"> {{dogData.squad_year}} </span>
+        </span>
+        </br>
+
+        <span class="infoItem">
+          <label>Squad Car Retirement: </label>
+            <span editable-text="dogData.squad_retirement"> {{dogData.squad_retirement}} </span>
+        </span>
+        </br>
 
       </content>
 

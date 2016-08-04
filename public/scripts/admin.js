@@ -245,7 +245,7 @@ myApp.controller('applicationTableController', ['$scope', '$http', function($sco
     }).then(function(tableData){
       tableData = tableData.data;
       console.log("back from /dogTable with,", tableData);
-      $scope.dogData = tableData;
+      $scope.dogDataTable = tableData;
     });
 
     var statusData = {
@@ -323,21 +323,6 @@ myApp.controller('dogTableController', ['$scope', '$http', function($scope, $htt
 
   $scope.expandDogView = function(index){
 
-    sendUserInfo = {
-      dog_id: $scope.dogData[index].id
-    };
-
-    //Get Department Dogs
-    $http({
-      method: 'POST',
-      url: 'adminTable/dogTable',
-      data: sendUserInfo
-    }).then(function(tableData){
-      tableData = tableData.data;
-      console.log("back from /dogTableInfo with,", tableData);
-      $scope.dogDataTable = tableData;
-    });
-
     // var statusData = {
     //   contact_email: $scope.applicationData[index].contact_email,
     //   status_id: $scope.applicationData[index].status_id
@@ -366,12 +351,25 @@ myApp.controller('dogTableController', ['$scope', '$http', function($scope, $htt
 
   };
 
-
-
 }]);//End dogTableController
 
 
-myApp.controller('dogEditController', ['$scope', '$http', function($scope, $http){
+myApp.controller('dogEditController', ['$scope', '$http', '$filter', function($scope, $http, $filter){
+
+  $scope.bool = [
+    {value: true, text: 'True'},
+    {value: false, text: 'False'}
+  ];
+
+  $scope.showStatusRetirement = function() {
+    var selectedRetirement = $filter('filter')($scope.bool, {value: $scope.dogData.k9_retirement});
+    return ($scope.dogData.k9_retirement && selectedRetirement.length) ? selectedretirement[0].text : 'Not set';
+  };
+
+  $scope.showStatusDuty = function() {
+    var selectedDuty = $filter('filter')($scope.bool, {value: $scope.dogData.k9_active_duty});
+    return ($scope.dogData.k9_active_duty && selectedDuty.length) ? selectedDuty[0].text : 'Not set';
+  };
 
 
   $scope.saveUser = function(index) {
