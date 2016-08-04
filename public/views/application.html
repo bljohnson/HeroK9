@@ -6,11 +6,20 @@
   <p>This step of the application requires the user to fill out the AUTHORIZED SIGNER INFORMATION and DEPARTMENT INFORMATION.</p>
   <p>They should not be clicking on "Submit" but instead click on "Next".</p>
 
-  <div class="" ng-controller="AppController">
-    <form name="application" novalidate>
+  <div class="" ng-controller="AppController" ui-view="header" autoscroll="true">
+      <form name="application" novalidate>
       <div class="form-bg">
     	  <h2>Authorized Signer Information</h2>
         <div>
+
+    	  <md-input-container class="md-block">
+    	    <label for="rank">Rank/Title</label>
+    	    <input ng-model="rank" id="rank" type="text" name="rank" value="" required>
+    	    <div ng-messages="application.rank.$error">
+    		    <div ng-message="required">This is required.</div>
+    	    </div>
+    	  </md-input-container>
+    	  <div>
     	    <h1 class="md-title">Role</h1>
     	    <!-- <div layout="row">
       		  <md-input-container>
