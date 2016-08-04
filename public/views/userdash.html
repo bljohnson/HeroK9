@@ -1,11 +1,11 @@
 <div class="container" ng-controller="UserDashController">
 	<h1 class="text-center">Welcome {{ username }}!</h1>
 	<h1>Check back at any time to view your status.</h1>
-	<! -- To test add 'active' class and 'visited' class to different li elements -->
+
 	<div class="checkout-wrap">
 		<ul class="checkout-bar">
 			<! -- To test add 'active' class and 'visited' class to different li elements -->
-			<li ng-repeat='status in userStatus' class="{{status.status}}">{{status.name}}</li>
+			<li ng-repeat='stat in userStatus' class="{{stat.status}}">{{stat.name}}</li>
 		</ul>
 	</div>
 
@@ -20,7 +20,6 @@
 
 			      <div>
 			        <h1>Handler/K9 Form</h1>
-			        <p>Please complete all of the fields below to ensure the proper fit of the equipment provided to your agency or department for your K9. If you don’t have all of the information with you at this time, you will be able to save your progress and return to this form to finish entering the necessary information.</p>
 
 			        <div class="handler-row">
 			          <div>
@@ -141,6 +140,7 @@
 			                </div>
 			              </div>
 
+			        <p>Please complete all of the fields below to ensure the proper fit of the equipment provided to your agency or department for your K9. If you don’t have all of the information with you at this time, you will be able to save your progress and return to this form to finish entering the necessary information.</p>
 
 			              <div layout-gt-xs="row" class="handler-row">
 			                <md-input-container class="md-block" flex-gt-xs>
