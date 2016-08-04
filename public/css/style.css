@@ -133,6 +133,8 @@ md-card:last-child {
   width: 220px;
 }
 
+
+
 .fa-search {
   background-color: #d24740;
   padding: 8px 10px;
@@ -180,7 +182,7 @@ md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-i
   background: #d24740;
   box-shadow: none;
   color: #fff;
-  margin: 6px 0; 
+  margin: 6px 0;
 }
 
 .md-button.md-primary.md-raised:not([disabled]):hover {
