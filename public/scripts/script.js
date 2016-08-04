@@ -64,6 +64,8 @@ myApp.config(['$routeProvider', '$locationProvider', '$provide', function($route
     });
 }]);
 
+
+
 myApp.controller('loginController', ['$scope', '$rootScope' , '$http', '$window', '$location', function( $scope ,$rootScope , $http, $window, $location){
 
   $http({
@@ -159,9 +161,9 @@ myApp.controller('loginController', ['$scope', '$rootScope' , '$http', '$window'
   });
   };
 
-
-
 }]);
+
+
 
 myApp.controller('MainController', ['$scope', '$http', '$location', function($scope, $http, $location){
   $scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
@@ -219,6 +221,7 @@ myApp.controller('MainController', ['$scope', '$http', '$location', function($sc
 
 
 myApp.controller('AppController', ['$scope', '$http', '$location', function($scope, $http, $location){
+
 
   $http({
     method: 'GET',
@@ -449,4 +452,9 @@ $scope.sendk9 = function(){
 $scope.go = function(path){
   $location.path(path);
 };
+}]);
+
+myApp.factory('check', ['$http', '$rootScope', '$location', function($http, $rootScope, $location) {
+
+
 }]);
