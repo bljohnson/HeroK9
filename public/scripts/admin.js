@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngMaterial', 'xeditable']);
+var myApp = angular.module('myApp', ['ngMaterial', 'xeditable', 'ngMessages']);
 
 // xeditable Initialize
 myApp.run(function(editableOptions) {
@@ -30,6 +30,7 @@ myApp.controller('adminViewController', ['$scope', function($scope){
 
 myApp.controller('snippitController', ['$scope', '$http', function($scope, $http){
 
+  $scope.showCancelMessage = false;
 
   //Initialize by making a call to populate the snippits
   $http({
@@ -70,6 +71,78 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
     $scope.viewControl(2);
 
   };//End showApplications
+
+
+  $scope.newMessage = function(){
+    if ($scope.showCancelMessage == false){
+      $scope.showCancelMessage = true;
+    } else {
+      $scope.showCancelMessage = false;
+    }
+  };
+
+  $scope.sendMessage = function(){
+
+    var messageToSend = {
+      message: $scope.messageBody,
+      subject: $scope.messageSubject
+    }
+
+    console.log(messageToSend);
+
+    $http({
+      method: 'POST',
+      url: '/snippitInfo/newMessage',
+      data: messageToSend
+    }).then(
+      $http({
+        method: 'GET',
+        url: '/snippitInfo'
+      }).
+      then(function(snippitData){
+        // Bind the returned data
+
+        snippitData = snippitData.data;
+        console.log(snippitData);
+
+       $scope.newInquiry = snippitData.inquiry.new;
+       $scope.pendingInquiry = snippitData.inquiry.pending;
+       $scope.approvedInquiry = snippitData.inquiry.approved;
+
+       $scope.newApplication = snippitData.application.new;
+       $scope.pendingApplication = snippitData.application.pending;
+       $scope.approvedApplication = snippitData.application.approved;
+
+       $scope.username = snippitData.user;
+
+       $scope.messages = snippitData.messages;
+      })
+    );
+
+
+    $scope.showCancelMessage = false;
+  };
+
+
+  $scope.deleteMessage = function(index){
+
+    console.log('Deleting message id:', $scope.messages[index].id);
+
+    var deleteMessage = {
+      id: $scope.messages[index].id
+    };
+
+    $scope.messages.splice(index,1);
+
+    console.log(deleteMessage);
+
+    $http({
+      method: 'PUT',
+      url: '/snippitInfo/deleteMessage',
+      data: deleteMessage
+    });
+
+  };
 
 
   $scope.expandMessage = function(index){

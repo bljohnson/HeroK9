@@ -23,7 +23,7 @@ router.get('/', function(req, res){
     query.on('end', function(){
 
       var messageResults = [];
-      var messagesQuery = client.query("SELECT * FROM messages");
+      var messagesQuery = client.query("SELECT * FROM messages ORDER BY messagetime DESC");
 
       messagesQuery.on('row', function(row){
         messageResults.push(row);
@@ -93,6 +93,30 @@ router.get('/', function(req, res){
   });
 
 });
+
+router.post('/newMessage', function(req, res){
+
+  console.log("In newMessage with,", req.body);
+
+  pg.connect(connection, function (err, client, done) {
+    client.query('INSERT INTO messages (message, subject, username) VALUES ($1, $2, $3)', [req.body.message, req.body.subject, req.user.first_name + " " + req.user.last_name]);
+    done();
+    res.sendStatus(500);
+  });
+});
+
+router.put('/deleteMessage', function(req, res){
+
+  console.log('In deleteMessage with,', req.body);
+
+  pg.connect(connection, function (err, client, done) {
+    client.query('DELETE FROM messages WHERE id = ($1)', [req.body.id]);
+    done();
+    res.sendStatus(200);
+  });
+
+});
+
 
 
 

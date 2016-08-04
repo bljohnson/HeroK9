@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Admin Dashboard</title>
+    <link rel="icon" type="image/ico" href="/images/favicon.ico"/>
     <link rel="stylesheet" href="/vendors/angular-material.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/vendors/xeditable.css" media="screen" title="no title" charset="utf-8">
@@ -12,7 +13,8 @@
 
     <main id='adminMain' ng-controller='adminViewController'>
 
-      <div class="page-header" ng-controller="snippitController">
+      <div class="page-header row" ng-controller="snippitController">
+        <a href="/#/home"><img style='float: left; height: 10vh;' class="logo" src="images/herok9.svg" alt="Hero K9 Logo"></a>
         <h1>Admin Dashboard <small>Welcome, {{username}}</small></h1>
 
       </div>
