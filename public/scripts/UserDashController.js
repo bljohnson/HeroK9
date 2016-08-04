@@ -168,7 +168,7 @@ angular.module('myApp').controller('UserDashController', [
           }
         };
 
-        // collect input to send to server
+        ////////////////////////////////////////  collect input to send to server  ////////////////////////////////////////
         $scope.sendK9App = function() {
           var k9ToSend = {
     		handlerTitle: $scope.handlerTitle,
