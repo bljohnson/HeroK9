@@ -7,7 +7,6 @@ var router = express.Router();
 
 
 router.post('/', function(req, res){
-
   console.log("In inquiryForm route");
   console.log('req.body: ', req.body);
   pg.connect(connection, function (err, client, done) {
@@ -22,7 +21,30 @@ router.post('/', function(req, res){
     done();
     res.sendStatus(200);
   });
-
 });
 
-  module.exports = router;
+router.get('/', function(req,res){
+  pg.connect(connection, function (err, client, done) {
+
+    var results = {
+      roles: []
+    };
+
+    var query = client.query('SELECT unnest(enum_range(NULL::role))');
+
+    query.on('row', function(row){
+      results.roles.push(row.unnest);
+    });
+
+    query.on('end', function(){
+      done();
+      res.send(results);
+    });
+
+  });
+});
+
+
+
+
+module.exports = router;
