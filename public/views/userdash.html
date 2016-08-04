@@ -103,18 +103,13 @@
 			                  </md-input-container>
 			                </div>
 			                <div>
-			                  <h1 class="md-title">Breed</h1>
-			                  <div layout-gt-sm="row">
-			                    <md-input-container class="md-block" flex-gt-sm>
-			                      <md-select ng-model="breed" md-selected-text="getBreed()" placeholder="Select a breed" ng-change="yesnoCheck()">
-			                        <md-option ng-value="breed" ng-repeat="breed in breeds">{{breed}}</md-option>
-			                      </md-select>
-			                    </md-input-container>
-			                    <md-input-container id="ifYes" style="display: none;" class="md-block" flex-gt-sm>
-			                      <label for="otherBreed">Other breed: </label>
-			                      <input ng-model="otherBreed" id="otherBreed" type="text" name="otherBreed" value="">
-			                    </md-input-container>
-			                  </div>
+						    <md-input-container class="md-block" flex-gt-sm>
+		    			              <label for="breed">Breed</label>
+		    			              <input id="breed" ng-model="breed" name="breed" required>
+		    			              <div ng-messages="k9form.breed.$error">
+		    			                <div ng-message="required">This is required.</div>
+		    			              </div>
+		    			            </md-input-container>
 			                </div>
 			                <div layout-gt-sm="row">
 			                  <md-radio-group ng-model="k9Cert" class="md-primary">
