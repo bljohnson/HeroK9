@@ -287,24 +287,24 @@ myApp.controller('adminEditController', ['$scope', '$http', function($scope, $ht
 
     //Will need more fields
     var user = {
-      id: $scope.inquiryData[index].id,
-      primary_phone: $scope.inquiryData[index].primary_phone,
-      alt_phone: $scope.inquiryData[index].alt_phone,
-      email: $scope.inquiryData[index].email,
-      contact_email: $scope.inquiryData[index].contact_email,
-      contact_time: $scope.inquiryData[index].contact_time,
-      add_street1: $scope.inquiryData[index].dept_add_street1,
-      add_street2: $scope.inquiryData[index].dept_add_street2,
-      add_city: $scope.inquiryData[index].dept_add_city,
-      add_state: $scope.inquiryData[index].dept_add_state,
-      add_zip: $scope.inquiryData[index].dept_add_zip
+      id: $scope.applicationData[index].id,
+      primary_phone: $scope.applicationData[index].primary_phone,
+      alt_phone: $scope.applicationData[index].alt_phone,
+      email: $scope.applicationData[index].email,
+      contact_email: $scope.applicationData[index].contact_email,
+      contact_time: $scope.applicationData[index].contact_time,
+      add_street1: $scope.applicationData[index].dept_add_street1,
+      add_street2: $scope.applicationData[index].dept_add_street2,
+      add_city: $scope.applicationData[index].dept_add_city,
+      add_state: $scope.applicationData[index].dept_add_state,
+      add_zip: $scope.applicationData[index].dept_add_zip
 };
 
     console.log(user);
 
 
     // $scope.user already updated!
-    return $http.post('/saveUser', user).error(function(err) {
+    return $http.post('/adminEdit/saveUser', user).error(function(err) {
       if(err.field && err.msg) {
         // err like {field: "name", msg: "Server-side error for this username!"}
         $scope.userForm.$setError(err.field, err.msg);
@@ -315,6 +315,31 @@ myApp.controller('adminEditController', ['$scope', '$http', function($scope, $ht
     });
   };//End saveUser
 
+  $scope.deleteInquiry = function(e, index) {
+
+    var deleteUserObject = {
+      contact_email: $scope.applicationData[index].contact_email
+    }
+
+    var firstName = $scope.applicationData[index].first_name;
+    var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
+    if (r === true){
+
+      $http({
+        method: 'POST',
+        url: '/deleteUser',
+        data: deleteUserObject
+      });
+
+
+      $scope.applicationData[index].statusAlert = firstName + ' has been deleted from your records!';
+      $scope.alertStatus = "alert alert-success";
+    } else {
+      $scope.applicationData[index].statusAlert = firstName + ' has not been deleted from your records.';
+      $scope.alertStatus = "alert alert-warning";
+    }
+  };
+
 
 }]);//End adminEditController
 
@@ -322,24 +347,6 @@ myApp.controller('adminEditController', ['$scope', '$http', function($scope, $ht
 myApp.controller('dogTableController', ['$scope', '$http', function($scope, $http){
 
   $scope.expandDogView = function(index){
-
-    // var statusData = {
-    //   contact_email: $scope.applicationData[index].contact_email,
-    //   status_id: $scope.applicationData[index].status_id
-    // };
-    //
-    // //Check to see if the application/inquiry is new
-    // if ($scope.applicationData[index].status_id == 1 || $scope.applicationData[index].status_id == 4){
-    //   $http({
-    //     method: 'POST',
-    //     url: '/updateStatus',
-    //     data: statusData
-    //   })
-    //   .then(function(data){
-    //     $scope.applicationData[index].status_id = data.data;
-    //   });
-    //
-    // }
 
     if (document.getElementById('expandDog' + index).style.display == "none"){
       this.backgroundColor = "#AAAAAA";
@@ -371,25 +378,48 @@ myApp.controller('dogEditController', ['$scope', '$http', '$filter', function($s
     return ($scope.dogData.k9_active_duty && selectedDuty.length) ? selectedDuty[0].text : 'Not set';
   };
 
+  $scope.showStatusSquad = function() {
+    var selectedSquad = $filter('filter')($scope.bool, {value: $scope.dogData.squad_retirement});
+    return ($scope.dogData.squad_retirement && selectedSquad.length) ? selectedSquad[0].text : 'Not set';
+  };
 
-  $scope.saveUser = function(index) {
+
+  $scope.saveDog = function(index) {
+
+    console.log('Index:', index);
+    console.log('ID:', $scope.dogDataTable[index].id);
 
     //Will need more fields
-    var user = {
-      id: $scope.dogData[index].id,
-      primary_phone: $scope.dogData[index].primary_phone,
-      alt_phone: $scope.dogData[index].alt_phone,
-      email: $scope.dogData[index].email,
-      contact_email: $scope.dogData[index].contact_email,
-      contact_time: $scope.dogData[index].contact_time,
-      add_street1: $scope.dogData[index].dept_add_street1
+    var dog = {
+      id: $scope.dogDataTable[index].id,
+      breed: $scope.dogDataTable[index].breed,
+      age: $scope.dogDataTable[index].age,
+      k9_active_duty: $scope.dogDataTable[index].k9_active_duty,
+      k9_retirement: $scope.dogDataTable[index].k9_retirement,
+      handler_rank: $scope.dogDataTable[index].handler_rank,
+      handler_first_name: $scope.dogDataTable[index].handler_first_name,
+      handler_last_name: $scope.dogDataTable[index].handler_last_name,
+      handler_badge: $scope.dogDataTable[index].handler_badge,
+      handler_cell_phone: $scope.dogDataTable[index].handler_cell_phone,
+      handler_secondary_phone: $scope.dogDataTable[index].handler_secondary_phone,
+      handler_email: $scope.dogDataTable[index].handler_email,
+      k9_back: $scope.dogDataTable[index].k9_back,
+      k9_chest: $scope.dogDataTable[index].k9_chest,
+      k9_girth: $scope.dogDataTable[index].k9_girth,
+      k9_undercarriage: $scope.dogDataTable[index].k9_undercarriage,
+      k9_vest_color: $scope.dogDataTable[index].k9_vest_color,
+      k9_vest_imprint: $scope.dogDataTable[index].k9_vest_imprint,
+      squad_make: $scope.dogDataTable[index].squad_make,
+      squad_model: $scope.dogDataTable[index].squad_model,
+      squad_year: $scope.dogDataTable[index].squad_year,
+      squad_retirement: $scope.dogDataTable[index].squad_retirement
 };
 
-    console.log(user);
+    console.log(dog);
 
 
     // $scope.user already updated!
-    return $http.post('/saveDog', user).error(function(err) {
+    return $http.post('/adminEdit/saveDog', dog).error(function(err) {
       if(err.field && err.msg) {
         // err like {field: "name", msg: "Server-side error for this username!"}
         $scope.userForm.$setError(err.field, err.msg);

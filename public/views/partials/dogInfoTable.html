@@ -149,10 +149,10 @@
         </span>
         </br>
 
-        <span class="infoItem">
-          <label>Squad Car Retirement: </label>
-            <span editable-text="dogData.squad_retirement"> {{dogData.squad_retirement}} </span>
-        </span>
+        <label>Squad Car Retirement: </label>
+        <a editable-select="dogData.squad_retirement" e-ng-options="j.value as j.text for j in bool">
+          {{ showStatusSquad() }}
+        </a>
         </br>
 
       </content>
@@ -174,6 +174,9 @@
         </button>
       </span>
     </div>
+
+    <h4><strong>Bio:</strong></h4>
+    <p>{{dogData.k9_bio}}</p>
 
   </form>
 
