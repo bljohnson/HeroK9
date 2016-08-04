@@ -127,7 +127,10 @@ router.get('/getFormInfo', function (req, res){
   pg.connect(connectionString, function(err, client, done){
 
     var results = {
-	username: req.user.first_name,
+	userInfo: {
+		username: req.user.first_name,
+		status_id: req.user.status_id
+	},
       certs: [],
       dogs: [],
       form_info: {

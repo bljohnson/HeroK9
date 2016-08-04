@@ -12,13 +12,6 @@
     	  <h2>Authorized Signer Information</h2>
         <div>
 
-    	  <md-input-container class="md-block">
-    	    <label for="rank">Rank/Title</label>
-    	    <input ng-model="rank" id="rank" type="text" name="rank" value="" required>
-    	    <div ng-messages="application.rank.$error">
-    		    <div ng-message="required">This is required.</div>
-    	    </div>
-    	  </md-input-container>
     	  <div>
     	    <h1 class="md-title">Role</h1>
     	    <!-- <div layout="row">
@@ -79,9 +72,9 @@
           </md-input-container>
           <div flex="5" hide-xs hide-sm></div>
           <md-input-container class="md-block" flex-gt-sm>
-            <label for="email">Email Address</label>
-            <input ng-model="email" id="email" type="text" name="email" value="" required>
-            <div ng-messages="application.email.$error">
+            <label for="contactEmail">Email Address</label>
+            <input ng-model="contactEmail" id="contactEmail" type="text" name="contactEmail" value="" required>
+            <div ng-messages="application.contactEmail.$error">
               <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>

@@ -165,7 +165,6 @@ myApp.controller('loginController', ['$scope', '$rootScope' , '$http', '$window'
 
 myApp.controller('MainController', ['$scope', '$http', '$location', function($scope, $http, $location){
   $scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
-     $scope.role = '';
      $scope.getRole = function() {
        if ($scope.role !== undefined) {
          return $scope.role;

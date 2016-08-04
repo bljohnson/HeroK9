@@ -21,72 +21,69 @@ angular.module('myApp').controller('UserDashController', [
           url: '/userDash/getFormInfo'
         }).success(function(data){
           console.log('In /getFormInfo success with:', data);
-	    $scope.username = data.username;
+	    $scope.username = data.userInfo.username;
+	    $scope.status_id = data.userInfo.status_id;
           $scope.certList = data.certs;
           $scope.dogList = data.dogs;
           $scope.breeds = data.form_info.breeds;
           $scope.colors = data.form_info.vest_colors;
           $scope.imprints = data.form_info.vest_imprints;
           $scope.imprintColors = data.form_info.vest_imprint_colors;
+
+
+	    if( $scope.status_id === 5 ){
+		    $scope.userStatus = [
+			    { status: "active", name: "Application In Review"},
+			    { status: "", name: "Application Approved"},
+			    { status: "", name: "Grant Approved"},
+			    { status: "", name: "Order Sent In"},
+			    { status: "", name: "Shipped"}
+		    ];
+	    }// end 5
+	    if( $scope.status_id === 7 ){
+		    $scope.userStatus = [
+			    { status: "visited", name: "Application In Review"},
+			    { status: "active", name: "Application Approved"},
+			    { status: "", name: "Grant Approved"},
+			    { status: "", name: "Order Sent In"},
+			    { status: "", name: "Shipped"}
+		    ];
+	    }// end 7
+	    if( $scope.status_id === 8 ){
+		    $scope.userStatus = [
+			    { status: "visited", name: "Application In Review"},
+			    { status: "visited", name: "Application Approved"},
+			    { status: "active", name: "Grant Approved"},
+			    { status: "", name: "Order Sent In"},
+			    { status: "", name: "Shipped"}
+		    ];
+	    }// end 8
+	    if( $scope.status_id === 9 ){
+		    $scope.userStatus = [
+			    { status: "visited", name: "Application In Review"},
+			    { status: "visited", name: "Application Approved"},
+			    { status: "visited", name: "Grant Approved"},
+			    { status: "active", name: "Order Sent In"},
+			    { status: "", name: "Shipped"}
+		    ];
+	    }// end 9
+	    if( $scope.status_id === 10 ){
+		    $scope.userStatus = [
+			    { status: "visited", name: "Application In Review"},
+			    { status: "visited", name: "Application Approved"},
+			    { status: "visited", name: "Grant Approved"},
+			    { status: "visited", name: "Order Sent In"},
+			    { status: "active", name: "Shipped"}
+		    ];
+	    }// end 10
+
         });
 
-	// test //
-	$scope.userStatus = [
-		{ status: "visited", name: "Application In Review"},
-		{ status: "active", name: "Application Approved"},
-		{ status: "", name: "Grant Approved"},
-		{ status: "", name: "Order Sent In"},
-		{ status: "", name: "Shipped"}
-	];
 
  	// create button on user dash for admin only to update status to update progress bar
-	$scope.setStatus = function( newStatus ){
-			if( status === 5 ){
-				$scope.userStatus = [
-					{ status: "active", name: "Application In Review"},
-					{ status: "", name: "Application Approved"},
-					{ status: "", name: "Grant Approved"},
-					{ status: "", name: "Order Sent In"},
-					{ status: "", name: "Shipped"}
-				];
-			}// end 5
-			if( status === 7 ){
-				$scope.userStatus = [
-					{ status: "visited", name: "Application In Review"},
-					{ status: "active", name: "Application Approved"},
-					{ status: "", name: "Grant Approved"},
-					{ status: "", name: "Order Sent In"},
-					{ status: "", name: "Shipped"}
-				];
-			}// end 7
-			if( status === 8 ){
-				$scope.userStatus = [
-					{ status: "visited", name: "Application In Review"},
-					{ status: "visited", name: "Application Approved"},
-					{ status: "active", name: "Grant Approved"},
-					{ status: "", name: "Order Sent In"},
-					{ status: "", name: "Shipped"}
-				];
-			}// end 8
-			if( status === 9 ){
-				$scope.userStatus = [
-					{ status: "visited", name: "Application In Review"},
-					{ status: "visited", name: "Application Approved"},
-					{ status: "visited", name: "Grant Approved"},
-					{ status: "active", name: "Order Sent In"},
-					{ status: "", name: "Shipped"}
-				];
-			}// end 9
-			if( status === 10 ){
-				$scope.userStatus = [
-					{ status: "visited", name: "Application In Review"},
-					{ status: "visited", name: "Application Approved"},
-					{ status: "visited", name: "Grant Approved"},
-					{ status: "visited", name: "Order Sent In"},
-					{ status: "active", name: "Shipped"}
-				];
-			}// end 10
-	}; // end setStatus
+	// $scope.setStatus = function( newStatus ){
+
+	// }; // end setStatus
 
         $scope.updateForm = function(){
           for (var i=0; i<$scope.dogList.length; i++){
