@@ -75,8 +75,10 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
 
   $scope.newMessage = function(){
     if ($scope.showCancelMessage == false){
+      console.log('was false, now true', $scope.showCancelMessage);
       $scope.showCancelMessage = true;
     } else {
+      console.log('was true, now false', $scope.showCancelMessage);
       $scope.showCancelMessage = false;
     }
   };
@@ -86,7 +88,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
     var messageToSend = {
       message: $scope.messageBody,
       subject: $scope.messageSubject
-    }
+    };
 
     console.log(messageToSend);
 
@@ -94,33 +96,11 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
       method: 'POST',
       url: '/snippitInfo/newMessage',
       data: messageToSend
-    }).then(
-      $http({
-        method: 'GET',
-        url: '/snippitInfo'
-      }).
-      then(function(snippitData){
-        // Bind the returned data
+    }).then(function(){
+      $scope.messages.push(messageToSend);
+      $scope.showCancelMessage = false;
+    });
 
-        snippitData = snippitData.data;
-        console.log(snippitData);
-
-       $scope.newInquiry = snippitData.inquiry.new;
-       $scope.pendingInquiry = snippitData.inquiry.pending;
-       $scope.approvedInquiry = snippitData.inquiry.approved;
-
-       $scope.newApplication = snippitData.application.new;
-       $scope.pendingApplication = snippitData.application.pending;
-       $scope.approvedApplication = snippitData.application.approved;
-
-       $scope.username = snippitData.user;
-
-       $scope.messages = snippitData.messages;
-      })
-    );
-
-
-    $scope.showCancelMessage = false;
   };
 
 

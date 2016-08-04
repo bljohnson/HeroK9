@@ -53,9 +53,9 @@
       <br>
       <br>
 
-      <div class="" ng-if='showCancelMessage'>
+      <div class="" ng-show='showCancelMessage'>
 
-        <form name='messageForm' ng-submit="sendMessage()" ng-controller="snippitController">
+        <form name='messageForm' ng-submit="sendMessage()">
 
           <button type="submit" class="btn btn-success btn-lg">Submit</button>
           <button type="button" ng-click='newMessage()' class="btn btn-danger btn-lg">Cancel</button>
@@ -97,7 +97,7 @@
           <tr style="display: none; border: solid black 1px" id="{{ 'expandMessage' + $index }}">
             <td colspan="3">
               <div class="page-header">
-                <small>{{message.message}}</small><button type="button" class="btn btn-warning btn-lg" style='float:right' ng-click='deleteMessage($index)'>Resolve</button></h1>
+                <h3><button type="button" class="btn btn-warning btn-lg" style='float:right' ng-click='deleteMessage($index)'>Resolve</button><br><br>{{message.message}}</h3>
                 <br>
                 <br>
               </div>
