@@ -50,7 +50,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$provide', function($route
       controller: 'AppController'
     }).
     when('/part3', {
-      templateUrl: '/views/k9application.html',
+      templateUrl: '/views/k9application2.html',
       controller: 'AppController'
     }).
     when('/submitted',{
