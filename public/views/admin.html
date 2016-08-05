@@ -15,7 +15,13 @@
 
       <div class="page-header row" ng-controller="snippitController">
         <a href="/#/home"><img style='float: left; height: 10vh;' class="logo" src="images/herok9.svg" alt="Hero K9 Logo"></a>
-        <h1>Admin Dashboard <small>Welcome, {{username}}</small></h1>
+        <h1>
+          Admin Dashboard <small>Welcome, {{username}}</small>
+          <button class='btn btn-primary btn-lg' style='float:right' ng-show='awayFromHome' type="button" ng-click='viewControl(0)'>Dashboard Home</button>
+          <br>
+          <br>
+        </h1>
+
 
       </div>
 

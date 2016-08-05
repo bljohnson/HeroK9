@@ -2,16 +2,17 @@
   <h3>Active Inquiries</h3>
 
   <label>Search: </label>
-  <input type="text" ng-model='applicationSearchIn' placeholder="Not coded yet">
+  <input type="text" ng-model='applicationSearchIn'>
+  <br>
+  <br>
 
   <div class="panel panel-primary">
-    <div class="panel-heading">Applications</div>
+    <div class="panel-heading">Police Department Applications</div>
     <div class="panel-body">
-      <button class='btn btn-info btn-lg' type="button" ng-click='viewControl(0)'>Dashboard home</button>
 
       <table class="table">
         <tr>
-          <th>ID</th> <th>First Name</th> <th>Last Name</th>  <th>Phone</th>  <th>E-mail</th> <th>Status</th>
+          <th>ID</th> <th>Name</th>  <th>Phone</th>  <th>E-mail</th> <th>Status</th>
         </tr>
         <tbody ng-repeat="data in applicationData">
           <tr ng-click="expandView($index)">
@@ -19,10 +20,7 @@
               {{data.id}}
             </td>
             <td>
-              {{data.first_name}}
-            </td>
-            <td>
-              {{data.last_name}}
+              {{data.first_name}} {{data.last_name}}
             </td>
             <td>
               {{data.primary_phone}}
@@ -40,7 +38,7 @@
 
               <div class="panel panel-info">
                 <div class="panel-heading">
-                  <h3 class="panel-title">{{data.first_name}}'s Information</h3>
+                  <h3 class="panel-title">Department Information</h3>
                 </div>
                 <div class="panel-body">
 
