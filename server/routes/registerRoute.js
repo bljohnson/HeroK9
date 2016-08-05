@@ -83,7 +83,6 @@ if (req.body.contact_email == undefined) {
               res.sendStatus(500);
             }else{
               //redirect to get on / route
-              console.log('id of registered user = ', result.rows[0].id);
               res.redirect('/');
             }
       });
