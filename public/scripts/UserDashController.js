@@ -315,7 +315,8 @@ angular.module('myApp').controller('UserDashController', [
       '$window',
       '$location',
       'Upload',
-      function($scope, $http, $window, $location, Upload) {
+      '$mdDialog',
+      function($scope, $http, $window, $location, Upload, $mdDialog) {
 
         // file variables
         $scope.file = '';
@@ -343,6 +344,15 @@ angular.module('myApp').controller('UserDashController', [
           }).then(function(resp) {
             console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
 
+            // modal to confirm upload
+            $mdDialog.show(
+              $mdDialog.alert({
+                title: 'File Uploaded',
+                textContent: 'Your file has been successfully uploaded.',
+                ok: 'Okay'
+              })
+            );
+
             // then, if success, also collect input & send data and file location to database
             var imgToServer = {
               url: resp.data.location
@@ -352,7 +362,7 @@ angular.module('myApp').controller('UserDashController', [
             // post method to send object to database
             $http({
               method: 'POST',
-              url: '/handlerForm',
+              url: '/userDash/submitImg',
               data: imgToServer
             }).then(function() {
               console.log('submitImg post success');
@@ -375,7 +385,8 @@ angular.module('myApp').controller('UserDashController', [
       '$window',
       '$location',
       'Upload',
-      function($scope, $http, $window, $location, Upload) {
+      '$mdDialog',
+      function($scope, $http, $window, $location, Upload, $mdDialog) {
 
         // file variables
         $scope.file = '';
@@ -393,7 +404,7 @@ angular.module('myApp').controller('UserDashController', [
         // upload files to S3 and to the database
         $scope.upload = function(file) {
           Upload.upload ({
-            url: '/userDash/upload',
+            url: '/userDash/uploads',
             data: {
               file: file,
               'user': $scope.user,
@@ -401,6 +412,15 @@ angular.module('myApp').controller('UserDashController', [
             }
           }).then(function(resp) {
             console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
+
+            // modal to confirm upload
+            $mdDialog.show(
+              $mdDialog.alert({
+                title: 'File Uploaded',
+                textContent: 'Your file has been successfully uploaded.',
+                ok: 'Okay'
+              })
+            );
 
             // then, if success, also collect input & send data and file location to database
             var imgToServer = {
@@ -411,10 +431,10 @@ angular.module('myApp').controller('UserDashController', [
             // post method to send object to database
             $http({
               method: 'POST',
-              url: '/handlerForm',
+              url: '/userDash/submitSquadImg',
               data: imgToServer
             }).then(function() {
-              console.log('submitImg post success');
+              console.log('submitSquadImg post success');
             });
           }, function(resp) {
             console.log('Error status: ' + resp.status);
