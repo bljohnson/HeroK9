@@ -225,11 +225,19 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
 
   $http({
     method: 'GET',
-    url: '/applicationForm'
+    url: '/applicationForm/formData'
   }).then(function(data){
     data = data.data;
     console.log(data);
     $scope.equipmentList = data;
+  }).then(function(){
+    $http({
+      method: 'GET',
+      url: '/user'
+    }).then(function(userData){
+      userData = userData.data;
+      console.log(userData);
+    });
   });
 
 

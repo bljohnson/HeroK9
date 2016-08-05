@@ -39,7 +39,7 @@ router.post('/part2', function(req, res){
 	}); // end pg connect
 }); // end router.post
 
-router.get('/', function(req, res){
+router.get('/formData', function(req, res){
 	console.log('in application GET');
 	pg.connect(connection, function(err, client, done){
 		var results = [];
