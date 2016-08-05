@@ -69,12 +69,12 @@ md-card:last-child {
 .hometron {
   position: relative;
   background-color: #e3e3e3;
-  /*background: #fff url("/images/k9Placeholder.jpg") center center;*/
+  background: #fff url("/images/k9Placeholder.jpg") center center;
   width: 100%;
   height: 100%;
   background-size: cover;
   overflow: hidden;
-  padding: 12% 0;
+  padding: 20% 0 15% 0;
   margin-bottom: 0;
 }
 
@@ -133,10 +133,13 @@ md-card:last-child {
   background-color: #ebebeb;
 }
 
+
+
 .search-bar {
   background-color: #ebebeb;
   width: 220px;
 }
+
 
 
 
