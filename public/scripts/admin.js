@@ -469,12 +469,18 @@ myApp.controller('dogTableController', ['$scope', '$http', function($scope, $htt
 
   $scope.expandDogView = function(index){
 
+    console.log('expandDogView clicked');
+
     if (document.getElementById('expandDog' + index).style.display == "none"){
       this.backgroundColor = "#AAAAAA";
-      document.getElementById('expandDog' + index).style.display = "table-row";
+
+      $scope.dogInfo[index] = true;
+      // document.getElementById('expandDog' + index).style.display = "table-row";
     } else if (document.getElementById('expandDog' + index).style.display == "table-row"){
       this.backgroundColor = "#FFFFFF";
-      document.getElementById('expandDog' + index).style.display = "none";
+
+      $scope.dogInfo[index] = false;
+      // document.getElementById('expandDog' + index).style.display = "none";
     }
 
   };
