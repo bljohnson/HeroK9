@@ -38,27 +38,6 @@ router.post('/uploads', upload.single('file'), function(req, res) {
   res.send(req.file);
 });
 
-// get route to retrieve file names to display and then potentially allow users to delete too?
-// router.get('/getFileNames', function(req, res) {
-//   var results = [];
-//   pg.connect(connectionString, function(err, client, done) {
-//     var callDatabase = client.query('SELECT file name from k9s_certifications where k9_id equals x;');
-//     // push each row in query into our results array
-//     callDatabase.on('row', function(row) {
-//       results.push(row);
-//     }); // end query push
-//     callDatabase.on('end', function(){
-//       console.log('user files: ', results);
-//       return res.json(results);
-//     });
-//     if(err) {
-//       console.log(err);
-//     }
-//     done();
-//   }); // end pg connect
-// });
-
-
 ////////////////////////////////////////////////////////////
 //                     POST ROUTES                        //
 ////////////////////////////////////////////////////////////
@@ -89,6 +68,23 @@ router.post('/submitImg', function (req, res){
       var sendFile = client.query('INSERT INTO k9_photos (url) VALUES ($1)',
         [req.body.url]);
         console.log('in submitImg post route, adding to k9_photos:', req.body.url);
+      sendFile.on('end', function(){
+        done();
+        return res.end();
+      });
+    }
+  });
+});
+
+// send IMG URLs to squad_photos table
+router.post('/submitSquadImg', function (req, res){
+  pg.connect(connectionString, function(err, client, done){
+    if(err){
+      console.log(err);
+    } else {
+      var sendFile = client.query('INSERT INTO squad_photos (url) VALUES ($1)',
+        [req.body.url]);
+        console.log('in submitSquadImg post route, adding to squad_photos:', req.body.url);
       sendFile.on('end', function(){
         done();
         return res.end();
