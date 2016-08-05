@@ -187,8 +187,9 @@ md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-i
   background: #d24740;
   box-shadow: none;
   color: #fff;
-  margin: 6px 0;
-  font-weight:bold
+  margin: 0 10px 0 0;
+  font-weight: bold;
+  padding: 5px 20px;
 }
 
 .md-button.md-primary.md-raised:not([disabled]):hover {
@@ -265,6 +266,18 @@ md-input-container ._md-placeholder, label {
 .terms li span {
   font-size: 14px;
   font-weight: normal;
+}
+
+/* user dash styling */
+.status-bar {
+  border: 1px solid #e5e5e5;
+  padding: 20px 35px;
+  margin: 15px 0;
+  border-radius: 5px;
+}
+
+.file-selected {
+  margin: 20px 0;
 }
 
 /*.terms{
