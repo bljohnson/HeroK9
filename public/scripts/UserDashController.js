@@ -242,7 +242,8 @@ angular.module('myApp').controller('UserDashController', [
       '$window',
       '$location',
       'Upload',
-      function($scope, $http, $window, $location, Upload) {
+      '$mdDialog',
+      function($scope, $http, $window, $location, Upload, $mdDialog) {
 
         // file variables
         $scope.file = '';
@@ -269,6 +270,15 @@ angular.module('myApp').controller('UserDashController', [
             }
           }).then(function(resp) {
             console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
+
+            // modal to confirm upload
+            $mdDialog.show(
+              $mdDialog.alert({
+                title: 'File Uploaded',
+                textContent: 'Your file has been successfully uploaded.',
+                ok: 'Okay'
+              })
+            );
 
             // then, if success, also send file location (url) to database
             var pdfToServer = {
