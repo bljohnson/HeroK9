@@ -17,11 +17,24 @@ myApp.controller('adminViewController', ['$scope', function($scope){
 
   //Initialize with this partial
   $scope.activeTab = $scope.tabs[0];
+  $scope.awayFromHome = false;
 
   $scope.viewControl = function(tab){
     console.log('In tab change');
 
     $scope.activeTab = $scope.tabs[tab];
+
+    switch (tab) {
+      case 0:
+        $scope.awayFromHome = false;
+      case 1:
+      case 2:
+      case 3:
+        $scope.awayFromHome = true;
+        break;
+      default:
+
+    }
 
   };
 
@@ -61,6 +74,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
 
     //Set the ng-include
     $scope.viewControl(1);
+    $scope.adminTable = true;
 
   };//End showInquiries
 
@@ -69,14 +83,17 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
 
     //Set the ng-include
     $scope.viewControl(2);
+    $scope.adminTable = true;
 
   };//End showApplications
 
 
   $scope.newMessage = function(){
     if ($scope.showCancelMessage == false){
+      console.log('was false, now true', $scope.showCancelMessage);
       $scope.showCancelMessage = true;
     } else {
+      console.log('was true, now false', $scope.showCancelMessage);
       $scope.showCancelMessage = false;
     }
   };
@@ -86,7 +103,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
     var messageToSend = {
       message: $scope.messageBody,
       subject: $scope.messageSubject
-    }
+    };
 
     console.log(messageToSend);
 
@@ -94,33 +111,11 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
       method: 'POST',
       url: '/snippitInfo/newMessage',
       data: messageToSend
-    }).then(
-      $http({
-        method: 'GET',
-        url: '/snippitInfo'
-      }).
-      then(function(snippitData){
-        // Bind the returned data
+    }).then(function(){
+      $scope.messages.push(messageToSend);
+      $scope.showCancelMessage = false;
+    });
 
-        snippitData = snippitData.data;
-        console.log(snippitData);
-
-       $scope.newInquiry = snippitData.inquiry.new;
-       $scope.pendingInquiry = snippitData.inquiry.pending;
-       $scope.approvedInquiry = snippitData.inquiry.approved;
-
-       $scope.newApplication = snippitData.application.new;
-       $scope.pendingApplication = snippitData.application.pending;
-       $scope.approvedApplication = snippitData.application.approved;
-
-       $scope.username = snippitData.user;
-
-       $scope.messages = snippitData.messages;
-      })
-    );
-
-
-    $scope.showCancelMessage = false;
   };
 
 
@@ -162,7 +157,12 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
 
 myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, $http){
 
-  $scope.applicationTable = false;
+  //initialize
+    //In applicationTable, to show dogTable
+    $scope.applicationTable = false;
+
+    //In adminTable Partial
+    $scope.adminTable = true;
 
   //Make a call to populate inquiryTable
   $http({
@@ -332,7 +332,12 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
 
 myApp.controller('applicationTableController', ['$scope', '$http', function($scope, $http){
 
-  $scope.applicationTable = true;
+  //Initialize
+    //In applicationTable, to show dogTable
+    $scope.applicationTable = true;
+
+    //In adminTable Partial
+    $scope.adminTable = true;
 
   //Make a call to populate applicationTable
   $http({

@@ -64,6 +64,8 @@ myApp.config(['$routeProvider', '$locationProvider', '$provide', function($route
     });
 }]);
 
+
+
 myApp.controller('loginController', ['$scope', '$rootScope' , '$http', '$window', '$location', function( $scope ,$rootScope , $http, $window, $location){
 
   $http({
@@ -92,14 +94,27 @@ myApp.controller('loginController', ['$scope', '$rootScope' , '$http', '$window'
       method: 'POST',
       url: '/register',
       data: regObject
+    }).success(function(){
+      $http({
+      method: "POST",
+      url: '/index',
+      data: regObject
     }).success(function(data){
-      $window.location.href = '/#/application';
+        console.log(data);
+          if (data.status_id == 99) {$window.location.href = '/adminView';}
+          else if (data.status_id == 3) {$window.location.href = '/#/application';}
+          else {$window.location.href = "/#/userdash";}
+
+      }).error(function(err){
+        console.log(err);
+          $window.location.href = 'views/failure.html';
+      });
     });
   };
 
   $scope.login = function (){
     var loginObject = {
-      username: $scope.email,
+      email: $scope.email,
       password: $scope.password
     };
     $http({
@@ -146,13 +161,12 @@ myApp.controller('loginController', ['$scope', '$rootScope' , '$http', '$window'
   });
   };
 
-
-
 }]);
+
+
 
 myApp.controller('MainController', ['$scope', '$http', '$location', function($scope, $http, $location){
   $scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
-     $scope.role = '';
      $scope.getRole = function() {
        if ($scope.role !== undefined) {
          return $scope.role;
@@ -207,6 +221,7 @@ myApp.controller('MainController', ['$scope', '$http', '$location', function($sc
 
 
 myApp.controller('AppController', ['$scope', '$http', '$location', function($scope, $http, $location){
+
 
   $http({
     method: 'GET',
@@ -437,4 +452,9 @@ $scope.sendk9 = function(){
 $scope.go = function(path){
   $location.path(path);
 };
+}]);
+
+myApp.factory('check', ['$http', '$rootScope', '$location', function($http, $rootScope, $location) {
+
+
 }]);

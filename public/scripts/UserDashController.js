@@ -21,76 +21,74 @@ angular.module('myApp').controller('UserDashController', [
           url: '/userDash/getFormInfo'
         }).success(function(data){
           console.log('In /getFormInfo success with:', data);
-	    $scope.username = data.username;
+	    $scope.username = data.userInfo.username;
+	    $scope.status_id = data.userInfo.status_id;
           $scope.certList = data.certs;
           $scope.dogList = data.dogs;
           $scope.breeds = data.form_info.breeds;
           $scope.colors = data.form_info.vest_colors;
           $scope.imprints = data.form_info.vest_imprints;
           $scope.imprintColors = data.form_info.vest_imprint_colors;
+
+
+	    if( $scope.status_id === 5 ){
+		    $scope.userStatus = [
+			    { status: "active", name: "Application In Review"},
+			    { status: "", name: "Application Approved"},
+			    { status: "", name: "Grant Approved"},
+			    { status: "", name: "Order Sent In"},
+			    { status: "", name: "Shipped"}
+		    ];
+	    }// end 5
+	    if( $scope.status_id === 7 ){
+		    $scope.userStatus = [
+			    { status: "visited", name: "Application In Review"},
+			    { status: "active", name: "Application Approved"},
+			    { status: "", name: "Grant Approved"},
+			    { status: "", name: "Order Sent In"},
+			    { status: "", name: "Shipped"}
+		    ];
+	    }// end 7
+	    if( $scope.status_id === 8 ){
+		    $scope.userStatus = [
+			    { status: "visited", name: "Application In Review"},
+			    { status: "visited", name: "Application Approved"},
+			    { status: "active", name: "Grant Approved"},
+			    { status: "", name: "Order Sent In"},
+			    { status: "", name: "Shipped"}
+		    ];
+	    }// end 8
+	    if( $scope.status_id === 9 ){
+		    $scope.userStatus = [
+			    { status: "visited", name: "Application In Review"},
+			    { status: "visited", name: "Application Approved"},
+			    { status: "visited", name: "Grant Approved"},
+			    { status: "active", name: "Order Sent In"},
+			    { status: "", name: "Shipped"}
+		    ];
+	    }// end 9
+	    if( $scope.status_id === 10 ){
+		    $scope.userStatus = [
+			    { status: "visited", name: "Application In Review"},
+			    { status: "visited", name: "Application Approved"},
+			    { status: "visited", name: "Grant Approved"},
+			    { status: "visited", name: "Order Sent In"},
+			    { status: "active", name: "Shipped"}
+		    ];
+	    }// end 10
+
         });
 
-	// test //
-	$scope.userStatus = [
-		{ status: "visited", name: "Application In Review"},
-		{ status: "active", name: "Application Approved"},
-		{ status: "", name: "Grant Approved"},
-		{ status: "", name: "Order Sent In"},
-		{ status: "", name: "Shipped"}
-	];
 
  	// create button on user dash for admin only to update status to update progress bar
-	$scope.setStatus = function( newStatus ){
-			if( status === 5 ){
-				$scope.userStatus = [
-					{ status: "active", name: "Application In Review"},
-					{ status: "", name: "Application Approved"},
-					{ status: "", name: "Grant Approved"},
-					{ status: "", name: "Order Sent In"},
-					{ status: "", name: "Shipped"}
-				];
-			}// end 5
-			if( status === 7 ){
-				$scope.userStatus = [
-					{ status: "visited", name: "Application In Review"},
-					{ status: "active", name: "Application Approved"},
-					{ status: "", name: "Grant Approved"},
-					{ status: "", name: "Order Sent In"},
-					{ status: "", name: "Shipped"}
-				];
-			}// end 7
-			if( status === 8 ){
-				$scope.userStatus = [
-					{ status: "visited", name: "Application In Review"},
-					{ status: "visited", name: "Application Approved"},
-					{ status: "active", name: "Grant Approved"},
-					{ status: "", name: "Order Sent In"},
-					{ status: "", name: "Shipped"}
-				];
-			}// end 8
-			if( status === 9 ){
-				$scope.userStatus = [
-					{ status: "visited", name: "Application In Review"},
-					{ status: "visited", name: "Application Approved"},
-					{ status: "visited", name: "Grant Approved"},
-					{ status: "active", name: "Order Sent In"},
-					{ status: "", name: "Shipped"}
-				];
-			}// end 9
-			if( status === 10 ){
-				$scope.userStatus = [
-					{ status: "visited", name: "Application In Review"},
-					{ status: "visited", name: "Application Approved"},
-					{ status: "visited", name: "Grant Approved"},
-					{ status: "visited", name: "Order Sent In"},
-					{ status: "active", name: "Shipped"}
-				];
-			}// end 10
-	}; // end setStatus
+	// $scope.setStatus = function( newStatus ){
+
+	// }; // end setStatus
 
         $scope.updateForm = function(){
           for (var i=0; i<$scope.dogList.length; i++){
             if ($scope.selectedDog.id == $scope.dogList[i].id){
+			$scope.k9Id = $scope.dogList[i].id;
               $scope.dog_name = $scope.dogList[i].k9_name + "'s Information";
               $scope.k9Age = $scope.dogList[i].age;
               $scope.breed = $scope.dogList[i].breed;
@@ -120,26 +118,25 @@ angular.module('myApp').controller('UserDashController', [
         };
 
         // if 'Other' breed
-        $scope.yesnoCheck = function() {
-          if (this.breed == 'Other') {
-            document.getElementById('ifYes').style.display = 'block';
-          } else {
-            document.getElementById('ifYes').style.display = 'none';
-         }
-        };
+      //   $scope.yesnoCheck = function() {
+      //     if (this.breed == 'Other') {
+      //       document.getElementById('ifYes').style.display = 'block';
+      //     } else {
+      //       document.getElementById('ifYes').style.display = 'none';
+      //    }
+      //   };
 
-        var breedToSend;
-        if ($scope.otherBreed !== undefined){
-        	breedToSend = $scope.otherBreed;
-        } else {
-          	breedToSend = $scope.breed;
-        }
+      //   var breedToSend;
+      //   if ($scope.otherBreed !== undefined){
+      //   	breedToSend = $scope.otherBreed;
+      //   } else {
+      //     	breedToSend = $scope.breed;
+      //   }
 
         // certification checkboxes
 
 
         // select vest colors
-        $scope.vestColor = '';
         $scope.getVestColor = function() {
           if ($scope.vestColor !== undefined) {
             return $scope.vestColor;
@@ -149,17 +146,15 @@ angular.module('myApp').controller('UserDashController', [
         };
 
         // select vest imprint
-        $scope.vestImprint = '';
         $scope.getVestImprint = function() {
           if ($scope.vestImprint !== undefined) {
             return $scope.vestImprint;
           } else {
             return "Please select a vest imprint";
           }
-        };
+    };
 
         // select vest imprint color
-        $scope.vestImprintColor = '';
         $scope.getImprintColor = function() {
           if ($scope.vestImprintColor !== undefined) {
             return $scope.vestImprintColor;
@@ -171,6 +166,7 @@ angular.module('myApp').controller('UserDashController', [
         ////////////////////////////////////////  collect input to send to server  ////////////////////////////////////////
         $scope.sendK9App = function() {
           var k9ToSend = {
+		k9Id: $scope.k9Id,
     		handlerTitle: $scope.handlerTitle,
     		handlerFirstName: $scope.handlerFirstName,
     		handlerLastName: $scope.handlerLastName,
@@ -179,14 +175,10 @@ angular.module('myApp').controller('UserDashController', [
     		handlerSecondaryCell: $scope.handlerPhone,
     		handlerEmail: $scope.handlerEmail,
     		age: $scope.k9Age,
-    	      breed: breedToSend,
+    	      breed: $scope.breed,
       	certified: $scope.k9Cert,
       	activeDuty: $scope.k9Active,
       	retirement: $scope.k9Retire,
-    		certs: [],
-           //  	certUrl: 'dummyCertURL',
-    		// k9PhotoUrl: 'dummyK9PhotoURL',
-    		// squadUrl: 'dummySquadURL',
     		bio: $scope.k9Bio,
     		back: $scope.k9Back,
     		chest: $scope.k9Chest,
@@ -200,20 +192,17 @@ angular.module('myApp').controller('UserDashController', [
     		squadYear: $scope.squadYear,
     		squadRetire: $scope.squadRetire
           };
+
+
     	console.log('test: ', k9ToSend);
 
-	for (var i =0; i<$scope.certList.length; i++){
-	  if (document.getElementById('cert' + i).className.indexOf('md-checked') >= 0){
-	    k9ToSend.certs.push($scope.certList[i].id);
-	  }
-	}
 
           $http({
             method: 'POST',
             url: '/userDash/canine',
             data: k9ToSend
           }).success(function() {
-            console.log('in /submitK9App: ', k9ToSend);
+            console.log('in /sendK9App: ', k9ToSend);
           });
         };
 
@@ -253,7 +242,8 @@ angular.module('myApp').controller('UserDashController', [
       '$window',
       '$location',
       'Upload',
-      function($scope, $http, $window, $location, Upload) {
+      '$mdDialog',
+      function($scope, $http, $window, $location, Upload, $mdDialog) {
 
         // file variables
         $scope.file = '';
@@ -271,7 +261,8 @@ angular.module('myApp').controller('UserDashController', [
         // upload files to S3 and to the database
         $scope.upload = function(file) {
           Upload.upload ({
-            url: '/userDash/submitPdf',
+            // this goes to /uploads to S3
+            url: '/userDash/uploads',
             data: {
               file: file,
               'user': $scope.user,
@@ -280,16 +271,28 @@ angular.module('myApp').controller('UserDashController', [
           }).then(function(resp) {
             console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
 
-            // then, if success, also collect input & send data and file location to database
+            // modal to confirm upload
+            $mdDialog.show(
+              $mdDialog.alert({
+                title: 'File Uploaded',
+                textContent: 'Your file has been successfully uploaded.',
+                ok: 'Okay'
+              })
+            );
+
+            // then, if success, also send file location (url) to database
             var pdfToServer = {
-              url: resp.data.location
+              k9Id: $scope.k9Id,
+              certType: $scope.uploadCert,
+              url: resp.data.location,
+              comment: $scope.comment
             };
             console.log('send to server: ', pdfToServer);
 
             // post method to send object to database
             $http({
               method: 'POST',
-              url: '/handlerForm',
+              url: '/userDash/submitPdf',
               data: pdfToServer
             }).then(function() {
               console.log('submitPdf post success');
@@ -312,7 +315,8 @@ angular.module('myApp').controller('UserDashController', [
       '$window',
       '$location',
       'Upload',
-      function($scope, $http, $window, $location, Upload) {
+      '$mdDialog',
+      function($scope, $http, $window, $location, Upload, $mdDialog) {
 
         // file variables
         $scope.file = '';
@@ -330,7 +334,8 @@ angular.module('myApp').controller('UserDashController', [
         // upload files to S3 and to the database
         $scope.upload = function(file) {
           Upload.upload ({
-            url: '/handlerForm',
+            // this needs to go to /uploads to go to S3 first
+            url: '/userDash/uploads',
             data: {
               file: file,
               'user': $scope.user,
@@ -338,6 +343,15 @@ angular.module('myApp').controller('UserDashController', [
             }
           }).then(function(resp) {
             console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
+
+            // modal to confirm upload
+            $mdDialog.show(
+              $mdDialog.alert({
+                title: 'File Uploaded',
+                textContent: 'Your file has been successfully uploaded.',
+                ok: 'Okay'
+              })
+            );
 
             // then, if success, also collect input & send data and file location to database
             var imgToServer = {
@@ -348,7 +362,7 @@ angular.module('myApp').controller('UserDashController', [
             // post method to send object to database
             $http({
               method: 'POST',
-              url: '/handlerForm',
+              url: '/userDash/submitImg',
               data: imgToServer
             }).then(function() {
               console.log('submitImg post success');
@@ -371,7 +385,8 @@ angular.module('myApp').controller('UserDashController', [
       '$window',
       '$location',
       'Upload',
-      function($scope, $http, $window, $location, Upload) {
+      '$mdDialog',
+      function($scope, $http, $window, $location, Upload, $mdDialog) {
 
         // file variables
         $scope.file = '';
@@ -389,7 +404,7 @@ angular.module('myApp').controller('UserDashController', [
         // upload files to S3 and to the database
         $scope.upload = function(file) {
           Upload.upload ({
-            url: '/userDash/upload',
+            url: '/userDash/uploads',
             data: {
               file: file,
               'user': $scope.user,
@@ -397,6 +412,15 @@ angular.module('myApp').controller('UserDashController', [
             }
           }).then(function(resp) {
             console.log('success: ' + resp.config.data.file.name + ' uploaded and file at ' + resp.data.location);
+
+            // modal to confirm upload
+            $mdDialog.show(
+              $mdDialog.alert({
+                title: 'File Uploaded',
+                textContent: 'Your file has been successfully uploaded.',
+                ok: 'Okay'
+              })
+            );
 
             // then, if success, also collect input & send data and file location to database
             var imgToServer = {
@@ -407,10 +431,10 @@ angular.module('myApp').controller('UserDashController', [
             // post method to send object to database
             $http({
               method: 'POST',
-              url: '/handlerForm',
+              url: '/userDash/submitSquadImg',
               data: imgToServer
             }).then(function() {
-              console.log('submitImg post success');
+              console.log('submitSquadImg post success');
             });
           }, function(resp) {
             console.log('Error status: ' + resp.status);

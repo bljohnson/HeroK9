@@ -44,7 +44,7 @@ passport.deserializeUser(function(err, id, passDone) {
 // Does actual work of logging in
 passport.use('local', new localStrategy({
     passReqToCallback: true,
-    usernameField: 'username'
+    usernameField: 'email'
   }, function(req, email, password, done){
 	    pg.connect(connection, function (err, client) {
 	    	console.log('called local - pg');
