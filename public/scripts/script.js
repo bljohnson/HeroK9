@@ -448,10 +448,12 @@ $scope.sendk9 = function(){
   // $scope.ballistic = false;
   // $scope.multiThreat = false;
   // $scope.doorPop = false;
+  $scope.go = function(){
+    $location.path('/part2');
+  };
+  $scope.go();
 };
-$scope.go = function(path){
-  $location.path(path);
-};
+
 }]);
 
 myApp.factory('check', ['$http', '$rootScope', '$location', function($http, $rootScope, $location) {

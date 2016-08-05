@@ -13,7 +13,7 @@
 
   <!-- If authorized, serve full form. -->
   <div class="full" ng-show="authorized == 'yes'">
-    <form name="fullForm" ng-submit="sendInquiry()" novalidate>
+    <form name="fullForm" ng-submit="sendInquiry()" >
       <div class="form-bg">
         <h2>Contact Information</h2>
         <h1 class="md-title">Role</h1>
@@ -260,7 +260,7 @@
           </md-input-container>
           <div flex="5" hide-xs hide-sm></div>
 
-        <md-button class="md-primary md-raised" type="submit" ng-disabled="inquiry.$invalid">Submit</md-button>
+        <md-button class="md-primary md-raised" type="submit" >Submit</md-button>
       </form>
     </div>
   </div>
