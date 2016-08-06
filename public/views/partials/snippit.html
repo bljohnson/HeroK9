@@ -4,30 +4,35 @@
   <div layout="row">
     <md-card id='inquirySnippit' flex='25' md-theme="{{ showDarkTheme ? 'blue-grey' : 'default' }}" md-theme-watch="">
 
-      <md-card-title>
+      <md-card-title style="text-align: center">
         <md-card-title-text>
-          <span class="md-headline">Inquiry Snapshot</span>
+          <span class="md-headline">Requests Snapshot</span>
         </md-card-title-text>
       </md-card-title>
 
+      <md-card-actions layout="row" layout-align="left center">
+        <md-button class="md-raised md-primary" type="button" ng-click="viewControl(1)">View Table</md-button>
+      </md-card-actions>
+
       <ul>
-        <li>New Inquiries: {{newInquiry}}</li>
-        <li>Pending Review: {{pendingInquiry}}</li>
-        <li>Approved Inquiries: {{approvedInquiry}}</li>
+        <li>New Requests: {{newInquiry}}</li>
+        <li>Pending Requests: {{pendingInquiry}}</li>
+        <li>Approved Requests: {{approvedInquiry}}</li>
       </ul>
 
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-raised md-primary" type="button" ng-click="showInquiries()">View Table</md-button>
-      </md-card-actions>
     </md-card>
 
     <md-card id='applicationSnippit' flex='25' md-theme="{{ showDarkTheme ? 'blue-grey' : 'default' }}" md-theme-watch="">
 
-      <md-card-title>
+      <md-card-title style="text-align: center">
         <md-card-title-text>
           <span class="md-headline">Application Snapshot</span>
         </md-card-title-text>
       </md-card-title>
+
+      <md-card-actions layout="row" layout-align="left center">
+        <md-button class="md-raised md-primary" type="button" ng-click="viewControl(2)">View Table</md-button>
+      </md-card-actions>
 
       <ul>
         <li>New Applications: {{newApplication}}</li>
@@ -35,14 +40,21 @@
         <li>Approved Applications: {{approvedApplication}}</li>
       </ul>
 
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-raised md-primary" type="button" ng-click="showApplications()">View Table</md-button>
-      </md-card-actions>
+
     </md-card>
+
+    <!-- <md-card id='' flex='25' md-theme="{{ showDarkTheme ? 'blue-grey' : 'default' }}" md-theme-watch="">
+      <div class="page-header" style="text-align: center">
+        <h1>Every Dog</h1>
+      </div>
+    </md-card> -->
+
+
+
   </div>
 
 
-  <div class="panel panel-primary">
+  <div class="panel panel-primary" style="margin-top: 5vh">
     <div class="panel-heading">
       <h3 class="panel-title">Messages</h3>
     </div>

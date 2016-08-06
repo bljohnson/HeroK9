@@ -30,7 +30,7 @@
           </td>
         </tr>
 
-        <tr style="display: none" id="{{ 'expandDog' + $index }}">
+        <tr ng-show="{{dogInfo + $index}}" id="{{ 'expandDog' + $index }}">
           <td colspan='6'>
 
             <div class="panel panel-info">
