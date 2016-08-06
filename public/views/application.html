@@ -6,7 +6,7 @@
       <!-- app progress tracker -->
       <div class="app-tracker">
         <ul class="nav nav-wizard">
-        	<li class="active"><a href="#"><span class="badge badge-step">1</span> Contact & Department Info</a></li>
+          <li class="active"><a href="#"><span class="badge badge-step">1</span> Contact & Department Info</a></li>
           <li><a href="#"><span class="badge badge-step">2</span> K9 & Handler Info</a></li>
           <li><a href="#"><span class="badge badge-step">3</span> Terms & Conditions</a></li>
         </ul>
@@ -24,13 +24,7 @@
 
         	  <div>
         	    <h1 class="md-title">Role</h1>
-        	    <!-- <div layout="row">
-          		  <md-input-container>
-            		  <md-select ng-model="role" md-selected-text="getRole()" placeholder="Select a role">
-            			  <md-option ng-value="role" ng-repeat="role in roles">{{role}}</md-option>
-            		  </md-select>
-          		  </md-input-container>
-        	    </div> -->
+
               <div layout="row">
                 <md-input-container style="margin-right: 10px;">
                   <label>Select a role</label>
@@ -107,10 +101,9 @@
         <h2 class="form-header">Department Information</h2>
         <div class="form-bg">
 
-
           <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-sm>
-              <label for="address1">Department Address - Street 1</label>
+              <label for="address1">Street 1</label>
               <input ng-model="address1" id="address1" type="text" name="address1" value="" required>
               <div ng-messages="application.address1.$error">
                 <div ng-message="required">This is required.</div>
@@ -118,12 +111,12 @@
             </md-input-container>
             <div flex="5" hide-xs hide-sm></div>
             <md-input-container class="md-block" flex-gt-sm>
-              <label for="address2">Department Address - Street 2</label>
+              <label for="address2">Street 2</label>
               <input ng-model="address2" id="address2" type="text" name="name" value="">
             </md-input-container>
             <div flex="5" hide-xs hide-sm></div>
             <md-input-container class="md-block" flex-gt-sm>
-              <label for="city">Department Address - City</label>
+              <label for="city">City</label>
               <input ng-model="city" id="city" type="text" name="city" value="" required>
               <div ng-messages="application.city.$error">
                 <div ng-message="required">This is required.</div>
@@ -133,7 +126,7 @@
 
           <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-sm>
-              <label for="state">Department Address - State</label>
+              <label for="state">State</label>
               <input ng-model="state" id="state" type="text" name="state" value="" required>
               <div ng-messages="application.state.$error">
                 <div ng-message="required">This is required.</div>
@@ -141,7 +134,7 @@
             </md-input-container>
             <div flex="5" hide-xs hide-sm></div>
             <md-input-container class="md-block" flex-gt-sm>
-              <label for="zip">Department Address - Zip Code</label>
+              <label for="zip">Zip Code</label>
         	    <input ng-model="zip" id="zip" type="text" name="zip" value="" required>
         	    <div ng-messages="application.zip.$error">
         		    <div ng-message="required">This is required.</div>

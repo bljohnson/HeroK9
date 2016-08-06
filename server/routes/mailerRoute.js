@@ -15,7 +15,7 @@ require('dotenv').config();
 var smtpTransport = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: "flytrendsz@gmail.com",
+        user: "primeherok9@gmail.com",
         pass: process.env.MAIL_PASS
     }
 });
@@ -26,7 +26,7 @@ router.post('/',function(req,res){
       var mailOptions={
           to : req.body.to,
           subject : req.body.subject,
-          text : "here's a link, click it! http://localhost:4200/register?from=" + sha1(req.body.admin) + " "
+          text : "Thank you for your interest in HeroK9, your application request has been approved! Please click the following link to register for an account: http://localhost:4200/register?from=" + sha1(req.body.admin) + " "
       };
     } else {
       var mailOptions={
@@ -36,7 +36,7 @@ router.post('/',function(req,res){
       };
     }
 
-    console.log(mailOptions);
+    // console.log(mailOptions);
     smtpTransport.sendMail(mailOptions, function(error, info){
     if(error){
         console.log(error);
