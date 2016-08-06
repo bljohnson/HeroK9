@@ -240,9 +240,33 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
     });
   });
 
+  $http({
+    method: 'GET',
+    url: '/user'
+  }).then(function(userData){
+    userData = userData.data;
+    console.log(userData);
+
+    //Scope in userData
+    $scope.role = userData.role;
+    $scope.rank = userData.rank;
+    $scope.firstName = userData.first_name;
+    $scope.lastName = userData.last_name;
+    $scope.primaryPhone = userData.primary_phone;
+    $scope.altPhone = userData.alt_phone;
+    $scope.contactEmail = userData.contact_email;
+    $scope.contactTime = userData.contact_time;
+    $scope.address1 = userData.dept_add_street1;
+    $scope.address2 = userData.dept_add_street2;
+    $scope.city = userData.dept_add_city;
+    $scope.state = userData.dept_add_state;
+    $scope.zip = userData.dept_add_zip;
+    $scope.numberOfDogs = userData.dept_k9s;
+
+  });
+
 
 	$scope.roles = ["K9 Handler", "K9 Unit Supervisor", "Department Admin", "Other Admin Staff", "Other Command Staff"];
-	$scope.role = '';
 	$scope.getRole = function() {
    if ($scope.role !== undefined) {
      return $scope.role;
@@ -252,7 +276,6 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
   };
 
 	$scope.times = ["Morning", "Afternoon", "Evening"];
-	$scope.contactTime = '';
 	$scope.getContactTime = function() {
 	  if ($scope.contactTime !== undefined) {
 	    return $scope.contactTime;

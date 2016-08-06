@@ -69,12 +69,12 @@ md-card:last-child {
 .hometron {
   position: relative;
   background-color: #e3e3e3;
-  /*background: #fff url("/images/k9Placeholder.jpg") center center;*/
+  background: #fff url("/images/k9Placeholder.jpg") center center;
   width: 100%;
   height: 100%;
   background-size: cover;
   overflow: hidden;
-  padding: 12% 0;
+  padding: 15% 0;
   margin-bottom: 0;
 }
 
@@ -125,7 +125,9 @@ md-card:last-child {
   font-weight: bold;
 }
 
-.navbar-inverse .navbar-nav>li>a:hover {
+
+/*OLD MAIN NAV*/
+/*.navbar-inverse .navbar-nav>li>a:hover {
   color: #ebebeb;
 }
 
@@ -137,8 +139,60 @@ md-card:last-child {
   background-color: #ebebeb;
   width: 220px;
 }
+*/
 
+.navbar {
+  border-radius: 0;
+}
 
+.navbar-form {
+
+}
+
+.navbar-form .input-group>.form-control {
+
+}
+
+.navbar-default {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-right: 0;
+  border-left: 0;
+  margin-top: 20px;
+  background-color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #000;
+  font-size: 15px;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  background-color: #ebebeb;
+}
+
+.btn-default {
+  border-radius: 0;
+  padding: 0;
+  border: 0;
+}
+
+.search-input {
+  right: 0;
+}
+
+.form-control::-webkit-input-placeholder { color: #000; }
+.form-control:-moz-placeholder { color: #000; }
+.form-control::-moz-placeholder { color: #000; }
+.form-control:-ms-input-placeholder { color: #000; }
+
+.form-control {
+  background-color: #ebebeb;
+  border-radius: 0;
+  border: 0;
+  padding: 10px 20px;
+  box-shadow: none;
+}
 
 .fa-search {
   background-color: #d24740;
