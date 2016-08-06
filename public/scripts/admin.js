@@ -244,7 +244,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
         $scope.alertStatus = "alert alert-success";
         $scope.sendApproveMail(index);
       } else {
-        $scope.inquiryData[index].statusAlert = firstName + ' was not send another email.';
+        $scope.inquiryData[index].statusAlert = firstName + ' was not sent another email.';
         $scope.alertStatus = "alert alert-warning";
       }
     } else {
