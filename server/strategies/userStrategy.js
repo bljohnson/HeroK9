@@ -69,11 +69,11 @@ passport.use('local', new localStrategy({
               // all good!
               console.log('pass matched');
               done(null, user[i]);
-            } else {
-            console.log("no user found");
-            done(null, false, {message: 'Incorrect username or password'});
-          }
+              client.end();
+            }
         }
+          console.log("no user found");
+          done(null, false, {message: 'Incorrect username or password'});
           client.end();
         });
 
