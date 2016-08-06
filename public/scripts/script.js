@@ -248,6 +248,7 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
     console.log(userData);
 
     //Scope in userData
+    $scope.status_id = userData.status_id;
     $scope.role = userData.role;
     $scope.rank = userData.rank;
     $scope.firstName = userData.first_name;
@@ -255,7 +256,7 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
     $scope.primaryPhone = userData.primary_phone;
     $scope.altPhone = userData.alt_phone;
     $scope.contactEmail = userData.contact_email;
-    $scope.contactTime = userData.contact_time;
+    $scope.time = userData.contact_time;
     $scope.address1 = userData.dept_add_street1;
     $scope.address2 = userData.dept_add_street2;
     $scope.city = userData.dept_add_city;
@@ -403,7 +404,10 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
 		url: '/applicationForm/part1',
 		data: objectToSend
 	});
+
+
  }; //end sendApplication
+
 
 $scope.sendk9 = function(){
 
@@ -458,6 +462,19 @@ $scope.sendk9 = function(){
 		url: '/applicationForm/part2',
 		data: objectToSend
 	});
+
+
+  //Send userInfo to updateStatus
+  var userInfo = {
+    contact_email: $scope.contactEmail,
+    status_id: $scope.status_id
+  };
+
+  $http({
+    method: 'POST',
+    url: '/updateStatus',
+    data: userInfo
+  });
 
   // $scope.name = '';
   // breedToSend = '';

@@ -70,8 +70,7 @@ passport.use('local', new localStrategy({
               console.log('pass matched');
               done(null, user[i]);
               client.end();
-            } else {
-          }
+            }
         }
           console.log("no user found");
           done(null, false, {message: 'Incorrect username or password'});
