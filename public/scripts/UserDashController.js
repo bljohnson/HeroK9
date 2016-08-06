@@ -31,7 +31,7 @@ angular.module('myApp').controller('UserDashController', [
           $scope.imprintColors = data.form_info.vest_imprint_colors;
 
 
-	    if( $scope.status_id === 5 ){
+	    if( $scope.status_id <= 5 ){
 		    $scope.userStatus = [
 			    { status: "active", name: "Application In Review"},
 			    { status: "", name: "Application Approved"},

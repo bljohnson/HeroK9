@@ -124,7 +124,7 @@ myApp.controller('loginController', ['$scope', '$rootScope' , '$http', '$window'
     }).success(function(data){
         console.log(data);
           if (data.status_id == 99) {$window.location.href = '/adminView';}
-          else if (data.status_id == 3) {$window.location.href = '/#/application';}
+          else if (data.status_id == 3 || 4) {$window.location.href = '/#/application';}
           else {$window.location.href = "/#/userdash";}
 
       }).error(function(err){
