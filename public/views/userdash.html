@@ -3,7 +3,6 @@
     <h1>Welcome {{ username }}! <small>Applicant Dashboard</small></h1>
   </div>
 
-
 	<div class="status-bar">
 		<h2>Grant Approval Status</h2>
 		<p>Check back at any time to view the progress of your grant application.</p>
@@ -20,6 +19,16 @@
 			<div class="page-header">
 		    <h1>Application <small>K9 & Equipment Information</small></h1>
 		  </div>
+
+			<!-- app progress tracker -->
+			<div class="app-tracker">
+				<ul class="nav nav-wizard">
+					<li><a href="application"><span class="badge badge-step">1</span> Contact & Department Info</a></li>
+					<li><a href="part2"><span class="badge badge-step">2</span> K9 & Handler Info</a></li>
+					<li><a href="agreement"><span class="badge badge-step">3</span> Terms & Conditions</a></li>
+					<li class="active"><a href="userdash"><span class="badge badge-step">4</span> K9 & Equipment Info</a></li>
+				</ul>
+			</div>
 
 			<p>Please complete all of the fields below to ensure the proper fit of the equipment provided to your agency or department for your K9. If you don’t have all of the information with you at this time, you will be able to save your progress and return to this form to finish entering the necessary information.</p>
 			<div class="form-bg" style="background-color:#fff">
@@ -157,7 +166,7 @@
 			          <h1 class="md-title">Upload {{uploadCert.name}} Certifications (PDF)</h1>
 			            <div ng-controller="PDFController">
 			              <div ngf-select ng-model="file" name="file" ngf-pattern="'application/pdf'" ngf-accept="'application/pdf'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
-			                <md-button class="md-primary md-raised">Select</md-button>
+			                <md-button class="md-primary md-raised secondary-btn">Select</md-button>
 			                <p class="file-selected">File Selected: {{ file.name }}</p>
 			              </div>
 			              <md-button class="md-primary md-raised" type="button" ng-click="submitPdf()">Upload</md-button>
@@ -172,7 +181,7 @@
 		          <p>Photo Requirements: Please upload 2 photos max. Photo quality must not be blurry and needs to have good lighting. Must be face shot and can be of on or off duty.</p>
 		            <div ng-controller="ImgController">
 		              <div ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
-		                <md-button class="md-primary md-raised">Select</md-button>
+		                <md-button class="md-primary md-raised secondary-btn">Select</md-button>
 		                <p class="file-selected">File Selected: {{ file.name }}</p>
 		              </div>
 		              <md-button class="md-primary md-raised" type="button" ng-click="submitImg()">Upload</md-button>
@@ -242,10 +251,9 @@
 		        </div>
 		      </div>
 
-					
+					<h2 class="form-header">In-Squad Kennel and/or Door Pop/Heat Alarm Unit Request</h2>
 		      <div class="handler-row">
 		        <div>
-		          <h2>In-Squad Kennel and/or Door Pop/Heat Alarm Unit</h2>
 		          <p>If applying for In-Squad Kennel and/or Door Pop/Heat Alarm Unit, provide Squad information and photos.</p>
 		        </div>
 		        <div layout-gt-sm="row">
@@ -276,7 +284,7 @@
 		          <p>Photo Requirements: Please upload 2 photos max. Photo quality must not be blurry and needs to have good lighting. A side view is preferred.</p>
 		            <div ng-controller="SquadImgController">
 		              <div ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 800, height: 800}">
-		                <md-button class="md-primary md-raised">Select</md-button>
+		                <md-button class="md-primary md-raised secondary-btn">Select</md-button>
 		                <p class="file-selected">File Selected: {{ file.name }}</p>
 		              </div>
 		              <md-button class="md-primary md-raised" type="button" ng-click="submitSquadImg()">Upload</md-button>
@@ -284,13 +292,14 @@
 		        </md-input-container>
 		      </div>
 				</div>
-					<md-button class="md-primary md-raised" ng-click="saveForm();" class="md-primary md-raised">Save</md-button>
-		      <md-button class="md-primary md-raised" type="submit" name="button">Submit</md-button>
+					<md-button class="md-primary md-raised float-right" type="submit" name="button">Submit</md-button>
+					<md-button class="md-primary md-raised secondary-btn float-right" ng-click="saveForm();" class="md-primary md-raised">Save</md-button>
 		  </form>
 		</div>
 		<div class="col-md-3">
+			<div><img style="margin-bottom:5px;" class="img-responsive" src="/images/application11.jpg"></div>
+
       <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/application10.jpg"></div>
-      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/application11.jpg"></div>
       <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/application12.jpg"></div>
     </div>
 	</div>

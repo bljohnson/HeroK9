@@ -79,7 +79,7 @@ md-card:last-child {
   height: 100%;
   background-size: cover;
   overflow: hidden;
-  padding: 15% 0;
+  padding: 12% 0;
   margin-bottom: 0;
 }
 
@@ -170,7 +170,7 @@ md-card:last-child {
 .form-control:-ms-input-placeholder { color: #000; }
 
 .search-box {
-  background-color: #ebebeb;
+  background-color: #eeeeee;
   border-radius: 0;
   border: 0;
   padding: 10px 20px;
@@ -199,9 +199,6 @@ md-card:last-child {
   background-color: #0b357b;
   color: #fff;
   margin-top: 40px;
-  /*position: absolute;*/
-  /*bottom: 0;*/
-  /*width: 100%;*/
 }
 
 /* user dashboard */
@@ -280,7 +277,7 @@ md-input-container ._md-placeholder, label {
 /* handlerform view styles */
 .handler-row, .form-bg {
   padding: 20px 35px;
-  background-color: #ebebeb;
+  background-color: #eeeeee;
   margin: 0 0 15px 0;
 }
 
@@ -303,11 +300,11 @@ md-input-container ._md-placeholder, label {
   padding: 30px 80px 20px 80px;
 }
 
-.add-k9 {
+.secondary-btn {
   background-color: #337ab7 !important;
 }
 
-.add-k9:hover {
+.secondary-btn:hover {
   background-color: #286090 !important;
 }
 
