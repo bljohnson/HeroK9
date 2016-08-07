@@ -1,205 +1,187 @@
 <div class="container">
-  <h1>Application</h1>
-
-  <!-- app progress tracker -->
-  <div class="app-tracker">
-
-    <ul class="nav nav-wizard">
-      <li><a href="#"><span class="badge badge-step">1</span> Contact & Department Info</a></li>
-      <li class="active"><a href="#"><span class="badge badge-step">2</span> K9 & Handler Info</a></li>
-      <li><a href="#"><span class="badge badge-step">3</span> Terms & Conditions</a></li>
-    </ul>
-  </div>
-
-  <p>After adding K9 and handler information, proceed to the next step or choose to add another K9. </p>
-
-  <div class="" ng-controller="AppController">
-    <form name="k9application" novalidate>
-      <div class="form-bg">
-      <h2>Add K9 Information</h2>
-
-      <div layout-gt-sm="row">
-        <md-input-container class="md-block" flex-gt-sm>
-          <label for="name">Name</label>
-          <input ng-model="name" id="name" type="text" name="name" value="" required>
-          <div ng-messages="k9application.name.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-        <div flex="5" hide-xs hide-sm></div>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label for="age">Age (in months)</label>
-          <input ng-model="age" id="age" type="text" name="age" value="" required>
-          <div ng-messages="k9application.age.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-        <div flex="5" hide-xs hide-sm></div>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Select a breed</label>
-          <md-select ng-model="breed" ng-change="yesnoCheck()">
-            <md-option ng-repeat="breed in breeds" value="{{breed}}">{{breed}}</md-option>
-          </md-select>
-        </md-input-container>
-        <md-input-container id="ifYes" style="display: none;" class="md-block" flex-gt-sm>
-          <label for="otherBreed">Other breed: </label>
-          <input ng-model="otherBreed" id="otherBreed" type="text" name="otherBreed" value="">
-        </md-input-container>
-      </div>
-      <md-radio-group ng-model="certified">
-        <label for="certified">Is this K9 currently certified or in the process of obtaining certification in any of the following areas: Explosives, Narcotics, Patrol, Tracking/Trailing, etc.</label>
-        <md-radio-button value="yes" class="md-primary">Yes</md-radio-button>
-        <md-radio-button value="no" class="md-primary">No</md-radio-button>
-      </md-radio-group>
-      <md-radio-group ng-model="activeDuty">
-        <label for="activeDuty">Is this K9 currently on active duty with the department?</label>
-        <md-radio-button value="yes" class="md-primary">Yes</md-radio-button>
-        <md-radio-button value="no" class="md-primary">No</md-radio-button>
-      </md-radio-group>
-      <md-radio-group ng-model="retirement">
-        <label for="retirement">Is this K9 scheduled for retirement within the next year?</label>
-        <md-radio-button value="yes" class="md-primary">Yes</md-radio-button>
-        <md-radio-button value="no" class="md-primary">No</md-radio-button>
-      </md-radio-group>
-    </div>
-    <div class="form-bg">
-      <h2>Add Handler Information</h2>
-
-      <div layout-gt-sm="row">
-        <md-input-container class="md-block" flex-gt-sm>
-          <label for="title">Title/Rank</label>
-          <input ng-model="title" id="title" type="text" name="title" value="" required>
-          <div ng-messages="k9application.title.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-    	  </md-input-container>
-        <div flex="5" hide-xs hide-sm></div>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label for="first">First Name</label>
-          <input ng-model="first" id="first" type="text" name="first" value="" required>
-          <div ng-messages="k9application.first.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-        <div flex="5" hide-xs hide-sm></div>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label for="last">Last Name</label>
-          <input ng-model="last" id="last" type="text" name="last" value="" required>
-          <div ng-messages="k9application.last.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-      </div>
-      <div layout-gt-sm="row">
-        <md-input-container class="md-block" flex-gt-sm>
-          <label for="badge">Badge #</label>
-          <input ng-model="badge" id="badge" type="text" name="badge" value="" required>
-          <div ng-messages="k9application.badge.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-        <div flex="5" hide-xs hide-sm></div>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label for="badge">Confirm badge #</label>
-          <input ng-model="badgeConfirm" id="badge" type="text" name="badgeConfirm" ng-change="checkAll()"value="" required>
-          <div ng-messages="k9application.badgeConfirm.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-          <p ng-show="badgeMatch" class="confirm">Badge # has to match</p>
-        </md-input-container>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="page-header">
+        <h1>Application <small>K9 & Handler Information</small></h1>
       </div>
 
-      <div layout-gt-sm="row">
-        <md-input-container class="md-block" flex-gt-sm>
-          <label for="cell">Cell Phone # (xxx-xxx-xxxx)</label>
-          <input ng-model="cell" id="cell" type="text" name="cell" value="" required>
-          <div ng-messages="k9application.cell.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-        <div flex="5" hide-xs hide-sm></div>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label for="cell">Confirm cell phone #</label>
-          <input ng-model="cellConfirm" id="cell" type="text" name="cellConfirm" ng-change="checkAll()"value="" required>
-          <div ng-messages="k9application.cellConfirm.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-          <p ng-show="cellMatch" class="confirm">Cell phone # has to match</p>
-        </md-input-container>
-        <div flex="5" hide-xs hide-sm></div>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label for="secondaryCell">Secondary Cell Phone # (xxx-xxx-xxxx)</label>
-          <input ng-model="secondaryCell" id="secondaryCell" type="text" name="secondaryCell" value="">
-          <div ng-messages="k9application.secondaryCell.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
+      <!-- app progress tracker -->
+      <div class="app-tracker">
+        <ul class="nav nav-wizard">
+          <li><a href="application"><span class="badge badge-step">1</span> Contact & Department Info</a></li>
+          <li class="active"><a href="part2"><span class="badge badge-step">2</span> K9 & Handler Info</a></li>
+          <li><a href="agreement"><span class="badge badge-step">3</span> Terms & Conditions</a></li>
+        </ul>
       </div>
 
-      <div layout-gt-sm="row">
-        <md-input-container class="md-block" flex-gt-sm>
-          <label for="emailAddress">Email Address</label>
-          <input ng-model="emailAddress" id="emailAddress" type="text" name="emailAddress" value="" required>
-          <div ng-messages="k9application.emailAddress.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-        <div flex="5" hide-xs hide-sm></div>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label for="emailConfirm">Confirm email address</label>
-          <input ng-model="emailConfirm" id="checkk" type="text" name="emailConfirm"  ng-change="checkAll()" value="{{emailAddress}}" required>
-          <div ng-messages="k9application.emailConfirm.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-            <p ng-show="emailMatch" class="confirm">Email has to match</p>
-        </md-input-container>
-      </div>
-    </div>
+      <p>This step includes collecting K9 and handler information. Please fill in all appropriate fields before submitting. If you would like to add additional K9s or handlers, you may do so after completing the first submission.</p>
 
-    <div class="form-bg">
-      <h2>Equipment Being Requested</h2>
-      <div>
-        <fieldset class="standard">
-          <div layout="column" layout-wrap layout-gt-sm="row">
-            <div ng-repeat= 'equipment in equipmentList track by $index' flex-xs flex="50">
-              <md-checkbox id="equipment{{$index}}" class="equipment md-primary" aria-label="{{equipment.name}}">
-                {{equipment.name}}
-              </md-checkbox><br>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-    </div>
+      <div class="first-form" ng-controller="AppController">
+        <h2 class="form-header">K9 Information</h2>
+        <form name="k9application" novalidate>
+          <div class="form-bg">
 
-
-    <!-- <div class="">
-      <h1>Legal agreement*</h1>
-        <div>
-          <fieldset class="standard">
-            <div layout="column" layout-wrap layout-gt-sm="row">
-              <div flex-xs flex="50">
-                <md-checkbox id="agreement" class="equipment md-primary" ng-model="agreement" aria-label="agreement" required>
-                  I am authorized to apply for a grant on behalf of the department.
-                </md-checkbox>
-                <md-checkbox id="terms" class="equipment md-primary" ng-model="terms" aria-label="terms" required>
-                  Terms & Conditions: I accept the terms and conditions of this application and confirm the information entered above to be accurate and complete.
-                </md-checkbox>
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label for="name">Name</label>
+              <input ng-model="name" id="name" type="text" name="name" value="" required>
+              <div ng-messages="k9application.name.$error">
+                <div ng-message="required">This is required.</div>
               </div>
-            </div>
-          </fieldset>
-        </div>
-        <md-input-container class="md-block">
-          <label for="signature">Signature</label>
-          <input ng-model="signature" id="signature" type="text" name="signature" value="" required>
-          <div ng-messages="k9application.signature.$error">
-            <div ng-message="required">This is required.</div>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label for="age">Age (in months)</label>
+              <input ng-model="age" id="age" type="text" name="age" value="" required>
+              <div ng-messages="k9application.age.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Select a breed</label>
+              <md-select ng-model="breed" ng-change="yesnoCheck()">
+                <md-option ng-repeat="breed in breeds" value="{{breed}}">{{breed}}</md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container id="ifYes" style="display: none;" class="md-block" flex-gt-sm>
+              <label for="otherBreed">Other breed: </label>
+              <input ng-model="otherBreed" id="otherBreed" type="text" name="otherBreed" value="">
+            </md-input-container>
           </div>
-        </md-input-container>
-    </div>  -->
-    <md-button class="md-primary md-raised" type="submit" ng-click="sendk9(); go('/agreement')" ng-disabled="application.$invalid" name="submit">Next</md-button>
-    <md-button class="md-primary md-raised" type="submit" ng-click="sendk9(); go('/part3')" ng-disabled="application.$invalid" name="submit">Submit K9 and Add Another</md-button>
-  </form>
+          <md-radio-group ng-model="certified">
+            <label for="certified">Is this K9 currently certified or in the process of obtaining certification in any of the following areas: Explosives, Narcotics, Patrol, Tracking/Trailing, etc.</label>
+            <md-radio-button value="yes" class="md-primary">Yes</md-radio-button>
+            <md-radio-button value="no" class="md-primary">No</md-radio-button>
+          </md-radio-group>
+          <md-radio-group ng-model="activeDuty">
+            <label for="activeDuty">Is this K9 currently on active duty with the department?</label>
+            <md-radio-button value="yes" class="md-primary">Yes</md-radio-button>
+            <md-radio-button value="no" class="md-primary">No</md-radio-button>
+          </md-radio-group>
+          <md-radio-group ng-model="retirement">
+            <label for="retirement">Is this K9 scheduled for retirement within the next year?</label>
+            <md-radio-button value="yes" class="md-primary">Yes</md-radio-button>
+            <md-radio-button value="no" class="md-primary">No</md-radio-button>
+          </md-radio-group>
+        </div>
 
-    <!-- End AppController -->
+        <h2 class="form-header">Handler Information</h2>
+        <div class="form-bg">
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label for="title">Title/Rank</label>
+              <input ng-model="title" id="title" type="text" name="title" value="" required>
+              <div ng-messages="k9application.title.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+        	  </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label for="first">First Name</label>
+              <input ng-model="first" id="first" type="text" name="first" value="" required>
+              <div ng-messages="k9application.first.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label for="last">Last Name</label>
+              <input ng-model="last" id="last" type="text" name="last" value="" required>
+              <div ng-messages="k9application.last.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+          </div>
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label for="badge">Badge #</label>
+              <input ng-model="badge" id="badge" type="text" name="badge" value="" required>
+              <div ng-messages="k9application.badge.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label for="badge">Confirm badge #</label>
+              <input ng-model="badgeConfirm" id="badge" type="text" name="badgeConfirm" ng-change="checkAll()"value="" required>
+              <div ng-messages="k9application.badgeConfirm.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+              <p ng-show="badgeMatch" class="confirm">Badge # has to match</p>
+            </md-input-container>
+          </div>
+
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label for="cell">Cell Phone # (xxx-xxx-xxxx)</label>
+              <input ng-model="cell" id="cell" type="text" name="cell" value="" required>
+              <div ng-messages="k9application.cell.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label for="cell">Confirm cell phone #</label>
+              <input ng-model="cellConfirm" id="cell" type="text" name="cellConfirm" ng-change="checkAll()"value="" required>
+              <div ng-messages="k9application.cellConfirm.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+              <p ng-show="cellMatch" class="confirm">Cell phone # has to match</p>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label for="secondaryCell">Secondary Cell Phone # (xxx-xxx-xxxx)</label>
+              <input ng-model="secondaryCell" id="secondaryCell" type="text" name="secondaryCell" value="">
+              <div ng-messages="k9application.secondaryCell.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+          </div>
+
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label for="emailAddress">Email Address</label>
+              <input ng-model="emailAddress" id="emailAddress" type="text" name="emailAddress" value="" required>
+              <div ng-messages="k9application.emailAddress.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm></div>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label for="emailConfirm">Confirm email address</label>
+              <input ng-model="emailConfirm" id="checkk" type="text" name="emailConfirm"  ng-change="checkAll()" value="{{emailAddress}}" required>
+              <div ng-messages="k9application.emailConfirm.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+                <p ng-show="emailMatch" class="confirm">Email has to match</p>
+            </md-input-container>
+          </div>
+        </div>
+
+        <h2 class="form-header">Request Equipment</h2>
+        <div class="form-bg">
+          <div>
+            <fieldset class="standard">
+              <div layout="column" layout-wrap layout-gt-sm="row">
+                <div ng-repeat= 'equipment in equipmentList track by $index' flex-xs flex="50">
+                  <md-checkbox id="equipment{{$index}}" class="equipment md-primary" aria-label="{{equipment.name}}">
+                    {{equipment.name}}
+                  </md-checkbox><br>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <md-button class="md-primary md-raised float-right" type="submit" ng-click="sendk9(); go('/agreement')" ng-disabled="application.$invalid" name="submit">Next Step</md-button>
+        <md-button class="md-primary md-raised float-right add-k9" type="submit" ng-click="sendk9(); go('/part3')" ng-disabled="application.$invalid" name="submit">Submit K9 & Add Another</md-button>
+      </form>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/application4.jpg"></div>
+      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/application5.jpg"></div>
+      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/application6.jpg"></div>
+    </div>
   </div>
 </div>

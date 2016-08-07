@@ -6,10 +6,10 @@
         <h1>Request Your Application <small></small></h1>
       </div>
 
-      <p>Thank you for your interest in requesting equipment. To begin the grant application process to request equipment for your K9 and/or agency or department, please respond to the following question.</p>
+      <p>Thank you for your interest in requesting an application from Hero K9. To begin the grant application process to request equipment for your K9 and/or agency or department, please respond to the following question.</p>
 
       <!-- Serve different forms depending on authorization status. -->
-      <div class="">
+      <div class="auth-question">
         <p><strong>Are you authorized to apply for a grant (a legal, binding agreement) on behalf of your agency or department?</strong></p>
         <md-radio-group ng-model="authorized">
             <md-radio-button ng-model="authorized" class="md-primary" id="yes" name="authorized" value="yes">Yes</md-radio-button>
@@ -147,9 +147,9 @@
                 </div>
               </md-input-container>
             </div>
-            <md-button class="md-primary md-raised" type="submit" name="button" ng-disabled="inquiry.$invalid">Submit</md-button>
-          </form>
-        </div>
+          </div>
+          <md-button class="md-primary md-raised float-right" type="submit" name="button" ng-disabled="inquiry.$invalid">Request Application</md-button>
+        </form>
       </div>
 
       <!-- If not authorized, serve the basic form. -->
@@ -269,17 +269,16 @@
                 <input ng-model="zip" id="zip" type="text" name="zip" value="">
               </md-input-container>
             </div>
-
-            <md-button class="md-primary md-raised" type="submit" ng-disabled="inquiry.$invalid">Submit</md-button>
-          </form>
-        </div>
+          </div>
+          <md-button class="md-primary md-raised float-right" type="submit" ng-disabled="inquiry.$invalid">Request Application</md-button>
+        </form>
       </div>
     </div>
 
     <div class="col-md-3">
+      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/inquiry2.jpg"></div>
       <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/inquiry1.jpg"></div>
       <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/inquiry3.jpg"></div>
-      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/inquiry2.jpg"></div>
     </div>
 
   </div>
