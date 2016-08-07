@@ -476,27 +476,9 @@ $scope.sendk9 = function(){
     data: userInfo
   });
 
-  // $scope.name = '';
-  // breedToSend = '';
-  // $scope.age = '';
-  // $scope.certified = false;
-  // $scope.activeDuty = false;
-  // $scope.retirement = false;
-  // $scope.title = '';
-  // $scope.first = '';
-  // $scope.last = '';
-  // $scope.badge = '';
-  // $scope.badgeConfirm = '';
-  // $scope.cell = '';
-  // $scope.cellConfirm = '';
-  // $scope.secondaryCell = '';
-  // $scope.emailAddress = '';
-  // $scope.emailConfirm = '';
-  // $scope.kennel = false;
-  // $scope.ballistic = false;
-  // $scope.multiThreat = false;
-  // $scope.doorPop = false;
 };
+
+
 $scope.go = function(path){
   $location.path(path);
 };

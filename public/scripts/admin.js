@@ -275,39 +275,10 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
 
     var deleteUserObject = {
       contact_email: $scope.inquiryData[index].contact_email
-    }
-
-    var firstName = $scope.inquiryData[index].first_name;
-
-    var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
-    if (r === true){
-
-      $http({
-        method: 'POST',
-        url: '/deleteUser',
-        data: deleteUserObject
-      });
-
-
-       $scope.status = firstName + ' has been approved!';
-       $scope.alertStatus = "alert alert-success";
-       $scope.sendApproveMail(index);
-     } else {
-       $scope.status = firstName + ' has not been approved.';
-       $scope.alertStatus = "alert alert-warning";
-     }
-
-  };//End approveInquiry
-
-
-  $scope.deleteInquiry = function(e, index) {
-
-    var deleteUserObject = {
-      contact_email: $scope.inquiryData[index].contact_email
     };
 
     var firstName = $scope.inquiryData[index].first_name;
-    var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
+    var r = confirm("Are you sure you would like to delete " + firstName + "'s inquiry?");
     if (r === true){
 
       $http({
@@ -443,7 +414,7 @@ myApp.controller('adminEditController', ['$scope', '$http', function($scope, $ht
     }
 
     var firstName = $scope.applicationData[index].first_name;
-    var r = confirm("Are you sure you would like to approve " + firstName + "'s inquiry?");
+    var r = confirm("Are you sure you would like to delete " + firstName + "'s department application?");
     if (r === true){
 
       $http({
@@ -455,6 +426,10 @@ myApp.controller('adminEditController', ['$scope', '$http', function($scope, $ht
 
       $scope.applicationData[index].statusAlert = firstName + ' has been deleted from your records!';
       $scope.alertStatus = "alert alert-success";
+
+      setTimeout(function(){$scope.applicationData.splice(index, 1); $scope.$apply();}, 3000);
+
+
     } else {
       $scope.applicationData[index].statusAlert = firstName + ' has not been deleted from your records.';
       $scope.alertStatus = "alert alert-warning";
@@ -472,15 +447,15 @@ myApp.controller('dogTableController', ['$scope', '$http', function($scope, $htt
     console.log('expandDogView clicked');
 
     if (document.getElementById('expandDog' + index).style.display == "none"){
-      this.backgroundColor = "#AAAAAA";
-
-      $scope.dogInfo[index] = true;
-      // document.getElementById('expandDog' + index).style.display = "table-row";
+      console.log("was none, now table-row");
+      // $scope.dogInfo[index] = true;
+      document.getElementById('expandDog' + index).style.display = "table-row";
     } else if (document.getElementById('expandDog' + index).style.display == "table-row"){
-      this.backgroundColor = "#FFFFFF";
-
-      $scope.dogInfo[index] = false;
-      // document.getElementById('expandDog' + index).style.display = "none";
+      console.log('was table-row, now none');
+      // $scope.dogInfo[index] = false;
+      document.getElementById('expandDog' + index).style.display = "none";
+    } else {
+      console.log('wtf');
     }
 
   };
@@ -495,10 +470,10 @@ myApp.controller('dogEditController', ['$scope', '$http', '$filter', function($s
     {value: false, text: 'False'}
   ];
 
-  $scope.showStatusRetirement = function() {
-    var selectedRetirement = $filter('filter')($scope.bool, {value: $scope.dogData.k9_retirement});
-    return ($scope.dogData.k9_retirement && selectedRetirement.length) ? selectedretirement[0].text : 'Not set';
-  };
+  // $scope.showStatusRetirement = function() {
+  //   var selectedRetirement = $filter('filter')($scope.bool, {value: $scope.dogData.k9_retirement});
+  //   return ($scope.dogData.k9_retirement && selectedRetirement.length) ? selectedretirement[0].text : 'Not set';
+  // };
 
   $scope.showStatusDuty = function() {
     var selectedDuty = $filter('filter')($scope.bool, {value: $scope.dogData.k9_active_duty});
