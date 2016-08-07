@@ -33,7 +33,7 @@ angular.module('myApp').controller('UserDashController', [
 
 	    if( $scope.status_id <= 5 ){
 		    $scope.userStatus = [
-			    { status: "active", name: "Application In Review"},
+			    { status: "active", name: "Application In Progress"},
 			    { status: "", name: "Application Approved"},
 			    { status: "", name: "Grant Approved"},
 			    { status: "", name: "Order Sent In"},
@@ -42,7 +42,7 @@ angular.module('myApp').controller('UserDashController', [
 	    }// end 5
 	    if( $scope.status_id === 7 ){
 		    $scope.userStatus = [
-			    { status: "visited", name: "Application In Review"},
+			    { status: "visited", name: "Application In Progress"},
 			    { status: "active", name: "Application Approved"},
 			    { status: "", name: "Grant Approved"},
 			    { status: "", name: "Order Sent In"},
@@ -51,7 +51,7 @@ angular.module('myApp').controller('UserDashController', [
 	    }// end 7
 	    if( $scope.status_id === 8 ){
 		    $scope.userStatus = [
-			    { status: "visited", name: "Application In Review"},
+			    { status: "visited", name: "Application In Progress"},
 			    { status: "visited", name: "Application Approved"},
 			    { status: "active", name: "Grant Approved"},
 			    { status: "", name: "Order Sent In"},
@@ -60,7 +60,7 @@ angular.module('myApp').controller('UserDashController', [
 	    }// end 8
 	    if( $scope.status_id === 9 ){
 		    $scope.userStatus = [
-			    { status: "visited", name: "Application In Review"},
+			    { status: "visited", name: "Application In Progress"},
 			    { status: "visited", name: "Application Approved"},
 			    { status: "visited", name: "Grant Approved"},
 			    { status: "active", name: "Order Sent In"},
@@ -69,7 +69,7 @@ angular.module('myApp').controller('UserDashController', [
 	    }// end 9
 	    if( $scope.status_id === 10 ){
 		    $scope.userStatus = [
-			    { status: "visited", name: "Application In Review"},
+			    { status: "visited", name: "Application In Progress"},
 			    { status: "visited", name: "Application Approved"},
 			    { status: "visited", name: "Grant Approved"},
 			    { status: "visited", name: "Order Sent In"},
