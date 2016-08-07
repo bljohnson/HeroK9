@@ -11,7 +11,7 @@
 .nav-wizard > li > a {
   position: relative;
   background-color: #eeeeee;
-  padding: 10px 71px;
+  padding: 10px 24px;
   color: #000;
 }
 .nav-wizard > li > a .badge {
@@ -30,11 +30,11 @@
   color: #d95932;
   border: 1px solid #FFFFFF;
   border-radius: 50%;
-  padding: 3px 5px;
+  padding: 3px 6px;
   background-color: #fff;
 }
 .nav-wizard > li:not(:first-child) > a {
-  padding-left: 31px;
+  padding-left: 20px;
 }
 .nav-wizard > li:not(:first-child) > a:before {
   width: 0px;
