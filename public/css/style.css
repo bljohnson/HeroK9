@@ -79,7 +79,7 @@ md-card:last-child {
   height: 100%;
   background-size: cover;
   overflow: hidden;
-  padding: 15% 0;
+  padding: 12% 0;
   margin-bottom: 0;
 }
 
@@ -135,13 +135,6 @@ md-card:last-child {
   border-radius: 0;
 }
 
-.navbar-form {
-
-}
-
-.navbar-form .input-group>.form-control {
-
-}
 
 .navbar-default {
   border-top: 1px solid #000;
@@ -177,14 +170,12 @@ md-card:last-child {
 .form-control:-ms-input-placeholder { color: #000; }
 
 .search-box {
-  background-color: #ebebeb;
+  background-color: #eeeeee;
   border-radius: 0;
   border: 0;
   padding: 10px 20px;
   box-shadow: none;
 }
-
-
 
 .fa-search {
   background-color: #d24740;
@@ -208,9 +199,6 @@ md-card:last-child {
   background-color: #0b357b;
   color: #fff;
   margin-top: 40px;
-  /*position: absolute;*/
-  /*bottom: 0;*/
-  /*width: 100%;*/
 }
 
 /* user dashboard */
@@ -233,7 +221,7 @@ md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-i
   background: #d24740;
   box-shadow: none;
   color: #fff;
-  margin: 0 10px 0 0;
+  margin: 0 0 20px 10px;
   font-weight: bold;
   padding: 5px 20px;
 }
@@ -280,14 +268,16 @@ md-checkbox:not([disabled]).md-primary.md-checked ._md-icon {
 md-input-container.md-default-theme label, md-input-container label,
 md-input-container.md-default-theme ._md-placeholder,
 md-input-container ._md-placeholder, label {
-  color: rgba(0,0,0,0.5);
-  /*color: #000;*/
+  color: rgba(0,0,0,0.9);
+  font-weight: normal;
+  font-family: 'robotolight', Helvetica, Arial, sans-serif;
 }
+
 
 /* handlerform view styles */
 .handler-row, .form-bg {
   padding: 20px 35px;
-  background-color: #ebebeb;
+  background-color: #eeeeee;
   margin: 0 0 15px 0;
 }
 
@@ -299,10 +289,27 @@ md-input-container ._md-placeholder, label {
   font-size: 24px;
 }
 
+.first-form {
+  margin-top: 30px;
+}
 
+.auth-question {
+  /*border-radius: 5px;*/
+  background-color: #eaf5fb;
+  margin: 15px auto;
+  padding: 30px 80px 20px 80px;
+}
 
-.header {
-  text-align: center;
+.secondary-btn {
+  background-color: #337ab7 !important;
+}
+
+.secondary-btn:hover {
+  background-color: #286090 !important;
+}
+
+.float-right {
+  float: right;
 }
 
 .color-border {

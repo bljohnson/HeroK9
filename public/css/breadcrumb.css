@@ -1,7 +1,7 @@
 /* application progress tracker */
 /* CSS used here will be applied after bootstrap.css */
 .app-tracker {
-  margin: 20px 0;
+  margin: 20px 0 30px 0;
   width: 100%;
 }
 
@@ -11,28 +11,30 @@
 .nav-wizard > li > a {
   position: relative;
   background-color: #eeeeee;
+  padding: 10px 24px;
+  color: #000;
 }
 .nav-wizard > li > a .badge {
-  margin-left: 3px;
+  margin-left: 10px;
   color: #eeeeee;
   background-color: #d95932;
 }
 .nav-wizard > li > a .badge.badge-step {
-  color: #d95932;
-  border: 1px solid #d95932;
+  color: #000;
+  border: 1px solid #000;
   border-radius: 50%;
-  padding: 3px 5px;
+  padding: 3px 6px;
   background-color: transparent;
 }
 .nav-wizard > li.active > a .badge.badge-step {
-  color: #FFFFFF;
+  color: #d95932;
   border: 1px solid #FFFFFF;
   border-radius: 50%;
-  padding: 3px 5px;
-  background-color: transparent;
+  padding: 3px 6px;
+  background-color: #fff;
 }
 .nav-wizard > li:not(:first-child) > a {
-  padding-left: 34px;
+  padding-left: 20px;
 }
 .nav-wizard > li:not(:first-child) > a:before {
   width: 0px;

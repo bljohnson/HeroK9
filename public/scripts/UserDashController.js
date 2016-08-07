@@ -89,7 +89,7 @@ angular.module('myApp').controller('UserDashController', [
           for (var i=0; i<$scope.dogList.length; i++){
             if ($scope.selectedDog.id == $scope.dogList[i].id){
 			$scope.k9Id = $scope.dogList[i].id;
-              $scope.dog_name = $scope.dogList[i].k9_name + "'s Information";
+              $scope.dog_name = $scope.dogList[i].k9_name + "'s";
               $scope.k9Age = $scope.dogList[i].age;
               $scope.breed = $scope.dogList[i].breed;
               $scope.handlerTitle = $scope.dogList[i].handler_rank;

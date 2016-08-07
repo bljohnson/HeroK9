@@ -1,49 +1,81 @@
 <div class="container">
-  <h1 class="header">LEGAL TERMS*</h1>
-  <h3 class="header">Terms & Conditions</h3>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="page-header">
+        <h1>Application <small>Legal Terms & Conditions</small></h1>
+      </div>
 
-  <div class="form-bg">
-    <h4>By signing this application, the authorized signer, on behalf of the agency/department, agrees:</h4>
-    <ol class="terms">
-      <li><span>Each K9 listed on the application is currently on active duty with the department and has obtained at least one (1) certification with their current, active duty handler;</span></li>
-      <li><span>All information entered by any representative of the agency or department is true to the best of their knowledge;</span></li>
-      <li><span>K9 name, breed, current age, at least one (1) clear, high-quality photo clearly showing the K9s face, at least one (1) active certification within the past one (1) year, and brief summary of K9s personality are required of each K9 for that K9 to be considered for grant approval;</span></li>
-      <li><span>Incomplete information for any individual K9 will delay final equipment grant approval for that K9, on a K9 by K9 basis;</span></li>
-      <li><span>Vest grant requests require a K9 to be at least 20 months of age at the time the required measurements are taken; however, any K9 that does not meet this age requirement at the time of application may be included on the application. Measurements must be supplied for that K9 at or after the time that age 20 months is reached. A ballistic or multi-threat vest is not guaranteed to save the life of a K9, even if properly fitted;</span></li>
-      <li><span>Squad-related equipment requests require that the make, model and year of the squad be listed on the application;</span></li>
-      <li><span>Grants are funded on a first come first serve basis and no grant is guaranteed until department and/or handler is notified by Hero K9 as such;</span></li>
-      <li><span>This application will be valid for one (1) year, after which time, the authorized signer must reaffirm, in writing, or a new authorized signer must be provided to maintain agency/department eligibility.</span></li>
-    </ol>
-    <p>The agency/department agrees to hold Hero K9 harmless in the case of any issue(s) or failure(s) with the equipment received. Hero K9 will only place orders based on the information provided by the department on this application or through any other means of communication needed to verify its accuracy.</p>
-    <p>Hero K9 requests that the agency/department disseminate at least one (1) press release through the course of the application process, including: the name of the organization; at least one method of contact for the organization; and, if in writing, the tagline “Ensuring the Provision, Preparation, and Protection of Public Safety K9s.”</p>
-  </div>
+      <!-- app progress tracker -->
+      <div class="app-tracker">
+        <ul class="nav nav-wizard">
+          <li><a href="application"><span class="badge badge-step">1</span> Contact & Department Info</a></li>
+          <li><a href="part2"><span class="badge badge-step">2</span> K9 & Handler Info</a></li>
+          <li class="active"><a href="agreement"><span class="badge badge-step">3</span> Terms & Conditions</a></li>
+          <li><a href="userdash"><span class="badge badge-step">4</span> K9 & Equipment Info</a></li>
+        </ul>
+      </div>
 
-  <md-content flex layout-padding>
-    <div ng-controller="AppController">
+      <p>Before submitting your application, please read, understand and agree to the following terms and conditions as set out below. Contact us if you have any questions. We'd be glad to help answer them.</p>
 
-      <form class="" name="terms" novalidate>
-        <fieldset class="standard">
-          <div layout="column" layout-wrap layout-gt-sm="row">
-            <div flex-xs flex="50">
-              <md-checkbox id="agreement" class="equipment md-primary" ng-model="agreement" aria-label="agreement" required>
-                I am authorized to apply for a grant on behalf of the department.
-              </md-checkbox>
-              <md-checkbox id="terms" class="equipment md-primary" ng-model="terms" aria-label="terms" required>
-                Terms & Conditions: I accept the terms and conditions of this application and confirm the information entered above to be accurate and complete.
-              </md-checkbox>
-            </div>
+      <div class="form-bg first-form">
+        <h4>By signing this application, the authorized signer, on behalf of the agency/department, agrees:</h4>
+        <ol class="terms">
+          <li><span>Each K9 listed on the application is currently on active duty with the department and has obtained at least one (1) certification with their current, active duty handler;</span></li>
+          <li><span>All information entered by any representative of the agency or department is true to the best of their knowledge;</span></li>
+          <li><span>K9 name, breed, current age, at least one (1) clear, high-quality photo clearly showing the K9s face, at least one (1) active certification within the past one (1) year, and brief summary of K9s personality are required of each K9 for that K9 to be considered for grant approval;</span></li>
+          <li><span>Incomplete information for any individual K9 will delay final equipment grant approval for that K9, on a K9 by K9 basis;</span></li>
+          <li><span>Vest grant requests require a K9 to be at least 20 months of age at the time the required measurements are taken; however, any K9 that does not meet this age requirement at the time of application may be included on the application. Measurements must be supplied for that K9 at or after the time that age 20 months is reached. A ballistic or multi-threat vest is not guaranteed to save the life of a K9, even if properly fitted;</span></li>
+          <li><span>Squad-related equipment requests require that the make, model and year of the squad be listed on the application;</span></li>
+          <li><span>Grants are funded on a first come first serve basis and no grant is guaranteed until department and/or handler is notified by Hero K9 as such;</span></li>
+          <li><span>This application will be valid for one (1) year, after which time, the authorized signer must reaffirm, in writing, or a new authorized signer must be provided to maintain agency/department eligibility.</span></li>
+        </ol>
+        <p>The agency/department agrees to hold Hero K9 harmless in the case of any issue(s) or failure(s) with the equipment received. Hero K9 will only place orders based on the information provided by the department on this application or through any other means of communication needed to verify its accuracy.</p>
+        <p>Hero K9 requests that the agency/department disseminate at least one (1) press release through the course of the application process, including: the name of the organization; at least one method of contact for the organization; and, if in writing, the tagline “Ensuring the Provision, Preparation, and Protection of Public Safety K9s.”</p>
+      </div>
+
+      <md-content flex layout-padding>
+        <div ng-controller="AppController">
+
+          <form class="" name="terms" novalidate>
+            <fieldset class="standard">
+              <div layout="column" layout-wrap layout-gt-sm="row">
+                <div flex-xs flex="50">
+                  <md-checkbox id="agreement" class="equipment md-primary" ng-model="agreement" aria-label="agreement" required>
+                    I am authorized to apply for a grant on behalf of the department.
+                  </md-checkbox>
+                  <md-checkbox id="terms" class="equipment md-primary" ng-model="terms" aria-label="terms" required>
+                    Terms & Conditions: I accept the terms and conditions of this application and confirm the information entered above to be accurate and complete.
+                  </md-checkbox>
+                </div>
+              </div>
+            </fieldset>
+
+            <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label for="signature">Signature</label>
+                <input ng-model="signature" id="signature" type="text" name="signature" value="" required>
+                <div ng-messages="terms.signature.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <div flex="5" hide-xs hide-sm></div>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label for="badgeSignature">Badge #</label>
+                <input ng-model="badgeSignature" id="badgeSignature" type="text" name="badgeSignature" value="" required>
+                <div ng-messages="terms.badgeSignature.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
           </div>
-        </fieldset>
-
-        <md-input-container class="md-block">
-          <label for="signature">Signature</label>
-          <input ng-model="signature" id="signature" type="text" name="signature" value="" required>
-          <div ng-messages="terms.signature.$error">
-            <div ng-message="required">This is required.</div>
-          </div>
-        </md-input-container>
-        <md-button class="md-primary md-raised" type="submit" ng-click="go('/userdash')" ng-disabled="terms.$invalid" name="submit" value="Submit">Submit</md-button>
-      </form>
+            <md-button class="md-primary md-raised float-right" type="submit" ng-click="go('/userdash')" ng-disabled="terms.$invalid" name="submit" value="Submit">Submit</md-button>
+          </form>
+        </div>
+      </md-content>
     </div>
-  </md-content>
+    <div class="col-md-3">
+      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/application7.jpg"></div>
+      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/application8.jpg"></div>
+      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/application9.jpg"></div>
+    </div>
+  </div>
 </div>
