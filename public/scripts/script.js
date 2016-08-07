@@ -395,7 +395,12 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
 		url: '/applicationForm/part1',
 		data: objectToSend
 	});
+  $scope.redirect('/part2');
  }; //end sendApplication
+ 
+ $scope.redirect = function(path){
+   $location.path(path);
+ };
 
 $scope.sendk9 = function(){
 
@@ -472,9 +477,7 @@ $scope.sendk9 = function(){
   // $scope.multiThreat = false;
   // $scope.doorPop = false;
 };
-$scope.go = function(path){
-  $location.path(path);
-};
+
 }]);
 
 myApp.factory('check', ['$http', '$rootScope', '$location', function($http, $rootScope, $location) {

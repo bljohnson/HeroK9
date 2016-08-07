@@ -20,7 +20,7 @@
 
         <!-- If authorized, serve full form. -->
         <div class="full" ng-show="authorized == 'yes'">
-          <form name="fullForm" ng-submit="sendInquiry()" novalidate>
+          <form name="fullForm" ng-submit="sendInquiry()">
             <h2 class="form-header">Contact Information</h2>
             <div class="form-bg">
 
@@ -147,7 +147,7 @@
                   </div>
                 </md-input-container>
               </div>
-              <md-button class="md-primary md-raised" type="submit" name="button" ng-disabled="inquiry.$invalid">Submit</md-button>
+              <md-button class="md-primary md-raised" type="submit" name="button" >Submit</md-button>
             </form>
           </div>
         </div>
@@ -156,7 +156,7 @@
 
         <!-- If not authorized, serve the basic form. -->
         <div class="basic" ng-show="authorized == 'no'">
-          <form name="basicForm" ng-submit="sendInquiry()" novalidate>
+          <form name="basicForm" ng-submit="sendInquiry()">
             <h2 class="form-header">Contact Information</h2>
             <div class="form-bg">
 
@@ -273,7 +273,7 @@
                 </md-input-container>
               </div>
 
-              <md-button class="md-primary md-raised" type="submit" ng-disabled="inquiry.$invalid">Submit</md-button>
+              <md-button class="md-primary md-raised" type="submit">Submit</md-button>
             </form>
           </div>
       </div>
