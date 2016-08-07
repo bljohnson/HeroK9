@@ -135,13 +135,6 @@ md-card:last-child {
   border-radius: 0;
 }
 
-.navbar-form {
-
-}
-
-.navbar-form .input-group>.form-control {
-
-}
 
 .navbar-default {
   border-top: 1px solid #000;
@@ -183,8 +176,6 @@ md-card:last-child {
   padding: 10px 20px;
   box-shadow: none;
 }
-
-
 
 .fa-search {
   background-color: #d24740;
@@ -280,9 +271,11 @@ md-checkbox:not([disabled]).md-primary.md-checked ._md-icon {
 md-input-container.md-default-theme label, md-input-container label,
 md-input-container.md-default-theme ._md-placeholder,
 md-input-container ._md-placeholder, label {
-  color: rgba(0,0,0,0.5);
-  /*color: #000;*/
+  color: rgba(0,0,0,0.9);
+  font-weight: normal;
+  font-family: 'robotolight', Helvetica, Arial, sans-serif;
 }
+
 
 /* handlerform view styles */
 .handler-row, .form-bg {
