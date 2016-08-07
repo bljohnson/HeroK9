@@ -8,25 +8,21 @@
       <!-- app progress tracker -->
       <div class="app-tracker">
         <ul class="nav nav-wizard">
-          <li class="active"><a href="#"><span class="badge badge-step">1</span> Contact & Department Info</a></li>
-          <li><a href="#"><span class="badge badge-step">2</span> K9 & Handler Info</a></li>
-          <li><a href="#"><span class="badge badge-step">3</span> Terms & Conditions</a></li>
+          <li class="active"><a href="application"><span class="badge badge-step">1</span> Contact & Department Info</a></li>
+          <li><a href="part2"><span class="badge badge-step">2</span> K9 & Handler Info</a></li>
+          <li><a href="agreement"><span class="badge badge-step">3</span> Terms & Conditions</a></li>
         </ul>
       </div>
 
+      <p>This application consists of three steps. This step includes the authorized signer and department information. If we have your information on file, it is auto populated below. Please confirm that all appropriate fields are correct before moving onto the next step.</p>
 
-      <p>This application consists of 3 steps. Once you fill in your contact and department information, please proceed to the next step where you can add handler and K9 information.</p>
-
-
-      <div class="" ng-controller="AppController" ui-view="header" autoscroll="true">
+      <div class="first-form" ng-controller="AppController" ui-view="header" autoscroll="true">
           <h2 class="form-header">Authorized Signer Information</h2>
           <form name="application" novalidate>
           <div class="form-bg">
 
-
         	  <div>
-        	    <h1 class="md-title">Role</h1>
-
+              <p>What is your role?</p>
               <div layout="row">
                 <md-input-container style="margin-right: 10px;">
                   <label>Select a role</label>
@@ -87,7 +83,7 @@
             </div>
 
         	  <div>
-        	    <h1 class="md-title">Best time of day to contact</h1>
+        	    <p>What's the best time to contact you?</p>
               <div layout="row">
                 <md-input-container style="margin-right: 10px;">
                   <label>Select a time</label>
@@ -156,9 +152,9 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/inquiry3.jpg"></div>
-      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/inquiry3.jpg"></div>
-      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/inquiry3.jpg"></div>
+      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/application1.jpg"></div>
+      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/application2.jpg"></div>
+      <div><img style="margin-bottom:5px;" class="img-responsive" src="/images/application3.jpg"></div>
     </div>
   </div>
 </div>
