@@ -40,28 +40,34 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
   $scope.showCancelMessage = false;
 
   //Initialize by making a call to populate the snippits
-  $http({
-    method: 'GET',
-    url: '/snippitInfo'
-  }).
-  then(function(snippitData){
-    // Bind the returned data
+  var getSnippitInfo = function(){
+    $http({
+      method: 'GET',
+      url: '/snippitInfo'
+    }).
+    then(function(snippitData){
+      // Bind the returned data
 
-    snippitData = snippitData.data;
-    console.log(snippitData);
+      snippitData = snippitData.data;
+      console.log(snippitData);
 
-   $scope.newInquiry = snippitData.inquiry.new;
-   $scope.pendingInquiry = snippitData.inquiry.pending;
-   $scope.approvedInquiry = snippitData.inquiry.approved;
+     $scope.newInquiry = snippitData.inquiry.new;
+     $scope.pendingInquiry = snippitData.inquiry.pending;
+     $scope.approvedInquiry = snippitData.inquiry.approved;
 
-   $scope.newApplication = snippitData.application.new;
-   $scope.pendingApplication = snippitData.application.pending;
-   $scope.approvedApplication = snippitData.application.approved;
+     $scope.newApplication = snippitData.application.new;
+     $scope.pendingApplication = snippitData.application.pending;
+     $scope.approvedApplication = snippitData.application.approved;
 
-   $scope.username = snippitData.user;
+     $scope.username = snippitData.user;
 
-   $scope.messages = snippitData.messages;
-  });
+     $scope.messages = snippitData.messages;
+    });
+
+  };//End getSnippitInfo
+
+  //envoke it
+  getSnippitInfo();
 
 
   $scope.showInquiries = function(){
@@ -96,7 +102,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
 
     var messageToSend = {
       message: $scope.messageBody,
-      subject: $scope.messageSubject
+      subject: $scope.messageSubject,
     };
 
     console.log(messageToSend);
@@ -106,7 +112,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
       url: '/snippitInfo/newMessage',
       data: messageToSend
     }).then(function(){
-      $scope.messages.push(messageToSend);
+      getSnippitInfo();
       $scope.showCancelMessage = false;
     });
 
