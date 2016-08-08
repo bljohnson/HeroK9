@@ -1,0 +1,12 @@
+body {
+  background-color: #eeeeee;
+}
+
+.admin-page-header {
+  border-bottom: 1px solid #fff;
+}
+
+.admin-snippet {
+  background-color: #fff;
+  padding: 5px 30px 30px 30px;
+}

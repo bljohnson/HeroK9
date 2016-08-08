@@ -1,0 +1,25 @@
+<header role="banner" ng-controller="snippitController">
+  <nav class="navbar navbar-inverse login-nav">
+    <div class="container-fluid login-right">
+      <ul class="nav navbar-nav" ng-controller="loginController">
+        <!-- <li><a href="/login" ng-show="!isUserLoggedIn" target="_self">Log In</a></li> -->
+        <li><a href="/user/logout" ng-show="isUserLoggedIn" target="_self">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-md-4">
+        <a href="home"><img class="logo" src="images/herok9.svg" alt="Hero K9 Logo"></a>
+      </div>
+      <div class="col-md-8 mission-statement">
+        <p>Ensuring the provision, preparation<br> and protection of public safety K9s</p>
+      </div> -->
+    </div>
+    <div class="page-header admin-page-header">
+      <h1>Admin Dashboard <small>Welcome, Henry!</small></h1>
+    </div>
+
+  </div>
+</header>
