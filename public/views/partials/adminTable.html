@@ -100,21 +100,18 @@
     </div>
 
     <!-- button to show form -->
-    <md-button type="button" class="md-primary md-raised yellow-btn" ng-click="userForm.$show()" ng-show="!userForm.$visible">
+    <md-button type="button" class="md-primary md-raised yellow-btn btn-fix" ng-click="userForm.$show()" ng-show="!userForm.$visible">
       <strong>Edit</strong>
     </md-button>
     <!-- buttons to submit / cancel form -->
     <span ng-show="userForm.$visible">
-      <md-button type="submit" class="md-primary md-raised secondary-btn" ng-disabled="userForm.$waiting">
+      <md-button type="submit" class="md-primary md-raised secondary-btn btn-fix" ng-disabled="userForm.$waiting">
         <strong>Save</strong>
       </md-button>
-      <md-button type="button" class="md-primary md-raised" ng-disabled="userForm.$waiting" ng-click="userForm.$cancel()">
+      <md-button type="button" class="md-primary md-raised btn-fix" ng-disabled="userForm.$waiting" ng-click="userForm.$cancel()">
         <strong>Cancel</strong>
       </md-button>
     </span>
-
-
-
   </form>
 
   <!-- Only visible in applicationTable -->

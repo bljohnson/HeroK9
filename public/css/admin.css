@@ -90,3 +90,11 @@ hr {
   padding: 9px;
   color: inherit;
 }
+
+.btn-fix {
+  margin: 20px 0 0 0 !important;
+}
+
+.form-control {
+  margin: 10px 0;
+}
