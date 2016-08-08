@@ -2,8 +2,27 @@
 <main ng-controller="dogEditController">
 
   <div class="page-header">
-    <h2>{{dogData.k9_name}}, <small>Loyal Companion</small><md-button class="btn btn-success btn-lg" style="float: right;" ng-click="approveInquiry($event, $index)" type="Button"><strong>Approve</strong></md-button><md-button class="btn btn-danger btn-lg" style="float: right;" ng-click="deleteInquiry($event, $index)" type="Button"><strong>Delete</strong></md-button></h2>
-    Submission Date: {{dogData.signed}}
+    <h2>
+      {{dogData.k9_name}}, <small>Loyal Companion</small>
+      <md-button class="btn btn-success btn-lg" style="float: right;" ng-click="approveInquiry($event, $index)" ng-show="!dogForm.$visible" type="Button"><strong>Approve</strong></md-button>
+      <md-button class="btn btn-danger btn-lg" style="float: right;" ng-click="deleteInquiry($event, $index)" ng-show="!dogForm.$visible" type="Button"><strong>Delete</strong></md-button>
+      <!-- button to show form -->
+      <md-button type="button" class="btn btn-warning btn-lg" style="float: right;" ng-click="dogForm.$show()" ng-show="!dogForm.$visible">
+        <strong>Edit</strong>
+      </md-button>
+      <!-- buttons to submit / cancel form -->
+      <span ng-show="dogForm.$visible">
+        <md-button type="submit" class="btn btn-primary btn-lg" style="float: right;" ng-disabled="dogForm.$waiting">
+          <strong>Save</strong>
+        </md-button>
+        <md-button type="button" class="btn btn-warning btn-lg" style="float: right;" ng-disabled="dogForm.$waiting" ng-click="dogForm.$cancel()">
+          <strong>Cancel</strong>
+        </md-button>
+      </span>
+      <br>
+      <br>
+    </h2>
+    Submission Date: {{dogData.signed|date:"MMM dd, yyyy 'at' h:mma"}}
   </div>
 
   <form editable-form name="dogForm" onaftersave="saveDog($index)">
@@ -157,22 +176,6 @@
 
       </content>
 
-    </div>
-
-    <div class="buttons">
-      <!-- button to show form -->
-      <button type="button" class="btn btn-default" ng-click="dogForm.$show()" ng-show="!dogForm.$visible">
-        Edit
-      </button>
-      <!-- buttons to submit / cancel form -->
-      <span ng-show="dogForm.$visible">
-        <button type="submit" class="btn btn-primary" ng-disabled="dogForm.$waiting">
-          Save
-        </button>
-        <button type="button" class="btn btn-default" ng-disabled="dogForm.$waiting" ng-click="dogForm.$cancel()">
-          Cancel
-        </button>
-      </span>
     </div>
 
     <h4><strong>Bio:</strong></h4>

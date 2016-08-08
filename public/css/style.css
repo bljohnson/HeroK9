@@ -79,7 +79,7 @@ md-card:last-child {
   height: 100%;
   background-size: cover;
   overflow: hidden;
-  padding: 15% 0;
+  padding: 12% 0;
   margin-bottom: 0;
 }
 
@@ -135,13 +135,6 @@ md-card:last-child {
   border-radius: 0;
 }
 
-.navbar-form {
-
-}
-
-.navbar-form .input-group>.form-control {
-
-}
 
 .navbar-default {
   border-top: 1px solid #000;
@@ -176,8 +169,8 @@ md-card:last-child {
 .form-control::-moz-placeholder { color: #000; }
 .form-control:-ms-input-placeholder { color: #000; }
 
-.form-control {
-  background-color: #ebebeb;
+.search-box {
+  background-color: #eeeeee;
   border-radius: 0;
   border: 0;
   padding: 10px 20px;
@@ -206,9 +199,6 @@ md-card:last-child {
   background-color: #0b357b;
   color: #fff;
   margin-top: 40px;
-  /*position: absolute;*/
-  /*bottom: 0;*/
-  /*width: 100%;*/
 }
 
 /* user dashboard */
@@ -231,7 +221,7 @@ md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-i
   background: #d24740;
   box-shadow: none;
   color: #fff;
-  margin: 0 10px 0 0;
+  margin: 0 0 20px 10px;
   font-weight: bold;
   padding: 5px 20px;
 }
@@ -278,14 +268,16 @@ md-checkbox:not([disabled]).md-primary.md-checked ._md-icon {
 md-input-container.md-default-theme label, md-input-container label,
 md-input-container.md-default-theme ._md-placeholder,
 md-input-container ._md-placeholder, label {
-  color: rgba(0,0,0,0.5);
-  /*color: #000;*/
+  color: rgba(0,0,0,0.9);
+  font-weight: normal;
+  font-family: 'robotolight', Helvetica, Arial, sans-serif;
 }
+
 
 /* handlerform view styles */
 .handler-row, .form-bg {
   padding: 20px 35px;
-  background-color: #ebebeb;
+  background-color: #eeeeee;
   margin: 0 0 15px 0;
 }
 
@@ -297,10 +289,27 @@ md-input-container ._md-placeholder, label {
   font-size: 24px;
 }
 
+.first-form {
+  margin-top: 30px;
+}
 
+.auth-question {
+  /*border-radius: 5px;*/
+  background-color: #eaf5fb;
+  margin: 15px auto;
+  padding: 30px 80px 20px 80px;
+}
 
-.header {
-  text-align: center;
+.secondary-btn {
+  background-color: #337ab7 !important;
+}
+
+.secondary-btn:hover {
+  background-color: #286090 !important;
+}
+
+.float-right {
+  float: right;
 }
 
 .color-border {
@@ -336,141 +345,4 @@ md-input-container ._md-placeholder, label {
 
 .file-selected {
   margin: 20px 0;
-}
-
-/* application progress tracker */
-/* CSS used here will be applied after bootstrap.css */
-.app-tracker {
-  margin: 20px 0;
-  width: 100%;
-}
-
-.nav-wizard > li {
-  float: left;
-}
-.nav-wizard > li > a {
-  position: relative;
-  background-color: #eeeeee;
-}
-.nav-wizard > li > a .badge {
-  margin-left: 3px;
-  color: #eeeeee;
-  background-color: #d95932;
-}
-.nav-wizard > li > a .badge.badge-step {
-  color: #d95932;
-  border: 1px solid #d95932;
-  border-radius: 50%;
-  padding: 3px 5px;
-  background-color: transparent;
-}
-.nav-wizard > li.active > a .badge.badge-step {
-  color: #FFFFFF;
-  border: 1px solid #FFFFFF;
-  border-radius: 50%;
-  padding: 3px 5px;
-  background-color: transparent;
-}
-.nav-wizard > li:not(:first-child) > a {
-  padding-left: 34px;
-}
-.nav-wizard > li:not(:first-child) > a:before {
-  width: 0px;
-  height: 0px;
-  border-top: 20px inset transparent;
-  border-bottom: 20px inset transparent;
-  border-left: 20px solid #ffffff;
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-}
-.nav-wizard > li:not(:last-child) > a {
-  margin-right: 4px;
-}
-.nav-wizard > li:not(:last-child) > a:after {
-  width: 0px;
-  height: 0px;
-  border-top: 20px inset transparent;
-  border-bottom: 20px inset transparent;
-  border-left: 20px solid #eeeeee;
-  position: absolute;
-  content: "";
-  top: 0;
-  right: -20px;
-  z-index: 2;
-}
-/*.nav-wizard > li:first-child > a {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}*/
-/*.nav-wizard > li:last-child > a {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}*/
-.nav-wizard > li.done:hover > a,
-.nav-wizard > li:hover > a {
-  background-color: #d5d5d5;
-}
-.nav-wizard > li.done:hover > a:before,
-.nav-wizard > li:hover > a:before {
-  border-right-color: #d5d5d5;
-}
-.nav-wizard > li.done:hover > a:after,
-.nav-wizard > li:hover > a:after {
-  border-left-color: #d5d5d5;
-}
-.nav-wizard > li.done > a {
-  background-color: #e2e2e2;
-}
-.nav-wizard > li.done > a:before {
-  border-right-color: #e2e2e2;
-}
-.nav-wizard > li.done > a:after {
-  border-left-color: #e2e2e2;
-}
-.nav-wizard > li.active > a,
-.nav-wizard > li.active > a:hover,
-.nav-wizard > li.active > a:focus {
-  color: #ffffff;
-  background-color: #d95932;
-}
-.nav-wizard > li.active > a:after {
-  border-left-color: #d95932;
-}
-.nav-wizard > li.active > a .badge {
-  color: #d95932;
-  background-color: #ffffff;
-}
-.nav-wizard > li.disabled > a {
-  color: #777777;
-}
-.nav-wizard > li.disabled > a:hover,
-.nav-wizard > li.disabled > a:focus {
-  color: #777777;
-  text-decoration: none;
-  background-color: #eeeeee;
-  cursor: default;
-}
-.nav-wizard > li.disabled > a:before {
-  border-right-color: #eeeeee;
-}
-.nav-wizard > li.disabled > a:after {
-  border-left-color: #eeeeee;
-}
-.nav-wizard.nav-justified > li {
-  float: none;
-}
-.nav-wizard.nav-justified > li > a {
-  padding: 10px 15px;
-}
-@media (max-width: 768px) {
-  .nav-wizard.nav-justified > li > a {
-    /*border-radius: 4px;*/
-    margin-right: 0;
-  }
-  .nav-wizard.nav-justified > li > a:before,
-  .nav-wizard.nav-justified > li > a:after {
-    border: none !important;
-  }
 }

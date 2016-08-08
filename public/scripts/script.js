@@ -124,7 +124,7 @@ myApp.controller('loginController', ['$scope', '$rootScope' , '$http', '$window'
     }).success(function(data){
         console.log(data);
           if (data.status_id == 99) {$window.location.href = '/adminView';}
-          else if (data.status_id == 3) {$window.location.href = '/#/application';}
+          else if (data.status_id == 3 || 4) {$window.location.href = '/#/application';}
           else {$window.location.href = "/#/userdash";}
 
       }).error(function(err){
@@ -225,11 +225,19 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
 
   $http({
     method: 'GET',
-    url: '/applicationForm'
+    url: '/applicationForm/formData'
   }).then(function(data){
     data = data.data;
     console.log(data);
     $scope.equipmentList = data;
+  }).then(function(){
+    $http({
+      method: 'GET',
+      url: '/user'
+    }).then(function(userData){
+      userData = userData.data;
+      console.log(userData);
+    });
   });
 
   $http({
@@ -240,6 +248,7 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
     console.log(userData);
 
     //Scope in userData
+    $scope.status_id = userData.status_id;
     $scope.role = userData.role;
     $scope.rank = userData.rank;
     $scope.firstName = userData.first_name;
@@ -247,7 +256,7 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
     $scope.primaryPhone = userData.primary_phone;
     $scope.altPhone = userData.alt_phone;
     $scope.contactEmail = userData.contact_email;
-    $scope.contactTime = userData.contact_time;
+    $scope.time = userData.contact_time;
     $scope.address1 = userData.dept_add_street1;
     $scope.address2 = userData.dept_add_street2;
     $scope.city = userData.dept_add_city;
@@ -397,10 +406,11 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
 	});
   $scope.redirect('/part2');
  }; //end sendApplication
- 
+
  $scope.redirect = function(path){
    $location.path(path);
  };
+
 
 $scope.sendk9 = function(){
 
@@ -456,28 +466,20 @@ $scope.sendk9 = function(){
 		data: objectToSend
 	});
 
-  // $scope.name = '';
-  // breedToSend = '';
-  // $scope.age = '';
-  // $scope.certified = false;
-  // $scope.activeDuty = false;
-  // $scope.retirement = false;
-  // $scope.title = '';
-  // $scope.first = '';
-  // $scope.last = '';
-  // $scope.badge = '';
-  // $scope.badgeConfirm = '';
-  // $scope.cell = '';
-  // $scope.cellConfirm = '';
-  // $scope.secondaryCell = '';
-  // $scope.emailAddress = '';
-  // $scope.emailConfirm = '';
-  // $scope.kennel = false;
-  // $scope.ballistic = false;
-  // $scope.multiThreat = false;
-  // $scope.doorPop = false;
-};
 
+  //Send userInfo to updateStatus
+  var userInfo = {
+    contact_email: $scope.contactEmail,
+    status_id: $scope.status_id
+  };
+
+  $http({
+    method: 'POST',
+    url: '/updateStatus',
+    data: userInfo
+  });
+
+};
 }]);
 
 myApp.factory('check', ['$http', '$rootScope', '$location', function($http, $rootScope, $location) {
