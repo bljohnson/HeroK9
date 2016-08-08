@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="/vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/vendors/xeditable.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/admin.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body ng-app="myApp">
-
+    <header ng-include="'/views/partials/admin-header.html'"></header>
     <main id='adminMain' ng-controller='adminViewController'>
 
       <div class="page-header row" ng-controller="snippitController">
