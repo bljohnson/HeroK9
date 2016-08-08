@@ -11,7 +11,7 @@
       <br>
     </h2>
 
-    {{data.status}}
+    {{data.status_type}}
     Submission Date: {{data.created|date:"MMM dd, yyyy 'at' h:mma"}}
 
   </div>
@@ -23,79 +23,77 @@
       <div class="{{alertStatus}}" role="alert"><strong>{{data.statusAlert}}</strong></div>
     </div>
 
-    <div>
-      <h4><strong>Authorized Signer Contact Information</strong></h4>
+    <div class="row">
+      <div class="col-md-6">
+        <h4><strong>Authorized Signer Contact Information</strong></h4>
 
-      <content>
-        <span class="infoItem">
-          <label>Primary Phone: </label>
-            <span editable-text="data.primary_phone"> {{data.primary_phone}} </span>
-        </span>
-        </br>
+        <content>
+          <span class="infoItem">
+            <label>Primary Phone: </label>
+              <span editable-text="data.primary_phone"> {{data.primary_phone}} </span>
+          </span>
+          </br>
 
-        <span class="infoItem">
-          <label>Secondary Phone: </label>
-            <span editable-text="data.alt_phone"> {{data.alt_phone}} </span>
-        </span>
-        </br>
+          <span class="infoItem">
+            <label>Secondary Phone: </label>
+              <span editable-text="data.alt_phone"> {{data.alt_phone}} </span>
+          </span>
+          </br>
 
-        <span class="infoItem">
-          <label>Login Email: </label>
-            <span editable-text="data.email"> {{data.email}} </span>
-        </span>
-        </br>
+          <span class="infoItem">
+            <label>Login Email: </label>
+              <span editable-text="data.email"> {{data.email}} </span>
+          </span>
+          </br>
 
-        <span class="infoItem">
-          <label>Contact Email: </label>
-            <span editable-text="data.contact_email"> {{data.contact_email}} </span>
-        </span>
-        </br>
+          <span class="infoItem">
+            <label>Contact Email: </label>
+              <span editable-text="data.contact_email"> {{data.contact_email}} </span>
+          </span>
+          </br>
 
-        <span class="infoItem">
-          <label>Best Contact Time: </label>
-            <span editable-text="data.contact_time"> {{data.contact_time}} </span>
-        </span>
-        </br>
+          <span class="infoItem">
+            <label>Best Contact Time: </label>
+              <span editable-text="data.contact_time"> {{data.contact_time}} </span>
+          </span>
+          </br>
+        </content>
+      </div>
 
-      </content>
+      <div class="col-md-6">
+        <h4><strong>Department Address</strong></h4>
+        <content>
+          <span class="infoItem">
+            <label>Street: </label>
+              <span editable-text="data.dept_add_street1"> {{data.dept_add_street1}} </span>
+          </span>
+          </br>
 
+          <span class="infoItem">
+            <label>Additional Street Info: </label>
+              <span editable-text="data.dept_add_street2"> {{data.dept_add_street2}} </span>
+          </span>
+          </br>
 
-      <h4><strong>Department Address</strong></h4>
+          <span class="infoItem">
+            <label>City: </label>
+              <span editable-text="data.dept_add_city"> {{data.dept_add_city}} </span>
+          </span>
+          </br>
 
-      <content>
+          <span class="infoItem">
+            <label>State: </label>
+              <span editable-text="data.dept_add_state"> {{data.dept_add_state}} </span>
+          </span>
+          </br>
 
-        <span class="infoItem">
-          <label>Street: </label>
-            <span editable-text="data.dept_add_street1"> {{data.dept_add_street1}} </span>
-        </span>
-        </br>
-
-        <span class="infoItem">
-          <label>Additional Street Info: </label>
-            <span editable-text="data.dept_add_street2"> {{data.dept_add_street2}} </span>
-        </span>
-        </br>
-
-        <span class="infoItem">
-          <label>City: </label>
-            <span editable-text="data.dept_add_city"> {{data.dept_add_city}} </span>
-        </span>
-        </br>
-
-        <span class="infoItem">
-          <label>State: </label>
-            <span editable-text="data.dept_add_state"> {{data.dept_add_state}} </span>
-        </span>
-        </br>
-
-        <span class="infoItem">
-          <label>Zip Code: </label>
-            <span editable-text="data.dept_add_zip"> {{data.dept_add_zip}} </span>
-        </span>
-        </br>
-
-      </content>
-
+          <span class="infoItem">
+            <label>Zip Code: </label>
+              <span editable-text="data.dept_add_zip"> {{data.dept_add_zip}} </span>
+          </span>
+          </br>
+        </content>
+      </div>
     </div>
 
     <!-- button to show form -->
