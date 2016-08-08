@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="/vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/vendors/xeditable.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/admin.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body ng-app="myApp">
 
-    <main id='adminMain' ng-controller='adminViewController'>
+    <main id='adminMain' class="page-row page-row-expanded" ng-controller='adminViewController'>
+
 
       <div class="page-header row" ng-controller="snippitController">
         <a href="/#/home"><img style='float: left; height: 10vh;' class="logo" src="images/herok9.svg" alt="Hero K9 Logo"></a>
@@ -19,14 +21,12 @@
           Admin Dashboard <small>Welcome, {{username}}</small>
           <button class='btn btn-primary btn-lg' style='float:right' ng-show='awayFromHome' type="button" ng-click='viewControl(0)'>Dashboard Home</button>
         </h1>
-
-
       </div>
 
       <ng-include src="activeTab.url"></ng-include>
     </main>
 
-    <footer ng-include="'/views/partials/footer.html'"></footer>
+    <footer class="page-row" ng-include="'/views/partials/footer.html'"></footer>
 
     <!-- Vendor Scripts -->
     <script src="./vendors/angular.js" charset="utf-8"></script>
