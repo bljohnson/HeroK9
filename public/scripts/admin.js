@@ -121,7 +121,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
       id: $scope.messages[index].id
     };
 
-    setTimeout(function(){$scope.messages.splice(index,1); $scope.$apply();},3000);
+    $scope.messages.splice(index,1);
 
     console.log(deleteMessage);
 
@@ -186,7 +186,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
         data: statusData
       })
       .then(function(data){
-        $scope.inquiryData[index].status_id = data.data;
+        $scope.inquiryData[index].status_type = data.data;
       });
 
 
@@ -250,7 +250,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
           url: '/updateStatus',
           data: statusData
         }).then(function(data){
-          $scope.inquiryData[index].status_id = data.data;
+          $scope.inquiryData[index].status_type = data.data;
         });
 
          $scope.inquiryData[index].statusAlert = firstName + ' has been approved!  An email has been sent to ' + firstName + ' with instructions for the application process.';
@@ -379,7 +379,7 @@ myApp.controller('applicationTableController', ['$scope', '$http', function($sco
         data: statusData
       })
       .then(function(data){
-        $scope.applicationData[index].status_id = data.data;
+        $scope.applicationData[index].status_type = data.data;
       });
 
 

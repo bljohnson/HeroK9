@@ -20,8 +20,35 @@ router.get('/inquiryTable', function(req, res){
     });
 
     query.on('end', function(){
-      done();
-      res.send(results);
+
+      var statusQuery = client.query("SELECT * FROM status");
+      var statusTable = [];
+
+      statusQuery.on('row', function(row){
+        statusTable.push(row);
+      });
+
+      statusQuery.on('end', function(){
+
+        console.log("status table", statusTable);
+        //Status_id key
+        for( var i=0; i<results.length; i++){
+          //Loop through each user row
+          for(var j=0; j<statusTable.length; j++){
+            //Loop through the statusTable and match
+            if(results[i].status_id == statusTable[j].id){
+              //The id's were matched
+              console.log("id's matched");
+              results[i].status_type = statusTable[j].status_type;
+              results[i].status_desc = statusTable[j].description;
+            }
+          }
+        }
+        console.log(results[0]);
+
+        done();
+        res.send(results);
+      });
     });
 
   });
@@ -43,8 +70,35 @@ router.get('/applicationTable', function(req, res){
     });
 
     query.on('end', function(){
-      done();
-      res.send(results);
+
+      var statusQuery = client.query("SELECT * FROM status");
+      var statusTable = [];
+
+      statusQuery.on('row', function(row){
+        statusTable.push(row);
+      });
+
+      statusQuery.on('end', function(){
+
+        console.log("status table", statusTable);
+        //Status_id key
+        for( var i=0; i<results.length; i++){
+          //Loop through each user row
+          for(var j=0; j<statusTable.length; j++){
+            //Loop through the statusTable and match
+            if(results[i].status_id == statusTable[j].id){
+              //The id's were matched
+              console.log("id's matched");
+              results[i].status_type = statusTable[j].status_type;
+              results[i].status_desc = statusTable[j].description;
+            }
+          }
+        }
+        console.log(results[0]);
+        done();
+        res.send(results);
+      });
+
     });
 
   });
