@@ -43,12 +43,33 @@ router.post('/', function(req, res){
 
     console.log("The new status will be " + newStatus);
     client.query('UPDATE users SET status_id = ($1) WHERE users.contact_email = ($2)', [ newStatus, req.body.contact_email ] );
-    done();
+
+    var statusQuery = client.query("SELECT * FROM status");
+    var statusTable = [];
+
+    statusQuery.on('row', function(row){
+      statusTable.push(row);
+    });
+
+    statusQuery.on('end', function(){
+      for(var i=0; i<statusTable.length; i++){
+        if(newStatus == statusTable[i].id){
+          //matched
+          newStatus = statusTable[i].status_type;
+          break;
+        }
+      }
+
+      console.log("New Status " + newStatus);
+      done();
+      res.send(newStatus.toString());
+    });
+
+
+
+
   });
 
-  console.log("New Status " + newStatus);
-
-  res.send(newStatus.toString());
 
 });
 

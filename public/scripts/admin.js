@@ -186,7 +186,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
         data: statusData
       })
       .then(function(data){
-        $scope.inquiryData[index].status_id = data.data;
+        $scope.inquiryData[index].status_type = data.data;
       });
 
 
@@ -250,7 +250,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
           url: '/updateStatus',
           data: statusData
         }).then(function(data){
-          $scope.inquiryData[index].status_id = data.data;
+          $scope.inquiryData[index].status_type = data.data;
         });
 
          $scope.inquiryData[index].statusAlert = firstName + ' has been approved!  An email has been sent to ' + firstName + ' with instructions for the application process.';
@@ -281,7 +281,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
         data: deleteUserObject
       });
 
-
+      setTimeout(function(){$scope.inquiryData.splice(index,1); $scope.$apply();}, 3000);
       $scope.status = firstName + ' has been deleted from your records!';
       $scope.alertStatus = "alert alert-success";
     } else {
@@ -322,8 +322,6 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
       }
     });
   };//End saveUser
-
-
 
 
 }]);//End inquiryTableController
@@ -381,7 +379,7 @@ myApp.controller('applicationTableController', ['$scope', '$http', function($sco
         data: statusData
       })
       .then(function(data){
-        $scope.applicationData[index].status_id = data.data;
+        $scope.applicationData[index].status_type = data.data;
       });
 
 
