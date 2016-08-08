@@ -2,11 +2,52 @@ body {
   background-color: #eeeeee;
 }
 
-.admin-page-header {
-  border-bottom: 1px solid #fff;
+.panel {
+  border: 0;
+  border-radius: 0;
+}
+
+.panel-primary {
+  border: 0;
+}
+
+.panel-heading {
+  border-radius: 0;
+  padding: 0;
+}
+
+.panel-primary>.panel-heading {
+  background-color: #0b357b;
+  border-color: transparent;
+}
+
+.yellow-btn {
+  background-color: #f0ad4e !important;
+}
+
+.yellow-btn:hover {
+  background-color: #eea236 !important;
+}
+
+.msg-form {
+  background-color: #eeeeee;
+  padding: 20px;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.msg-table th {
+  background-color: #6f6f6f;
+  color: #fff;
 }
 
 .admin-snippet {
-  background-color: #fff;
-  padding: 5px 30px 30px 30px;
+  border: #fff;
+}
+
+.thumbnail {
+  border-radius: 0;
+  border: 0;
 }
