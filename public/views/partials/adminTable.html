@@ -5,8 +5,8 @@
     <h2>
       {{data.first_name}} {{data.last_name}}, <small>{{data.rank}}</small>
 
-      <md-button class="btn btn-success btn-lg" style="float: right;" ng-click="approveInquiry($event, $index)" ng-show="!userForm.$visible" type="Button"><strong>Approve</strong></md-button>
-      <md-button class="btn btn-danger btn-lg" style="float: right;" ng-click="deleteInquiry($event, $index)" ng-show="!userForm.$visible" type="Button"><strong>Delete</strong></md-button>
+      <md-button class="md-primary md-raised green-btn" style="float: right;" ng-click="approveInquiry($event, $index)" ng-show="!userForm.$visible" type="Button"><strong>Approve</strong></md-button>
+      <md-button class="md-primary md-raised" style="float: right;" ng-click="deleteInquiry($event, $index)" ng-show="!userForm.$visible" type="Button"><strong>Delete</strong></md-button>
       <br>
       <br>
     </h2>
@@ -99,15 +99,15 @@
     </div>
 
     <!-- button to show form -->
-    <md-button type="button" class="btn btn-warning btn-lg" ng-click="userForm.$show()" ng-show="!userForm.$visible">
+    <md-button type="button" class="md-primary md-raised yellow-btn" ng-click="userForm.$show()" ng-show="!userForm.$visible">
       <strong>Edit</strong>
     </md-button>
     <!-- buttons to submit / cancel form -->
     <span ng-show="userForm.$visible">
-      <md-button type="submit" class="btn btn-primary btn-lg" ng-disabled="userForm.$waiting">
+      <md-button type="submit" class="md-primary md-raised secondary-btn" ng-disabled="userForm.$waiting">
         <strong>Save</strong>
       </md-button>
-      <md-button type="button" class="btn btn-warning btn-lg" ng-disabled="userForm.$waiting" ng-click="userForm.$cancel()">
+      <md-button type="button" class="md-primary md-raised" ng-disabled="userForm.$waiting" ng-click="userForm.$cancel()">
         <strong>Cancel</strong>
       </md-button>
     </span>
