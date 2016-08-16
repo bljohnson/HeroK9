@@ -44,6 +44,7 @@ router.post('/uploads', upload.single('file'), function(req, res) {
 
 // send PDF URLs to k9s_certifications table
 router.post('/submitPdf', function (req, res){
+  console.log(req.body);
   pg.connect(connectionString, function(err, client, done){
     if(err){
       console.log(err);
@@ -61,12 +62,13 @@ router.post('/submitPdf', function (req, res){
 
 // send IMG URLs to k9_photos table
 router.post('/submitImg', function (req, res){
+  console.log(req.body);
   pg.connect(connectionString, function(err, client, done){
     if(err){
       console.log(err);
     } else {
-      var sendFile = client.query('INSERT INTO k9_photos (url) VALUES ($1)',
-        [req.body.url]);
+      var sendFile = client.query('INSERT INTO k9_photos (url, k9_id) VALUES ($1, $2)',
+        [req.body.url, req.body.k9_id]);
         console.log('in submitImg post route, adding to k9_photos:', req.body.url);
       sendFile.on('end', function(){
         done();
