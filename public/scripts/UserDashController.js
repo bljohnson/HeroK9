@@ -355,7 +355,8 @@ angular.module('myApp').controller('UserDashController', [
 
             // then, if success, also collect input & send data and file location to database
             var imgToServer = {
-              url: resp.data.location
+              url: resp.data.location,
+              k9_id: $scope.k9Id
             };
             console.log('send img to server: ', imgToServer);
 
