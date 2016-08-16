@@ -418,9 +418,6 @@ $scope.sendk9 = function(){
     breedToSend = $scope.breed;
   }
 
-
-
-
   var objectToSend = {
     k9name: $scope.name,
     breed: breedToSend,
@@ -477,6 +474,21 @@ $scope.sendk9 = function(){
   });
 
 };
+
+$scope.sendLegalAgreement = function() {
+	var legalToSend = {
+		signature: $scope.signature,
+		badgeSignature: $scope.badgeSignature
+	}; // end legalToSend
+
+	console.log(legalToSend);
+	$http({
+		  method: 'POST',
+		  url: '/applicationForm/part3',
+		  data: legalToSend
+	  });
+}; // end sendLegalAgreement
+
 
 
 $scope.go = function(path){
