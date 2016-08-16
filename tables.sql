@@ -24,7 +24,10 @@ CREATE TABLE users (
 	auth_first_name VARCHAR(255),
 	auth_last_name VARCHAR(255),
 	auth_phone VARCHAR(30),
-	auth_email VARCHAR(255) UNIQUE
+	auth_email VARCHAR(255) UNIQUE,
+	notes TEXT,
+	signature VARCHAR(30),
+	badge INTEGER
 );
 
 CREATE TABLE status (
@@ -77,7 +80,7 @@ CREATE TABLE K9s (
 	squad_retirement BOOLEAN
 );
 
-CREATE TYPE certification AS ENUM ('Explosives', 'Narcotics', 'Patrol', 'Tracking/Trailing', 'Other');
+CREATE TYPE certification AS ENUM ('Explosives', 'Narcotics', 'Patrol', 'Tracking/Trailing');
 
 CREATE TABLE certifications (
 	id SERIAL PRIMARY KEY NOT NULL,
