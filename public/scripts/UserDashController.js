@@ -285,7 +285,7 @@ angular.module('myApp').controller('UserDashController', [
               k9Id: $scope.k9Id,
               certType: $scope.uploadCert,
               url: resp.data.location,
-              comment: $scope.comment
+              notes: $scope.certNotes
             };
             console.log('send to server: ', pdfToServer);
 
