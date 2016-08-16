@@ -5,14 +5,14 @@ var pg = require('pg');
 var connection = require('../modules/connection');
 var router = express.Router();
 
-router.post('/saveUser', function(req, res){
+router.put('/saveUser', function(req, res){
 
   console.log("In adminEditRoute with:");
   console.log(req.body);
 
   pg.connect(connection, function (err, client, done) {
 
-    client.query('UPDATE users SET email = ($1), contact_email = ($2), primary_phone = ($3), alt_phone = ($4), contact_time = ($5), dept_add_street1 = ($6), dept_add_street2 = ($7), dept_add_city = ($8), dept_add_state = ($9), dept_add_zip = ($10) WHERE id = ($11)', [req.body.email, req.body.contact_email, req.body.primary_phone, req.body.alt_phone, req.body.contact_time, req.body.dept_add_street1, req.body.dept_add_street2, req.body.dept_add_city, req.body.dept_add_state, req.body.dept_add_zip, req.body.id]);
+    client.query('UPDATE users SET email = ($1), contact_email = ($2), primary_phone = ($3), alt_phone = ($4), contact_time = ($5), dept_add_street1 = ($6), dept_add_street2 = ($7), dept_add_city = ($8), dept_add_state = ($9), dept_add_zip = ($10), notes = ($11) WHERE id = ($12)', [req.body.email, req.body.contact_email, req.body.primary_phone, req.body.alt_phone, req.body.contact_time, req.body.dept_add_street1, req.body.dept_add_street2, req.body.dept_add_city, req.body.dept_add_state, req.body.dept_add_zip, req.body.notes, req.body.id]);
 
     done();
     res.sendStatus(200);
