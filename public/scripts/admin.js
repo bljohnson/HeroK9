@@ -40,28 +40,34 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
   $scope.showCancelMessage = false;
 
   //Initialize by making a call to populate the snippits
-  $http({
-    method: 'GET',
-    url: '/snippitInfo'
-  }).
-  then(function(snippitData){
-    // Bind the returned data
+  var getSnippitInfo = function(){
+    $http({
+      method: 'GET',
+      url: '/snippitInfo'
+    }).
+    then(function(snippitData){
+      // Bind the returned data
 
-    snippitData = snippitData.data;
-    console.log(snippitData);
+      snippitData = snippitData.data;
+      console.log(snippitData);
 
-   $scope.newInquiry = snippitData.inquiry.new;
-   $scope.pendingInquiry = snippitData.inquiry.pending;
-   $scope.approvedInquiry = snippitData.inquiry.approved;
+     $scope.newInquiry = snippitData.inquiry.new;
+     $scope.pendingInquiry = snippitData.inquiry.pending;
+     $scope.approvedInquiry = snippitData.inquiry.approved;
 
-   $scope.newApplication = snippitData.application.new;
-   $scope.pendingApplication = snippitData.application.pending;
-   $scope.approvedApplication = snippitData.application.approved;
+     $scope.newApplication = snippitData.application.new;
+     $scope.pendingApplication = snippitData.application.pending;
+     $scope.approvedApplication = snippitData.application.approved;
 
-   $scope.username = snippitData.user;
+     $scope.username = snippitData.user;
 
-   $scope.messages = snippitData.messages;
-  });
+     $scope.messages = snippitData.messages;
+    });
+
+  };//End getSnippitInfo
+
+  //envoke it
+  getSnippitInfo();
 
 
   $scope.showInquiries = function(){
@@ -96,7 +102,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
 
     var messageToSend = {
       message: $scope.messageBody,
-      subject: $scope.messageSubject
+      subject: $scope.messageSubject,
     };
 
     console.log(messageToSend);
@@ -106,7 +112,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
       url: '/snippitInfo/newMessage',
       data: messageToSend
     }).then(function(){
-      $scope.messages.push(messageToSend);
+      getSnippitInfo();
       $scope.showCancelMessage = false;
     });
 
@@ -186,7 +192,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
         data: statusData
       })
       .then(function(data){
-        $scope.inquiryData[index].status_id = data.data;
+        $scope.inquiryData[index].status_type = data.data;
       });
 
 
@@ -250,7 +256,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
           url: '/updateStatus',
           data: statusData
         }).then(function(data){
-          $scope.inquiryData[index].status_id = data.data;
+          $scope.inquiryData[index].status_type = data.data;
         });
 
          $scope.inquiryData[index].statusAlert = firstName + ' has been approved!  An email has been sent to ' + firstName + ' with instructions for the application process.';
@@ -281,7 +287,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
         data: deleteUserObject
       });
 
-
+      setTimeout(function(){$scope.inquiryData.splice(index,1); $scope.$apply();}, 3000);
       $scope.status = firstName + ' has been deleted from your records!';
       $scope.alertStatus = "alert alert-success";
     } else {
@@ -322,8 +328,6 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
       }
     });
   };//End saveUser
-
-
 
 
 }]);//End inquiryTableController
@@ -381,7 +385,7 @@ myApp.controller('applicationTableController', ['$scope', '$http', function($sco
         data: statusData
       })
       .then(function(data){
-        $scope.applicationData[index].status_id = data.data;
+        $scope.applicationData[index].status_type = data.data;
       });
 
 

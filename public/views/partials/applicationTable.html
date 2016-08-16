@@ -1,16 +1,20 @@
-<div ng-controller="applicationTableController">
-  <h3>Active Applications</h3>
+<div class="container" ng-controller="applicationTableController">
 
-  <label>Search: </label>
+  <!-- fake search for presentation -->
+  <md-input-container class="md-block">
+    <label>Search</label>
+    <input ng-model="admin.search">
+  </md-input-container>
+
+  <!-- <label>Search: </label>
   <input type="text" ng-model='applicationSearchIn'>
   <br>
-  <br>
-
+  <br> -->
+  <div class="form-header">Applications</div>
   <div class="panel panel-primary">
-    <div class="panel-heading">Police Department Applications</div>
     <div class="panel-body">
 
-      <table class="table">
+      <table class="table admin-table">
         <tr>
           <th>ID</th> <th>Name</th>  <th>Phone</th>  <th>E-mail</th> <th>Status</th>
         </tr>
@@ -29,7 +33,7 @@
               {{data.contact_email}}
             </td>
             <td>
-              {{data.status_id}}
+              {{data.status_type}}
             </td>
           </tr>
 

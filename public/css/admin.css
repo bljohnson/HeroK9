@@ -1,0 +1,100 @@
+body {
+  background-color: #eeeeee;
+}
+
+#adminMain {
+  margin: 0 20px 20px 20px;
+}
+
+.panel {
+  border: 0;
+  border-radius: 0;
+}
+
+.panel-primary {
+  border: 0;
+}
+
+.panel-heading {
+  border-radius: 0;
+  padding: 0;
+}
+
+.panel-primary>.panel-heading {
+  background-color: #0b357b;
+  border-color: transparent;
+}
+
+.green-btn {
+  background-color: #5cb85c !important;
+}
+
+.green-btn:hover {
+  background-color: #4cae4c !important;
+}
+
+.yellow-btn {
+  background-color: #f0ad4e !important;
+}
+
+.yellow-btn:hover {
+  background-color: #eea236 !important;
+}
+
+.msg-form {
+  background-color: #eeeeee;
+  padding: 20px;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.admin-table th {
+  background-color: #2d5fb3;
+  color: #fff;
+}
+
+.admin-snippet {
+  border: #fff;
+}
+
+.thumbnail {
+  border-radius: 0;
+  border: 0;
+}
+
+hr {
+  margin: 10px 0;
+}
+
+.admin-header {
+  margin: 0 15px;
+  padding: 20px 0;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.admin-search {
+  border-radius: 4px;
+  width: 50%;
+  padding: 5px 0;
+  box-shadow: none;
+  border: none;
+}
+
+.panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  padding: 9px;
+  color: inherit;
+}
+
+.btn-fix {
+  margin: 20px 0 0 0 !important;
+}
+
+.form-control {
+  margin: 10px 0;
+}

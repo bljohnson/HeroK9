@@ -61,9 +61,7 @@ md-card:last-child {
 }
 
 
-#adminMain {
-  margin: 20px;
-}
+
 
 .confirm{
   color: red;
@@ -295,7 +293,7 @@ md-input-container ._md-placeholder, label {
 
 .auth-question {
   /*border-radius: 5px;*/
-  background-color: #eaf5fb;
+  background-color: #eeeeee;
   margin: 15px auto;
   padding: 30px 80px 20px 80px;
 }
@@ -340,7 +338,6 @@ md-input-container ._md-placeholder, label {
   border: 1px solid #e5e5e5;
   padding: 20px 35px;
   margin: 15px 0;
-  border-radius: 5px;
 }
 
 .file-selected {
