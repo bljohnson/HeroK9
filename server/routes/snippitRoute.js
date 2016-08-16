@@ -57,9 +57,12 @@ router.get('/', function(req, res){
             //Pending Application
             applicationsPending++;
           } else if (results[i].status_id === 6){
-            //Approved Application
-            applicationsApproved++;
-          }
+            //Application needs review
+            applicationsPending++;
+		}else if (results[i].status_id === 7 ){
+			//Application Approved
+			applicationsApproved++;
+		}
         }
 
         var data = {
