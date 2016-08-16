@@ -282,7 +282,7 @@ angular.module('myApp').controller('UserDashController', [
 
             // then, if success, also send file location (url) to database
             var pdfToServer = {
-              k9Id: $scope.k9Id,
+              k9_id: $scope.k9Id,
               certType: $scope.uploadCert,
               url: resp.data.location,
               notes: $scope.certNotes
@@ -425,7 +425,8 @@ angular.module('myApp').controller('UserDashController', [
 
             // then, if success, also collect input & send data and file location to database
             var imgToServer = {
-              url: resp.data.location
+              url: resp.data.location,
+              k9_id: $scope.k9Id
             };
             console.log('send img to server: ', imgToServer);
 
