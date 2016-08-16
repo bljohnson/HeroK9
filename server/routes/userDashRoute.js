@@ -93,6 +93,7 @@ router.post('/submitSquadImg', function (req, res){
   });
 });
 
+
 // send handler application data to k9s table
 router.post('/submitK9App', function (req, res){
   pg.connect(connectionString, function(err, client, done){
@@ -210,6 +211,19 @@ router.get('/', function(req, res){
     });
 
 
+    router.put('/canine', function(req, res){
+    	console.log('In userdash handlerform route');
+    	pg.connect(connectionString, function (err, client, done) {
+
+
+
+			var updateK9 = client.query ( 'UPDATE K9s SET age = ($1), k9_certified = ($2), k9_active_duty = ($3), k9_retirement = ($4), handler_rank = ($5), handler_first_name = ($6), handler_last_name = ($7), handler_badge = ($8), handler_cell_phone = ($9), handler_secondary_phone = ($10), handler_email = ($11), k9_bio = ($12), k9_back = ($13), k9_chest = ($14), k9_girth = ($15), k9_undercarriage = ($16), k9_vest_color = ($17), k9_vest_imprint = ($18), k9_vest_imprint_color = ($19), squad_make = ($20), squad_model = ($21), squad_year = ($22), squad_retirement = ($23), breed = ($24) WHERE K9s.id = ($25)', [ req.body.age, req.body.certified, req.body.activeDuty, req.body.retirement, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerBadge, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail, req.body.bio, req.body.back, req.body.chest, req.body.girth, req.body.undercarriage, req.body.vestColor, req.body.vestImprint, req.body.vestImprintColor, req.body.squadMake, req.body.squadModel, req.body.squadYear, req.body.squadRetire, req.body.breed, req.body.k9Id ] );
+
+      done();
+
+    	});
+    });
+
     router.post('/canine', function(req, res){
     	console.log('In userdash handlerform route');
     	pg.connect(connectionString, function (err, client, done) {
@@ -218,7 +232,7 @@ router.get('/', function(req, res){
 
 			var updateK9 = client.query ( 'UPDATE K9s SET age = ($1), k9_certified = ($2), k9_active_duty = ($3), k9_retirement = ($4), handler_rank = ($5), handler_first_name = ($6), handler_last_name = ($7), handler_badge = ($8), handler_cell_phone = ($9), handler_secondary_phone = ($10), handler_email = ($11), k9_bio = ($12), k9_back = ($13), k9_chest = ($14), k9_girth = ($15), k9_undercarriage = ($16), k9_vest_color = ($17), k9_vest_imprint = ($18), k9_vest_imprint_color = ($19), squad_make = ($20), squad_model = ($21), squad_year = ($22), squad_retirement = ($23), breed = ($24) WHERE K9s.id = ($25)', [ req.body.age, req.body.certified, req.body.activeDuty, req.body.retirement, req.body.handlerTitle, req.body.handlerFirstName, req.body.handlerLastName, req.body.handlerBadge, req.body.handlerCellPhone, req.body.handlerSecondaryCell, req.body.handlerEmail, req.body.bio, req.body.back, req.body.chest, req.body.girth, req.body.undercarriage, req.body.vestColor, req.body.vestImprint, req.body.vestImprintColor, req.body.squadMake, req.body.squadModel, req.body.squadYear, req.body.squadRetire, req.body.breed, req.body.k9Id ] );
 
-
+      done();
 
     	});
     });

@@ -208,6 +208,42 @@ angular.module('myApp').controller('UserDashController', [
 
       // save button alert modal
       $scope.saveForm = function() {
+        var k9ToSave = {
+      k9Id: $scope.k9Id,
+      handlerTitle: $scope.handlerTitle,
+      handlerFirstName: $scope.handlerFirstName,
+      handlerLastName: $scope.handlerLastName,
+      handlerBadge: $scope.handlerBadge,
+      handlerCellPhone: $scope.handlerCell,
+      handlerSecondaryCell: $scope.handlerPhone,
+      handlerEmail: $scope.handlerEmail,
+      age: $scope.k9Age,
+      breed: $scope.breed,
+      certified: $scope.k9Cert,
+      activeDuty: $scope.k9Active,
+      retirement: $scope.k9Retire,
+      bio: $scope.k9Bio,
+      back: $scope.k9Back,
+      chest: $scope.k9Chest,
+      girth: $scope.k9Girth,
+      undercarriage: $scope.k9Undercarriage,
+      vestColor: $scope.vestColor,
+      vestImprint: $scope.vestImprint,
+      vestImprintColor: $scope.vestImprintColor,
+      squadMake: $scope.squadMake,
+      squadModel: $scope.squadModel,
+      squadYear: $scope.squadYear,
+      squadRetire: $scope.squadRetire
+        };
+
+        $http({
+          method: 'PUT',
+          url: '/userDash/canine',
+          data: k9ToSave
+        }).success(function() {
+          console.log('in /sendK9App: ', k9ToSave);
+        });
+
         $mdDialog.show(
           $mdDialog.alert({
             title: 'Saved!',
