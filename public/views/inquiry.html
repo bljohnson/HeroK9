@@ -18,7 +18,7 @@
 
       <!-- If authorized, serve full form. -->
       <div class="full" ng-show="authorized == 'yes'">
-        <form name="fullForm" ng-submit="sendInquiry()" novalidate>
+        <form name="fullForm" ng-submit="sendInquiry()">
           <h2 class="form-header">Contact Information</h2>
 
           <div class="form-bg">
@@ -81,18 +81,6 @@
                 </div>
               </md-input-container>
             </div>
-
-              <div layout-gt-sm="row">
-                <md-input-container class="md-block" flex-gt-sm>
-                  <label for="numberOfDogs">Number of K9s in Unit</label>
-                  <input ng-model="numberOfDogs" id="numberOfDogs" type="text" name="numberOfDogs" value="" required>
-                  <div ng-messages="fullForm.numberOfDogs.$error">
-                    <div ng-message="required">This is required.</div>
-                  </div>
-                </md-input-container>
-              </div>
-              <md-button class="md-primary md-raised" type="submit" name="button" >Submit</md-button>
-            </form>
             <p>What's the best time to contact you?</p>
             <div layout-gt-sm="row">
               <md-input-container class="md-block">
@@ -158,13 +146,13 @@
               </md-input-container>
             </div>
           </div>
-          <md-button class="md-primary md-raised float-right" type="submit" name="button" ng-disabled="inquiry.$invalid">Request Application</md-button>
+          <md-button class="md-primary md-raised float-right" type="submit" name="button">Request Application</md-button>
         </form>
       </div>
 
       <!-- If not authorized, serve the basic form. -->
       <div class="basic" ng-show="authorized == 'no'">
-        <form name="basicForm" ng-submit="sendInquiry()" novalidate>
+        <form name="basicForm" ng-submit="sendInquiry()">
           <h2 class="form-header">Contact Information</h2>
           <div class="form-bg">
             <h4>Please provide your contact information.</h4>
@@ -280,7 +268,7 @@
               </md-input-container>
             </div>
           </div>
-          <md-button class="md-primary md-raised float-right" type="submit" ng-disabled="inquiry.$invalid">Request Application</md-button>
+          <md-button class="md-primary md-raised float-right" type="submit">Request Application</md-button>
         </form>
       </div>
     </div>

@@ -19,7 +19,7 @@
 
       <div class="first-form" ng-controller="AppController">
         <h2 class="form-header">K9 Information</h2>
-        <form name="k9application" novalidate>
+        <form name="k9application" ng-submit="sendk9()">
           <div class="form-bg">
 
           <div layout-gt-sm="row">
@@ -174,7 +174,7 @@
             </fieldset>
           </div>
         </div>
-        <md-button class="md-primary md-raised float-right" type="submit" ng-click="sendk9(); go('/agreement')" ng-disabled="application.$invalid" name="submit">Next Step</md-button>
+        <md-button class="md-primary md-raised float-right" type="submit" name="submit">Next Step</md-button>
         <md-button class="md-primary md-raised float-right secondary-btn" type="submit" ng-click="sendk9(); go('/part3')" ng-disabled="application.$invalid" name="submit">Submit K9 & Add Another</md-button>
       </form>
       </div>
