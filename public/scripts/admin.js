@@ -486,7 +486,7 @@ myApp.controller('dogTableController', ['$scope', '$http', function($scope, $htt
       // $scope.dogInfo[index] = false;
       document.getElementById('expandDog' + index).style.display = "none";
     } else {
-      console.log('wtf');
+      console.log('error');
     }
 
   };
