@@ -414,14 +414,15 @@ myApp.controller('applicationTableController', ['$scope', '$http', function($sco
       dept_add_street2: $scope.applicationData[index].dept_add_street2,
       dept_add_city: $scope.applicationData[index].dept_add_city,
       dept_add_state: $scope.applicationData[index].dept_add_state,
-      dept_add_zip: $scope.applicationData[index].dept_add_zip
+      dept_add_zip: $scope.applicationData[index].dept_add_zip,
+      notes: $scope.applicationData[index].notes
 };
 
     console.log(user);
 
 
     // $scope.user already updated!
-    return $http.post('/adminEdit/saveUser', user).error(function(err) {
+    return $http.put('/adminEdit/saveUser', user).error(function(err) {
       if(err.field && err.msg) {
         // err like {field: "name", msg: "Server-side error for this username!"}
         $scope.userForm.$setError(err.field, err.msg);
