@@ -211,7 +211,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
   $scope.sendApproveMail = function (index){
     var mailObject = {
       to: $scope.inquiryData[index].contact_email,
-      subject: "Your inquiry has been approved",
+      subject: "Your contact request has been approved",
       admin: $scope.inquiryData[index].contact_email
     };
 
