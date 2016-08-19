@@ -1,5 +1,11 @@
 CREATE TYPE role AS ENUM ('K9 Handler', 'K9 Unit Supervisor', 'Department Admin', 'Other Admin Staff', 'Other Command Staff');
 
+CREATE TABLE status (
+	id SERIAL PRIMARY KEY NOT NULL,
+	status_type VARCHAR (30),
+	description VARCHAR (255)
+);
+
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY NOT NULL,
 	email VARCHAR(255) UNIQUE,
@@ -28,12 +34,6 @@ CREATE TABLE users (
 	notes TEXT,
 	signature VARCHAR(30),
 	badge INTEGER
-);
-
-CREATE TABLE status (
-	id SERIAL PRIMARY KEY NOT NULL,
-	status_type VARCHAR (30),
-	description VARCHAR (255)
 );
 
 CREATE TABLE messages (
@@ -80,7 +80,7 @@ CREATE TABLE K9s (
 	squad_retirement BOOLEAN
 );
 
-CREATE TYPE certification AS ENUM ('Explosives', 'Narcotics', 'Patrol', 'Tracking/Trailing');
+CREATE TYPE certification AS ENUM ('Explosives', 'Narcotics', 'Patrol', 'Tracking/Trailing', 'Other');
 
 CREATE TABLE certifications (
 	id SERIAL PRIMARY KEY NOT NULL,

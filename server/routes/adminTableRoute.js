@@ -134,6 +134,8 @@ router.post('/dogTableInfo', function(req, res){
 
     var query = client.query('SELECT * FROM k9s WHERE id = ($1)', [req.body.dog_id]);
 
+    // var k9PhotoQuery = client.query('SELECT K9_photos.url FROM K9s INNER JOIN K9_photos ON K9s.id = K9_photos.K9_id WHERE K9s.id=' + req.body.dog_id);
+
     query.on('row', function(row){
       results.push(row);
     });

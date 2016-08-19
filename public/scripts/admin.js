@@ -500,6 +500,7 @@ myApp.controller('dogEditController', ['$scope', '$http', '$filter', function($s
     {value: false, text: 'False'}
   ];
 
+  // Broken for some reason
   // $scope.showStatusRetirement = function() {
   //   var selectedRetirement = $filter('filter')($scope.bool, {value: $scope.dogData.k9_retirement});
   //   return ($scope.dogData.k9_retirement && selectedRetirement.length) ? selectedretirement[0].text : 'Not set';
@@ -563,4 +564,4 @@ myApp.controller('dogEditController', ['$scope', '$http', '$filter', function($s
   };//End saveUser
 
 
-}]);//End adminEditController
+}]);//End dogEditController
