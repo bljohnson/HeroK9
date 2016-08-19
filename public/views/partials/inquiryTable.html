@@ -1,12 +1,10 @@
 <div class="container" ng-controller="inquiryTableController">
 
-  <!-- fake search for presentation -->
+  <!-- search -->
   <md-input-container class="md-block">
-    <label>Search</label>
-    <input ng-model="admin.search">
+    <label>Search by Keyword: </label>
+    <input ng-model="$ctrl.query">
   </md-input-container>
-
-  <!-- <input class="admin-search" type="text" ng-model='inquirySearchIn'> -->
 
   <div class="form-header">Contact Requests</div>
   <div class="panel panel-primary">
@@ -17,7 +15,7 @@
         <tr>
           <th>ID</th> <th>Name</th>  <th>Phone</th>  <th>E-mail</th> <th>Status</th>
         </tr>
-        <tbody ng-repeat="data in inquiryData">
+        <tbody ng-repeat="data in inquiryData | filter:$ctrl.query">
           <tr ng-click="expandView($index)">
             <td>
               {{data.id}}

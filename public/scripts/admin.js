@@ -24,7 +24,7 @@ myApp.controller('adminViewController', ['$scope', function($scope){
 
     $scope.activeTab = $scope.tabs[tab];
 
-    if (tab == 0){
+    if (tab === 0){
       $scope.awayFromHome = false;
     } else {
       $scope.awayFromHome = true;
@@ -89,7 +89,7 @@ myApp.controller('snippitController', ['$scope', '$http', function($scope, $http
 
 
   $scope.newMessage = function(){
-    if ($scope.showCancelMessage == false){
+    if ($scope.showCancelMessage === false){
       console.log('was false, now true', $scope.showCancelMessage);
       $scope.showCancelMessage = true;
     } else {
@@ -353,7 +353,6 @@ myApp.controller('applicationTableController', ['$scope', '$http', function($sco
     console.log(tableData);
     $scope.applicationData = tableData;
   });
-
 
   $scope.expandView = function(index){
 
