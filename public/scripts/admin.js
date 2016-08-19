@@ -220,14 +220,13 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
       url: '/sendMail',
       data: mailObject
     }).then(function(Response) {
-  console.log("in sendMail post call success: ", Response);
-  }).error(function(Response) {
-  console.log(Response);
-  });
+      console.log("in sendMail post call success: ", Response);
+    }).error(function(Response) {
+      console.log(Response);
+    });
   };
 
   $scope.approveInquiry = function(e, index) {
-
 
     var firstName = $scope.inquiryData[index].first_name;
     var statusData = {
