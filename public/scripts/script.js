@@ -50,7 +50,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$provide', function($route
       controller: 'AppController'
     }).
     when('/part3', {
-      templateUrl: '/views/k9application.html',
+      templateUrl: '/views/k9application2.html',
       controller: 'AppController'
     }).
     when('/submitted',{
@@ -464,8 +464,6 @@ $scope.sendk9 = function(){
 		method: 'POST',
 		url: '/applicationForm/part2',
 		data: objectToSend
-  }).then(function(){
-    $location.path('/agreement');
   });
 
 
@@ -481,7 +479,59 @@ $scope.sendk9 = function(){
     data: userInfo
   });
 
-};
+};//end sendk9
+
+$scope.sendAnothek9 = function(){
+
+  var breedToSend;
+  if ($scope.otherBreed !== undefined){
+    breedToSend = $scope.otherBreed;
+  } else {
+    breedToSend = $scope.breed;
+  }
+
+  var objectToSend = {
+    k9name: $scope.name,
+    breed: breedToSend,
+    age: $scope.age,
+    certified: $scope.certified,
+    activeDuty: $scope.activeDuty,
+    retirement: $scope.retirement,
+    handlerTitle: $scope.title,
+    handlerFirstName: $scope.first,
+    handlerLastName: $scope.last,
+    handlerBadge: $scope.badge,
+    handlerCellPhone: $scope.cell,
+    handlerSecondaryCell: $scope.secondaryCell,
+    handlerEmail: $scope.emailAddress,
+    equipment: [],
+    additionalHandler: $scope.additionalHandler
+  };
+
+  if($scope.kennel !== undefined){
+    objectToSend.equipment.push($scope.kennel);
+  } if($scope.ballistic !== undefined){
+    objectToSend.equipment.push($scope.ballistic);
+  } if($scope.multiThreat !== undefined){
+    objectToSend.equipment.push($scope.multiThreat);
+  } if($scope.doorPop !== undefined){
+    objectToSend.equipment.push($scope.doorPop);
+  }
+
+
+  for (var i =0; i<$scope.equipmentList.length; i++){
+    if (document.getElementById('equipment' + i).className.indexOf('md-checked') >= 0){
+      objectToSend.equipment.push($scope.equipmentList[i].id);
+    }
+    console.log(objectToSend.equipment);
+  }
+
+  $http({
+		method: 'POST',
+		url: '/applicationForm/part2',
+		data: objectToSend
+  });
+};//end sendk9
 
 $scope.sendLegalAgreement = function() {
 	var legalToSend = {
