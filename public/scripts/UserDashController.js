@@ -21,8 +21,8 @@ angular.module('myApp').controller('UserDashController', [
           url: '/userDash/getFormInfo'
         }).success(function(data){
           console.log('In /getFormInfo success with:', data);
-	    $scope.username = data.userInfo.username;
-	    $scope.status_id = data.userInfo.status_id;
+	        $scope.username = data.userInfo.username;
+	        $scope.status_id = data.userInfo.status_id;
           $scope.certList = data.certs;
           $scope.dogList = data.dogs;
           $scope.breeds = data.form_info.breeds;
@@ -88,9 +88,24 @@ angular.module('myApp').controller('UserDashController', [
         $scope.updateForm = function(){
           for (var i=0; i<$scope.dogList.length; i++){
             if ($scope.selectedDog.id == $scope.dogList[i].id){
-			$scope.k9Id = $scope.dogList[i].id;
+			        $scope.k9Id = $scope.dogList[i].id;
               $scope.dog_name = $scope.dogList[i].k9_name + "'s";
               $scope.k9Age = $scope.dogList[i].age;
+              $scope.k9Bio = $scope.dogList[i].k9_bio;
+              $scope.k9Back = $scope.dogList[i].k9_back;
+              $scope.k9Chest = $scope.dogList[i].k9_chest;
+              $scope.k9Girth = $scope.dogList[i].k9_girth;
+              $scope.k9Undercarriage = $scope.dogList[i].k9_undercarriage;
+              $scope.vestColor = $scope.dogList[i].k9_vest_color;
+              $scope.vestImprint = $scope.dogList[i].k9_vest_imprint;
+              $scope.vestImprintColor = $scope.dogList[i].k9_vest_imprint_color;
+              $scope.squadMake = $scope.dogList[i].squad_make;
+              $scope.squadModel = $scope.dogList[i].squad_model;
+              $scope.squadYear = $scope.dogList[i].squad_year;
+              $scope.squadRetire = $scope.dogList[i].squad_retirement;
+              $scope.k9Cert = $scope.dogList[i].k9_certified;
+              $scope.k9Active = $scope.dogList[i].active_duty;
+              $scope.k9Retire = $scope.dogList[i].retirement;
               $scope.breed = $scope.dogList[i].breed;
               $scope.handlerTitle = $scope.dogList[i].handler_rank;
               $scope.handlerFirstName = $scope.dogList[i].handler_first_name;
@@ -99,8 +114,6 @@ angular.module('myApp').controller('UserDashController', [
               $scope.handlerCell = $scope.dogList[i].handler_cell_phone;
               $scope.handlerPhone = $scope.dogList[i].handler_secondary_phone;
               $scope.handlerEmail = $scope.dogList[i].handler_email;
-              //There are still a few fields missing that still need to be scoped in
-
             }
           }
 
@@ -165,8 +178,8 @@ angular.module('myApp').controller('UserDashController', [
 
         ////////////////////////////////////////  collect input to send to server  ////////////////////////////////////////
         $scope.sendK9App = function() {
-          var k9ToSend = {
-		k9Id: $scope.k9Id,
+        var k9ToSend = {
+		    k9Id: $scope.k9Id,
     		handlerTitle: $scope.handlerTitle,
     		handlerFirstName: $scope.handlerFirstName,
     		handlerLastName: $scope.handlerLastName,
