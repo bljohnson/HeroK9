@@ -286,7 +286,7 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
         data: deleteUserObject
       });
 
-      setTimeout(function(){$scope.inquiryData.splice(index,1); $scope.$apply();}, 3000);
+      setTimeout(function(){$scope.inquiryData.splice(index,1); $scope.$apply();}, 1000);
       $scope.status = firstName + ' has been deleted from your records!';
       $scope.alertStatus = "alert alert-success";
     } else {
@@ -306,18 +306,19 @@ myApp.controller('inquiryTableController', ['$scope', '$http', function($scope, 
       email: $scope.inquiryData[index].email,
       contact_email: $scope.inquiryData[index].contact_email,
       contact_time: $scope.inquiryData[index].contact_time,
-      add_street1: $scope.inquiryData[index].dept_add_street1,
-      add_street2: $scope.inquiryData[index].dept_add_street2,
-      add_city: $scope.inquiryData[index].dept_add_city,
-      add_state: $scope.inquiryData[index].dept_add_state,
-      add_zip: $scope.inquiryData[index].dept_add_zip
+      dept_add_street1: $scope.inquiryData[index].dept_add_street1,
+      dept_add_street2: $scope.inquiryData[index].dept_add_street2,
+      dept_add_city: $scope.inquiryData[index].dept_add_city,
+      dept_add_state: $scope.inquiryData[index].dept_add_state,
+      dept_add_zip: $scope.inquiryData[index].dept_add_zip,
+	  notes: $scope.inquiryData[index].notes
 };
 
     console.log(user);
 
 
     // $scope.user already updated!
-    return $http.post('/adminEdit/saveUser', user).error(function(err) {
+    return $http.put('/adminEdit/saveUser', user).error(function(err) {
       if(err.field && err.msg) {
         // err like {field: "name", msg: "Server-side error for this username!"}
         $scope.userForm.$setError(err.field, err.msg);
@@ -410,11 +411,11 @@ myApp.controller('applicationTableController', ['$scope', '$http', function($sco
       email: $scope.applicationData[index].email,
       contact_email: $scope.applicationData[index].contact_email,
       contact_time: $scope.applicationData[index].contact_time,
-      add_street1: $scope.applicationData[index].dept_add_street1,
-      add_street2: $scope.applicationData[index].dept_add_street2,
-      add_city: $scope.applicationData[index].dept_add_city,
-      add_state: $scope.applicationData[index].dept_add_state,
-      add_zip: $scope.applicationData[index].dept_add_zip
+      dept_add_street1: $scope.applicationData[index].dept_add_street1,
+      dept_add_street2: $scope.applicationData[index].dept_add_street2,
+      dept_add_city: $scope.applicationData[index].dept_add_city,
+      dept_add_state: $scope.applicationData[index].dept_add_state,
+      dept_add_zip: $scope.applicationData[index].dept_add_zip
 };
 
     console.log(user);
@@ -452,7 +453,7 @@ myApp.controller('applicationTableController', ['$scope', '$http', function($sco
       $scope.applicationData[index].statusAlert = firstName + ' has been deleted from your records!';
       $scope.alertStatus = "alert alert-success";
 
-      setTimeout(function(){$scope.applicationData.splice(index, 1); $scope.$apply();}, 3000);
+      setTimeout(function(){$scope.applicationData.splice(index, 1); $scope.$apply();}, 1000);
 
 
     } else {
@@ -484,7 +485,7 @@ myApp.controller('dogTableController', ['$scope', '$http', function($scope, $htt
       // $scope.dogInfo[index] = false;
       document.getElementById('expandDog' + index).style.display = "none";
     } else {
-      console.log('wtf');
+      console.log('error');
     }
 
   };

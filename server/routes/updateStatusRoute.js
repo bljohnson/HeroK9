@@ -35,7 +35,7 @@ router.post('/', function(req, res){
       break;
 
     default:
-      "How the fuck did you get here?"
+      "WOOF."
       break;
   }
 

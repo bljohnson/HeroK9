@@ -39,6 +39,16 @@ router.post('/part2', function(req, res){
 	}); // end pg connect
 }); // end router.post
 
+router.post('/part3', function(req, res){
+	console.log("In applicationForm route");
+  	console.log('req.body: ', req.body);
+  	pg.connect(connection, function (err, client, done) {
+		var addLegalAgreement = client.query('UPDATE users SET signature = ($1), badge = ($2) WHERE id = ($3)', [req.body.signature, req.body.badgeSignature, req.user.id]);
+	  done();
+	  res.sendStatus(200);
+	}); // end pg connect
+}); // end router.post
+
 router.get('/formData', function(req, res){
 	console.log('in application GET');
 	pg.connect(connection, function(err, client, done){

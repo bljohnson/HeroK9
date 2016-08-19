@@ -380,6 +380,8 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
 
  $scope.sendApplication = function(){
 
+   console.log("In sendApplication");
+
    var objectToSend = {
 	   rank: $scope.rank,
 	   role: $scope.role,
@@ -394,7 +396,7 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
 	   city: $scope.city,
 	   state: $scope.state,
 	   zip: $scope.zip,
-	   numberOfDogs: $scope.numberOfDogs,
+	   numberOfDogs: $scope.numberOfDogs
    };//end objectToSend
 
    console.log(objectToSend);
@@ -403,10 +405,14 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
 		method: 'POST',
 		url: '/applicationForm/part1',
 		data: objectToSend
-	});
-
-
- }; //end sendApplication
+	}).then(function(){
+    $location.path('/part2');
+  });
+  // $scope.go();
+};//end sendApplication
+// $scope.go = function(){
+//   $location.path('/part2');
+// };
 
 
 $scope.sendk9 = function(){
@@ -417,9 +423,6 @@ $scope.sendk9 = function(){
   } else {
     breedToSend = $scope.breed;
   }
-
-
-
 
   var objectToSend = {
     k9name: $scope.name,
@@ -461,7 +464,9 @@ $scope.sendk9 = function(){
 		method: 'POST',
 		url: '/applicationForm/part2',
 		data: objectToSend
-	});
+  }).then(function(){
+    $location.path('/agreement');
+  });
 
 
   //Send userInfo to updateStatus
@@ -477,6 +482,21 @@ $scope.sendk9 = function(){
   });
 
 };
+
+$scope.sendLegalAgreement = function() {
+	var legalToSend = {
+		signature: $scope.signature,
+		badgeSignature: $scope.badgeSignature
+	}; // end legalToSend
+
+	console.log(legalToSend);
+	$http({
+		  method: 'POST',
+		  url: '/applicationForm/part3',
+		  data: legalToSend
+	  });
+}; // end sendLegalAgreement
+
 
 
 $scope.go = function(path){

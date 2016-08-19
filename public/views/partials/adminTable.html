@@ -27,7 +27,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <h4><strong>Authorized Signer Contact Information</strong></h4>
 
         <content>
@@ -63,7 +63,7 @@
         </content>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-4">
         <h4><strong>Department Address</strong></h4>
         <content>
           <span class="infoItem">
@@ -97,7 +97,19 @@
           </br>
         </content>
       </div>
+
+	  <div class="col-md-4">
+	    <h4><strong>Notes</strong></h4>
+	    <content>
+	  	<span class="infoItem">
+			<a href="#" editable-textarea="data.notes" e-rows="7" e-cols="40">
+		      <pre>{{ data.notes || 'No notes' }}</pre>
+	   		</a>
+   		</span>
     </div>
+</div>
+
+
 
     <!-- button to show form -->
     <md-button type="button" class="md-primary md-raised yellow-btn btn-fix" ng-click="userForm.$show()" ng-show="!userForm.$visible">

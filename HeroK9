@@ -30,7 +30,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- Name: certification; Type: TYPE; Schema: public; Owner: BethanyJohnson
+-- Name: certification; Type: TYPE; Schema: public; Owner: mdn
 --
 
 CREATE TYPE certification AS ENUM (
@@ -42,10 +42,10 @@ CREATE TYPE certification AS ENUM (
 );
 
 
-ALTER TYPE certification OWNER TO "BethanyJohnson";
+ALTER TYPE certification OWNER TO mdn;
 
 --
--- Name: offering; Type: TYPE; Schema: public; Owner: BethanyJohnson
+-- Name: offering; Type: TYPE; Schema: public; Owner: mdn
 --
 
 CREATE TYPE offering AS ENUM (
@@ -56,10 +56,10 @@ CREATE TYPE offering AS ENUM (
 );
 
 
-ALTER TYPE offering OWNER TO "BethanyJohnson";
+ALTER TYPE offering OWNER TO mdn;
 
 --
--- Name: role; Type: TYPE; Schema: public; Owner: BethanyJohnson
+-- Name: role; Type: TYPE; Schema: public; Owner: mdn
 --
 
 CREATE TYPE role AS ENUM (
@@ -71,10 +71,10 @@ CREATE TYPE role AS ENUM (
 );
 
 
-ALTER TYPE role OWNER TO "BethanyJohnson";
+ALTER TYPE role OWNER TO mdn;
 
 --
--- Name: vest_color; Type: TYPE; Schema: public; Owner: BethanyJohnson
+-- Name: vest_color; Type: TYPE; Schema: public; Owner: mdn
 --
 
 CREATE TYPE vest_color AS ENUM (
@@ -85,10 +85,10 @@ CREATE TYPE vest_color AS ENUM (
 );
 
 
-ALTER TYPE vest_color OWNER TO "BethanyJohnson";
+ALTER TYPE vest_color OWNER TO mdn;
 
 --
--- Name: vest_imprint; Type: TYPE; Schema: public; Owner: BethanyJohnson
+-- Name: vest_imprint; Type: TYPE; Schema: public; Owner: mdn
 --
 
 CREATE TYPE vest_imprint AS ENUM (
@@ -102,10 +102,10 @@ CREATE TYPE vest_imprint AS ENUM (
 );
 
 
-ALTER TYPE vest_imprint OWNER TO "BethanyJohnson";
+ALTER TYPE vest_imprint OWNER TO mdn;
 
 --
--- Name: vest_imprint_color; Type: TYPE; Schema: public; Owner: BethanyJohnson
+-- Name: vest_imprint_color; Type: TYPE; Schema: public; Owner: mdn
 --
 
 CREATE TYPE vest_imprint_color AS ENUM (
@@ -116,14 +116,14 @@ CREATE TYPE vest_imprint_color AS ENUM (
 );
 
 
-ALTER TYPE vest_imprint_color OWNER TO "BethanyJohnson";
+ALTER TYPE vest_imprint_color OWNER TO mdn;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: certifications; Type: TABLE; Schema: public; Owner: BethanyJohnson
+-- Name: certifications; Type: TABLE; Schema: public; Owner: mdn
 --
 
 CREATE TABLE certifications (
@@ -132,10 +132,10 @@ CREATE TABLE certifications (
 );
 
 
-ALTER TABLE certifications OWNER TO "BethanyJohnson";
+ALTER TABLE certifications OWNER TO mdn;
 
 --
--- Name: certifications_id_seq; Type: SEQUENCE; Schema: public; Owner: BethanyJohnson
+-- Name: certifications_id_seq; Type: SEQUENCE; Schema: public; Owner: mdn
 --
 
 CREATE SEQUENCE certifications_id_seq
@@ -146,17 +146,17 @@ CREATE SEQUENCE certifications_id_seq
     CACHE 1;
 
 
-ALTER TABLE certifications_id_seq OWNER TO "BethanyJohnson";
+ALTER TABLE certifications_id_seq OWNER TO mdn;
 
 --
--- Name: certifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: BethanyJohnson
+-- Name: certifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mdn
 --
 
 ALTER SEQUENCE certifications_id_seq OWNED BY certifications.id;
 
 
 --
--- Name: equipment; Type: TABLE; Schema: public; Owner: BethanyJohnson
+-- Name: equipment; Type: TABLE; Schema: public; Owner: mdn
 --
 
 CREATE TABLE equipment (
@@ -165,10 +165,10 @@ CREATE TABLE equipment (
 );
 
 
-ALTER TABLE equipment OWNER TO "BethanyJohnson";
+ALTER TABLE equipment OWNER TO mdn;
 
 --
--- Name: equipment_id_seq; Type: SEQUENCE; Schema: public; Owner: BethanyJohnson
+-- Name: equipment_id_seq; Type: SEQUENCE; Schema: public; Owner: mdn
 --
 
 CREATE SEQUENCE equipment_id_seq
@@ -179,17 +179,17 @@ CREATE SEQUENCE equipment_id_seq
     CACHE 1;
 
 
-ALTER TABLE equipment_id_seq OWNER TO "BethanyJohnson";
+ALTER TABLE equipment_id_seq OWNER TO mdn;
 
 --
--- Name: equipment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: BethanyJohnson
+-- Name: equipment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mdn
 --
 
 ALTER SEQUENCE equipment_id_seq OWNED BY equipment.id;
 
 
 --
--- Name: k9_photos; Type: TABLE; Schema: public; Owner: BethanyJohnson
+-- Name: k9_photos; Type: TABLE; Schema: public; Owner: mdn
 --
 
 CREATE TABLE k9_photos (
@@ -199,10 +199,10 @@ CREATE TABLE k9_photos (
 );
 
 
-ALTER TABLE k9_photos OWNER TO "BethanyJohnson";
+ALTER TABLE k9_photos OWNER TO mdn;
 
 --
--- Name: k9_photos_id_seq; Type: SEQUENCE; Schema: public; Owner: BethanyJohnson
+-- Name: k9_photos_id_seq; Type: SEQUENCE; Schema: public; Owner: mdn
 --
 
 CREATE SEQUENCE k9_photos_id_seq
@@ -213,36 +213,36 @@ CREATE SEQUENCE k9_photos_id_seq
     CACHE 1;
 
 
-ALTER TABLE k9_photos_id_seq OWNER TO "BethanyJohnson";
+ALTER TABLE k9_photos_id_seq OWNER TO mdn;
 
 --
--- Name: k9_photos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: BethanyJohnson
+-- Name: k9_photos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mdn
 --
 
 ALTER SEQUENCE k9_photos_id_seq OWNED BY k9_photos.id;
 
 
 --
--- Name: k9s; Type: TABLE; Schema: public; Owner: BethanyJohnson
+-- Name: k9s; Type: TABLE; Schema: public; Owner: mdn
 --
 
 CREATE TABLE k9s (
     id integer NOT NULL,
     user_id integer NOT NULL,
-    k9_name character varying(255) NOT NULL,
-    breed character varying(255) NOT NULL,
-    age character varying(30) NOT NULL,
-    k9_certified boolean NOT NULL,
-    k9_active_duty boolean NOT NULL,
-    k9_retirement boolean NOT NULL,
-    handler_rank character varying(255) NOT NULL,
-    handler_first_name character varying(255) NOT NULL,
-    handler_last_name character varying(255) NOT NULL,
-    handler_badge integer NOT NULL,
-    handler_cell_phone character varying(30) NOT NULL,
+    k9_name character varying(255),
+    breed character varying(255),
+    age character varying(30),
+    k9_certified boolean,
+    k9_active_duty boolean,
+    k9_retirement boolean,
+    handler_rank character varying(255),
+    handler_first_name character varying(255),
+    handler_last_name character varying(255),
+    handler_badge integer,
+    handler_cell_phone character varying(30),
     handler_secondary_phone character varying(30),
-    handler_email character varying(255) NOT NULL,
-    signed timestamp without time zone DEFAULT now() NOT NULL,
+    handler_email character varying(255),
+    signed timestamp without time zone DEFAULT now(),
     k9_bio text,
     k9_back integer,
     k9_chest integer,
@@ -258,10 +258,10 @@ CREATE TABLE k9s (
 );
 
 
-ALTER TABLE k9s OWNER TO "BethanyJohnson";
+ALTER TABLE k9s OWNER TO mdn;
 
 --
--- Name: k9s_certifications; Type: TABLE; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_certifications; Type: TABLE; Schema: public; Owner: mdn
 --
 
 CREATE TABLE k9s_certifications (
@@ -273,10 +273,10 @@ CREATE TABLE k9s_certifications (
 );
 
 
-ALTER TABLE k9s_certifications OWNER TO "BethanyJohnson";
+ALTER TABLE k9s_certifications OWNER TO mdn;
 
 --
--- Name: k9s_certifications_id_seq; Type: SEQUENCE; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_certifications_id_seq; Type: SEQUENCE; Schema: public; Owner: mdn
 --
 
 CREATE SEQUENCE k9s_certifications_id_seq
@@ -287,17 +287,17 @@ CREATE SEQUENCE k9s_certifications_id_seq
     CACHE 1;
 
 
-ALTER TABLE k9s_certifications_id_seq OWNER TO "BethanyJohnson";
+ALTER TABLE k9s_certifications_id_seq OWNER TO mdn;
 
 --
--- Name: k9s_certifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_certifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mdn
 --
 
 ALTER SEQUENCE k9s_certifications_id_seq OWNED BY k9s_certifications.id;
 
 
 --
--- Name: k9s_equipment; Type: TABLE; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_equipment; Type: TABLE; Schema: public; Owner: mdn
 --
 
 CREATE TABLE k9s_equipment (
@@ -307,10 +307,10 @@ CREATE TABLE k9s_equipment (
 );
 
 
-ALTER TABLE k9s_equipment OWNER TO "BethanyJohnson";
+ALTER TABLE k9s_equipment OWNER TO mdn;
 
 --
--- Name: k9s_equipment_id_seq; Type: SEQUENCE; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_equipment_id_seq; Type: SEQUENCE; Schema: public; Owner: mdn
 --
 
 CREATE SEQUENCE k9s_equipment_id_seq
@@ -321,17 +321,17 @@ CREATE SEQUENCE k9s_equipment_id_seq
     CACHE 1;
 
 
-ALTER TABLE k9s_equipment_id_seq OWNER TO "BethanyJohnson";
+ALTER TABLE k9s_equipment_id_seq OWNER TO mdn;
 
 --
--- Name: k9s_equipment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_equipment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mdn
 --
 
 ALTER SEQUENCE k9s_equipment_id_seq OWNED BY k9s_equipment.id;
 
 
 --
--- Name: k9s_id_seq; Type: SEQUENCE; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_id_seq; Type: SEQUENCE; Schema: public; Owner: mdn
 --
 
 CREATE SEQUENCE k9s_id_seq
@@ -342,17 +342,17 @@ CREATE SEQUENCE k9s_id_seq
     CACHE 1;
 
 
-ALTER TABLE k9s_id_seq OWNER TO "BethanyJohnson";
+ALTER TABLE k9s_id_seq OWNER TO mdn;
 
 --
--- Name: k9s_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mdn
 --
 
 ALTER SEQUENCE k9s_id_seq OWNED BY k9s.id;
 
 
 --
--- Name: messages; Type: TABLE; Schema: public; Owner: BethanyJohnson
+-- Name: messages; Type: TABLE; Schema: public; Owner: mdn
 --
 
 CREATE TABLE messages (
@@ -364,10 +364,10 @@ CREATE TABLE messages (
 );
 
 
-ALTER TABLE messages OWNER TO "BethanyJohnson";
+ALTER TABLE messages OWNER TO mdn;
 
 --
--- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: BethanyJohnson
+-- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: mdn
 --
 
 CREATE SEQUENCE messages_id_seq
@@ -378,17 +378,17 @@ CREATE SEQUENCE messages_id_seq
     CACHE 1;
 
 
-ALTER TABLE messages_id_seq OWNER TO "BethanyJohnson";
+ALTER TABLE messages_id_seq OWNER TO mdn;
 
 --
--- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: BethanyJohnson
+-- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mdn
 --
 
 ALTER SEQUENCE messages_id_seq OWNED BY messages.id;
 
 
 --
--- Name: squad_photos; Type: TABLE; Schema: public; Owner: BethanyJohnson
+-- Name: squad_photos; Type: TABLE; Schema: public; Owner: mdn
 --
 
 CREATE TABLE squad_photos (
@@ -398,10 +398,10 @@ CREATE TABLE squad_photos (
 );
 
 
-ALTER TABLE squad_photos OWNER TO "BethanyJohnson";
+ALTER TABLE squad_photos OWNER TO mdn;
 
 --
--- Name: squad_photos_id_seq; Type: SEQUENCE; Schema: public; Owner: BethanyJohnson
+-- Name: squad_photos_id_seq; Type: SEQUENCE; Schema: public; Owner: mdn
 --
 
 CREATE SEQUENCE squad_photos_id_seq
@@ -412,17 +412,17 @@ CREATE SEQUENCE squad_photos_id_seq
     CACHE 1;
 
 
-ALTER TABLE squad_photos_id_seq OWNER TO "BethanyJohnson";
+ALTER TABLE squad_photos_id_seq OWNER TO mdn;
 
 --
--- Name: squad_photos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: BethanyJohnson
+-- Name: squad_photos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mdn
 --
 
 ALTER SEQUENCE squad_photos_id_seq OWNED BY squad_photos.id;
 
 
 --
--- Name: status; Type: TABLE; Schema: public; Owner: BethanyJohnson
+-- Name: status; Type: TABLE; Schema: public; Owner: mdn
 --
 
 CREATE TABLE status (
@@ -432,10 +432,10 @@ CREATE TABLE status (
 );
 
 
-ALTER TABLE status OWNER TO "BethanyJohnson";
+ALTER TABLE status OWNER TO mdn;
 
 --
--- Name: status_id_seq; Type: SEQUENCE; Schema: public; Owner: BethanyJohnson
+-- Name: status_id_seq; Type: SEQUENCE; Schema: public; Owner: mdn
 --
 
 CREATE SEQUENCE status_id_seq
@@ -446,17 +446,17 @@ CREATE SEQUENCE status_id_seq
     CACHE 1;
 
 
-ALTER TABLE status_id_seq OWNER TO "BethanyJohnson";
+ALTER TABLE status_id_seq OWNER TO mdn;
 
 --
--- Name: status_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: BethanyJohnson
+-- Name: status_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mdn
 --
 
 ALTER SEQUENCE status_id_seq OWNED BY status.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: BethanyJohnson
+-- Name: users; Type: TABLE; Schema: public; Owner: mdn
 --
 
 CREATE TABLE users (
@@ -487,10 +487,10 @@ CREATE TABLE users (
 );
 
 
-ALTER TABLE users OWNER TO "BethanyJohnson";
+ALTER TABLE users OWNER TO mdn;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: BethanyJohnson
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: mdn
 --
 
 CREATE SEQUENCE users_id_seq
@@ -501,87 +501,87 @@ CREATE SEQUENCE users_id_seq
     CACHE 1;
 
 
-ALTER TABLE users_id_seq OWNER TO "BethanyJohnson";
+ALTER TABLE users_id_seq OWNER TO mdn;
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: BethanyJohnson
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mdn
 --
 
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: BethanyJohnson
+-- Name: id; Type: DEFAULT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY certifications ALTER COLUMN id SET DEFAULT nextval('certifications_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: BethanyJohnson
+-- Name: id; Type: DEFAULT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY equipment ALTER COLUMN id SET DEFAULT nextval('equipment_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: BethanyJohnson
+-- Name: id; Type: DEFAULT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY k9_photos ALTER COLUMN id SET DEFAULT nextval('k9_photos_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: BethanyJohnson
+-- Name: id; Type: DEFAULT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY k9s ALTER COLUMN id SET DEFAULT nextval('k9s_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: BethanyJohnson
+-- Name: id; Type: DEFAULT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY k9s_certifications ALTER COLUMN id SET DEFAULT nextval('k9s_certifications_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: BethanyJohnson
+-- Name: id; Type: DEFAULT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY k9s_equipment ALTER COLUMN id SET DEFAULT nextval('k9s_equipment_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: BethanyJohnson
+-- Name: id; Type: DEFAULT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: BethanyJohnson
+-- Name: id; Type: DEFAULT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY squad_photos ALTER COLUMN id SET DEFAULT nextval('squad_photos_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: BethanyJohnson
+-- Name: id; Type: DEFAULT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY status ALTER COLUMN id SET DEFAULT nextval('status_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: BethanyJohnson
+-- Name: id; Type: DEFAULT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
--- Data for Name: certifications; Type: TABLE DATA; Schema: public; Owner: BethanyJohnson
+-- Data for Name: certifications; Type: TABLE DATA; Schema: public; Owner: mdn
 --
 
 COPY certifications (id, name) FROM stdin;
@@ -594,14 +594,14 @@ COPY certifications (id, name) FROM stdin;
 
 
 --
--- Name: certifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: BethanyJohnson
+-- Name: certifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mdn
 --
 
 SELECT pg_catalog.setval('certifications_id_seq', 5, true);
 
 
 --
--- Data for Name: equipment; Type: TABLE DATA; Schema: public; Owner: BethanyJohnson
+-- Data for Name: equipment; Type: TABLE DATA; Schema: public; Owner: mdn
 --
 
 COPY equipment (id, name) FROM stdin;
@@ -613,14 +613,14 @@ COPY equipment (id, name) FROM stdin;
 
 
 --
--- Name: equipment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: BethanyJohnson
+-- Name: equipment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mdn
 --
 
 SELECT pg_catalog.setval('equipment_id_seq', 4, true);
 
 
 --
--- Data for Name: k9_photos; Type: TABLE DATA; Schema: public; Owner: BethanyJohnson
+-- Data for Name: k9_photos; Type: TABLE DATA; Schema: public; Owner: mdn
 --
 
 COPY k9_photos (id, url, k9_id) FROM stdin;
@@ -628,14 +628,14 @@ COPY k9_photos (id, url, k9_id) FROM stdin;
 
 
 --
--- Name: k9_photos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: BethanyJohnson
+-- Name: k9_photos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mdn
 --
 
 SELECT pg_catalog.setval('k9_photos_id_seq', 1, false);
 
 
 --
--- Data for Name: k9s; Type: TABLE DATA; Schema: public; Owner: BethanyJohnson
+-- Data for Name: k9s; Type: TABLE DATA; Schema: public; Owner: mdn
 --
 
 COPY k9s (id, user_id, k9_name, breed, age, k9_certified, k9_active_duty, k9_retirement, handler_rank, handler_first_name, handler_last_name, handler_badge, handler_cell_phone, handler_secondary_phone, handler_email, signed, k9_bio, k9_back, k9_chest, k9_girth, k9_undercarriage, k9_vest_color, k9_vest_imprint, k9_vest_imprint_color, squad_make, squad_model, squad_year, squad_retirement) FROM stdin;
@@ -644,11 +644,13 @@ COPY k9s (id, user_id, k9_name, breed, age, k9_certified, k9_active_duty, k9_ret
 4	1	Theodore	Belgian Malinois	48	t	t	f	Officer	Mike	Perron	341	952-544-6060	\N	mperron@police.com	2016-08-05 07:22:59.315435	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 5	1	Roman	German Shepherd	33	t	t	f	Deputy	Boris	Anderson	677	982-334-5050	\N	borisa@aol.com	2016-08-05 07:24:01.536947	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 6	1	Magnus	Belgian Malinois	26	t	t	f	Commander	Chip	Carlisle	789	543-543-4444	\N	chipcarlisle@gmail.com	2016-08-05 07:30:11.434651	Magnus is a champion of his breed, and one of a kind. He has successfully maneuvered many drug busts, and taken down cartel leaders singlehandedly with one menacing glare. He loves belly rubs and to play tug with his favorite rope toy. He is a voracious eater and will eat a steak in one bite.	43	23	32	33	Ranger Green	Police K9	White	Chevy	Traverse	2015	f
+15	21	Ted	Belgian Malinois	26	t	t	f	Officer	Mike	Perron	1234	612-333-4444	\N	officer@police.com	2016-08-06 18:42:38.762457	bio	25	30	30	25	Black	Police K9	White	Ford	Interceptor	2015	f
+17	21	Ted	Belgian Malinois	25	\N	\N	\N	Officer	Mike	Perron	1234	612-222-3333	\N	officerperron@police.com	2016-08-07 13:46:18.115929	rekt	30	12	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
 --
--- Data for Name: k9s_certifications; Type: TABLE DATA; Schema: public; Owner: BethanyJohnson
+-- Data for Name: k9s_certifications; Type: TABLE DATA; Schema: public; Owner: mdn
 --
 
 COPY k9s_certifications (id, k9_id, certification_id, url, notes) FROM stdin;
@@ -656,14 +658,14 @@ COPY k9s_certifications (id, k9_id, certification_id, url, notes) FROM stdin;
 
 
 --
--- Name: k9s_certifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_certifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mdn
 --
 
 SELECT pg_catalog.setval('k9s_certifications_id_seq', 1, false);
 
 
 --
--- Data for Name: k9s_equipment; Type: TABLE DATA; Schema: public; Owner: BethanyJohnson
+-- Data for Name: k9s_equipment; Type: TABLE DATA; Schema: public; Owner: mdn
 --
 
 COPY k9s_equipment (id, k9_id, equipment_id) FROM stdin;
@@ -676,41 +678,47 @@ COPY k9s_equipment (id, k9_id, equipment_id) FROM stdin;
 7	5	3
 8	5	4
 9	6	1
+16	15	3
+17	15	4
+18	17	3
+19	17	4
 \.
 
 
 --
--- Name: k9s_equipment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_equipment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mdn
 --
 
-SELECT pg_catalog.setval('k9s_equipment_id_seq', 9, true);
-
-
---
--- Name: k9s_id_seq; Type: SEQUENCE SET; Schema: public; Owner: BethanyJohnson
---
-
-SELECT pg_catalog.setval('k9s_id_seq', 6, true);
+SELECT pg_catalog.setval('k9s_equipment_id_seq', 19, true);
 
 
 --
--- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mdn
+--
+
+SELECT pg_catalog.setval('k9s_id_seq', 17, true);
+
+
+--
+-- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: mdn
 --
 
 COPY messages (id, message, subject, username, messagetime) FROM stdin;
 1	Don't forget we have a board meeting at 10:30 am on Wednesday, August 10!	Board Meeting	Bethany Johnson	2016-08-05 07:06:20.966635
+2	message	subject	Henry Hall	2016-08-08 08:37:05.44684
+5	Please give him a call	Contact officer	Henry Hall	2016-08-08 08:39:00.622198
 \.
 
 
 --
--- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: BethanyJohnson
+-- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mdn
 --
 
-SELECT pg_catalog.setval('messages_id_seq', 1, true);
+SELECT pg_catalog.setval('messages_id_seq', 6, true);
 
 
 --
--- Data for Name: squad_photos; Type: TABLE DATA; Schema: public; Owner: BethanyJohnson
+-- Data for Name: squad_photos; Type: TABLE DATA; Schema: public; Owner: mdn
 --
 
 COPY squad_photos (id, url, k9_id) FROM stdin;
@@ -718,19 +726,17 @@ COPY squad_photos (id, url, k9_id) FROM stdin;
 
 
 --
--- Name: squad_photos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: BethanyJohnson
+-- Name: squad_photos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mdn
 --
 
 SELECT pg_catalog.setval('squad_photos_id_seq', 1, false);
 
 
 --
--- Data for Name: status; Type: TABLE DATA; Schema: public; Owner: BethanyJohnson
+-- Data for Name: status; Type: TABLE DATA; Schema: public; Owner: mdn
 --
 
 COPY status (id, status_type, description) FROM stdin;
-1	New Inquiry	A new inquiry has been added.
-2	Inquiry Review	The completed inquiry is in review.
 3	Form Sent	The inquiry was approved and an application form has been sent.
 4	New Application	A new application form has been submitted.
 5	Application Review	The completed application is in review.
@@ -740,41 +746,44 @@ COPY status (id, status_type, description) FROM stdin;
 9	Equipment Order Submitted	Equipment has been ordered.
 10	Equipment Shipped	Equipment has been shipped to department address.
 99	Admin	This user is an administrator
+1	New Contact Request	A new inquiry has been added.
+2	Contact Request Review	The completed inquiry is in review.
 \.
 
 
 --
--- Name: status_id_seq; Type: SEQUENCE SET; Schema: public; Owner: BethanyJohnson
+-- Name: status_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mdn
 --
 
 SELECT pg_catalog.setval('status_id_seq', 1, false);
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: BethanyJohnson
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: mdn
 --
 
 COPY users (id, email, contact_email, password, status_id, created, rank, role, first_name, last_name, primary_phone, alt_phone, contact_time, dept_add_street1, dept_add_street2, dept_add_city, dept_add_state, dept_add_zip, dept_k9s, auth_title, auth_first_name, auth_last_name, auth_phone, auth_email) FROM stdin;
 4	\N	betty@aol.com	\N	2	2016-08-05 06:59:55.508042	\N	\N	Betty	Berty	555-555-5555	\N		\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 7	\N	hwallace@gmail.com	\N	3	2016-08-05 07:04:16.586341	Director	Department Admin	Horacio	Wallace	746-343-3222	\N		8736 France Avenue S	\N	Edina	MN	38833	9	\N	\N	\N	\N	\N
 8	\N	norm@yahoo.com	\N	3	2016-08-05 07:05:05.976756	\N	\N	Norman	Willoughby	837-445-2343	\N		\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-3	\N	fred@aol.com	\N	1	2016-08-04 22:29:53.121649	Sheriff	K9 Handler	Franny	Patterson	444-444-4444	\N		1234 Street	\N	Minneapolis	MN	32343	5	\N	\N	\N	\N	\N
-6	\N	shermyworm@yahoo.com	\N	1	2016-08-05 07:02:54.040332	Deputy	K9 Unit Supervisor	Madeleine	King	654-234-2222	\N		5432 James Avenue	\N	Bloomington	MN	34983	6	\N	\N	\N	\N	\N
 9	\N	flintlockwood@gmail.com	\N	5	2016-08-05 07:14:33.643014	Chief of Police	Other Command Staff	Flint	Lockwood	873-444-5500	\N		8477 Utah Avenue	\N	Madison	WI	23423	3	\N	\N	\N	\N	\N
-13	henryhall@gmail.com	\N	$2a$10$/CM..Sql3KpVqF5oJPdK7.rZaY5i55jN15jZeckWMeA7z/Vh8Vcq6	99	2016-08-05 07:42:09.636524	\N	\N	Henry	Hall	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-1	agotham@batman.com	johnson.l.bethany@gmail.com	$2a$10$qO6P81Shzr2PUZWIldUJvelYnyVpJG1X/y5auY4r6GX1b.KQy.DOO	7	2016-08-04 21:24:14.318632	Officer	K9 Handler	Adam	Gotham	612-222-2222	\N		1234 Avenue	\N	Roseville	MN	54344	5	\N	\N	\N	\N	\N
+3	\N	fred@aol.com	\N	2	2016-08-04 22:29:53.121649	Sheriff	K9 Handler	Franny	Patterson	444-444-4444	\N		1234 Street	\N	Minneapolis	MN	32343	5	\N	\N	\N	\N	\N
+6	\N	shermyworm@yahoo.com	\N	2	2016-08-05 07:02:54.040332	Deputy	K9 Unit Supervisor	Madeleine	King	654-234-2222	\N		5432 James Avenue	\N	Bloomington	MN	34983	6	\N	\N	\N	\N	\N
+1	agotham@batman.com	agotham@batman.com	$2a$10$qO6P81Shzr2PUZWIldUJvelYnyVpJG1X/y5auY4r6GX1b.KQy.DOO	3	2016-08-04 21:24:14.318632	Officer	K9 Handler	Adam	Gotham	612-222-2222	\N		1234 Avenue	\N	Roseville	MN	54344	5	\N	\N	\N	\N	\N
+13	henryhall@gmail.com	henryhall@gmail.com	$2a$10$qO6P81Shzr2PUZWIldUJvelYnyVpJG1X/y5auY4r6GX1b.KQy.DOO	99	2016-08-05 07:42:09.636524	\N	\N	Henry	Hall	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+21	primeherok9@gmail.com	primeherok9@gmail.com	$2a$10$jW5/MPlFqjAjau6doGs.T.SDu9GdN7gqu5AK9vg3/nvTv7EFzO5Gq	6	2016-08-06 18:40:20.243622	Department Admin	Department Admin	Adam	Gothmann	612-222-3333	\N	\N	1234 Dept Street	\N	Bloomington	MN	55440	1	\N	\N	\N	\N	\N
 \.
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: BethanyJohnson
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mdn
 --
 
-SELECT pg_catalog.setval('users_id_seq', 13, true);
+SELECT pg_catalog.setval('users_id_seq', 21, true);
 
 
 --
--- Name: certifications_pkey; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: certifications_pkey; Type: CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY certifications
@@ -782,7 +791,7 @@ ALTER TABLE ONLY certifications
 
 
 --
--- Name: equipment_pkey; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: equipment_pkey; Type: CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY equipment
@@ -790,7 +799,7 @@ ALTER TABLE ONLY equipment
 
 
 --
--- Name: k9_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: k9_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY k9_photos
@@ -798,7 +807,7 @@ ALTER TABLE ONLY k9_photos
 
 
 --
--- Name: k9s_certifications_pkey; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_certifications_pkey; Type: CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY k9s_certifications
@@ -806,7 +815,7 @@ ALTER TABLE ONLY k9s_certifications
 
 
 --
--- Name: k9s_equipment_pkey; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_equipment_pkey; Type: CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY k9s_equipment
@@ -814,7 +823,7 @@ ALTER TABLE ONLY k9s_equipment
 
 
 --
--- Name: k9s_pkey; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_pkey; Type: CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY k9s
@@ -822,7 +831,7 @@ ALTER TABLE ONLY k9s
 
 
 --
--- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY messages
@@ -830,7 +839,7 @@ ALTER TABLE ONLY messages
 
 
 --
--- Name: squad_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: squad_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY squad_photos
@@ -838,7 +847,7 @@ ALTER TABLE ONLY squad_photos
 
 
 --
--- Name: status_pkey; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: status_pkey; Type: CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY status
@@ -846,7 +855,7 @@ ALTER TABLE ONLY status
 
 
 --
--- Name: users_auth_email_key; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: users_auth_email_key; Type: CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY users
@@ -854,7 +863,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: users_contact_email_key; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: users_contact_email_key; Type: CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY users
@@ -862,7 +871,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: users_email_key; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: users_email_key; Type: CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY users
@@ -870,15 +879,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: users_password_key; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
---
-
-ALTER TABLE ONLY users
-    ADD CONSTRAINT users_password_key UNIQUE (password);
-
-
---
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY users
@@ -886,7 +887,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: k9_photos_k9_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: k9_photos_k9_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY k9_photos
@@ -894,7 +895,7 @@ ALTER TABLE ONLY k9_photos
 
 
 --
--- Name: k9s_certifications_certification_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_certifications_certification_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY k9s_certifications
@@ -902,7 +903,7 @@ ALTER TABLE ONLY k9s_certifications
 
 
 --
--- Name: k9s_equipment_equipment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_equipment_equipment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY k9s_equipment
@@ -910,7 +911,7 @@ ALTER TABLE ONLY k9s_equipment
 
 
 --
--- Name: k9s_equipment_k9_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_equipment_k9_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY k9s_equipment
@@ -918,7 +919,7 @@ ALTER TABLE ONLY k9s_equipment
 
 
 --
--- Name: k9s_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: k9s_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY k9s
@@ -926,7 +927,7 @@ ALTER TABLE ONLY k9s
 
 
 --
--- Name: squad_photos_k9_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: squad_photos_k9_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY squad_photos
@@ -934,7 +935,7 @@ ALTER TABLE ONLY squad_photos
 
 
 --
--- Name: users_status_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: BethanyJohnson
+-- Name: users_status_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: mdn
 --
 
 ALTER TABLE ONLY users
@@ -942,12 +943,12 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: public; Type: ACL; Schema: -; Owner: BethanyJohnson
+-- Name: public; Type: ACL; Schema: -; Owner: mdn
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM "BethanyJohnson";
-GRANT ALL ON SCHEMA public TO "BethanyJohnson";
+REVOKE ALL ON SCHEMA public FROM mdn;
+GRANT ALL ON SCHEMA public TO mdn;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
