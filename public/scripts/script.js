@@ -50,7 +50,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$provide', function($route
       controller: 'AppController'
     }).
     when('/part3', {
-      templateUrl: '/views/k9application.html',
+      templateUrl: '/views/k9application2.html',
       controller: 'AppController'
     }).
     when('/submitted',{
@@ -288,43 +288,34 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
   $scope.checkEmail = function(){
     if($scope.emailConfirm !== $scope.emailAddress){
       $scope.emailMatch = true;
-      // document.getElementsByName("submit")[0].disabled = true;
       console.log('checkEmail no');
       return false;
     }
     $scope.emailMatch = false;
-    // document.getElementsByName("submit")[0].disabled = false;
     console.log('checkEmail yes');
   };
 
   $scope.checkCell = function(){
     if($scope.cellConfirm !== $scope.cell){
       $scope.cellMatch = true;
-      // document.getElementsByName("submit")[0].disabled = true;
       console.log('checkCell no');
       return false;
     }
     $scope.cellMatch=false;
-    // document.getElementsByName("submit")[0].disabled = false;
     console.log('checkCell yes');
   };
 
   $scope.checkBadge = function(){
     if($scope.badgeConfirm !== $scope.badge){
       $scope.badgeMatch = true;
-      // document.getElementsByName("submit")[0].disabled = true;
       console.log('checkBadge no');
       return false;
     }
     $scope.badgeMatch=false;
-    // document.getElementsByName("submit")[0].disabled = false;
     console.log('checkBadge yes');
   };
 
   $scope.checkAll = function(){
-    // $scope.checkEmail();
-    // $scope.checkCell();
-    // $scope.checkBadge();
     if($scope.badgeConfirm !== $scope.badge){
       $scope.badgeMatch = true;
       console.log('checkBadge no');
@@ -408,13 +399,9 @@ myApp.controller('AppController', ['$scope', '$http', '$location', function($sco
 	}).then(function(){
     $location.path('/part2');
   });
-  // $scope.go();
 };//end sendApplication
-// $scope.go = function(){
-//   $location.path('/part2');
-// };
 
-
+//this is for submitting dog and moving on to agreement
 $scope.sendk9 = function(){
 
   var breedToSend;
@@ -464,8 +451,6 @@ $scope.sendk9 = function(){
 		method: 'POST',
 		url: '/applicationForm/part2',
 		data: objectToSend
-  }).then(function(){
-    $location.path('/agreement');
   });
 
 
@@ -481,7 +466,58 @@ $scope.sendk9 = function(){
     data: userInfo
   });
 
-};
+};//end sendk9
+
+//this is for adding additional handlers
+$scope.sendAnothek9 = function(){
+  var breedToSend;
+  if ($scope.otherBreed !== undefined){
+    breedToSend = $scope.otherBreed;
+  } else {
+    breedToSend = $scope.breed;
+  }
+
+  var objectToSend = {
+    k9name: $scope.name,
+    breed: breedToSend,
+    age: $scope.age,
+    certified: $scope.certified,
+    activeDuty: $scope.activeDuty,
+    retirement: $scope.retirement,
+    handlerTitle: $scope.title,
+    handlerFirstName: $scope.first,
+    handlerLastName: $scope.last,
+    handlerBadge: $scope.badge,
+    handlerCellPhone: $scope.cell,
+    handlerSecondaryCell: $scope.secondaryCell,
+    handlerEmail: $scope.emailAddress,
+    equipment: [],
+    additionalHandler: $scope.additionalHandler
+  };
+
+  if($scope.kennel !== undefined){
+    objectToSend.equipment.push($scope.kennel);
+  } if($scope.ballistic !== undefined){
+    objectToSend.equipment.push($scope.ballistic);
+  } if($scope.multiThreat !== undefined){
+    objectToSend.equipment.push($scope.multiThreat);
+  } if($scope.doorPop !== undefined){
+    objectToSend.equipment.push($scope.doorPop);
+  }
+
+  for (var i =0; i<$scope.equipmentList.length; i++){
+    if (document.getElementById('equipment' + i).className.indexOf('md-checked') >= 0){
+      objectToSend.equipment.push($scope.equipmentList[i].id);
+    }
+    console.log(objectToSend.equipment);
+  }
+
+  $http({
+		method: 'POST',
+		url: '/applicationForm/part2',
+		data: objectToSend
+  });
+};//end sendk9
 
 $scope.sendLegalAgreement = function() {
 	var legalToSend = {
@@ -496,8 +532,6 @@ $scope.sendLegalAgreement = function() {
 		  data: legalToSend
 	  });
 }; // end sendLegalAgreement
-
-
 
 $scope.go = function(path){
   $location.path(path);

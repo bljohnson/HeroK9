@@ -26,7 +26,7 @@ router.post('/',function(req,res){
       var mailOptions={
           to : req.body.to,
           subject : req.body.subject,
-          text : "Thank you for your interest in HeroK9, your application request has been approved! Please click the following link to register for an account: http://localhost:4200/register?from=" + sha1(req.body.admin) + " "
+          text : "Welcome to Hero K9! \n\nWe are pleased to inform you that your request for application has been approved. \nPlease click the link below to create an account. This account will allow you to complete your agency/department's appication and track the status of your equipment grant request.\n\nhttp://localhost:4200/register?from=" + sha1(req.body.admin) + "\n\nOnce you have created your account, you will have access to the application form. You may save and come back to the application, as needed, by clicking on the ‘Account Login’ at www.herok9.org.\nIf you have any questions, please feel free to contact us at apply@herok9.org Hero K9 Ensuring the Provision, Preparation and Protection of Public Safety K9s\n\n---\n\nP.O. Box 390479\nMinneapolis, MN 55439\n681.4HEROK9 (437659)\nwww.herok9.org\n\nHero K9 is a national 501(c)(3) organization dedicated to protecting our nation by providing funding to the Public Safety community for the purchase of K9s, training, and necessary equipment. Donations are tax-deductible. Tax ID: 81-3051300"
       };
     } else {
       var mailOptions={
